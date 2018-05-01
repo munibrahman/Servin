@@ -1,0 +1,6 @@
+framework module Pods_ServinV2 {
+  umbrella header "Pods-ServinV2-umbrella.h"
+
+  export *
+  module * { export * }
+}
