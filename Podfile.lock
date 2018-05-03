@@ -6,15 +6,28 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.6.0):
     - GoogleMaps/Base (= 2.6.0)
+  - IQKeyboardManagerSwift (6.0.2)
+  - KYNavigationProgress (2.0.2)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
+  - IQKeyboardManagerSwift
+  - KYNavigationProgress
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - GoogleMaps
+    - GooglePlaces
+    - IQKeyboardManagerSwift
+    - KYNavigationProgress
 
 SPEC CHECKSUMS:
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
+  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
+  KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
 
-PODFILE CHECKSUM: 5077e6b16e65a4d5cc4a1c7f106e1ce68c8b43d6
+PODFILE CHECKSUM: 9099436503f2a95831c3e39fc853605953f73c02
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.5.0

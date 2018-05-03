@@ -8,6 +8,8 @@ target 'ServinV2' do
   # Pods for ServinV2
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'KYNavigationProgress'
+pod 'IQKeyboardManagerSwift'
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing
