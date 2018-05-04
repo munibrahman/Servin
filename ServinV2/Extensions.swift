@@ -31,8 +31,6 @@ extension UIViewController {
     }
 }
 
-import UIKit
-
 @IBDesignable extension UIView {
     @IBInspectable var borderColor: UIColor? {
         set {
@@ -122,4 +120,10 @@ extension UIColor {
     open class var greyBackgroundColor: UIColor {
         return UIColor.init(red: 0.33, green: 0.33, blue: 0.33, alpha: 1.0)
     }
+    
+    open class var shockingPinkColor: UIColor {
+        return UIColor.init(red: 255.0/255.0, green: 51.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+    }
 }
+
+

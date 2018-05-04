@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet var signInButton: UIButton!
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var signUpButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +44,29 @@ class LoginViewController: UIViewController {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardAppearance = .dark
+        
+        let backgroundImageView = UIImageView.init(frame: self.view.frame)
+        backgroundImageView.image = #imageLiteral(resourceName: "background_black_blur")
+        view.insertSubview(backgroundImageView, at: 0)
+    
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
+    @IBAction func signInAction(_ sender: UIButton) {
+        
+        
+    }
+    
+    @IBAction func signUpAction(_ sender: UIButton) {
+        let sb = UIStoryboard.init(name: "Main", bundle: nil)
+        let navController = UINavigationController.init(rootViewController: sb.instantiateViewController(withIdentifier: "SignUp1ViewController"))
+        
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
