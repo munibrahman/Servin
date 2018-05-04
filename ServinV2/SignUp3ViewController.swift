@@ -22,10 +22,13 @@ class SignUp3ViewController: UIViewController {
         setupTextField()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         self.navigationController?.setProgress(3/4, animated: true)
+        
+        // This allows the keyboard to popup automatically
+        passwordTextField.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {

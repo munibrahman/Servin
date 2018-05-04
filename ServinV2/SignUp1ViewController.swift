@@ -23,12 +23,16 @@ class SignUp1ViewController: UIViewController {
         setupTextFields()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // set progress with animation.
         self.navigationController?.progressTintColor = UIColor.shockingPinkColor
         self.navigationController?.setProgress(1/4, animated: true)
         self.navigationController?.progressHeight = 3.0
+        
+        // This allows the keyboard to popup automatically
+        firstNameTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

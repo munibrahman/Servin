@@ -23,11 +23,15 @@ class SignUp2ViewController: UIViewController {
         setupTextField()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.setProgress(2/4, animated: true)
+        
+        // This allows the keyboard to popup automatically
+        emailAddressTextField.becomeFirstResponder()
     }
+    
     
     func setupBackground() {
         let backgroundImageView = UIImageView.init(frame: self.view.frame)
