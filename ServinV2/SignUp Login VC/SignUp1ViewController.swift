@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KYNavigationProgress
 
 class SignUp1ViewController: UIViewController {
 

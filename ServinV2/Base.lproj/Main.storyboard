@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aQs-jg-hvw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XXh-s6-I0C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,7 +56,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdH-OD-Si1">
-                                <rect key="frame" x="265" y="600" width="75" height="21"/>
+                                <rect key="frame" x="265" y="598" width="75" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="SIGN UP">
@@ -94,15 +95,68 @@
             </objects>
             <point key="canvasLocation" x="-852" y="123.39901477832512"/>
         </scene>
-        <!--Signup Page View Controller-->
-        <scene sceneID="3ty-eO-TBM">
+        <!--Side Menu Table View Controller-->
+        <scene sceneID="wkE-Lc-Fjz">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="U5o-lF-YZ8" customClass="SignupPageViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="sI9-Iw-Uk9"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDn-YV-2mA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="XXh-s6-I0C" customClass="SideMenuTableViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9j2-EW-7pT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Umx-K6-L9s">
+                                <rect key="frame" x="16" y="149" width="287" height="498"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" id="MvJ-Ub-uZh">
+                                        <rect key="frame" x="0.0" y="28" width="287" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MvJ-Ub-uZh" id="rd3-ga-bIq">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7lG-eR-hal">
+                                <rect key="frame" x="21" y="66" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="tGZ-8H-n4R"/>
+                                    <constraint firstAttribute="height" constant="60" id="zjD-Pe-kNm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Larry Page" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXP-ep-t7n">
+                                <rect key="frame" x="89" y="66" width="214" height="60"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GXP-ep-t7n" firstAttribute="trailing" secondItem="Umx-K6-L9s" secondAttribute="trailing" id="7ky-d6-V7T"/>
+                            <constraint firstItem="Umx-K6-L9s" firstAttribute="leading" secondItem="9j2-EW-7pT" secondAttribute="leadingMargin" id="Ifj-H6-kTl"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="leading" secondItem="KHb-J6-bJc" secondAttribute="leading" constant="21" id="Kvm-vp-HyC"/>
+                            <constraint firstItem="Umx-K6-L9s" firstAttribute="top" secondItem="7lG-eR-hal" secondAttribute="bottom" constant="23" id="TSy-yd-HJ2"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="top" secondItem="KHb-J6-bJc" secondAttribute="top" constant="46" id="Yqa-ZV-NeH"/>
+                            <constraint firstItem="KHb-J6-bJc" firstAttribute="trailing" secondItem="GXP-ep-t7n" secondAttribute="trailing" constant="72" id="efz-WB-vgR"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="top" secondItem="GXP-ep-t7n" secondAttribute="top" id="hLu-8x-85H"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="bottom" secondItem="GXP-ep-t7n" secondAttribute="bottom" id="iNu-jp-wvn"/>
+                            <constraint firstAttribute="bottom" secondItem="Umx-K6-L9s" secondAttribute="bottom" constant="20" symbolic="YES" id="jAF-wX-5gG"/>
+                            <constraint firstItem="GXP-ep-t7n" firstAttribute="leading" secondItem="7lG-eR-hal" secondAttribute="trailing" constant="8" symbolic="YES" id="uoc-GM-2mg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KHb-J6-bJc"/>
+                    </view>
+                    <connections>
+                        <outlet property="optionsTableViewController" destination="Umx-K6-L9s" id="bMc-mS-x7v"/>
+                        <outlet property="userImageView" destination="7lG-eR-hal" id="Q9a-dr-0Uz"/>
+                        <outlet property="userNameLabel" destination="GXP-ep-t7n" id="V0n-jG-YOQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ilo-MK-tPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-512.79999999999995" y="873.91304347826099"/>
+            <point key="canvasLocation" x="871.20000000000005" y="955.77211394302856"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -117,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1225" y="476"/>
+            <point key="canvasLocation" x="1668" y="123"/>
         </scene>
         <!--Sign Up1 View Controller-->
         <scene sceneID="s9O-ZY-5JC">
@@ -182,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Feg-xy-y0r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1290.4000000000001" y="1643.9280359820091"/>
+            <point key="canvasLocation" x="-2361" y="913"/>
         </scene>
         <!--Sign Up2 View Controller-->
         <scene sceneID="ZFy-nB-ouc">
@@ -255,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4AH-ah-LgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-537" y="1644"/>
+            <point key="canvasLocation" x="-1609" y="913"/>
         </scene>
         <!--Sign Up3 View Controller-->
         <scene sceneID="S4y-3i-sAg">
@@ -312,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZUl-z6-8R1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="217" y="1644"/>
+            <point key="canvasLocation" x="-852" y="913"/>
         </scene>
     </scenes>
     <resources>
