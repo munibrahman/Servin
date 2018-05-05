@@ -66,6 +66,7 @@ class SignUp3ViewController: UIViewController {
     @IBAction func nextButton(_ sender: UIButton) {
         self.navigationController?.finishProgress()
         
+        self.present((storyboard?.instantiateViewController(withIdentifier: "ViewController"))!, animated: true, completion: nil)
     }
     
     /*

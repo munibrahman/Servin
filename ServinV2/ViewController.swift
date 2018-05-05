@@ -29,9 +29,32 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         checkLocationServices()
         setupMap()
         setupSideMenu()
-        
+        //setupSearchBar()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupSearchBar()
+    }
+    
+    func setupSearchBar() {
+        
+        
+        var topPadding: CGFloat = 10.0
+        let sidepadding = topPadding
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            topPadding = topPadding + (window?.safeAreaInsets.top ?? 0.0)
+            
+        }
+        
+        let searchBar = SearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
+        
+        self.view.addSubview(searchBar)
+        
+    }
     func setupSideMenu() {
         
         let sideMenuTableVC = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController
@@ -54,20 +77,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         SideMenuManager.default.menuWidth = view.frame.width * CGFloat(0.8)
         
-        let menuIcon = UIImageView.init(frame: CGRect.init(x: 20.0, y: 50.0, width: 18.0, height: 12.0))
-        menuIcon.image = #imageLiteral(resourceName: "menu_icon")
-        
-        let menuTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(menuTapped))
-        menuIcon.isUserInteractionEnabled = true
-        menuIcon.addGestureRecognizer(menuTapGesture)
-        
-        self.view.addSubview(menuIcon)
-        
     }
     
-    @objc func menuTapped () {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-    }
     
     func setupMap() {
         // Create a GMSCameraPosition that tells the map to display the
