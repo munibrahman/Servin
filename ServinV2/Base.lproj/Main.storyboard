@@ -120,14 +120,16 @@
                                 </prototypes>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7lG-eR-hal">
-                                <rect key="frame" x="21" y="66" width="60" height="60"/>
+                                <rect key="frame" x="16" y="46" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="tGZ-8H-n4R"/>
-                                    <constraint firstAttribute="height" constant="60" id="zjD-Pe-kNm"/>
+                                    <constraint firstAttribute="width" constant="80" id="ENi-CW-5ou"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Larry Page" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GXP-ep-t7n">
-                                <rect key="frame" x="89" y="66" width="214" height="60"/>
+                                <rect key="frame" x="104" y="56" width="219" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="N7T-Mr-ueI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -135,16 +137,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="GXP-ep-t7n" firstAttribute="trailing" secondItem="Umx-K6-L9s" secondAttribute="trailing" id="7ky-d6-V7T"/>
-                            <constraint firstItem="Umx-K6-L9s" firstAttribute="leading" secondItem="9j2-EW-7pT" secondAttribute="leadingMargin" id="Ifj-H6-kTl"/>
-                            <constraint firstItem="7lG-eR-hal" firstAttribute="leading" secondItem="KHb-J6-bJc" secondAttribute="leading" constant="21" id="Kvm-vp-HyC"/>
-                            <constraint firstItem="Umx-K6-L9s" firstAttribute="top" secondItem="7lG-eR-hal" secondAttribute="bottom" constant="23" id="TSy-yd-HJ2"/>
-                            <constraint firstItem="7lG-eR-hal" firstAttribute="top" secondItem="KHb-J6-bJc" secondAttribute="top" constant="46" id="Yqa-ZV-NeH"/>
-                            <constraint firstItem="KHb-J6-bJc" firstAttribute="trailing" secondItem="GXP-ep-t7n" secondAttribute="trailing" constant="72" id="efz-WB-vgR"/>
-                            <constraint firstItem="7lG-eR-hal" firstAttribute="top" secondItem="GXP-ep-t7n" secondAttribute="top" id="hLu-8x-85H"/>
-                            <constraint firstItem="7lG-eR-hal" firstAttribute="bottom" secondItem="GXP-ep-t7n" secondAttribute="bottom" id="iNu-jp-wvn"/>
-                            <constraint firstAttribute="bottom" secondItem="Umx-K6-L9s" secondAttribute="bottom" constant="20" symbolic="YES" id="jAF-wX-5gG"/>
-                            <constraint firstItem="GXP-ep-t7n" firstAttribute="leading" secondItem="7lG-eR-hal" secondAttribute="trailing" constant="8" symbolic="YES" id="uoc-GM-2mg"/>
+                            <constraint firstItem="KHb-J6-bJc" firstAttribute="trailing" secondItem="GXP-ep-t7n" secondAttribute="trailing" constant="52" id="Bfw-U6-xs4"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="leading" secondItem="Umx-K6-L9s" secondAttribute="leading" id="HP7-uH-RMG"/>
+                            <constraint firstItem="GXP-ep-t7n" firstAttribute="leading" secondItem="7lG-eR-hal" secondAttribute="trailing" constant="8" symbolic="YES" id="LsC-7E-qqK"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="top" secondItem="KHb-J6-bJc" secondAttribute="top" constant="26" id="TSm-oR-3xw"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="leading" secondItem="9j2-EW-7pT" secondAttribute="leadingMargin" id="YMZ-eb-chr"/>
+                            <constraint firstAttribute="bottom" secondItem="Umx-K6-L9s" secondAttribute="bottom" constant="20" symbolic="YES" id="cIF-kl-Z1K"/>
+                            <constraint firstItem="GXP-ep-t7n" firstAttribute="top" secondItem="KHb-J6-bJc" secondAttribute="top" constant="36" id="edd-YF-4My"/>
+                            <constraint firstItem="7lG-eR-hal" firstAttribute="centerY" secondItem="GXP-ep-t7n" secondAttribute="centerY" id="kKl-kj-BRP"/>
+                            <constraint firstItem="Umx-K6-L9s" firstAttribute="top" secondItem="7lG-eR-hal" secondAttribute="bottom" constant="23" id="qvb-7m-jMW"/>
+                            <constraint firstItem="KHb-J6-bJc" firstAttribute="trailing" secondItem="Umx-K6-L9s" secondAttribute="trailing" constant="72" id="t9x-Tj-KEU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KHb-J6-bJc"/>
                     </view>

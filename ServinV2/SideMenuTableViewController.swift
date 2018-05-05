@@ -76,7 +76,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 200.0
+            return self.view.frame.height / 4.0
         } else {
             return 0.0
         }
@@ -101,6 +101,10 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.view.frame.height / 12
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("row selected")
     }
     /*
     // MARK: - Navigation
