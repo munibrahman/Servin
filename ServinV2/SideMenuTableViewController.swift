@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,6 +15,9 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var userNameLabel: UILabel!
     
+    var mainVC: UIViewController! = nil
+    
+    let viewControllers = ["MessageViewController", "MyPinsViewController", "ProfileViewController", "HelpViewController", "SettingsViewController", "Logout"]
     let labels = ["Messages", "My Pins", "Profile", "Help", "Settings", "Logout"]
     let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "pins_icon"), #imageLiteral(resourceName: "profile_icon"), #imageLiteral(resourceName: "help_icon"), #imageLiteral(resourceName: "settings_icon"), #imageLiteral(resourceName: "logout_icon")]
     
@@ -105,6 +109,19 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("row selected")
+        
+        
+        SideMenuManager.default.menuLeftNavigationController?.dismiss(animated: true, completion: {
+            if indexPath.section == 1 && indexPath.row == 1 {
+                print("Logout")
+            } else {
+                let navController = UINavigationController.init(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: self.viewControllers[(indexPath.section * 4) + indexPath.row]))!)
+                
+                self.mainVC.present(navController, animated: true, completion: nil)
+            }
+        })
+        
+    
     }
     /*
     // MARK: - Navigation

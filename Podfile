@@ -10,6 +10,7 @@ pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'KYNavigationProgress'
 pod 'IQKeyboardManagerSwift'
+pod 'SideMenu'
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing

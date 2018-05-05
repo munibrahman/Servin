@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import SideMenu
 
 class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
@@ -27,6 +28,45 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
         
         checkLocationServices()
         setupMap()
+        setupSideMenu()
+        
+    }
+    
+    func setupSideMenu() {
+        
+        let sideMenuTableVC = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController
+        sideMenuTableVC.mainVC = self
+        let menuLeftVC = UISideMenuNavigationController.init(rootViewController: sideMenuTableVC)
+        
+        menuLeftVC.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        menuLeftVC.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        menuLeftVC.navigationController?.navigationBar.shadowImage = UIImage()
+        menuLeftVC.navigationController?.navigationBar.isTranslucent = true
+        SideMenuManager.default.menuLeftNavigationController = menuLeftVC
+        
+        
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.shadowImage = UIImage()
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.isTranslucent = true
+        
+        SideMenuManager.default.menuFadeStatusBar = false
+        
+        SideMenuManager.default.menuWidth = view.frame.width * CGFloat(0.8)
+        
+        let menuIcon = UIImageView.init(frame: CGRect.init(x: 20.0, y: 50.0, width: 18.0, height: 12.0))
+        menuIcon.image = #imageLiteral(resourceName: "menu_icon")
+        
+        let menuTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(menuTapped))
+        menuIcon.isUserInteractionEnabled = true
+        menuIcon.addGestureRecognizer(menuTapGesture)
+        
+        self.view.addSubview(menuIcon)
+        
+    }
+    
+    @objc func menuTapped () {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     func setupMap() {

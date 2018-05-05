@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-ZP-FJk">
-                        <rect key="frame" x="53" y="4" width="231" height="31"/>
+                        <rect key="frame" x="70" y="4" width="214" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                         <nil key="textColor"/>
@@ -42,7 +42,7 @@
                 <outlet property="menuOptionImageView" destination="rWd-14-4Hn" id="9si-a8-Ne6"/>
                 <outlet property="menuOptionLabel" destination="B7x-ZP-FJk" id="kuQ-GN-ydX"/>
             </connections>
-            <point key="canvasLocation" x="68.5" y="61.5"/>
+            <point key="canvasLocation" x="68" y="61"/>
         </tableViewCell>
     </objects>
 </document>

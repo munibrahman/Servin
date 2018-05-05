@@ -49,11 +49,13 @@ class SignUp1ViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        navigationController?.navigationBar.tintColor = UIColor.white
+        
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
