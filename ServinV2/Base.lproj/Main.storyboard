@@ -176,6 +176,21 @@
             </objects>
             <point key="canvasLocation" x="2143.1999999999998" y="955.77211394302856"/>
         </scene>
+        <!--Map Search View Controller-->
+        <scene sceneID="GBc-T5-I18">
+            <objects>
+                <viewController id="w3w-QB-Ted" customClass="MapSearchViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sDR-zv-J8N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZXf-fA-h6W"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JNy-DX-G1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3014" y="948"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="aXK-CR-wji">
             <objects>

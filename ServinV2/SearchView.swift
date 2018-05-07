@@ -27,13 +27,15 @@ class SearchView: UIView {
         menuButton.addGestureRecognizer(menuTapGesture)
         
         self.addSubview(menuButton)
+
         
-        
-        let discoverLabel = UILabel.init(frame: CGRect.init(x: 60.0, y: frame.size.height / 4.0, width: frame.size.width - 40.0, height: frame.size.height / 2.0))
+        let discoverLabel = UILabel.init(frame: CGRect.init(x: 60.0, y: 0.0, width: frame.size.width - 60.0, height: frame.size.height))
         discoverLabel.text = "Discover"
         discoverLabel.adjustsFontSizeToFitWidth = true
         discoverLabel.font = UIFont(name: "HelveticaNeue", size: 21.0)!
         discoverLabel.textColor = UIColor.init(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0)
+        discoverLabel.isUserInteractionEnabled = true
+        discoverLabel.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(tapPressed)))
         self.addSubview(discoverLabel)
         
         let radius: CGFloat = frame.width / 2.0 //change it to .height if you need spread for height
@@ -49,6 +51,10 @@ class SearchView: UIView {
         self.layer.shadowPath = shadowPath.cgPath
         
         self.daddyVC = daddyVC
+    }
+    
+    @objc func tapPressed() {
+        print("tapped")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,3 +74,4 @@ class SearchView: UIView {
     */
 
 }
+
