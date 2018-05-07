@@ -124,6 +124,10 @@ extension UIColor {
     open class var shockingPinkColor: UIColor {
         return UIColor.init(red: 255.0/255.0, green: 51.0/255.0, blue: 102.0/255.0, alpha: 1.0)
     }
+    
+    open class var emptyStateBackgroundColor: UIColor {
+        return UIColor.init(red: 216.0/255.0, green: 216.0/255.0, blue: 216.0/255.0, alpha: 1.0)
+    }
 }
 
 

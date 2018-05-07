@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aQs-jg-hvw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -190,7 +190,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZpX-UU-3NH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839.20000000000005" y="2594.7526236881563"/>
+            <point key="canvasLocation" x="839" y="4234"/>
         </scene>
         <!--Message View Controller-->
         <scene sceneID="w2X-aD-ooB">
@@ -199,14 +199,29 @@
                     <view key="view" contentMode="scaleToFill" id="7pv-ka-KXX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9iS-Ed-Fhj">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="9iS-Ed-Fhj" firstAttribute="top" secondItem="Nbu-7s-Bwe" secondAttribute="top" id="0jI-cD-GRL"/>
+                            <constraint firstAttribute="trailing" secondItem="9iS-Ed-Fhj" secondAttribute="trailing" id="0jW-3x-tW7"/>
+                            <constraint firstItem="9iS-Ed-Fhj" firstAttribute="bottom" secondItem="Nbu-7s-Bwe" secondAttribute="bottom" id="ZES-5a-Zua"/>
+                            <constraint firstItem="9iS-Ed-Fhj" firstAttribute="leading" secondItem="7pv-ka-KXX" secondAttribute="leading" id="m8A-KT-hre"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Nbu-7s-Bwe"/>
                     </view>
                     <navigationItem key="navigationItem" id="aWN-E1-0sw"/>
+                    <connections>
+                        <outlet property="messagesTableView" destination="9iS-Ed-Fhj" id="lQF-AK-3VP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IfB-qc-Ul0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="3337"/>
+            <point key="canvasLocation" x="837.60000000000002" y="2685.6071964017992"/>
         </scene>
         <!--My Pins View Controller-->
         <scene sceneID="BIO-eg-9FD">
@@ -215,14 +230,29 @@
                     <view key="view" contentMode="scaleToFill" id="usm-8D-Tfq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gyc-fi-I9a">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="gyc-fi-I9a" firstAttribute="top" secondItem="Sz4-eN-g5q" secondAttribute="top" id="NX5-q8-dOg"/>
+                            <constraint firstItem="gyc-fi-I9a" firstAttribute="bottom" secondItem="Sz4-eN-g5q" secondAttribute="bottom" id="f3G-3Q-Brq"/>
+                            <constraint firstAttribute="trailing" secondItem="gyc-fi-I9a" secondAttribute="trailing" id="qlY-qL-OBU"/>
+                            <constraint firstItem="gyc-fi-I9a" firstAttribute="leading" secondItem="usm-8D-Tfq" secondAttribute="leading" id="vw4-hK-1NX"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Sz4-eN-g5q"/>
                     </view>
                     <navigationItem key="navigationItem" id="ldo-L0-32J"/>
+                    <connections>
+                        <outlet property="myPinsTableView" destination="gyc-fi-I9a" id="L54-p7-jab"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUY-PP-GlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="4128"/>
+            <point key="canvasLocation" x="837.60000000000002" y="3476.3118440779613"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="S4G-nv-Eew">
@@ -279,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4K-83-VBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="1732.9835082458771"/>
+            <point key="canvasLocation" x="2143" y="1760"/>
         </scene>
         <!--Sign Up1 View Controller-->
         <scene sceneID="s9O-ZY-5JC">
@@ -510,7 +540,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w9z-PF-Xwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="2595"/>
+            <point key="canvasLocation" x="73" y="4234"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EKe-Ue-Sgq">
@@ -528,7 +558,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8jV-eV-kJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="3337"/>
+            <point key="canvasLocation" x="76" y="2686"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dm2-gT-IOl">
@@ -546,7 +576,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CDt-R3-LbJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="73" y="4128"/>
+            <point key="canvasLocation" x="76" y="3477"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xg0-OV-pMe">

@@ -7,25 +7,75 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class MessageViewController: UIViewController {
+class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    
+    
 
+    @IBOutlet var messagesTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupNavigationController()
+        
+        messagesTableView.delegate = self
+        messagesTableView.dataSource = self
+        
+
+        self.view.backgroundColor = UIColor.emptyStateBackgroundColor
+        
+        setupEmptyState()
     }
+    
+    
     
     func setupNavigationController() {
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
+        
+        navigationController?.navigationBar.topItem?.title = "Messages"
     }
     
     @objc func barButtonPressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK:- DZNEmptyState
+    func setupEmptyState() {
+        messagesTableView.emptyDataSetSource = self
+        messagesTableView.emptyDataSetDelegate = self
+        
+        messagesTableView.tableFooterView = UIView()
+        
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return #imageLiteral(resourceName: "inbox_empty")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let title = NSString.init(string: "No Messages")
+        
+        return NSAttributedString.init(string: "No Messages")
+        
+    }
+    
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString.init(string: "Start making money by creating a discovery")
+    }
+    
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+        return NSAttributedString.init(string: "Post")
+    }
+    
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return UIColor.emptyStateBackgroundColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +84,13 @@ class MessageViewController: UIViewController {
     }
     
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
     /*
     // MARK: - Navigation
 

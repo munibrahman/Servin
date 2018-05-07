@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ class ProfileViewController: UIViewController {
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
+        
+        navigationController?.navigationBar.topItem?.title = "My Profile"
     }
     
     @objc func barButtonPressed() {
@@ -35,6 +38,7 @@ class ProfileViewController: UIViewController {
     }
     
 
+    
     /*
     // MARK: - Navigation
 
