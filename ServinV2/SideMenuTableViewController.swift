@@ -93,18 +93,14 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let gradientView = UIImageView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.frame.width, height: 1.0))
-        
-        gradientView.image = #imageLiteral(resourceName: "linear_gradient")
-        
-        return gradientView
+        return UIView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 1.0
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.height / 12
+        return self.view.frame.height / 14
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

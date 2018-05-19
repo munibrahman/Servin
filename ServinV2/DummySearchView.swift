@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 
-class SearchView: UIView {
+class DummySearchView: UIView {
     
     var daddyVC: UIViewController! = nil
 
@@ -23,8 +23,10 @@ class SearchView: UIView {
         menuButton.contentMode = .scaleAspectFit
         
         let menuTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(menuTapped))
-        menuButton.isUserInteractionEnabled = true
-        menuButton.addGestureRecognizer(menuTapGesture)
+        menuButton.isUserInteractionEnabled = false
+        
+        self.isUserInteractionEnabled = true
+        self.addGestureRecognizer(menuTapGesture)
         
         self.addSubview(menuButton)
 
@@ -55,6 +57,8 @@ class SearchView: UIView {
     
     @objc func tapPressed() {
         print("tapped")
+        
+        self.daddyVC.present((daddyVC.storyboard?.instantiateViewController(withIdentifier: "MapSearchViewController"))!, animated: false, completion: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

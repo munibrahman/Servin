@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Macaw
 
 class SignUp2ViewController: UIViewController {
 
     @IBOutlet var emailAddressTextField: UITextField!
+    @IBOutlet var askForNotifLabel: UILabel!
+    
+    @IBOutlet var nextButtonSVGView: SVGView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +25,21 @@ class SignUp2ViewController: UIViewController {
         setupBackground()
         setupNavigationBar()
         setupTextField()
+        setupNotificationLabel()
+        
+        nextButtonSVGView.backgroundColor = .clear
+        nextButtonSVGView.isUserInteractionEnabled = true
+        
+        let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
+        
+        nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
+    }
+    
+    @objc func goForward () {
+        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
+        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController")
+        
+        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,9 +53,7 @@ class SignUp2ViewController: UIViewController {
     
     
     func setupBackground() {
-        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-        backgroundImageView.image = #imageLiteral(resourceName: "background_black_blur")
-        view.insertSubview(backgroundImageView, at: 0)
+        self.view.backgroundColor = UIColor.greyBackgroundColor
     }
 
     func setupNavigationBar() {
@@ -56,19 +73,36 @@ class SignUp2ViewController: UIViewController {
         emailAddressTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
         emailAddressTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailAddressTextField.keyboardAppearance = .dark
-        emailAddressTextField.keyboardType = .default
+        emailAddressTextField.keyboardType = .emailAddress
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    @IBAction func nextButton(_ sender: UIButton) {
-        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
-        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController")
+    // This label shows the text for users to click upon and sign up for finding out when servin will be launched globally.
+    func setupNotificationLabel () {
+        askForNotifLabel.text = "Click here to be notified when we will be open to the world!"
+        let text = (askForNotifLabel.text)!
+        let underlineAttriString = NSMutableAttributedString(string: text)
+        let clickRange = (text as NSString).range(of: "Click here")
         
-        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
+        underlineAttriString.addAttribute(NSAttributedStringKey.font, value: UIFont.boldSystemFont(ofSize: 14.0), range: clickRange)
+        
+        
+        askForNotifLabel.attributedText = underlineAttriString
+        
+    }
+    
+    @IBAction func tapLabel(gesture: UITapGestureRecognizer) {
+        let text = (askForNotifLabel.text)!
+        let click = (text as NSString).range(of: "Click")
+        
+        if gesture.didTapAttributedTextInLabel(label: askForNotifLabel, inRange: click) {
+            print("Tapped Click")
+        } else {
+            print("Tapped none")
+        }
     }
     /*
     // MARK: - Navigation

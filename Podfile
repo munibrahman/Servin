@@ -12,6 +12,7 @@ pod 'KYNavigationProgress'
 pod 'IQKeyboardManagerSwift'
 pod 'SideMenu'
 pod 'DZNEmptyDataSet'
+pod "Macaw", "0.9.1"
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing

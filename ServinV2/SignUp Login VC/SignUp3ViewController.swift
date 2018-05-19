@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import Macaw
 
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
+        @IBOutlet var nextButtonSVGView: SVGView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,19 @@ class SignUp3ViewController: UIViewController {
         setupBackground()
         setupNavigationBar()
         setupTextField()
+        
+        nextButtonSVGView.backgroundColor = .clear
+        nextButtonSVGView.isUserInteractionEnabled = true
+        
+        let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
+        
+        nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
+    }
+    
+    @objc func goForward () {
+        self.navigationController?.finishProgress()
+        
+        self.present((storyboard?.instantiateViewController(withIdentifier: "ViewController"))!, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,9 +52,7 @@ class SignUp3ViewController: UIViewController {
     }
     
     func setupBackground() {
-        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-        backgroundImageView.image = #imageLiteral(resourceName: "background_black_blur")
-        view.insertSubview(backgroundImageView, at: 0)
+        self.view.backgroundColor = UIColor.greyBackgroundColor
     }
     
     func setupNavigationBar() {
@@ -60,13 +73,6 @@ class SignUp3ViewController: UIViewController {
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardAppearance = .dark
-    }
-    
-    
-    @IBAction func nextButton(_ sender: UIButton) {
-        self.navigationController?.finishProgress()
-        
-        self.present((storyboard?.instantiateViewController(withIdentifier: "ViewController"))!, animated: true, completion: nil)
     }
     
     /*

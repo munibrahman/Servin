@@ -50,7 +50,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDel
             
         }
         
-        let searchBar = SearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
+        let searchBar = DummySearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
+        
+        // Setting the search bar's frame to be used by the search
+        // view controller
+        Constants.searchBarFrame = searchBar.frame
         
         self.view.addSubview(searchBar)
         

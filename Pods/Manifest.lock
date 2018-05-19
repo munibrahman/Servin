@@ -9,7 +9,10 @@ PODS:
     - GoogleMaps/Base (= 2.6.0)
   - IQKeyboardManagerSwift (6.0.2)
   - KYNavigationProgress (2.0.2)
+  - Macaw (0.9.1):
+    - SWXMLHash
   - SideMenu (3.1.5)
+  - SWXMLHash (4.6.0)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
@@ -17,6 +20,7 @@ DEPENDENCIES:
   - GooglePlaces
   - IQKeyboardManagerSwift
   - KYNavigationProgress
+  - Macaw (= 0.9.1)
   - SideMenu
 
 SPEC REPOS:
@@ -26,7 +30,9 @@ SPEC REPOS:
     - GooglePlaces
     - IQKeyboardManagerSwift
     - KYNavigationProgress
+    - Macaw
     - SideMenu
+    - SWXMLHash
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -34,8 +40,10 @@ SPEC CHECKSUMS:
   GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
   IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
+  Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  SWXMLHash: 3c39a53723202800e9e1a87f14b2fe7ac1da98ec
 
-PODFILE CHECKSUM: 84ec66b672b7e673eb0b659fd082da70d2732362
+PODFILE CHECKSUM: 0615816f0134a4381a1a73ea2e847f598615e2ab
 
 COCOAPODS: 1.5.0

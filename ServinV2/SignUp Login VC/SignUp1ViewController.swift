@@ -8,12 +8,14 @@
 
 import UIKit
 import KYNavigationProgress
+import Macaw
 
 class SignUp1ViewController: UIViewController {
 
     @IBOutlet var firstNameTextField: UITextField!
-    
     @IBOutlet var lastNameTextField: UITextField!
+    
+    @IBOutlet var nextButtonSVGView: SVGView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,23 +30,34 @@ class SignUp1ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         // set progress with animation.
-        self.navigationController?.progressTintColor = UIColor.shockingPinkColor
+        self.navigationController?.progressTintColor = UIColor.navigationProgressColor
         self.navigationController?.setProgress(1/4, animated: true)
         self.navigationController?.progressHeight = 3.0
         
         // This allows the keyboard to popup automatically
         firstNameTextField.becomeFirstResponder()
+        
+        nextButtonSVGView.backgroundColor = .clear
+        nextButtonSVGView.isUserInteractionEnabled = true
+        
+        let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
+        
+        nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
     }
 
+    @objc func goForward () {
+        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
+        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp2ViewController")
+        
+        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     func setupBackground() {
-        let backgroundImageView = UIImageView.init(frame: self.view.frame)
-        backgroundImageView.image = #imageLiteral(resourceName: "background_black_blur")
-        view.insertSubview(backgroundImageView, at: 0)
+        self.view.backgroundColor = UIColor.greyBackgroundColor
     }
     
     func setupNavigationBar() {
@@ -86,12 +99,7 @@ class SignUp1ViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func nextButton(_ sender: UIButton) {
-        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
-        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp2ViewController")
-        
-        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
-    }
+
     /*
     // MARK: - Navigation
 
