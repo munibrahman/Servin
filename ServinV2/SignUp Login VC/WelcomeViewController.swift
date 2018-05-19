@@ -37,27 +37,8 @@ class WelcomeViewController: UIViewController {
         
         setupNotificationLabel()
     }
+    
     func setupViews() {
-//        signInButton.layer.cornerRadius = signInButton.frame.height / 2
-//        signInButton.layer.borderWidth = 1.0
-//        signInButton.clipsToBounds = true
-//
-//        emailTextField.backgroundColor = UIColor.clear
-//        emailTextField.textColor = UIColor.white
-//        emailTextField.borderStyle = .none
-//        emailTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-//        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-//        emailTextField.keyboardAppearance = .dark
-//        emailTextField.keyboardType = .emailAddress
-//
-//
-//        passwordTextField.backgroundColor = UIColor.clear
-//        passwordTextField.textColor = UIColor.white
-//        passwordTextField.borderStyle = .none
-//        passwordTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-//        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-//        passwordTextField.isSecureTextEntry = true
-//        passwordTextField.keyboardAppearance = .dark
         
         loginLabel.isUserInteractionEnabled = true
         
@@ -68,7 +49,10 @@ class WelcomeViewController: UIViewController {
     
     @objc func showLogin () {
         
+        let sb = UIStoryboard.init(name: "Main", bundle: nil)
+        let navController = UINavigationController.init(rootViewController: sb.instantiateViewController(withIdentifier: "LoginViewController"))
         
+        self.present(navController, animated: true, completion: nil)
     }
     
     func setupNotificationLabel () {

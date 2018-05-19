@@ -15,6 +15,7 @@
 		8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B6B7DFE20ADB56400867F18 /* logo_servin.svg */; };
 		8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81591D20AF714900EDA1FC /* LoginViewController.swift */; };
 		8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B81591F20AF746C00EDA1FC /* >_clear.svg */; };
+		8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */; };
 		8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6455920830D44006EEEC5 /* AppDelegate.swift */; };
 		8BA6455C20830D44006EEEC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6455B20830D44006EEEC5 /* ViewController.swift */; };
 		8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6455D20830D44006EEEC5 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		8B6B7DFE20ADB56400867F18 /* logo_servin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = logo_servin.svg; sourceTree = "<group>"; };
 		8B81591D20AF714900EDA1FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B81591F20AF746C00EDA1FC /* >_clear.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ">_clear.svg"; sourceTree = "<group>"; };
+		8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		8BA6455620830D44006EEEC5 /* ServinV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServinV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA6455920830D44006EEEC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BA6455B20830D44006EEEC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		8BA6455820830D44006EEEC5 /* ServinV2 */ = {
 			isa = PBXGroup;
 			children = (
+				8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */,
 				8B81591F20AF746C00EDA1FC /* >_clear.svg */,
 				8B6B7DFE20ADB56400867F18 /* logo_servin.svg */,
 				8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */,
@@ -501,6 +504,7 @@
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* ViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
+				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
 				8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */,
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
