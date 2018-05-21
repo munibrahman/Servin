@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SlaveMapViewController.swift
 //  ServinV2
 //
 //  Created by Developer on 2018-04-14.
@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 import SideMenu
 
-class ViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
     let locationManager = CLLocationManager()
     var userLocationCameraPosition: GMSCameraPosition? = nil

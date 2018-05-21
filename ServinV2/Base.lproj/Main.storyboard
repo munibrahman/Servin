@@ -194,10 +194,10 @@
             </objects>
             <point key="canvasLocation" x="1210.4000000000001" y="955.77211394302856"/>
         </scene>
-        <!--View Controller-->
+        <!--Slave Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlaveMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SlaveMapViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2143.1999999999998" y="955.77211394302856"/>
+            <point key="canvasLocation" x="3054" y="956"/>
         </scene>
         <!--Map Search View Controller-->
         <scene sceneID="GBc-T5-I18">
@@ -222,7 +222,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNy-DX-G1z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3014" y="948"/>
+            <point key="canvasLocation" x="3924" y="948"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="aXK-CR-wji">
@@ -357,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4K-83-VBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2143" y="1760"/>
+            <point key="canvasLocation" x="1210" y="1756"/>
         </scene>
         <!--Sign Up1 View Controller-->
         <scene sceneID="s9O-ZY-5JC">

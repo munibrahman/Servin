@@ -34,7 +34,7 @@ class SignUp3ViewController: UIViewController {
     @objc func goForward () {
         self.navigationController?.finishProgress()
         
-        self.present((storyboard?.instantiateViewController(withIdentifier: "ViewController"))!, animated: true, completion: nil)
+        self.present((storyboard?.instantiateViewController(withIdentifier: "SlaveMapViewController"))!, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

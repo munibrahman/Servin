@@ -13,7 +13,7 @@ class DummySearchView: UIView {
     
     var daddyVC: UIViewController! = nil
 
-    init(frame: CGRect, daddyVC: ViewController) {
+    init(frame: CGRect, daddyVC: SlaveMapViewController) {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white

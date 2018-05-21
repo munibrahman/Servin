@@ -89,10 +89,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func goForward() {
-        let sb = UIStoryboard.init(name: "Main", bundle: nil)
-        let navController = UINavigationController.init(rootViewController: sb.instantiateViewController(withIdentifier: "ViewController"))
-        
-        self.present(navController, animated: true, completion: nil)
+        self.present((storyboard?.instantiateViewController(withIdentifier: "SlaveMapViewController"))!, animated: true, completion: nil)
     }
     
     
