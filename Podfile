@@ -13,6 +13,7 @@ pod 'IQKeyboardManagerSwift'
 pod 'SideMenu'
 pod 'DZNEmptyDataSet'
 pod "Macaw", "0.9.1"
+pod 'Pulley'
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing

@@ -8,6 +8,7 @@
 
 import UIKit
 import Macaw
+import Pulley
 
 class LoginViewController: UIViewController {
 
@@ -89,7 +90,14 @@ class LoginViewController: UIViewController {
     }
     
     @objc func goForward() {
-        self.present((storyboard?.instantiateViewController(withIdentifier: "SlaveMapViewController"))!, animated: true, completion: nil)
+        
+        let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController")
+        
+        let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController")
+        
+        let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
+        
+        self.present(pulleyController, animated: true, completion: nil)
     }
     
     

@@ -9,8 +9,9 @@
 import UIKit
 import GoogleMaps
 import SideMenu
+import Pulley
 
-class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, PulleyPrimaryContentControllerDelegate {
 
     let locationManager = CLLocationManager()
     var userLocationCameraPosition: GMSCameraPosition? = nil
@@ -30,35 +31,49 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         setupMap()
         setupSideMenu()
         //setupSearchBar()
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        setupSearchBar()
+        //setupSearchBar()
     }
     
-    func setupSearchBar() {
-        
-        
-        var topPadding: CGFloat = 10.0
-        let sidepadding = topPadding
-        
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            topPadding = topPadding + (window?.safeAreaInsets.top ?? 0.0)
-            
-        }
-        
-        let searchBar = DummySearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
-        
-        // Setting the search bar's frame to be used by the search
-        // view controller
-        Constants.searchBarFrame = searchBar.frame
-        
-        self.view.addSubview(searchBar)
-        
+    // When the drawer reaches all the way to the top, it eliminates the shadow in the background
+    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+        print(drawer.drawerPosition)
+            if drawer.drawerPosition == PulleyPosition.open {
+                print("open")
+                drawer.shadowRadius = 0.0
+                drawer.shadowOpacity = 0.0
+            } else {
+                drawer.shadowRadius = 3.0
+                drawer.shadowOpacity = 0.1
+            }
     }
+//    func setupSearchBar() {
+//        
+//        
+//        var topPadding: CGFloat = 10.0
+//        let sidepadding = topPadding
+//        
+//        if #available(iOS 11.0, *) {
+//            let window = UIApplication.shared.keyWindow
+//            topPadding = topPadding + (window?.safeAreaInsets.top ?? 0.0)
+//            
+//        }
+//        
+//        let searchBar = DummySearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
+//        
+//        // Setting the search bar's frame to be used by the search
+//        // view controller
+//        Constants.searchBarFrame = searchBar.frame
+//        
+//        self.view.addSubview(searchBar)
+//        
+//    }
     func setupSideMenu() {
         
         let sideMenuTableVC = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController

@@ -13,7 +13,7 @@ class DummySearchView: UIView {
     
     var daddyVC: UIViewController! = nil
 
-    init(frame: CGRect, daddyVC: SlaveMapViewController) {
+    init(frame: CGRect, daddyVC: MasterPulleyViewController) {
         super.init(frame: frame)
         
         self.backgroundColor = UIColor.white
@@ -58,7 +58,9 @@ class DummySearchView: UIView {
     @objc func tapPressed() {
         print("tapped")
         
-        self.daddyVC.present((daddyVC.storyboard?.instantiateViewController(withIdentifier: "MapSearchViewController"))!, animated: false, completion: nil)
+        
+        
+        self.daddyVC.present(UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapSearchViewController"), animated: false, completion: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
