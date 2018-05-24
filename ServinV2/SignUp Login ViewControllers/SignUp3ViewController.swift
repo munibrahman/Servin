@@ -34,7 +34,13 @@ class SignUp3ViewController: UIViewController {
     @objc func goForward () {
         self.navigationController?.finishProgress()
         
-        self.present((storyboard?.instantiateViewController(withIdentifier: "SlaveMapViewController"))!, animated: true, completion: nil)
+        let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController")
+        
+        let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController")
+        
+        let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
+        
+        self.present(pulleyController, animated: true, completion: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,7 +76,7 @@ class SignUp3ViewController: UIViewController {
         passwordTextField.textColor = UIColor.white
         passwordTextField.borderStyle = .none
         passwordTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardAppearance = .dark
     }

@@ -25,6 +25,12 @@ class ResetPasswordViewController: UIViewController {
         self.view.backgroundColor = UIColor.greyBackgroundColor
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        emailTextField.becomeFirstResponder()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -55,23 +61,14 @@ class ResetPasswordViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
+        let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_white"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
-        
-        
     }
     
-    @objc func barButtonPressed () {
-        self.dismiss(animated: true, completion: nil)
+    
+    @objc func barButtonPressed() {
+        _ = self.navigationController?.popViewController(animated: true)
     }
-
     
     /*
     // MARK: - Navigation

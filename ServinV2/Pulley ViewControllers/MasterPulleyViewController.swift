@@ -6,6 +6,8 @@
 //  Copyright © 2018 Voltic Labs Inc. All rights reserved.
 //
 
+// This view controller is the actual PulleyVC, the search bar will rest on this view controller.
+
 import UIKit
 import Pulley
 
@@ -19,6 +21,8 @@ class MasterPulleyViewController: PulleyViewController {
         self.drawerCornerRadius = 0.0
         self.backgroundDimmingColor = UIColor.white
         self.backgroundDimmingOpacity = 1.0
+        
+        setDrawerPosition(position: .partiallyRevealed, animated: true)
         
 //        self.shadowOpacity = 0.0
 //        self.shadowRadius = 0.0

@@ -15,6 +15,9 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
        @IBOutlet var nextButtonSVGView: SVGView!
+    
+    @IBOutlet var forgotPasswordLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,22 +50,30 @@ class LoginViewController: UIViewController {
         //        signInButton.layer.borderWidth = 1.0
         //        signInButton.clipsToBounds = true
         //
-                emailTextField.backgroundColor = UIColor.clear
-                emailTextField.textColor = UIColor.white
-                emailTextField.borderStyle = .none
-                emailTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-                emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-                emailTextField.keyboardAppearance = .dark
-                emailTextField.keyboardType = .emailAddress
+        emailTextField.backgroundColor = UIColor.clear
+        emailTextField.textColor = UIColor.white
+        emailTextField.borderStyle = .none
+        emailTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        emailTextField.keyboardAppearance = .dark
+        emailTextField.keyboardType = .emailAddress
+
+
+        passwordTextField.backgroundColor = UIColor.clear
+        passwordTextField.textColor = UIColor.white
+        passwordTextField.borderStyle = .none
+        passwordTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        passwordTextField.isSecureTextEntry = true
+        passwordTextField.keyboardAppearance = .dark
         
+        forgotPasswordLabel.isUserInteractionEnabled = true
+        forgotPasswordLabel.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(forgotPasswordTapped)))
+    }
+    
+    @objc func forgotPasswordTapped() {
         
-                passwordTextField.backgroundColor = UIColor.clear
-                passwordTextField.textColor = UIColor.white
-                passwordTextField.borderStyle = .none
-                passwordTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-                passwordTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
-                passwordTextField.isSecureTextEntry = true
-                passwordTextField.keyboardAppearance = .dark
+        self.navigationController?.pushViewController(UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ResetPasswordViewController"), animated: true)
     }
     
     func setupBackground() {
