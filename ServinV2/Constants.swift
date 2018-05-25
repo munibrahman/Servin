@@ -13,6 +13,8 @@ import UIKit
 class Constants {
     
     static var searchBarFrame: CGRect? = nil
+    static var recommendedCellHeight = 240.0
+    //static var pinsNearbyCellHeight = 
 
 }
 

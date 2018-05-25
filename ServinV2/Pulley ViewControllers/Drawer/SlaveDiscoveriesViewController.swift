@@ -21,14 +21,14 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         
         let myNearbyPins = PinsNearbyView.init(frame: CGRect.init(x: 0, y: 15, width: self.view.frame.size.width, height: 212))
         
-        let myRecommendations = RecommendedPinsView.init(frame: CGRect.init(x: 0, y: 212 + 30, width: self.view.frame.width, height: 1000))
+        let myRecommendations = RecommendedPinsView.init(frame: CGRect.init(x: 0, y: 212 + 30, width: self.view.frame.width, height: (240.0 * 5.0) + 35 + 20.0))
         
         scrollView.addSubview(myNearbyPins)
         scrollView.addSubview(myRecommendations)
         
         
         // TODO: Calculate the actual height here
-        scrollViewHeight = 2000.0
+        scrollViewHeight = (212.0 + (240 * 5) + 200 + 35)
         scrollView.contentSize = CGSize.init(width: self.view.frame.size.width, height: scrollViewHeight)
         scrollView.scrollsToTop = true
 
@@ -38,6 +38,14 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         scrollView.bounces = false
         
         scrollView.delegate = self
+        
+        
+        // This ensures that you dont get extra spacing at the top when you try and scroll down.
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            automaticallyAdjustsScrollViewInsets = false
+        }
         
         self.view.addSubview(scrollView)
         
@@ -52,6 +60,8 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         // Dispose of any resources that can be recreated.
     }
     
+    // We listen to the drawer's position and then disable/enable scrolling of the scroll view by
+    // adjusting its content size
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
         
         if drawer.drawerPosition == .open {
@@ -59,27 +69,9 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         } else {
             scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: 0)
         }
-        
-        print("Drawer inside discoveries did change")
-    }
 
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
-            print("down")
-        } else {
-            print("up")
-        }
-        
-        print()
-        print(scrollView.panGestureRecognizer.translation(in: scrollView))
-        print()
-        
-        print(scrollView.gestureRecognizers)
     }
     
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        print("scrolled to top")
-    }
     /*
     // MARK: - Navigation
 

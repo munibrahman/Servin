@@ -56,7 +56,11 @@ class RecommendedPinsView: UIView, UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! RecommendedPinsCollectionViewCell
         
-        myCell.backgroundColor = .red
+        myCell.imageView.image = #imageLiteral(resourceName: "soccer")
+        myCell.titleLabel.text = "Soccer coach for hire, accepting K-12 students."
+        myCell.priceLabel.text = "$ 90"
+        myCell.distanceLabel.text = "5 mins away"
+        
         return myCell
     }
     

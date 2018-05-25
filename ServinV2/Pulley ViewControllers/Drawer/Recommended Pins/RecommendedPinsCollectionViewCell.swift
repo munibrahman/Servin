@@ -10,13 +10,19 @@ import UIKit
 
 class RecommendedPinsCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet var distanceLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        self.layer.cornerRadius = 2.0
-        self.clipsToBounds = true
-        self.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 2.0
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
     }
 
 }

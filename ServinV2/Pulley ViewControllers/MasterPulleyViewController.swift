@@ -22,7 +22,6 @@ class MasterPulleyViewController: PulleyViewController {
         self.backgroundDimmingColor = UIColor.white
         self.backgroundDimmingOpacity = 1.0
         
-        setDrawerPosition(position: .partiallyRevealed, animated: true)
         
 //        self.shadowOpacity = 0.0
 //        self.shadowRadius = 0.0
@@ -31,14 +30,15 @@ class MasterPulleyViewController: PulleyViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setDrawerPosition(position: .partiallyRevealed, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
     }
     
     func setupSearchBar() {
@@ -47,10 +47,22 @@ class MasterPulleyViewController: PulleyViewController {
         var topPadding: CGFloat = 10.0
         let sidepadding = topPadding
         
+        
         if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            topPadding = topPadding + (window?.safeAreaInsets.top ?? 0.0)
             
+            // User has ios 11
+            let window = UIApplication.shared.keyWindow
+            
+            if let tp = window?.safeAreaInsets.top {
+                // Using an iPhone X
+                if tp != 0.0 {
+                    topPadding = tp
+                } else {
+                    topPadding = 20.0
+                }
+            }
+        } else {
+            topPadding = 20.0
         }
         
         let searchBar = DummySearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
@@ -62,7 +74,8 @@ class MasterPulleyViewController: PulleyViewController {
         self.view.addSubview(searchBar)
         
         
-        self.topInset = 10.0 + searchBar.frame.size.height
+        // The constant is random, it works on both iphone x and the normal iphones...
+        self.topInset = searchBar.frame.size.height + 14.0
         
     }
 
