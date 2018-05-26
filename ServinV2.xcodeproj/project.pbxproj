@@ -16,6 +16,7 @@
 		8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */; };
 		8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */; };
 		8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B6B7DFE20ADB56400867F18 /* logo_servin.svg */; };
+		8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78417420B8794A005C87DA /* PannableViewController.swift */; };
 		8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81591D20AF714900EDA1FC /* LoginViewController.swift */; };
 		8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B81591F20AF746C00EDA1FC /* >_clear.svg */; };
 		8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */; };
@@ -79,6 +80,7 @@
 		8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp3ViewController.swift; sourceTree = "<group>"; };
 		8B6B7DFE20ADB56400867F18 /* logo_servin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = logo_servin.svg; sourceTree = "<group>"; };
+		8B78417420B8794A005C87DA /* PannableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		8B81591D20AF714900EDA1FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B81591F20AF746C00EDA1FC /* >_clear.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ">_clear.svg"; sourceTree = "<group>"; };
 		8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +176,24 @@
 			path = "Recommended Pins";
 			sourceTree = "<group>";
 		};
+		8B78416C20B86E9D005C87DA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8BA6458720832C74006EEEC5 /* Extensions.swift */,
+				8BBFFC4120A0EED700BA5D06 /* Constants.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B78416D20B86EC1005C87DA /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */,
+				8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */,
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
 		8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,13 +258,15 @@
 		8BA6455820830D44006EEEC5 /* ServinV2 */ = {
 			isa = PBXGroup;
 			children = (
+				8B78417420B8794A005C87DA /* PannableViewController.swift */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
 				8BA1F0F720B2AF50000EA3AC /* SVG Files */,
 				8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */,
 				8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */,
 				8BBFFC27209D032000BA5D06 /* SignUp Login ViewControllers */,
 				8BBFFC28209D034500BA5D06 /* Google Map Json */,
-				8BA6458720832C74006EEEC5 /* Extensions.swift */,
+				8B78416D20B86EC1005C87DA /* Side Menu */,
+				8B78416C20B86E9D005C87DA /* Extensions */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
 				8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */,
@@ -252,12 +274,9 @@
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
 				8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */,
 				8BA6455D20830D44006EEEC5 /* Main.storyboard */,
-				8BBFFC4120A0EED700BA5D06 /* Constants.swift */,
 				8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */,
 				8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */,
 				8BA6456020830D44006EEEC5 /* Assets.xcassets */,
-				8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */,
-				8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */,
 				8BBFFC3B209E1F4600BA5D06 /* DummySearchView.swift */,
 				8BA6456220830D44006EEEC5 /* LaunchScreen.storyboard */,
 				8BA6456520830D44006EEEC5 /* Info.plist */,
@@ -502,6 +521,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/KYNavigationProgress/KYNavigationProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Macaw/Macaw.framework",
+				"${BUILT_PRODUCTS_DIR}/PinpointKit/PinpointKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -512,6 +532,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYNavigationProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Macaw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinpointKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -573,6 +594,7 @@
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
+				8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,

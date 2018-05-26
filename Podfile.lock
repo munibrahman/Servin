@@ -11,6 +11,9 @@ PODS:
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
     - SWXMLHash
+  - PinpointKit (1.1.0):
+    - PinpointKit/Core (= 1.1.0)
+  - PinpointKit/Core (1.1.0)
   - Pulley (2.4.0)
   - SideMenu (3.1.5)
   - SWXMLHash (4.6.0)
@@ -22,6 +25,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KYNavigationProgress
   - Macaw (= 0.9.1)
+  - PinpointKit
   - Pulley
   - SideMenu
 
@@ -33,6 +37,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - KYNavigationProgress
     - Macaw
+    - PinpointKit
     - Pulley
     - SideMenu
     - SWXMLHash
@@ -44,10 +49,11 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
+  PinpointKit: b444d66d8b10420c1ffc22c176dee37c1c12b4e7
   Pulley: 604066ea5d24339a8701b0167a2c8131a589e705
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   SWXMLHash: 3c39a53723202800e9e1a87f14b2fe7ac1da98ec
 
-PODFILE CHECKSUM: ce0b86f39206ef03cf0630ee82620c512f07f3ed
+PODFILE CHECKSUM: 319c8a50c75a4bd542a88b37e729afa0edb9130d
 
 COCOAPODS: 1.5.0

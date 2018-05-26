@@ -11,9 +11,6 @@ import SideMenu
 
 class TestViewController: UIViewController {
     
-    @IBAction func testButton(_ sender: UIButton) {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +22,13 @@ class TestViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController")
-        
-        let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController")
-        
-        let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
-        
-        self.present(pulleyController, animated: true, completion: nil)
+//        let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController")
+//        
+//        let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController")
+//        
+//        let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
+//        
+//        self.present(pulleyController, animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
