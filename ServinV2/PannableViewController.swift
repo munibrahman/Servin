@@ -1,75 +1,56 @@
 //
 //  PannableViewController.swift
-//  ServinV2
-//
-//  Created by Developer on 2018-05-25.
-//  Copyright © 2018 Voltic Labs Inc. All rights reserved.
-//
-
-import Foundation
-
-//
-//  PannableViewController.swift
 //
 
 import UIKit
 
-class PannableViewController: UINavigationController {
+class PannableViewController: UINavigationController  {
     public var minimumVelocityToHide = 1500 as CGFloat
-    public var minimumScreenRatioToHide = 0.5 as CGFloat
+    public var minimumScreenRatioToHide = 0.3 as CGFloat
     public var animationDuration = 0.2 as TimeInterval
+    
+    private lazy var transitionDelegate: TransitionDelegate = TransitionDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.transitioningDelegate = self.transitionDelegate
+        
         // Listen for pan gesture
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onPan(_:)))
-        self.childViewControllers[0].view.addGestureRecognizer(panGesture)
+        
+        if let lastVC = self.childViewControllers.last {
+            lastVC.view.addGestureRecognizer(panGesture)
+        }
     }
     
-    func slideViewVerticallyTo(_ y: CGFloat) {
-        self.view.frame.origin = CGPoint(x: 0, y: y)
-    }
     
     @objc func onPan(_ panGesture: UIPanGestureRecognizer) {
+        
+        let translation = panGesture.translation(in: self.view)
+        let verticalMovement = translation.y / self.view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        let velocity = panGesture.velocity(in: self.view)
+        let shouldFinish = progress > self.minimumScreenRatioToHide || velocity.y > self.minimumVelocityToHide
+        
         switch panGesture.state {
-        case .began, .changed:
-            // If pan started or is ongoing then
-            // slide the view to follow the finger
-            let translation = panGesture.translation(in: view)
-            let y = max(0, translation.y)
-            self.slideViewVerticallyTo(y)
-            break
+        case .began:
+            self.transitionDelegate.interactiveTransition.hasStarted = true
+            self.dismiss(animated: true, completion: nil)
+        case .changed:
+            self.transitionDelegate.interactiveTransition.shouldFinish = shouldFinish
+            self.transitionDelegate.interactiveTransition.update(progress)
+        case .cancelled:
+            self.transitionDelegate.interactiveTransition.hasStarted = false
+            self.transitionDelegate.interactiveTransition.cancel()
         case .ended:
-            // If pan ended, decide it we should close or reset the view
-            // based on the final position and the speed of the gesture
-            let translation = panGesture.translation(in: view)
-            let velocity = panGesture.velocity(in: view)
-            let closing = (translation.y > self.view.frame.size.height * minimumScreenRatioToHide) ||
-                (velocity.y > minimumVelocityToHide)
-            
-            if closing {
-                UIView.animate(withDuration: animationDuration, animations: {
-                    // If closing, animate to the bottom of the view
-                    self.slideViewVerticallyTo(self.view.frame.size.height)
-                }, completion: { (isCompleted) in
-                    if isCompleted {
-                        // Dismiss the view when it dissapeared
-                        self.dismiss(animated: false, completion: nil)
-                    }
-                })
-            } else {
-                // If not closing, reset the view to the top
-                UIView.animate(withDuration: animationDuration, animations: {
-                    self.slideViewVerticallyTo(0)
-                })
-            }
-            break
+            self.transitionDelegate.interactiveTransition.hasStarted = false
+            self.transitionDelegate.interactiveTransition.shouldFinish ? self.transitionDelegate.interactiveTransition.finish() : self.transitionDelegate.interactiveTransition.cancel()
         default:
-            // If gesture state is undefined, reset the view to the top
-            UIView.animate(withDuration: animationDuration, animations: {
-                self.slideViewVerticallyTo(0)
-            })
             break
         }
     }
@@ -86,3 +67,93 @@ class PannableViewController: UINavigationController {
         self.modalTransitionStyle = .coverVertical;
     }
 }
+
+class InteractiveTransition: UIPercentDrivenInteractiveTransition {
+    public var hasStarted: Bool = false
+    public var shouldFinish: Bool = false
+    
+}
+
+class Transition {
+    public var isPresenting: Bool = false
+    public var presentDuration: TimeInterval = 0.5
+    public var dismissDuration: TimeInterval = 0.5
+}
+
+class TransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
+    
+    lazy var transition: Transition = Transition()
+    lazy var interactiveTransition: InteractiveTransition = InteractiveTransition()
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        self.transition.isPresenting = true
+        return self
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        self.transition.isPresenting = false
+        return self
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return self.interactiveTransition.hasStarted ? self.interactiveTransition : nil
+    }
+}
+
+
+extension TransitionDelegate:  UIViewControllerAnimatedTransitioning {
+    
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return self.transition.isPresenting ? self.transition.presentDuration : self.transition.dismissDuration
+    }
+    
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        
+        guard let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from),
+            let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) else {
+                transitionContext.completeTransition(false)
+                return
+        }
+        
+        let containerView = transitionContext.containerView
+        containerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        
+        if self.transition.isPresenting {
+            
+            let finalFrameForVC = transitionContext.finalFrame(for: toVC)
+            toVC.view.frame = finalFrameForVC.offsetBy(dx: 0, dy: UIScreen.main.bounds.size.height)
+            containerView.addSubview(toVC.view)
+            
+            // Additional ways to animate, Spring velocity & damping
+            UIView.animate(withDuration: self.transition.presentDuration,
+                           delay: 0.0,
+                           options: .transitionCrossDissolve,
+                           animations: {
+                            toVC.view.frame = finalFrameForVC
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
+            })
+            
+        } else {
+            
+            var finalFrame = fromVC.view.frame
+            finalFrame.origin.y += finalFrame.height
+            
+            // Additional ways to animate, Spring velocity & damping
+            UIView.animate(withDuration: self.transition.dismissDuration,
+                           delay: 0.0,
+                           options: .curveEaseOut,
+                           animations: {
+                            fromVC.view.frame = finalFrame
+                            toVC.view.alpha = 1.0
+            },
+                           completion: { _ in
+                            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            })
+        }
+    }
+}
+

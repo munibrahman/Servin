@@ -48,6 +48,7 @@
 		8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */; };
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
+		8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE4DC920C4672800967153 /* EditProfileViewController.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapSearchBar.swift; sourceTree = "<group>"; };
 		8BBFFC4120A0EED700BA5D06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
+		8BDE4DC920C4672800967153 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +260,7 @@
 		8BA6455820830D44006EEEC5 /* ServinV2 */ = {
 			isa = PBXGroup;
 			children = (
+				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
 				8B78417420B8794A005C87DA /* PannableViewController.swift */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
 				8BA1F0F720B2AF50000EA3AC /* SVG Files */,
@@ -587,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */,
 				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,

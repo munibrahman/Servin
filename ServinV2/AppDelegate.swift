@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let googleMapsApiKey = "AIzaSyAGFQhWxsHh3UpGzvoTzB4flwsV_eCYODk"
     
-    private static let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+    private static let pinpointKit = PinpointKit(feedbackRecipients: ["servin.feedback@gmail.com"])
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,15 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup for IQKeyboardManagerSwift
         IQKeyboardManager.shared.enable = true
         
-        // Settings for PinpointKit
-        self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-        
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
+        #if DEBUG
+            // show whichever storbyboard you want to
+            
+        #else
+            // show the beginning storyboard only
+            // Settings for PinpointKit
+            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+            
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        #endif
         
         return true
     }

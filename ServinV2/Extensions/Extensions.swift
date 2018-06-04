@@ -169,11 +169,27 @@ extension UIColor {
     open class var navigationProgressColor: UIColor {
         return UIColor.white
     }
+    
+    open class var contentDivider: UIColor {
+        return UIColor.init(red: 200.0/255.0, green: 199.0/255.0, blue: 204.0/255.0, alpha: 1.0)
+    }
 }
 
 extension UIDevice {
     var iPhoneX: Bool {
         return UIScreen.main.nativeBounds.height == 2436
+    }
+}
+
+extension UIViewController {
+    
+    /**
+     *  Height of status bar + navigation bar (if navigation bar exist)
+     */
+    
+    var topbarHeight: CGFloat {
+        return UIApplication.shared.statusBarFrame.size.height +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
 }
 
