@@ -260,7 +260,6 @@
 		8BA6455820830D44006EEEC5 /* ServinV2 */ = {
 			isa = PBXGroup;
 			children = (
-				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
 				8B78417420B8794A005C87DA /* PannableViewController.swift */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
 				8BA1F0F720B2AF50000EA3AC /* SVG Files */,
@@ -273,7 +272,7 @@
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
 				8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */,
-				8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */,
+				8BD3833F20C6049200B4B653 /* Profile */,
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
 				8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */,
 				8BA6455D20830D44006EEEC5 /* Main.storyboard */,
@@ -324,6 +323,15 @@
 				8BA645892083305D006EEEC5 /* style.json */,
 			);
 			path = "Google Map Json";
+			sourceTree = "<group>";
+		};
+		8BD3833F20C6049200B4B653 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */,
+				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		97AD1023C166132F1C126B77 /* Frameworks */ = {

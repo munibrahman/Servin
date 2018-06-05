@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var profileImageBackgroundView: UIView!
@@ -17,9 +17,12 @@ class EditProfileViewController: UIViewController {
     @IBOutlet var schoolTextField: UITextField!
     
     
+    var imagePicker = UIImagePickerController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imagePicker.delegate = self
         setupNavigationController()
         populateInfo()
         // Do any additional setup after loading the view.
@@ -32,7 +35,7 @@ class EditProfileViewController: UIViewController {
     }
     
     func setupViews() {
-        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.contentMode = .scaleAspectFill
         profileImageView.isUserInteractionEnabled = false
         
         
@@ -59,10 +62,76 @@ class EditProfileViewController: UIViewController {
     
     @objc func editPicture() {
         print("edit picture")
+        
+        let actionSheet = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
+        let takePhoto = UIAlertAction.init(title: "Take Photo", style: .default) { (alert) in
+            print("Take Photo")
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.imagePicker.allowsEditing = false
+                self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                self.imagePicker.cameraCaptureMode = .photo
+                self.imagePicker.modalPresentationStyle = .fullScreen
+                self.present(self.imagePicker,animated: true,completion: nil)
+            } else {
+                self.noCamera()
+            }
+        }
+        
+        let choosePhoto = UIAlertAction.init(title: "Choose Photo", style: .default) { (alert) in
+            print("Choose photo")
+            self.imagePicker.allowsEditing = false
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(cancelAction)
+        actionSheet.addAction(takePhoto)
+        actionSheet.addAction(choosePhoto)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func noCamera(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        present(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
+    
+    //MARK: - Delegates
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("Image picked")
+        
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            profileImageView.image = chosenImage //4
+        }
+        
+        dismiss(animated:true, completion: nil)
+        
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("Image picker cancelled")
+        dismiss(animated:true, completion: nil)
     }
     
     func populateInfo() {
         profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -229,10 +298,6 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     
     
 }
-
-
-
-
 
 
 
