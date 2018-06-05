@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet var profileImageView: UIImageView!
     @IBOutlet var profileImageBackgroundView: UIView!
@@ -17,15 +17,27 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet var schoolTextField: UITextField!
     
     
+    var textFieldChanged = false
+    
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        schoolTextField.delegate = self
+        
         imagePicker.delegate = self
         setupNavigationController()
         populateInfo()
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("Textfield started editing")
+        textFieldChanged = true
     }
     
     override func viewDidLayoutSubviews() {
@@ -153,7 +165,35 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     @objc func barButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
+        
+        if textFieldChanged {
+            
+            let alertViewController = UIAlertController.init(title: "If you exit now, your edits won't be saved.", message: "" , preferredStyle: .alert)
+            
+            
+            // Don't do anything, just go back to editing.
+            let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+                print("cancel pressed")
+                
+            })
+            
+            
+            // Leave the current VC then
+            let exitAction = UIAlertAction.init(title: "Exit", style: .destructive, handler: { (action) in
+                print("exit pressed")
+                self.dismiss(animated: true, completion: nil)
+            })
+            
+            alertViewController.addAction(cancelAction)
+            alertViewController.addAction(exitAction)
+            
+            self.present(alertViewController, animated: true, completion: nil)
+            
+            
+        } else {
+            // Don't do anything, just dismiss the VC
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 
