@@ -11,12 +11,18 @@ import GoogleMaps
 import SideMenu
 import Pulley
 
-class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate, PulleyPrimaryContentControllerDelegate {
+protocol SlaveMapViewControllerDelegate {
+    func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D)
+}
+
+class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
     let locationManager = CLLocationManager()
     var userLocationCameraPosition: GMSCameraPosition? = nil
     
     var homeMapView: GMSMapView!
+    
+    var delegate: SlaveMapViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,40 +41,6 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        //setupSearchBar()
-    }
-    
-    // When the drawer reaches all the way to the top, it eliminates the shadow in the background
-    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        print(drawer.drawerPosition)
-            if drawer.drawerPosition == PulleyPosition.open {
-                print("open")
-                drawer.shadowRadius = 0.0
-                drawer.shadowOpacity = 0.0
-            } else {
-                drawer.shadowRadius = 3.0
-                drawer.shadowOpacity = 0.1
-            }
-    }
-    
-    
-    func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
-    {
-        // This allows us to keep the google logo and the location button at the top
-        // of the drawer at all times
-        if distance <= 268.0 + bottomSafeArea
-        {
-            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
-        }
-        else
-        {
-            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
-        }
-    }
-
     func setupSideMenu() {
         
         let sideMenuTableVC = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController
@@ -151,6 +123,18 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             
         }
     }
+    
+    
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        print("long pressed, drop a pin!")
+        delegate?.didLongPressOnMap(mapView, didLongPressAt: coordinate)
+        
+        mapView.clear()
+        
+        
+        let marker = GMSMarker(position: coordinate)
+        marker.map = mapView
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -201,3 +185,35 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
 
 }
 
+
+// Delegate methods for Pulley
+extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
+    // When the drawer reaches all the way to the top, it eliminates the shadow in the background
+    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+        print(drawer.drawerPosition)
+        if drawer.drawerPosition == PulleyPosition.open {
+            drawer.shadowRadius = 0.0
+            drawer.shadowOpacity = 0.0
+        } else {
+            drawer.shadowRadius = 3.0
+            drawer.shadowOpacity = 0.1
+        }
+    }
+    
+    
+    func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
+    {
+        print("Distance \(distance)")
+        print("Bottom safe area \(bottomSafeArea)")
+        // This allows us to keep the google logo and the location button at the top
+        // of the drawer at all times
+        if distance <= 268.0 + bottomSafeArea
+        {
+            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
+        }
+        else
+        {
+            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
+        }
+    }
+}

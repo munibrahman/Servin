@@ -44,7 +44,7 @@
 		8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */; };
 		8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */; };
 		8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */; };
-		8BBFFC3C209E1F4600BA5D06 /* DummySearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3B209E1F4600BA5D06 /* DummySearchView.swift */; };
+		8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3B209E1F4600BA5D06 /* SearchView.swift */; };
 		8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */; };
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
@@ -115,7 +115,7 @@
 		8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		8BBFFC3B209E1F4600BA5D06 /* DummySearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummySearchView.swift; sourceTree = "<group>"; };
+		8BBFFC3B209E1F4600BA5D06 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapSearchBar.swift; sourceTree = "<group>"; };
 		8BBFFC4120A0EED700BA5D06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 				8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */,
 				8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */,
 				8BA6456020830D44006EEEC5 /* Assets.xcassets */,
-				8BBFFC3B209E1F4600BA5D06 /* DummySearchView.swift */,
+				8BBFFC3B209E1F4600BA5D06 /* SearchView.swift */,
 				8BA6456220830D44006EEEC5 /* LaunchScreen.storyboard */,
 				8BA6456520830D44006EEEC5 /* Info.plist */,
 			);
@@ -618,7 +618,7 @@
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsViewController.swift in Sources */,
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,
-				8BBFFC3C209E1F4600BA5D06 /* DummySearchView.swift in Sources */,
+				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,
 				8B1C7A7720B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
