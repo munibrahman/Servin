@@ -63,6 +63,8 @@ private class SearchView: UIView {
     var daddyVC: UIViewController! = nil
     var searchView: UITextField! = nil
     
+    let sidePadding: CGFloat = 20.0
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -70,23 +72,49 @@ private class SearchView: UIView {
     init(frame: CGRect, daddyVC: MapSearchViewController) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor.clear
         
-        let menuButton = UIImageView.init(frame: CGRect.init(x: 15.0, y: (frame.size.height / 2.0) - 10.0, width: 20.0, height: 20.0))
-        menuButton.image = #imageLiteral(resourceName: "<_grey")
-        menuButton.contentMode = .scaleAspectFit
+        // This is the hamburger menu icon.
+        let menuIcon = UIImageView.init(frame: CGRect.init(x: sidePadding, y: (frame.size.height / 2.0) - 10.0, width: 20.0, height: 20.0))
+        menuIcon.image = #imageLiteral(resourceName: "<_black")
+        menuIcon.contentMode = .scaleAspectFit
+        menuIcon.isUserInteractionEnabled = false
         
-        let backTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(backPressed))
-        menuButton.isUserInteractionEnabled = false
+        let menuIconSpace: CGFloat = menuIcon.frame.size.width + (sidePadding * 2.0)
         
-        self.isUserInteractionEnabled = true
-        self.addGestureRecognizer(backTapGesture)
+        let menuTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(self.backPressed))
+        let menuTapView = UIView.init(frame: CGRect.init(x: 0.0, y: 0.0, width: menuIconSpace, height: self.frame.size.height))
+        menuTapView.backgroundColor = .clear
+        menuTapView.isUserInteractionEnabled = true
+        menuTapView.addGestureRecognizer(menuTapGesture)
         
-        self.addSubview(menuButton)
+        self.addSubview(menuIcon)
+        self.addSubview(menuTapView)
         
         
-        searchView = UITextField.init(frame: CGRect.init(x: 60.0, y: 0.0, width: frame.size.width - 60.0, height: frame.size.height))
-        searchView.placeholder = "Try house cleaning..."
+        
+        
+        let searchBar = UIView.init(frame: CGRect.init(x: menuIconSpace, y: 0.0, width: self.frame.size.width - menuIconSpace - sidePadding, height: self.frame.size.height))
+        searchBar.backgroundColor = .white
+        
+        let radius: CGFloat = searchBar.frame.width / 2.0 //change it to .height if you need spread for height
+        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 2.0 * radius, height: frame.height))
+        //Change 2.1 to amount of spread you need and for height replace the code for height
+        
+        searchBar.layer.cornerRadius = 2
+        searchBar.layer.shadowColor = UIColor.black.cgColor
+        searchBar.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)  //Here you control x and y
+        searchBar.layer.shadowOpacity = 0.5
+        searchBar.layer.shadowRadius = 5.0 //Here your control your blur
+        searchBar.layer.masksToBounds =  false
+        searchBar.layer.shadowPath = shadowPath.cgPath
+        
+        self.addSubview(searchBar)
+        
+        
+        
+        searchView = UITextField.init(frame: searchBar.frame.insetBy(dx: 10.0, dy: 0.0))
+        //searchView.placeholder = "Try house cleaning..."
         searchView.attributedPlaceholder = NSAttributedString(string: "Try: House Cleaning...", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0)])
         searchView.adjustsFontSizeToFitWidth = true
         searchView.font = UIFont(name: "HelveticaNeue", size: 21.0)!
@@ -94,17 +122,7 @@ private class SearchView: UIView {
         searchView.clearButtonMode = .whileEditing
         self.addSubview(searchView)
         
-        let radius: CGFloat = frame.width / 2.0 //change it to .height if you need spread for height
-        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 2.0 * radius, height: frame.height))
-        //Change 2.1 to amount of spread you need and for height replace the code for height
         
-        self.layer.cornerRadius = 2
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)  //Here you control x and y
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 5.0 //Here your control your blur
-        self.layer.masksToBounds =  false
-        self.layer.shadowPath = shadowPath.cgPath
         
         self.daddyVC = daddyVC
     }

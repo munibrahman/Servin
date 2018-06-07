@@ -44,28 +44,11 @@ class MasterPulleyViewController: PulleyViewController {
     func setupSearchBar() {
         
         
-        var topPadding: CGFloat = 10.0
-        let sidepadding = topPadding
+        print(self.topInset)
+        let topPadding = self.topbarHeight + 15.0
         
         
-        if #available(iOS 11.0, *) {
-            
-            // User has ios 11
-            let window = UIApplication.shared.keyWindow
-            
-            if let tp = window?.safeAreaInsets.top {
-                // Using an iPhone X
-                if tp != 0.0 {
-                    topPadding = tp
-                } else {
-                    topPadding = 20.0
-                }
-            }
-        } else {
-            topPadding = 20.0
-        }
-        
-        let searchBar = DummySearchView.init(frame: CGRect.init(x: sidepadding , y: topPadding + 20.0, width: self.view.frame.size.width - (sidepadding * 2), height: 50.0), daddyVC: self)
+        let searchBar = DummySearchView.init(frame: CGRect.init(x: 0.0 , y: topPadding, width: self.view.frame.size.width, height: 40.0), daddyVC: self)
         
         // Setting the search bar's frame to be used by the search
         // view controller
