@@ -16,8 +16,10 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
 
     
     var searchBar: SearchView!
-    var mySlaveMapViewController: SlaveMapViewController?
-    var mySlaveDiscoveriesViewController: SlaveDiscoveriesViewController?
+    
+    var myMapViewController: SlaveMapViewController?
+    var myDiscoveriesViewController: SlaveDiscoveriesViewController?
+    var myPostAdViewController: SlavePostAdViewController?
     
     
     enum States {
@@ -30,9 +32,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         
         setupSearchBar()
 
-        self.drawerCornerRadius = 0.0
-        self.backgroundDimmingColor = UIColor.white
-        self.backgroundDimmingOpacity = 1.0
+
         
         // Do any additional setup after loading the view.
         
@@ -64,35 +64,49 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         self.view.addSubview(searchBar)
         
         
-        // The constant is for the pulley view controller, its random, it works on both iphone x and the normal iphones...
-        self.topInset = searchBar.frame.size.height + 14.0
         
+        // The small shrug when you pull the drawer all the way to the top is 20.0 points, so 15 allows u to keep it just below the
+        self.topInset = topPadding + searchBar.frame.size.height - 15.0
+        
+        self.backgroundDimmingColor = UIColor.white
+        self.backgroundDimmingOpacity = 1.0
     }
     
+
     var isShowingPostMenu = false
-    var topBlurView: UIView! = nil
     
+    // This method is called when someone long presses on the main map
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         
         if isShowingPostMenu {
-            // dont do anything, just ignore lol
-            self.topBlurView.removeFromSuperview()
-            self.topBlurView = nil
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.searchBar.transform = .identity
-                
-            }) { (completed) in
-                
-            }
-            
-            isShowingPostMenu = false
+            // dont do anything, just jot down the new coordinate, thats it.
             
         } else {
-            print("reciveing long press here")
+            drawerShouldShow(postAd: true)
+        }
+        
+    }
+
+
+    var topBlurView: UIView! = nil
+    
+    func drawerShouldShow(postAd: Bool) {
+        
+        // If the user did a long press onto the map, we will be posting the ad.
+        // Show the appropriate view for posting an ad.
+        if postAd {
+            
+            // We are showing the posting menu
+            self.isShowingPostMenu = true
+            
+            // If we are asking the user to fill their info, we don't need the drawer to animate
+            self.backgroundDimmingColor = UIColor.clear
+            
             let top = CGAffineTransform(translationX: 0, y: -300)
             
             UIView.animate(withDuration: 0.2, animations: {
+                
+                // Hide the search bar
                 self.searchBar.transform = top
             }) { (didComplete) in
                 
@@ -103,12 +117,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 gradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor]
                 self.self.topBlurView.layer.insertSublayer(gradient, at: 0)
                 self.view.addSubview(self.topBlurView)
-                self.isShowingPostMenu = true
                 
-                
-//                let backButtonView = UIView.init(frame: CGRect.init(x: 20.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
-//                backButtonView.backgroundColor = .red
-//                self.topBlurView.addSubview(backButtonView)
                 
                 let backButton = UIButton.init(frame: CGRect.init(x: 17.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
                 backButton.setImage(#imageLiteral(resourceName: "x_white"), for: .normal)
@@ -126,21 +135,73 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 
                 self.topBlurView.addSubview(postButton)
                 
+                
+                
+                if let postAdDrawer = self.myPostAdViewController {
+                    self.setDrawerPosition(position: .partiallyRevealed, animated: false)
+                    self.setDrawerContentViewController(controller: postAdDrawer)
+                    
+                    
+                    //setNeedsSupportedDrawerPositionsUpdate()
+                } else {
+                    fatalError("My post drawer is empty, this should never happen")
+                }
+                
+                
+                
             }
+            
         }
         
-        
+        // The user just backed out of posting an ad OR they actually did post the ad.
+        else {
+            
+            // We are not showing the posting menu, we are shoing the discoveries instead.
+            isShowingPostMenu = false
+            
+//            self.drawerCornerRadius = 0.0
+            self.backgroundDimmingColor = UIColor.white
+            self.backgroundDimmingOpacity = 1.0
+            
+            self.topBlurView.removeFromSuperview()
+            self.topBlurView = nil
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.searchBar.transform = .identity
+                
+            }) { (completed) in
+                
+            }
+            
+            if let discoveriesVC = myDiscoveriesViewController {
+                self.setDrawerContentViewController(controller: discoveriesVC)
+            }
+            
+            // This clears the pin from the map
+            if let mapVC = self.primaryContentViewController as? SlaveMapViewController {
+                mapVC.homeMapView.clear()
+            }
+            
+            
+        }
         
     }
+    
     
     @objc func backPressed() {
         print("Back pressed")
+        drawerShouldShow(postAd: false)
+        
     }
 
-    
-    
     @objc func postPressed() {
         print("Post pressed")
+    }
+    
+    override func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+        super.drawerPositionDidChange(drawer: drawer, bottomSafeArea: bottomSafeArea)
+        
+        print("Changed position of drawer")
     }
     /*
     // MARK: - Navigation

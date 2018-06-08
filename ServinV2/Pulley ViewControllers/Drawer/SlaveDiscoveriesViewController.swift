@@ -53,6 +53,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
 //        self.view.addSubview(myNearbyPins)
 //        self.view.addSubview(myRecommendations)
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +72,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         }
 
     }
+    
     
     /*
     // MARK: - Navigation

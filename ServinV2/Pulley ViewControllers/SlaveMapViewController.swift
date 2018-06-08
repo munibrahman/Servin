@@ -107,13 +107,13 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             let currentLocationLat = position.target.latitude.truncate(places: 3)
             let currentLocationLong = position.target.longitude.truncate(places: 3)
             
-            print(userLocationLat)
-            print(userLocationLong)
-            
-            print("\n")
-            
-            print(currentLocationLat)
-            print(currentLocationLong)
+//            print(userLocationLat)
+//            print(userLocationLong)
+//
+//            print("\n")
+//
+//            print(currentLocationLat)
+//            print(currentLocationLong)
             
             if currentLocationLat == userLocationLat && currentLocationLong == userLocationLong  {
                 mapView.settings.myLocationButton = false
@@ -134,6 +134,8 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         let marker = GMSMarker(position: coordinate)
         marker.map = mapView
+        
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -190,7 +192,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
 extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
     // When the drawer reaches all the way to the top, it eliminates the shadow in the background
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
-        print(drawer.drawerPosition)
+        //print(drawer.drawerPosition)
         if drawer.drawerPosition == PulleyPosition.open {
             drawer.shadowRadius = 0.0
             drawer.shadowOpacity = 0.0
@@ -203,17 +205,25 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
     
     func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
     {
-        print("Distance \(distance)")
-        print("Bottom safe area \(bottomSafeArea)")
-        // This allows us to keep the google logo and the location button at the top
-        // of the drawer at all times
-        if distance <= 268.0 + bottomSafeArea
-        {
-            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
+        print("DrawerChangeDistanceFromBottom")
+        
+        // If we are posting an ad, send the screen all the way to the top. Otherwise just follow the drawer.
+        if (drawer.drawerContentViewController as? SlavePostAdViewController) != nil {
+            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: (UIScreen.main.bounds.size.height * (2/3)) - bottomSafeArea, right: 0.0)
+            
+        } else {
+            // This allows us to keep the google logo and the location button at the top
+            // of the drawer at all times
+            if distance <= 268.0 + bottomSafeArea
+            {
+                homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
+            }
+            else
+            {
+                homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
+            }
         }
-        else
-        {
-            homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
-        }
+        
     }
+    
 }

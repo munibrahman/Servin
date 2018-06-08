@@ -26,9 +26,15 @@ class TestViewController: UIViewController {
         
         let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController") as! SlaveDiscoveriesViewController
         
+        let drawerPostAdVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlavePostAdViewController") as! SlavePostAdViewController
+        
         let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
         
         mainContentVC.delegate = pulleyController
+        
+        pulleyController.myMapViewController = mainContentVC
+        pulleyController.myDiscoveriesViewController = drawerContentVC
+        pulleyController.myPostAdViewController = drawerPostAdVC
         
         self.present(pulleyController, animated: true, completion: nil)
     }
