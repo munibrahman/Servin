@@ -1,22 +1,23 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
-  - GoogleMaps (2.6.0):
-    - GoogleMaps/Maps (= 2.6.0)
-  - GoogleMaps/Base (2.6.0)
-  - GoogleMaps/Maps (2.6.0):
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
-  - GooglePlaces (2.6.0):
-    - GoogleMaps/Base (= 2.6.0)
-  - IQKeyboardManagerSwift (6.0.2)
+  - GooglePlaces (2.7.0):
+    - GoogleMaps/Base (= 2.7.0)
+  - IQKeyboardManagerSwift (6.0.3)
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
     - SWXMLHash
-  - PinpointKit (1.1.0):
-    - PinpointKit/Core (= 1.1.0)
-  - PinpointKit/Core (1.1.0)
-  - Pulley (2.4.0)
-  - SideMenu (3.1.5)
-  - SWXMLHash (4.6.0)
+  - PinpointKit (1.2.0):
+    - PinpointKit/Core (= 1.2.0)
+  - PinpointKit/Core (1.2.0)
+  - Pulley (2.4.2)
+  - SideMenu (4.0.0)
+  - SWXMLHash (4.7.0)
+  - TLPhotoPicker (1.6.9)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - PinpointKit
   - Pulley
   - SideMenu
+  - TLPhotoPicker
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -41,19 +43,21 @@ SPEC REPOS:
     - Pulley
     - SideMenu
     - SWXMLHash
+    - TLPhotoPicker
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
-  GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
-  IQKeyboardManagerSwift: 59d4b0e140bc546c3c76ae5bb35b3dafd10b8172
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
-  PinpointKit: b444d66d8b10420c1ffc22c176dee37c1c12b4e7
-  Pulley: 604066ea5d24339a8701b0167a2c8131a589e705
-  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
-  SWXMLHash: 3c39a53723202800e9e1a87f14b2fe7ac1da98ec
+  PinpointKit: d1196cba6acc77fb76af50155f816228f03eaa9c
+  Pulley: d3d144a0323b65b8aa1dd601d515d08481103034
+  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
+  TLPhotoPicker: fb94a45db34c78a7137679d8ed406f8af6b45248
 
-PODFILE CHECKSUM: 319c8a50c75a4bd542a88b37e729afa0edb9130d
+PODFILE CHECKSUM: eeb3b36b0aa5b84e03d08d24a5b723c99d011b81
 
 COCOAPODS: 1.5.0
