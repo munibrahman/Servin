@@ -15,6 +15,7 @@ pod 'DZNEmptyDataSet'
 pod "Macaw", "0.9.1"
 pod 'Pulley'
 pod 'PinpointKit'
+pod 'TLPhotoPicker'
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing

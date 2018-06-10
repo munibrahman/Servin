@@ -202,9 +202,12 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
         }
     }
     
+
+    
     
     func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
     {
+        
         print("DrawerChangeDistanceFromBottom")
         
         // If we are posting an ad, send the screen all the way to the top. Otherwise just follow the drawer.

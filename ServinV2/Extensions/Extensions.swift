@@ -173,6 +173,11 @@ extension UIColor {
     open class var contentDivider: UIColor {
         return UIColor.init(red: 200.0/255.0, green: 199.0/255.0, blue: 204.0/255.0, alpha: 1.0)
     }
+    
+    open class var placeHolderColor: UIColor {
+        return UIColor.init(red: 199.0/255.0, green: 199.0/255.0, blue: 205.0/255.0, alpha: 1.0)
+    }
+    
 }
 
 extension UIDevice {

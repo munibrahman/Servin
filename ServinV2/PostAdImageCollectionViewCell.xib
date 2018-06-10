@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PostAdImageCollectionViewCell" customModule="ServinV2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_image_icon" translatesAutoresizingMaskIntoConstraints="NO" id="tGj-cb-7hv">
+                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="tGj-cb-7hv" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="16b-f7-4WW"/>
+                <constraint firstItem="tGj-cb-7hv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="DGf-i3-XSG"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="tGj-cb-7hv" secondAttribute="trailing" id="OD1-uI-1E9"/>
+                <constraint firstItem="tGj-cb-7hv" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="RgZ-Ew-TdU"/>
+                <constraint firstItem="tGj-cb-7hv" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="qUW-Bl-JMg"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="tGj-cb-7hv" secondAttribute="bottom" id="yuQ-k4-S81"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="imageView" destination="tGj-cb-7hv" id="CV6-qY-R51"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="default_image_icon" width="100" height="100"/>
+    </resources>
+</document>

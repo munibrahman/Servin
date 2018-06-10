@@ -89,6 +89,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
 
 
     var topBlurView: UIView! = nil
+    var viewArray = [UIView]()
     
     func drawerShouldShow(postAd: Bool) {
         
@@ -111,17 +112,22 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             }) { (didComplete) in
                 
                 print(self.topbarHeight)
-                self.topBlurView = UIView.init(frame: CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.topbarHeight + 120.0))
+                self.topBlurView = UIView.init(frame: CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.topbarHeight + 50.0))
                 let gradient = CAGradientLayer()
                 gradient.frame = self.topBlurView.bounds
                 gradient.colors = [UIColor.black.withAlphaComponent(0.8).cgColor, UIColor.clear.cgColor]
                 self.self.topBlurView.layer.insertSublayer(gradient, at: 0)
-                self.view.addSubview(self.topBlurView)
                 
+                self.viewArray.append(self.topBlurView)
+                self.myMapViewController?.view.addSubview(self.topBlurView)
+                
+                
+                //let fakeView = UIView.init(frame: self.topBlurView.frame)
                 
                 let backButton = UIButton.init(frame: CGRect.init(x: 17.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
                 backButton.setImage(#imageLiteral(resourceName: "x_white"), for: .normal)
-                self.topBlurView.addSubview(backButton)
+                self.viewArray.append(backButton)
+                self.view.addSubview(backButton)
                 
                 let backTap = UITapGestureRecognizer.init(target: self, action: #selector(self.backPressed))
                 backButton.addGestureRecognizer(backTap)
@@ -133,14 +139,14 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 let postTap = UITapGestureRecognizer.init(target: self, action: #selector(self.postPressed))
                 postButton.addGestureRecognizer(postTap)
                 
-                self.topBlurView.addSubview(postButton)
+                self.viewArray.append(postButton)
+                self.view.addSubview(postButton)
                 
                 
                 
                 if let postAdDrawer = self.myPostAdViewController {
                     self.setDrawerPosition(position: .partiallyRevealed, animated: false)
                     self.setDrawerContentViewController(controller: postAdDrawer)
-                    
                     
                     //setNeedsSupportedDrawerPositionsUpdate()
                 } else {
@@ -163,8 +169,13 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             self.backgroundDimmingColor = UIColor.white
             self.backgroundDimmingOpacity = 1.0
             
-            self.topBlurView.removeFromSuperview()
-            self.topBlurView = nil
+            for i in viewArray {
+                i.removeFromSuperview()
+            }
+            
+            viewArray.removeAll()
+            
+            
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.searchBar.transform = .identity
@@ -181,6 +192,9 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             if let mapVC = self.primaryContentViewController as? SlaveMapViewController {
                 mapVC.homeMapView.clear()
             }
+            
+            // If you press the back button, you just get rid of all the info that was saved.
+            myPostAdViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlavePostAdViewController") as? SlavePostAdViewController
             
             
         }
