@@ -11,6 +11,7 @@
 import UIKit
 import Pulley
 import GoogleMaps
+import SideMenu
 
 class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDelegate {
 
@@ -31,11 +32,35 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         super.viewDidLoad()
         
         setupSearchBar()
-
+        setupSideMenu()
 
         
         // Do any additional setup after loading the view.
         
+        
+    }
+    
+    func setupSideMenu() {
+        
+        let sideMenuTableVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController
+        sideMenuTableVC.mainVC = self
+        let menuLeftVC = UISideMenuNavigationController.init(rootViewController: sideMenuTableVC)
+        
+        menuLeftVC.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        menuLeftVC.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        menuLeftVC.navigationController?.navigationBar.shadowImage = UIImage()
+        menuLeftVC.navigationController?.navigationBar.isTranslucent = true
+        SideMenuManager.default.menuLeftNavigationController = menuLeftVC
+        
+        
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.shadowImage = UIImage()
+        SideMenuManager.default.menuLeftNavigationController?.navigationBar.isTranslucent = true
+        
+        SideMenuManager.default.menuFadeStatusBar = false
+        
+        SideMenuManager.default.menuWidth = view.frame.width * (0.8)
         
     }
     
@@ -77,6 +102,8 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     
     // This method is called when someone long presses on the main map
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        
+        print("Master VC knows about long press")
         
         if isShowingPostMenu {
             // dont do anything, just jot down the new coordinate, thats it.

@@ -12,7 +12,7 @@ import TLPhotoPicker
 
 class SlavePostAdViewController: UIViewController {
 
-    //TODO: Come here and clean everything up, especially the segmented control...
+    //TODO: Come here and clean everything up, especially the segmented control and fix the collectionview for ALL screens!...
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var priceTextField: UITextField!
     @IBOutlet var descriptionTextField: UIPlaceHolderTextView!

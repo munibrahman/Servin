@@ -196,5 +196,11 @@ extension UIViewController {
         return UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
+    
+    var screenStatusBarHeight: CGFloat {
+        return UIApplication.shared.statusBarFrame.height
+    }
 }
+
+
 

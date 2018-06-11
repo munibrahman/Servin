@@ -102,13 +102,9 @@ class LoginViewController: UIViewController {
     
     @objc func goForward() {
         
-        let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController")
+        let constant = Constants()
         
-        let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController")
-        
-        let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
-        
-        self.present(pulleyController, animated: true, completion: nil)
+        self.present(constant.getMainContentVC(), animated: true, completion: nil)
     }
     
     

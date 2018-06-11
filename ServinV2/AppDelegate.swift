@@ -26,22 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup for IQKeyboardManagerSwift
         IQKeyboardManager.shared.enable = true
         
-        #if DEBUG
-            // show whichever storbyboard you want to
-            
-        #else
-            // show the beginning storyboard only
-            // Settings for PinpointKit
+//        #if DEBUG
+//            // show whichever storbyboard you want to
+//            
+//        #else
+//            // show the beginning storyboard only
+//            // Settings for PinpointKit
             self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-            
+        
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
+        
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-            
+        
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
-        #endif
         
+        
+//        #endif
+
         return true
     }
 

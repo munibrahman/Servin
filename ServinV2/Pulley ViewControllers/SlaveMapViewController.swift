@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import SideMenu
 import Pulley
 
 protocol SlaveMapViewControllerDelegate {
@@ -35,35 +34,12 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         checkLocationServices()
         setupMap()
-        setupSideMenu()
         //setupSearchBar()
         
         
     }
     
-    func setupSideMenu() {
-        
-        let sideMenuTableVC = storyboard!.instantiateViewController(withIdentifier: "SideMenuTableViewController") as! SideMenuTableViewController
-        sideMenuTableVC.mainVC = self
-        let menuLeftVC = UISideMenuNavigationController.init(rootViewController: sideMenuTableVC)
-        
-        menuLeftVC.navigationController?.navigationBar.tintColor = UIColor.white
-        
-        menuLeftVC.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        menuLeftVC.navigationController?.navigationBar.shadowImage = UIImage()
-        menuLeftVC.navigationController?.navigationBar.isTranslucent = true
-        SideMenuManager.default.menuLeftNavigationController = menuLeftVC
-        
-        
-        SideMenuManager.default.menuLeftNavigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        SideMenuManager.default.menuLeftNavigationController?.navigationBar.shadowImage = UIImage()
-        SideMenuManager.default.menuLeftNavigationController?.navigationBar.isTranslucent = true
-        
-        SideMenuManager.default.menuFadeStatusBar = false
-        
-        SideMenuManager.default.menuWidth = view.frame.width * CGFloat(0.8)
-        
-    }
+
     
     
     func setupMap() {
@@ -124,6 +100,9 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         }
     }
     
+    func dropAPin() {
+        self.mapView(homeMapView, didLongPressAt: (locationManager.location?.coordinate)!)
+    }
     
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         print("long pressed, drop a pin!")
@@ -203,12 +182,10 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
     }
     
 
-    
+
     
     func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
     {
-        
-        print("DrawerChangeDistanceFromBottom")
         
         // If we are posting an ad, send the screen all the way to the top. Otherwise just follow the drawer.
         if (drawer.drawerContentViewController as? SlavePostAdViewController) != nil {
