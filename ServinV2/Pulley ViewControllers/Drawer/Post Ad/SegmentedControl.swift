@@ -17,7 +17,7 @@ import UIKit
     
     var thumbView = UIView()
     
-    var items:[String] = ["Offer", "Request"] {
+    var items:[String] = ["Offering", "Requesting"] {
         didSet{
            setupLabels()
         }

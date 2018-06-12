@@ -21,12 +21,21 @@ class SlavePostAdViewController: UIViewController {
     
     @IBOutlet var offerRequestSegmentedControl: SegmentedControl!
     
+    @IBOutlet var scrollView: UIScrollView!
+    
+    
+    @IBOutlet var contentView: UIView!
+
     
     var selectedAssets = [TLPHAsset]()
     
     var myCollectionView: UICollectionView!
     
     var defaultImageArray = [#imageLiteral(resourceName: "default_image_icon"), #imageLiteral(resourceName: "default_image_icon"), #imageLiteral(resourceName: "default_image_icon"), #imageLiteral(resourceName: "default_image_icon"),#imageLiteral(resourceName: "default_image_icon"), #imageLiteral(resourceName: "default_image_icon")]
+    
+    @IBOutlet var superviewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var collectionViewXIB: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,27 +87,30 @@ class SlavePostAdViewController: UIViewController {
         priceTextField.backgroundColor = .clear
         descriptionTextField.textContainer.lineFragmentPadding = 0
         
-        titleTextField.placeholder = "Title"
+        titleTextField.placeholder = "e.g. Tutor for hire"
         priceTextField.placeholder = "Price"
         descriptionTextField.placeholder = "Description"
         descriptionTextField.placeholderColor = UIColor.placeHolderColor
         
+        priceTextField.leftView = UIImageView.init(image: #imageLiteral(resourceName: "dollar_sign_icon"))
+        priceTextField.leftViewMode = .always
         
         
-
+        let numberOfCellsPerRow: CGFloat = 3
+        
+        let flowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        
+        let horizontalSpacing = flowLayout.scrollDirection == .vertical ? flowLayout.minimumInteritemSpacing : flowLayout.minimumLineSpacing
+        let cellWidth = (collectionViewXIB.frame.width - max(0, numberOfCellsPerRow - 1)*horizontalSpacing)/numberOfCellsPerRow
+        flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         
         
+        flowLayout.scrollDirection = .vertical
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0.0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: 100, height: 100)
-        layout.scrollDirection = .vertical
+        
         
         myCollectionView = UICollectionView(frame:
-            CGRect.init(x: imageTitleLabel.frame.origin.x,
-                        y: imageTitleLabel.frame.origin.y + imageTitleLabel.frame.size.height + 4.0,
-                        width: self.view.frame.size.width - (2 * imageTitleLabel.frame.origin.x),
-                        height: 210.0), collectionViewLayout: layout)
+            collectionViewXIB.frame, collectionViewLayout: flowLayout)
         
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
@@ -115,7 +127,44 @@ class SlavePostAdViewController: UIViewController {
         myCollectionView.isScrollEnabled = false
         
         
-        self.view.addSubview(myCollectionView)
+        self.contentView.addSubview(myCollectionView)
+        
+        
+        
+        self.scrollView.delegate = self
+        
+        
+        print("Collection view y \(self.collectionViewXIB.frame.origin.y)")
+        print("Collection view height \(self.collectionViewXIB.frame.size.height)")
+        
+        let collectionViewYBottom = self.collectionViewXIB.frame.origin.y + self.collectionViewXIB.frame.size.height
+        
+        print("CollectionViewYbottom\(collectionViewYBottom)")
+        print("View height \(self.view.frame.size.height)")
+        
+        let spaceNeededForScrollView = collectionViewYBottom - self.view.frame.size.height
+        
+        print("Needed space \(spaceNeededForScrollView)")
+
+        var extraPadding: CGFloat = 10.0
+        
+        if let mySuperview = self.parent as? MasterPulleyViewController {
+            print("My master is the master pulley VC")
+            extraPadding = extraPadding + mySuperview.topInset
+        } else {
+            extraPadding = 60.0
+        }
+        superviewHeightConstraint.constant = spaceNeededForScrollView + extraPadding
+        self.view.layoutIfNeeded()
+//        self.scrollViewSuperView.frame = CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height + 1000.0)
+//
+//        self.scrollViewSuperView.layoutIfNeeded()
+        
+//        self.scrollViewSuperView.frame.size.height = 2000.0
+        
+        //scrollView.contentSize = contentRect.size
+        
+        //self.scrollView.resizeScrollViewContentSize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -146,7 +195,7 @@ extension SlavePostAdViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? PostAdImageCollectionViewCell
-        cell?.backgroundColor = .clear
+        cell?.backgroundColor = .blue
         cell?.imageView.image = defaultImageArray[indexPath.row]
         cell?.imageView.contentMode = .scaleAspectFill
         return cell!
@@ -178,7 +227,7 @@ extension SlavePostAdViewController: UICollectionViewDataSource, UICollectionVie
 }
 
 
-extension SlavePostAdViewController : PulleyDrawerViewControllerDelegate {
+extension SlavePostAdViewController : PulleyDrawerViewControllerDelegate, UIScrollViewDelegate {
     
     
     
@@ -195,6 +244,19 @@ extension SlavePostAdViewController : PulleyDrawerViewControllerDelegate {
         
     }
     
+    func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
+        
+        if drawer.drawerPosition == PulleyPosition.partiallyRevealed {
+            self.scrollView.isScrollEnabled = false
+        } else {
+            self.scrollView.isScrollEnabled = true
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //disable bounce only at the top of the screen
+        scrollView.bounces = scrollView.contentOffset.y > 100
+    }
     
     
 }
@@ -343,4 +405,7 @@ class UIPlaceHolderTextView: UITextView {
         }
     }
 }
+
+
+
 

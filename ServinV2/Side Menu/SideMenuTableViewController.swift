@@ -31,7 +31,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         optionsTableViewController.delegate = self
         optionsTableViewController.dataSource = self
         
-        optionsTableViewController.backgroundColor = UIColor.red
+        optionsTableViewController.backgroundColor = UIColor.black
         
         self.view.backgroundColor = .white
         
@@ -92,6 +92,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             cell.menuOptionLabel.text = labels[indexPath.row]
             cell.testimageView?.image = icons[indexPath.row]
+            cell.testimageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
             cell.imageView?.clipsToBounds = true
             
             return cell

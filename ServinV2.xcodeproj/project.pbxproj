@@ -203,9 +203,9 @@
 		8B3FEF6B20CD01840056C22A /* Post Ad */ = {
 			isa = PBXGroup;
 			children = (
+				8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */,
 				8BD3834420CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift */,
 				8BD3834520CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib */,
-				8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */,
 				8BD3834820CBCE7700B4B653 /* CustomPhotoPickerViewController.swift */,
 				8BD3834B20CBD03D00B4B653 /* CustomCell_Instagram.swift */,
 				8BD3834A20CBD03B00B4B653 /* CustomCell_Instagram.xib */,

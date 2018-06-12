@@ -32,15 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        #else
 //            // show the beginning storyboard only
 //            // Settings for PinpointKit
-            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-        
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-        
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        
+//            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
+//        
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+//        
+//            self.window?.rootViewController = initialViewController
+//            self.window?.makeKeyAndVisible()
+//        
         
 //        #endif
 
