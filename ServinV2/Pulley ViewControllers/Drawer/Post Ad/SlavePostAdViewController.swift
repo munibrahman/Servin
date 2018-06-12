@@ -64,10 +64,19 @@ class SlavePostAdViewController: UIViewController {
         
     }
     
+    var viewsHaveBeenSetup = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("View will appear")
-        setupViews()
+        
+        if viewsHaveBeenSetup {
+            
+        } else {
+            setupViews()
+            viewsHaveBeenSetup = true
+        }
+        
     }
     
     func setupViews() {
@@ -129,31 +138,20 @@ class SlavePostAdViewController: UIViewController {
         
         self.contentView.addSubview(myCollectionView)
         
-        
-        
         self.scrollView.delegate = self
-        
-        
-        print("Collection view y \(self.collectionViewXIB.frame.origin.y)")
-        print("Collection view height \(self.collectionViewXIB.frame.size.height)")
         
         let collectionViewYBottom = self.collectionViewXIB.frame.origin.y + self.collectionViewXIB.frame.size.height
         
-        print("CollectionViewYbottom\(collectionViewYBottom)")
-        print("View height \(self.view.frame.size.height)")
-        
         let spaceNeededForScrollView = collectionViewYBottom - self.view.frame.size.height
-        
-        print("Needed space \(spaceNeededForScrollView)")
 
         var extraPadding: CGFloat = 10.0
         
         if let mySuperview = self.parent as? MasterPulleyViewController {
-            print("My master is the master pulley VC")
             extraPadding = extraPadding + mySuperview.topInset
         } else {
             extraPadding = 60.0
         }
+        
         superviewHeightConstraint.constant = spaceNeededForScrollView + extraPadding
         self.view.layoutIfNeeded()
 //        self.scrollViewSuperView.frame = CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height + 1000.0)
@@ -195,9 +193,12 @@ extension SlavePostAdViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? PostAdImageCollectionViewCell
-        cell?.backgroundColor = .blue
+        cell?.backgroundColor = .clear
         cell?.imageView.image = defaultImageArray[indexPath.row]
         cell?.imageView.contentMode = .scaleAspectFill
+        cell?.layer.cornerRadius = 3.0
+        cell?.clipsToBounds = true
+        cell?.backgroundColor = UIColor.black.withAlphaComponent(0.05)
         return cell!
     }
     
