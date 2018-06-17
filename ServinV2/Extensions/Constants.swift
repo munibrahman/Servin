@@ -16,9 +16,15 @@ class Constants {
     static var recommendedCellHeight = 240.0
     //static var pinsNearbyCellHeight = 
 
-    
+    fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
     
     func getMainContentVC() -> MasterPulleyViewController {
+        
+        
+        if let pulleyVC = pulleyMasterController {
+            return pulleyVC
+        }
+        
         let mainContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveMapViewController") as! SlaveMapViewController
         
         let drawerContentVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SlaveDiscoveriesViewController") as! SlaveDiscoveriesViewController
@@ -33,6 +39,7 @@ class Constants {
         pulleyController.myDiscoveriesViewController = drawerContentVC
         pulleyController.myPostAdViewController = drawerPostAdVC
         
+        self.pulleyMasterController = pulleyController
         return pulleyController
     }
     

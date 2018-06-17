@@ -55,8 +55,19 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         print("My status bar height \(self.screenStatusBarHeight)")
         
         
+        
+        
         // This is the height that our uitableview will sit inside of
         allowedViewHeight = self.view.frame.size.height - self.screenStatusBarHeight
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let topPadding = window?.safeAreaInsets.top
+            let bottomPadding = window?.safeAreaInsets.bottom
+            
+            allowedViewHeight = self.view.frame.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
+            
+        }
     }
     
 
