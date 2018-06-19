@@ -1,5 +1,5 @@
 //
-//  MyDiscoveryViewController.swift
+//  UserDiscoveryViewController
 //  ServinV2
 //
 //  Created by Developer on 2018-06-12.
@@ -9,9 +9,11 @@
 import UIKit
 import GoogleMaps
 
-class MyDiscoveryViewController: UIViewController {
+// The following view controller displays the pin (discovery) of another user on the network.
+// To display one's own pin, please use MyDiscoveryViewController instead
+class UserDiscoveryViewController: UIViewController {
     
-    @IBOutlet var discoveryCollectionView: UICollectionView!
+    var discoveryCollectionView: UICollectionView!
     
     let mapCellHeight: CGFloat = 300.0
     let profileCellHeight: CGFloat = 77.0
@@ -20,6 +22,7 @@ class MyDiscoveryViewController: UIViewController {
     let detailsCellIdentifier = "DetailsCell"
     let imagesCellIdentifier = "ImagesCell"
     let profileCellIdentifier = "ProfileCell"
+    let emptyCellIdentifier = "EmptyCell"
     
     var gmsMap: GMSMapView!
     
@@ -32,6 +35,7 @@ class MyDiscoveryViewController: UIViewController {
         let imInterestedButton = UIButton()
         imInterestedButton.setTitle("I'm Interested!", for: .normal)
         imInterestedButton.titleLabel?.textColor = .white
+        imInterestedButton.titleLabel?.adjustsFontSizeToFitWidth = true
         imInterestedButton.backgroundColor = UIColor.greyBackgroundColor
         imInterestedButton.layer.cornerRadius = 4.0
         imInterestedButton.clipsToBounds = true
@@ -39,10 +43,37 @@ class MyDiscoveryViewController: UIViewController {
         return imInterestedButton
     } ()
     
+    var imInterstedView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("View didload called")
+        
         self.view.backgroundColor = .white
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 0.0
+        flowLayout.minimumInteritemSpacing = 0.0
+        
+        discoveryCollectionView = UICollectionView.init(frame: self.view.frame, collectionViewLayout: flowLayout)
+        discoveryCollectionView.showsHorizontalScrollIndicator = false
+        
+        
+        self.view.addSubview(discoveryCollectionView)
+        
+        setupMap()
+        
+        let layoutMarginsGuide = self.view.safeAreaLayoutGuide
+
+        
+        discoveryCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        discoveryCollectionView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor).isActive = true
+        discoveryCollectionView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor).isActive = true
+        discoveryCollectionView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor).isActive = true
+        discoveryCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0.0).isActive = true
+        
         
         discoveryCollectionView.backgroundColor = .clear
         // Do any additional setup after loading the view.
@@ -54,22 +85,9 @@ class MyDiscoveryViewController: UIViewController {
         discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryDetailsCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: detailsCellIdentifier)
         discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryImagesCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: imagesCellIdentifier)
         discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryUserProfileCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: profileCellIdentifier)
+        discoveryCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: emptyCellIdentifier)
         
         
-        
-        
-        gmsMap = GMSMapView.init(frame: CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: mapCellHeight * 2.0))
-        gmsMap.isUserInteractionEnabled = false
-        
-        let position = CLLocationCoordinate2D(latitude: -33.8683, longitude: 151.2086)
-        let marker = GMSMarker(position: position)
-        marker.title = "Hello World"
-        marker.map = gmsMap
-        
-        let camera = GMSCameraPosition.camera(withLatitude: position.latitude - 0.005, longitude: position.longitude, zoom: 15)
-        gmsMap.camera = camera
-        
-        self.view.insertSubview(gmsMap, belowSubview: discoveryCollectionView)
         
         var bottomPadding: CGFloat = 0.0
         if #available(iOS 11.0, *) {
@@ -79,7 +97,7 @@ class MyDiscoveryViewController: UIViewController {
             }
         }
         
-        let imInterstedView = UIView.init(frame: CGRect.init(x: 0.0, y: self.view.frame.size.height - 70.0 - bottomPadding, width: self.view.frame.size.width, height: 70.0))
+        imInterstedView = UIView.init(frame: CGRect.init(x: 0.0, y: self.view.frame.size.height - 70.0 - bottomPadding, width: self.view.frame.size.width, height: 70.0))
         imInterstedView.backgroundColor = UIColor.white
         
         imInterstedView.layer.shadowColor = UIColor.black.cgColor
@@ -95,6 +113,10 @@ class MyDiscoveryViewController: UIViewController {
         
         
         imInterstedView.addSubview(imInterestedButton)
+        
+        let bottomPaddingView = UIView.init(frame: CGRect.init(x: 0.0, y: imInterstedView.frame.origin.y + imInterstedView.frame.size.height, width: self.view.frame.size.width, height: bottomPadding))
+        bottomPaddingView.backgroundColor = imInterstedView.backgroundColor
+        self.view.addSubview(bottomPaddingView)
         
         let numOfReplies = UILabel.init(frame: CGRect.init(x: 19.0, y: 10.0, width: 129.0, height: 50.0))
 
@@ -141,6 +163,46 @@ class MyDiscoveryViewController: UIViewController {
         print("Im interested did tap")
     }
     
+    
+    func setupMap() {
+        gmsMap = GMSMapView.init(frame: self.view.bounds)
+        gmsMap.isUserInteractionEnabled = false
+        
+        do {
+            // Set the map style by passing the URL of the local file.
+            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                gmsMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        
+        let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
+        let marker = GMSMarker(position: position)
+        marker.title = "Hello World"
+        marker.map = gmsMap
+        
+        let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+        
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let bottomPadding = window?.safeAreaInsets.bottom
+            
+            gmsMap.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: self.view.frame.size.height - mapCellHeight - self.topbarHeight - (bottomPadding ?? 0.0), right: 0.0)
+            
+        } else {
+            gmsMap.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: self.view.frame.size.height - mapCellHeight - self.topbarHeight - 0.0, right: 0.0)
+            
+        }
+        
+        gmsMap.camera = camera
+        
+        self.view.insertSubview(gmsMap, belowSubview: discoveryCollectionView)
+    }
+    
     var saveButton = UIBarButtonItem()
     var shareButton = UIBarButtonItem()
     var moreActions = UIBarButtonItem()
@@ -161,7 +223,7 @@ class MyDiscoveryViewController: UIViewController {
         shareButton.tintColor = UIColor.black
         moreActions.tintColor = UIColor.black
         
-        let backButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(userDidTapBack))
+        let backButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(userDidTapBack))
         
         backButton.tintColor = UIColor.black
         
@@ -210,6 +272,12 @@ class MyDiscoveryViewController: UIViewController {
     
     @objc func userDidTapBack() {
         print("Back pressed")
+        
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func userDidTapMap() {
+        self.navigationController?.pushViewController(DiscoveryFullScreenMapViewController(), animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -230,7 +298,7 @@ class MyDiscoveryViewController: UIViewController {
 
 }
 
-extension MyDiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
@@ -263,7 +331,7 @@ extension MyDiscoveryViewController: UICollectionViewDataSource, UICollectionVie
             return cell
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: emptyCellIdentifier, for: indexPath)
         
         cell.backgroundColor = .white
         
@@ -288,9 +356,15 @@ extension MyDiscoveryViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             print("selected Map")
-        } else {
-            print("selected some other cell")
+            self.userDidTapMap()
+        } else if indexPath.row == 3 {
+            print("selected profile cell")
+            
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -305,11 +379,7 @@ extension MyDiscoveryViewController: UICollectionViewDataSource, UICollectionVie
         if(scrollOffsetY <= 0.0)
         {
             
-            //gmsMap.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
-            //print(scrollOffsetY)
-            //print("Pulling down")
-            
-            let translate = CGAffineTransform(translationX: 0, y: scrollView.contentOffset.y/3.0);
+        
             let orgHeight: CGFloat = mapCellHeight;
             let scaleFactor = (orgHeight - scrollView.contentOffset.y) / orgHeight;
             let translateAndZoom = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)

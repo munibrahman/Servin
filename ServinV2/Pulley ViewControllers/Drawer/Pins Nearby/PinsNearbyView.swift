@@ -30,7 +30,7 @@ class PinsNearbyView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         
-        myCollectionView.register(UINib.init(nibName: "PinsNearbyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyCell")
+        myCollectionView.register(UINib.init(nibName: String.init(describing: PinsNearbyCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: "MyCell")
         myCollectionView.backgroundColor = UIColor.white
         
         myCollectionView.delegate = self
@@ -60,6 +60,14 @@ class PinsNearbyView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         
         return myCell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let parentVC = self.parentContainerViewController() {
+            parentVC.present(UINavigationController.init(rootViewController: MyDiscoveryViewController()), animated: true, completion: nil)
+        }
+    }
+    
+    
     
     /*
     // Only override draw() if you perform custom drawing.

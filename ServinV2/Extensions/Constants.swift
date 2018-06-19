@@ -14,7 +14,9 @@ class Constants {
     
     static var searchBarFrame: CGRect? = nil
     static var recommendedCellHeight = 240.0
-    //static var pinsNearbyCellHeight = 
+    //static var pinsNearbyCellHeight =
+    
+    static let googleMapsApiKey = "AIzaSyAGFQhWxsHh3UpGzvoTzB4flwsV_eCYODk"
 
     fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
     

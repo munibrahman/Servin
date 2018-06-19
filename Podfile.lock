@@ -1,4 +1,7 @@
 PODS:
+  - Alamofire (4.7.2)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
   - DZNEmptyDataSet (1.8.1)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
@@ -7,6 +10,9 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.7.0):
     - GoogleMaps/Base (= 2.7.0)
+  - ImageSlideshow (1.6.0):
+    - ImageSlideshow/Core (= 1.6.0)
+  - ImageSlideshow/Core (1.6.0)
   - IQKeyboardManagerSwift (6.0.3)
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
@@ -16,48 +22,61 @@ PODS:
   - PinpointKit/Core (1.2.0)
   - Pulley (2.4.2)
   - SideMenu (4.0.0)
+  - SwiftyJSON (4.1.0)
   - SWXMLHash (4.7.0)
   - TLPhotoPicker (1.6.9)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
+  - AlamofireImage (~> 3.3)
   - DZNEmptyDataSet
   - GoogleMaps
   - GooglePlaces
+  - ImageSlideshow (~> 1.6)
   - IQKeyboardManagerSwift
   - KYNavigationProgress
   - Macaw (= 0.9.1)
   - PinpointKit
   - Pulley
   - SideMenu
+  - SwiftyJSON (~> 4.0)
   - TLPhotoPicker
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireImage
     - DZNEmptyDataSet
     - GoogleMaps
     - GooglePlaces
+    - ImageSlideshow
     - IQKeyboardManagerSwift
     - KYNavigationProgress
     - Macaw
     - PinpointKit
     - Pulley
     - SideMenu
+    - SwiftyJSON
     - SWXMLHash
     - TLPhotoPicker
 
 SPEC CHECKSUMS:
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
+  ImageSlideshow: 9a1038da5669d2d337ae5ecda2ee8282ff14e9c5
   IQKeyboardManagerSwift: 04e8679f85e496bb2c474eeb9284052f1b3c391c
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
   PinpointKit: d1196cba6acc77fb76af50155f816228f03eaa9c
   Pulley: d3d144a0323b65b8aa1dd601d515d08481103034
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
   TLPhotoPicker: fb94a45db34c78a7137679d8ed406f8af6b45248
 
-PODFILE CHECKSUM: eeb3b36b0aa5b84e03d08d24a5b723c99d011b81
+PODFILE CHECKSUM: b24231a01d6924d70ab823523fac02a71be8f279
 
 COCOAPODS: 1.5.0

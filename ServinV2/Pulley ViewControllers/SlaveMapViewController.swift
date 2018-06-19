@@ -100,10 +100,12 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         }
     }
     
+    // Function used by our master view controller
     func dropAPin() {
         self.mapView(homeMapView, didLongPressAt: (locationManager.location?.coordinate)!)
     }
     
+    // Delegate function
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         print("long pressed, drop a pin!")
         delegate?.didLongPressOnMap(mapView, didLongPressAt: coordinate)
@@ -112,6 +114,9 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         
         let marker = GMSMarker(position: coordinate)
+        let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 15.0)
+        
+        mapView.animate(to: camera)
         marker.map = mapView
         
         
