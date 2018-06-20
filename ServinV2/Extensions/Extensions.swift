@@ -209,6 +209,13 @@ extension UINavigationBar {
         self.shadowImage = UIImage()
         self.isTranslucent = true
     }
+    
+    func removeTransparentNavigationBar() {
+        self.setBackgroundImage(nil, for: .default)
+        self.shadowImage = UINavigationBar().shadowImage
+        self.isTranslucent = false
+    }
+    
 }
 
 

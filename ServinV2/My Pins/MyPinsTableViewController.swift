@@ -1,5 +1,5 @@
 //
-//  MyPinsViewController.swift
+//  MyPinsTableViewController.swift
 //  ServinV2
 //
 //  Created by Developer on 2018-05-05.
@@ -7,12 +7,15 @@
 //
 import UIKit
 import DZNEmptyDataSet
+import AlamofireImage
+import Alamofire
 
-class MyPinsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
-    
+class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
     
     @IBOutlet var myPinsTableView: UITableView!
+    
+    let reuseIdentifier = "cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +24,11 @@ class MyPinsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupNavigationController()
         setupEmptyState()
         
+        myPinsTableView.register(UINib.init(nibName: String.init(describing: MyPinTableViewCell.self), bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        
+        myPinsTableView.delegate = self
+        myPinsTableView.dataSource = self
+        myPinsTableView.rowHeight = 104.0
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
     }
     
@@ -31,6 +39,7 @@ class MyPinsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.leftBarButtonItem = barButtonItem
         
         navigationController?.navigationBar.topItem?.title = "My Pins"
+        
     }
     
     @objc func barButtonPressed() {
@@ -69,17 +78,53 @@ class MyPinsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     // MARK:- Tableview protocols
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO: Add proper cells
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as! MyPinTableViewCell
+        
+        
+        Alamofire.request("https://picsum.photos/500/300/?random").responseImage { response in
+            debugPrint(response)
+            
+            print(response.request)
+            print(response.response)
+            debugPrint(response.result)
+            
+            if let image = response.result.value {
+                print("image downloaded: \(image)")
+                
+                cell.pinImageView.image = image
+            }
+        }
+        
+        
+        cell.titleLabel.text = "CPSC 331 Textbook for sale MINT, looks good, awesome condition askdhakjsdg ajkgdkjhajkdaksh agjdgakjd"
+        cell.priceLabel.text = "$ 40"
+        cell.viewsLabel.text = "90"
+        
+        return cell
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 104.0
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(MyDiscoveryViewController(), animated: true)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.removeTransparentNavigationBar()
     }
     
     

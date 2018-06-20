@@ -51,12 +51,16 @@ class MyDiscoveryViewController: UserDiscoveryViewController {
     
     @objc func userDidTapEdit() {
         print("Edit this ad, im inside mydiscoveryviewcontroller")
+        self.navigationController?.pushViewController(UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: EditDiscoveryViewController.self)), animated: true)
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
     
+    override func userDidTapBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 
     /*

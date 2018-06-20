@@ -26,10 +26,10 @@
 		8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */; };
 		8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */; };
 		8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */; };
+		8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */; };
+		8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */; };
 		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
 		8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */; };
-		8B51799020D9A37100774BDE /* MyPinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */; };
-		8B51799120D9A37100774BDE /* MyPinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */; };
 		8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */; };
 		8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */; };
 		8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */; };
@@ -57,7 +57,7 @@
 		8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */; };
 		8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */; };
 		8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */; };
-		8BBFFC34209D96F000BA5D06 /* MyPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */; };
+		8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */; };
 		8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */; };
 		8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */; };
 		8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */; };
@@ -117,10 +117,10 @@
 		8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinsNearbyCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinsNearbyCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinTableViewCell.swift; sourceTree = "<group>"; };
+		8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinTableViewCell.xib; sourceTree = "<group>"; };
 		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiscoveryViewController.swift; sourceTree = "<group>"; };
-		8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinCollectionViewCell.swift; sourceTree = "<group>"; };
-		8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp1ViewController.swift; sourceTree = "<group>"; };
 		8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp3ViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
 		8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinsViewController.swift; sourceTree = "<group>"; };
+		8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinsTableViewController.swift; sourceTree = "<group>"; };
 		8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -265,9 +265,9 @@
 		8B51799220D9A37800774BDE /* My Pins */ = {
 			isa = PBXGroup;
 			children = (
-				8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */,
-				8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */,
-				8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */,
+				8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */,
+				8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */,
+				8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */,
 			);
 			path = "My Pins";
 			sourceTree = "<group>";
@@ -558,11 +558,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */,
 				8BD3834C20CBD03D00B4B653 /* CustomCell_Instagram.xib in Resources */,
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
 				8B1C7A7820B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib in Resources */,
-				8B51799120D9A37100774BDE /* MyPinCollectionViewCell.xib in Resources */,
 				8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */,
 				8BA6456420830D44006EEEC5 /* LaunchScreen.storyboard in Resources */,
 				8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */,
@@ -724,6 +724,7 @@
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
 				8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
+				8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */,
 				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
@@ -744,13 +745,12 @@
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
-				8B51799020D9A37100774BDE /* MyPinCollectionViewCell.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
-				8BBFFC34209D96F000BA5D06 /* MyPinsViewController.swift in Sources */,
+				8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */,
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,
 				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,

@@ -15,7 +15,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     var mainVC: MasterPulleyViewController? = nil
     
-    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsViewController", "HelpViewController", "SettingsViewController"]
+    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "HelpViewController", "SettingsViewController"]
     let labels = ["Messages", "Drop a Pin", "My Pins", "Help", "Settings"]
     let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "help_icon"), #imageLiteral(resourceName: "settings_icon")]
     
@@ -58,16 +58,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         // This is the height that our uitableview will sit inside of
-        allowedViewHeight = self.view.frame.size.height - self.statusBarHeight
+        allowedViewHeight = self.optionsTableViewController.frame.size.height - self.topbarHeight
         
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            let topPadding = window?.safeAreaInsets.top
-            let bottomPadding = window?.safeAreaInsets.bottom
-            
-            allowedViewHeight = self.view.frame.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
-            
-        }
     }
     
 

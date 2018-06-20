@@ -136,7 +136,7 @@ class SlavePostAdViewController: UIViewController {
         myCollectionView.isScrollEnabled = false
         
         
-        self.contentView.addSubview(myCollectionView)
+        imageTitleLabel.superview?.addSubview(myCollectionView)
         
         self.scrollView.delegate = self
         
