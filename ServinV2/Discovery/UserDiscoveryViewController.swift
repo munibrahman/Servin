@@ -279,6 +279,10 @@ class UserDiscoveryViewController: UIViewController {
     func userDidTapMap() {
         self.navigationController?.pushViewController(DiscoveryFullScreenMapViewController(), animated: true)
     }
+    
+    func userDidTapProfile() {
+        self.navigationController?.pushViewController(UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: UserProfileViewController.self)), animated: true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -297,6 +301,9 @@ class UserDiscoveryViewController: UIViewController {
     */
 
 }
+
+
+// MARK: - CollectionView
 
 extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -324,9 +331,9 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             
         } else if indexPath.row == 3 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellIdentifier, for: indexPath) as! DiscoveryUserProfileCollectionViewCell
-            cell.userImageView.image = #imageLiteral(resourceName: "larry_avatar")
+            cell.userImageView.image = #imageLiteral(resourceName: "adriana")
             cell.userFirstNameLabel.text = "Adriana"
-            cell.userUniversityLabel.text = "Stanford University"
+            cell.userUniversityLabel.text = "University Of Calgary"
             
             return cell
         }
@@ -358,7 +365,7 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             print("selected Map")
             self.userDidTapMap()
         } else if indexPath.row == 3 {
-            print("selected profile cell")
+            self.userDidTapProfile()
             
         }
     }
@@ -406,12 +413,4 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
         }
     }
     
-}
-
-extension UINavigationBar {
-    func transparentNavigationBar() {
-        self.setBackgroundImage(UIImage(), for: .default)
-        self.shadowImage = UIImage()
-        self.isTranslucent = true
-    }
 }

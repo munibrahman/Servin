@@ -24,6 +24,12 @@
 		8B45C20420D74355009FF0F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20320D74355009FF0F9 /* LocationManager.swift */; };
 		8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20520D76AF9009FF0F9 /* AlamoFireSource.swift */; };
 		8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */; };
+		8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */; };
+		8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */; };
+		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
+		8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */; };
+		8B51799020D9A37100774BDE /* MyPinCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */; };
+		8B51799120D9A37100774BDE /* MyPinCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */; };
 		8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */; };
 		8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */; };
 		8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */; };
@@ -36,8 +42,6 @@
 		8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592320B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift */; };
 		8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592520B2AB4D00EDA1FC /* MasterPulleyViewController.swift */; };
 		8BA1F0F920B45912000EA3AC /* PinsNearbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1F0F820B45912000EA3AC /* PinsNearbyView.swift */; };
-		8BA1F0FC20B46288000EA3AC /* PinsNearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA1F0FA20B46288000EA3AC /* PinsNearbyCollectionViewCell.swift */; };
-		8BA1F0FD20B46288000EA3AC /* PinsNearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA1F0FB20B46288000EA3AC /* PinsNearbyCollectionViewCell.xib */; };
 		8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6455920830D44006EEEC5 /* AppDelegate.swift */; };
 		8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6455B20830D44006EEEC5 /* SlaveMapViewController.swift */; };
 		8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BA6455D20830D44006EEEC5 /* Main.storyboard */; };
@@ -111,6 +115,12 @@
 		8B45C20320D74355009FF0F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8B45C20520D76AF9009FF0F9 /* AlamoFireSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoFireSource.swift; sourceTree = "<group>"; };
 		8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscoveryViewController.swift; sourceTree = "<group>"; };
+		8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinsNearbyCollectionViewCell.xib; sourceTree = "<group>"; };
+		8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinsNearbyCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiscoveryViewController.swift; sourceTree = "<group>"; };
+		8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp1ViewController.swift; sourceTree = "<group>"; };
 		8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp3ViewController.swift; sourceTree = "<group>"; };
@@ -123,8 +133,6 @@
 		8B81592320B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlaveDiscoveriesViewController.swift; sourceTree = "<group>"; };
 		8B81592520B2AB4D00EDA1FC /* MasterPulleyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPulleyViewController.swift; sourceTree = "<group>"; };
 		8BA1F0F820B45912000EA3AC /* PinsNearbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsNearbyView.swift; sourceTree = "<group>"; };
-		8BA1F0FA20B46288000EA3AC /* PinsNearbyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinsNearbyCollectionViewCell.swift; sourceTree = "<group>"; };
-		8BA1F0FB20B46288000EA3AC /* PinsNearbyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinsNearbyCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BA6455620830D44006EEEC5 /* ServinV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServinV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BA6455920830D44006EEEC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BA6455B20830D44006EEEC5 /* SlaveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlaveMapViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +247,7 @@
 		8B45C1FE20D70EB3009FF0F9 /* Discovery */ = {
 			isa = PBXGroup;
 			children = (
+				8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */,
 				8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */,
 				8B43D38B20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift */,
 				8B43D38C20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib */,
@@ -251,6 +260,16 @@
 				8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */,
 			);
 			path = Discovery;
+			sourceTree = "<group>";
+		};
+		8B51799220D9A37800774BDE /* My Pins */ = {
+			isa = PBXGroup;
+			children = (
+				8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */,
+				8B51798E20D9A37100774BDE /* MyPinCollectionViewCell.swift */,
+				8B51798F20D9A37100774BDE /* MyPinCollectionViewCell.xib */,
+			);
+			path = "My Pins";
 			sourceTree = "<group>";
 		};
 		8B78416C20B86E9D005C87DA /* Extensions */ = {
@@ -299,9 +318,9 @@
 		8BA1F0FE20B4629A000EA3AC /* Pins Nearby */ = {
 			isa = PBXGroup;
 			children = (
+				8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */,
+				8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */,
 				8BA1F0F820B45912000EA3AC /* PinsNearbyView.swift */,
-				8BA1F0FA20B46288000EA3AC /* PinsNearbyCollectionViewCell.swift */,
-				8BA1F0FB20B46288000EA3AC /* PinsNearbyCollectionViewCell.xib */,
 			);
 			path = "Pins Nearby";
 			sourceTree = "<group>";
@@ -353,7 +372,7 @@
 				8B78416C20B86E9D005C87DA /* Extensions */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
-				8BBFFC33209D96F000BA5D06 /* MyPinsViewController.swift */,
+				8B51799220D9A37800774BDE /* My Pins */,
 				8BD3833F20C6049200B4B653 /* Profile */,
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
 				8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */,
@@ -410,6 +429,7 @@
 		8BD3833F20C6049200B4B653 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8B51798A20D9800900774BDE /* UserProfileViewController.swift */,
 				8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */,
 				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
 			);
@@ -542,6 +562,7 @@
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
 				8B1C7A7820B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib in Resources */,
+				8B51799120D9A37100774BDE /* MyPinCollectionViewCell.xib in Resources */,
 				8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */,
 				8BA6456420830D44006EEEC5 /* LaunchScreen.storyboard in Resources */,
 				8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */,
@@ -550,9 +571,9 @@
 				8BA6456120830D44006EEEC5 /* Assets.xcassets in Resources */,
 				8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */,
 				8B43D39220D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib in Resources */,
+				8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */,
 				8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */,
 				8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */,
-				8BA1F0FD20B46288000EA3AC /* PinsNearbyCollectionViewCell.xib in Resources */,
 				8BA6458A2083305D006EEEC5 /* style.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -703,6 +724,7 @@
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
 				8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
+				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
 				8BA1F0F920B45912000EA3AC /* PinsNearbyView.swift in Sources */,
@@ -713,18 +735,20 @@
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
 				8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */,
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,
+				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
 				8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */,
-				8BA1F0FC20B46288000EA3AC /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */,
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
+				8B51799020D9A37100774BDE /* MyPinCollectionViewCell.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
+				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsViewController.swift in Sources */,
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,

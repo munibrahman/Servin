@@ -197,10 +197,18 @@ extension UIViewController {
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
     
-    var screenStatusBarHeight: CGFloat {
+    var statusBarHeight: CGFloat {
         return UIApplication.shared.statusBarFrame.height
     }
 }
 
+
+extension UINavigationBar {
+    func transparentNavigationBar() {
+        self.setBackgroundImage(UIImage(), for: .default)
+        self.shadowImage = UIImage()
+        self.isTranslucent = true
+    }
+}
 
 

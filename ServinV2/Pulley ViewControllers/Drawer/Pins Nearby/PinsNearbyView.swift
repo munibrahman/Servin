@@ -63,7 +63,7 @@ class PinsNearbyView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let parentVC = self.parentContainerViewController() {
-            parentVC.present(UINavigationController.init(rootViewController: MyDiscoveryViewController()), animated: true, completion: nil)
+            parentVC.present(UINavigationController.init(rootViewController: UserDiscoveryViewController()), animated: true, completion: nil)
         }
     }
     
