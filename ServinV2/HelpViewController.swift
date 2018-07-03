@@ -18,6 +18,12 @@ class HelpViewController: UIViewController {
     }
     
     func setupNavigationController() {
+        
+        navigationItem.title = "Help"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))

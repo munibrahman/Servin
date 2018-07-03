@@ -161,7 +161,6 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
         let marker = GMSMarker(position: position)
         marker.map = gmsMapView
-        marker.isDraggable = true
         
         let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
         
@@ -171,6 +170,7 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
     
     @objc func userDidTapMap() {
         print("User did tap map")
+        self.navigationController?.pushViewController(EditMapViewController(), animated: true)
     }
     
     var viewsHaveBeenSetup = false
@@ -405,3 +405,187 @@ extension EditDiscoveryViewController: TLPhotosPickerLogDelegate {
         print("selectedAlbum")
     }
 }
+
+
+// This view controller allows a user to move the pin around as they feel like, the new location will then be saved
+class EditMapViewController: UIViewController, GMSMapViewDelegate {
+    
+    
+    // TODO: Add a search bar ontop of the map so people could potentially search for places too, that would be nice.
+    var gmsMapView: GMSMapView!
+    var lastPosition: CLLocationCoordinate2D!
+    
+    var isDragging = false
+    
+    override func loadView() {
+        view = UIView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavigationBar()
+        setupMap()
+        
+    }
+    
+    func setupNavigationBar() {
+        
+        if self.navigationController == nil {
+            fatalError("This VC must be presented within a UINavigationViewController")
+        }
+        
+        self.navigationController?.navigationBar.transparentNavigationBar()
+        
+        let backButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(userDidTapBack))
+        backButton.tintColor = .black
+        
+        self.navigationItem.leftBarButtonItem = backButton
+        
+    }
+    
+    @objc func userDidTapBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func setupMap()  {
+        
+        lastPosition = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
+        
+        gmsMapView = GMSMapView()
+        gmsMapView.delegate = self
+        view.addSubview(gmsMapView)
+
+        gmsMapView.translatesAutoresizingMaskIntoConstraints = false
+
+        gmsMapView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        gmsMapView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        gmsMapView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        gmsMapView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        do {
+            // Set the map style by passing the URL of the local file.
+            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                gmsMapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        
+        let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
+        let marker = GMSMarker(position: position)
+        marker.map = gmsMapView
+        marker.isDraggable = true
+        
+        let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+        
+        gmsMapView.camera = camera
+        gmsMapView.settings.myLocationButton = true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        
+        if isDragging { return }
+        
+        let position = CLLocationCoordinate2D.init(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        let newMarker = GMSMarker.init(position: position)
+        
+        gmsMapView.clear()
+        
+        newMarker.map = gmsMapView
+        newMarker.isDraggable = true
+        
+        let newCamera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+        
+        gmsMapView.animate(to: newCamera)
+        
+        lastPosition = coordinate
+        
+        print("Last position is \(lastPosition)")
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        print("ended dragging the marker")
+        
+        isDragging = false
+        
+        lastPosition = marker.position
+        
+        print("Last position is \(lastPosition)")
+        
+    }
+    
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        isDragging = true
+    }
+    
+    
+    var hintView: UIView!
+    
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        print("View will layout subviews")
+        //showHint()
+    }
+    
+    func showHint() {
+        hintView = UIView.init(frame: CGRect.init(x: 0.0, y: self.view.frame.size.height + 100.0, width: self.view.frame.size.width, height: 70.0))
+        hintView.backgroundColor = .red
+        
+        self.view.insertSubview(hintView, aboveSubview: gmsMapView)
+        //hintView.addSubview(hintTextLabel)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(userDidSwipeDown))
+        swipeDown.direction = .down
+        self.hintView.addGestureRecognizer(swipeDown)
+        
+        let hintTextLabel = UILabel.init(frame: CGRect.init(x: 0.0, y: 0.0, width: hintView.frame.size.width, height: hintView.frame.size.height))
+        
+        hintTextLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
+        hintTextLabel.textColor = UIColor.blackFontColor
+        
+        hintTextLabel.text = "You can either press and hold at a new place or drag the red marker to change the location of your Pin."
+        
+        UIView.animate(withDuration: 2.0) {
+            //self.gmsMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 70.0, right: 0.0)
+            self.hintView.frame.origin.y = 10.0
+        }
+        
+    }
+    
+    @objc func userDidSwipeDown() {
+        
+        UIView.animate(withDuration: 3.0, animations: {
+            self.hintView.frame.origin.y = self.view.frame.size.height + 100.0
+        }) { (didCompleted) in
+            self.hintView.removeFromSuperview()
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

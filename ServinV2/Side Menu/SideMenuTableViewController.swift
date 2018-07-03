@@ -15,19 +15,22 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     var mainVC: MasterPulleyViewController? = nil
     
-    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "HelpViewController", "SettingsViewController"]
-    let labels = ["Messages", "Drop a Pin", "My Pins", "Help", "Settings"]
-    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "help_icon"), #imageLiteral(resourceName: "settings_icon")]
+    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "SavedPinsViewController", "HelpViewController", "SettingsViewController"]
+    let labels = ["Messages", "Drop a Pin", "My Pins", "Saved Pins", "Help", "Settings"]
+    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "savedPins_icon"), #imageLiteral(resourceName: "help_icon"), #imageLiteral(resourceName: "settings_icon")]
     
     fileprivate let reuseIdentifier = "NormalCell"
     fileprivate let profileCellReuseIdentifier = "ProfileCell"
     fileprivate let servinCellReuseIdentifier = "ServinCell"
     
     fileprivate var allowedViewHeight: CGFloat! = 0.0
+    fileprivate let bottomProfileCellHeight: CGFloat = 84.0
+    fileprivate let topCellHeight: CGFloat = 87.0
+    fileprivate var cellHeight: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         optionsTableViewController.delegate = self
         optionsTableViewController.dataSource = self
         
@@ -53,16 +56,32 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         print("Screen height \(UIScreen.main.bounds.size.height)")
         print("My view heigt \(self.view.frame.size.height)")
         print("My status bar height \(self.statusBarHeight)")
+        print("My table view's height \(self.optionsTableViewController.frame.size.height)")
         
         
         
         
-        // This is the height that our uitableview will sit inside of
-        allowedViewHeight = self.optionsTableViewController.frame.size.height - self.topbarHeight
         
     }
     
-
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        
+        // This is the height that our uitableview will sit inside of
+        allowedViewHeight = UIScreen.main.bounds.size.height - self.statusBarHeight
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let topPadding = window?.safeAreaInsets.top
+            let bottomPadding = window?.safeAreaInsets.bottom
+            
+            allowedViewHeight = UIScreen.main.bounds.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
+            
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -71,7 +90,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - DataSource & Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return 5
+            return 6
         } else {
             return 1
         }
@@ -104,8 +123,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             cell.profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
             cell.selectionStyle = .none
             cell.userNameLabel.text = "Larry"
-                
-           return cell
+            
+            return cell
         }
         
         
@@ -118,32 +137,23 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         // This is the height that our uitableview will sit inside of
         
         
-        let leftOverSpace = allowedViewHeight - (87.0 + bottomProfileCellHeight)
-        let mediumCellHeight = (leftOverSpace / 7.0)
-        
-        let spaceForCells = 5 * mediumCellHeight
-        let footerSpace = leftOverSpace - spaceForCells
-        
-        
         switch indexPath.section {
         case 0:
-            return 87.0
+            return topCellHeight
         case 1:
             
-            return (leftOverSpace / 7.0)
+            return cellHeight
         default:
             return bottomProfileCellHeight
         }
         
     }
-    
-    let bottomProfileCellHeight: CGFloat = 84.0
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
@@ -177,10 +187,10 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             view.backgroundColor = UIColor.contentDivider
             return view
         } else {
-        
-        let footerView = UIView.init()
-        footerView.backgroundColor = .white
-        return footerView
+            
+            let footerView = UIView.init()
+            footerView.backgroundColor = .white
+            return footerView
         }
     }
     
@@ -192,14 +202,14 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             SideMenuManager.default.menuLeftNavigationController?.dismiss(animated: true, completion: {
                 
-//                if indexPath.section == 1 && indexPath.row == 1 {
-//                    print("Logout")
-//                    mainViewController.present((self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"))!, animated: true, completion: nil)
-//                } else {
-//                    let navController = UINavigationController.init(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: self.viewControllers[(indexPath.section * 4) + indexPath.row]))!)
-//                    
-//                    mainViewController.present(navController, animated: true, completion: nil)
-//                }
+                //                if indexPath.section == 1 && indexPath.row == 1 {
+                //                    print("Logout")
+                //                    mainViewController.present((self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"))!, animated: true, completion: nil)
+                //                } else {
+                //                    let navController = UINavigationController.init(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: self.viewControllers[(indexPath.section * 4) + indexPath.row]))!)
+                //
+                //                    mainViewController.present(navController, animated: true, completion: nil)
+                //                }
                 
                 
                 switch indexPath.section {
@@ -242,16 +252,15 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         
         
         
-    
+        
     }
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

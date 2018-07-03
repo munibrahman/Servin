@@ -25,6 +25,8 @@ class TestViewController: UIViewController {
         let constant = Constants()
         
         self.present(constant.getMainContentVC(), animated: true, completion: nil)
+        
+//        self.present(UINavigationController.init(rootViewController: EditMapViewController()), animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

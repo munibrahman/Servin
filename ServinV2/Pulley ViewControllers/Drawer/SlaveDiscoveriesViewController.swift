@@ -13,6 +13,8 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
 
     var scrollView: UIScrollView! = nil
     var scrollViewHeight: CGFloat = 0.0
+    var pulleyTapGestureRecognizer: UITapGestureRecognizer!
+    var drawerTapView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,19 +49,32 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
             automaticallyAdjustsScrollViewInsets = false
         }
         
+        
         self.view.addSubview(scrollView)
         
+        pulleyTapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(userDidTapDrawer))
         
-//        self.view.addSubview(myNearbyPins)
-//        self.view.addSubview(myRecommendations)
-        // Do any additional setup after loading the view.
+        drawerTapView = UIView.init(frame: self.view.frame)
+        drawerTapView.backgroundColor = .clear
         
+        drawerTapView.addGestureRecognizer(pulleyTapGestureRecognizer)
+        
+        self.view.addSubview(drawerTapView)
+        drawerTapView.isUserInteractionEnabled = false
+    }
+    
+    @objc func userDidTapDrawer() {
+        if let parentVC = self.parent as? MasterPulleyViewController {
+            parentVC.setDrawerPosition(position: .partiallyRevealed, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     // We listen to the drawer's position and then disable/enable scrolling of the scroll view by
     // adjusting its content size
@@ -69,6 +84,13 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
             scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: scrollViewHeight)
         } else {
             scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: 0)
+        }
+        
+        
+        if drawer.drawerPosition == PulleyPosition.collapsed {
+            drawerTapView.isUserInteractionEnabled = true
+        } else {
+            drawerTapView.isUserInteractionEnabled = false
         }
 
     }

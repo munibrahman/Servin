@@ -9,15 +9,27 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    @IBOutlet var settingsTableView: UITableView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
         // Do any additional setup after loading the view.
         setupNavigationController()
     }
     
     func setupNavigationController() {
+        
+        navigationItem.title = "Settings"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
@@ -45,3 +57,46 @@ class SettingsViewController: UIViewController {
     */
 
 }
+
+
+
+extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        return cell
+    }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

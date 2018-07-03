@@ -29,6 +29,7 @@ class UserDiscoveryViewController: UIViewController {
     var statusBarView = UIView()
     var navigationBarShadow = UIView()
     
+    // TODO: Retrieve if this discovery has been saved by the user or not
     var discoverySaved = false
     
     var imInterestedButton: UIButton = {
@@ -43,6 +44,8 @@ class UserDiscoveryViewController: UIViewController {
         return imInterestedButton
     } ()
     
+    // This view stays on the bottom of the screen at all times, it displays an im interested button for users to
+    // initiate a convo.
     var imInterstedView = UIView()
     
     override func viewDidLoad() {
@@ -289,6 +292,75 @@ class UserDiscoveryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: - ScrollView Offset Appear/Dissapear
+    
+    // This variable keeps track of the last used offset for the scroll view, when a view appears, this value is used
+    //
+    var latestScrollOffset: CGFloat = 0.0
+    
+    // When the view will appear, we will animate the top bar based on how far the user has scrolled.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(latestScrollOffset)
+        self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(latestScrollOffset)
+        self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(latestScrollOffset)
+    }
+    
+    // When the view will dissapear, it will remove the offset entirely.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(0.0)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //print("Scrollview did scroll")
+        
+        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
+            scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.bounds.height
+        }
+        
+        let scrollOffsetY = scrollView.contentOffset.y;
+        
+        if(scrollOffsetY <= 0.0)
+        {
+            
+            
+            let orgHeight: CGFloat = mapCellHeight;
+            let scaleFactor = (orgHeight - scrollView.contentOffset.y) / orgHeight;
+            let translateAndZoom = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
+            gmsMap.transform = translateAndZoom;
+            
+            
+        }
+        else if(scrollOffsetY > scrollView.contentSize.height - scrollView.frame.size.height)
+        {
+            //print("Pulling up")
+        }
+        
+        var offset = scrollView.contentOffset.y / (mapCellHeight - self.topbarHeight)
+        
+        latestScrollOffset = offset
+        
+        print(offset)
+        if offset > 1 {
+            offset = 1
+            latestScrollOffset = offset
+            self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(offset)
+            self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(offset)
+            self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(offset)
+        } else {
+            self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(offset)
+            self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(offset)
+            self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(offset)
+        }
+    }
+    
+    
 
     /*
     // MARK: - Navigation
@@ -372,45 +444,6 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //print("Scrollview did scroll")
-        
-        if scrollView.contentOffset.y > scrollView.contentSize.height - scrollView.bounds.height {
-            scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.bounds.height
-        }
-        
-        let scrollOffsetY = scrollView.contentOffset.y;
-        
-        if(scrollOffsetY <= 0.0)
-        {
-            
-        
-            let orgHeight: CGFloat = mapCellHeight;
-            let scaleFactor = (orgHeight - scrollView.contentOffset.y) / orgHeight;
-            let translateAndZoom = CGAffineTransform.init(scaleX: scaleFactor, y: scaleFactor)
-            gmsMap.transform = translateAndZoom;
-            
-            
-        }
-        else if(scrollOffsetY > scrollView.contentSize.height - scrollView.frame.size.height)
-        {
-            //print("Pulling up")
-        }
-        
-        var offset = scrollView.contentOffset.y / (mapCellHeight - self.topbarHeight)
-        print(offset)
-        if offset > 1 {
-            offset = 1
-            self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(offset)
-            self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(offset)
-            self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(offset)
-        } else {
-            self.navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(offset)
-            self.statusBarView.backgroundColor = UIColor.white.withAlphaComponent(offset)
-            self.navigationBarShadow.backgroundColor = UIColor.contentDivider.withAlphaComponent(offset)
-        }
     }
     
 }

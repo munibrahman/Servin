@@ -17,6 +17,8 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     let reuseIdentifier = "cell"
     
+    var myPins: [Pin?]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,10 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         myPinsTableView.dataSource = self
         myPinsTableView.rowHeight = 104.0
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
+        
+        Data.init()
+        
+        myPins = Data.me._pinsOnMap
     }
     
     func setupNavigationController() {
@@ -78,7 +84,7 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     // MARK:- Tableview protocols
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return myPins.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,9 +107,9 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         }
         
         
-        cell.titleLabel.text = "CPSC 331 Textbook for sale MINT, looks good, awesome condition askdhakjsdg ajkgdkjhajkdaksh agjdgakjd"
-        cell.priceLabel.text = "$ 40"
-        cell.viewsLabel.text = "90"
+        cell.titleLabel.text = myPins[indexPath.row]?._title
+        cell.priceLabel.text = "$ \(myPins[indexPath.row]?._price ?? 0) "
+        cell.viewsLabel.text = "\(myPins[indexPath.row]?._views ?? 0)"
         
         return cell
     }

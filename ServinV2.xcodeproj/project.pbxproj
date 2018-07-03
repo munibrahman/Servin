@@ -66,6 +66,10 @@
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
 		8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */; };
+		8BCB896F20DB621C00AF5A65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB896E20DB621C00AF5A65 /* User.swift */; };
+		8BCB897120DB622900AF5A65 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897020DB622900AF5A65 /* Pin.swift */; };
+		8BCB897420DB666200AF5A65 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* Data.swift */; };
+		8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */; };
 		8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */; };
 		8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3834420CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift */; };
 		8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3834520CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib */; };
@@ -163,6 +167,10 @@
 		8BBFFC4120A0EED700BA5D06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiscoveryViewController.swift; sourceTree = "<group>"; };
+		8BCB896E20DB621C00AF5A65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8BCB897020DB622900AF5A65 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		8BCB897320DB666200AF5A65 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPinsViewController.swift; sourceTree = "<group>"; };
 		8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlavePostAdViewController.swift; sourceTree = "<group>"; };
 		8BD3834420CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAdImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BD3834520CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostAdImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -379,10 +387,12 @@
 				8BA6455D20830D44006EEEC5 /* Main.storyboard */,
 				8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */,
 				8BA6456020830D44006EEEC5 /* Assets.xcassets */,
+				8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */,
 				8BBFFC3B209E1F4600BA5D06 /* SearchView.swift */,
 				8BA6456220830D44006EEEC5 /* LaunchScreen.storyboard */,
 				8BA6456520830D44006EEEC5 /* Info.plist */,
 				8B45C1FE20D70EB3009FF0F9 /* Discovery */,
+				8BCB897220DB623F00AF5A65 /* Models */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -424,6 +434,16 @@
 				8BA645892083305D006EEEC5 /* style.json */,
 			);
 			path = "Google Map Json";
+			sourceTree = "<group>";
+		};
+		8BCB897220DB623F00AF5A65 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8BCB896E20DB621C00AF5A65 /* User.swift */,
+				8BCB897020DB622900AF5A65 /* Pin.swift */,
+				8BCB897320DB666200AF5A65 /* Data.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		8BD3833F20C6049200B4B653 /* Profile */ = {
@@ -723,6 +743,7 @@
 				8BD3834920CBCE7700B4B653 /* CustomPhotoPickerViewController.swift in Sources */,
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
 				8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */,
+				8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
 				8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */,
 				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
@@ -738,6 +759,7 @@
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
+				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
 				8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */,
@@ -748,12 +770,14 @@
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
+				8BCB897420DB666200AF5A65 /* Data.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */,
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,
 				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,
+				8BCB897120DB622900AF5A65 /* Pin.swift in Sources */,
 				8B1C7A7720B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift in Sources */,
 				8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
