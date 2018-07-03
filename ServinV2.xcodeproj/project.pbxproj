@@ -79,6 +79,8 @@
 		8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE4DC920C4672800967153 /* EditProfileViewController.swift */; };
 		8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8951D20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift */; };
 		8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */; };
+		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
+		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +182,8 @@
 		8BDE4DC920C4672800967153 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8BE8951D20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryUserProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryUserProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,7 +383,7 @@
 				8B78416D20B86EC1005C87DA /* Side Menu */,
 				8B78416C20B86E9D005C87DA /* Extensions */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
-				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
+				8BFADF6A20EBFB8F001502DB /* Messages */,
 				8B51799220D9A37800774BDE /* My Pins */,
 				8BD3833F20C6049200B4B653 /* Profile */,
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
@@ -454,6 +458,16 @@
 				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		8BFADF6A20EBFB8F001502DB /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
+				8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */,
+				8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		97AD1023C166132F1C126B77 /* Frameworks */ = {
@@ -591,6 +605,7 @@
 				8BA6456120830D44006EEEC5 /* Assets.xcassets in Resources */,
 				8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */,
 				8B43D39220D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib in Resources */,
+				8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */,
 				8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */,
 				8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */,
 				8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */,
@@ -771,6 +786,7 @@
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
 				8BCB897420DB666200AF5A65 /* Data.swift in Sources */,
+				8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */,

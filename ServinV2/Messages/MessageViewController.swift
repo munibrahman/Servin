@@ -8,10 +8,12 @@
 
 import UIKit
 import DZNEmptyDataSet
+import Alamofire
 
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
     
+    let cellIdentifier = "cell"
 
     @IBOutlet var messagesTableView: UITableView!
     
@@ -27,12 +29,20 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
 
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
         
-        setupEmptyState()
+        
+        messagesTableView.register(UINib.init(nibName: String.init(describing: MessageTableViewCell.self), bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        
+        //setupEmptyState()
     }
     
     
     
     func setupNavigationController() {
+        
+        if self.navigationController == nil {
+            fatalError("MessageViewController must be presented inside a UINavigationController")
+        }
+        
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
@@ -49,8 +59,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     func setupEmptyState() {
         messagesTableView.emptyDataSetSource = self
         messagesTableView.emptyDataSetDelegate = self
-        
-        messagesTableView.isUserInteractionEnabled = false
         
         messagesTableView.tableFooterView = UIView()
         
@@ -91,7 +99,49 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        let messageCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! MessageTableViewCell
+        
+        
+        Alamofire.request("https://picsum.photos/500/300/?random").responseImage { response in
+            debugPrint(response)
+            
+            print(response.request)
+            print(response.response)
+            debugPrint(response.result)
+            
+            if let image = response.result.value {
+                print("image downloaded: \(image)")
+                
+                messageCell.contentImageView.image = image
+            }
+        }
+        
+        
+        messageCell.titleLabel.text = "Soccer coach for hire"
+        messageCell.detailLabel.text = "You: That seems good to me, see you soon!"
+        messageCell.priceLabel.text = "$ 60"
+        messageCell.timeLabel.text = "2 hours ago"
+        
+        if indexPath.row % 2 == 0 {
+            messageCell.messageHasBeen(read: true)
+        } else {
+            messageCell.messageHasBeen(read: false)
+        }
+        
+        return messageCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO: Show proper Detail message view here
+        
+        if let cell = tableView.cellForRow(at: indexPath) as? MessageTableViewCell {
+            cell.messageHasBeen(read: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 75.0
     }
     /*
     // MARK: - Navigation
