@@ -23,10 +23,10 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     fileprivate let profileCellReuseIdentifier = "ProfileCell"
     fileprivate let servinCellReuseIdentifier = "ServinCell"
     
-    fileprivate var allowedViewHeight: CGFloat! = 0.0
+    fileprivate var leftOverSpace: CGFloat = 0.0
     fileprivate let bottomProfileCellHeight: CGFloat = 84.0
     fileprivate let topCellHeight: CGFloat = 87.0
-    fileprivate var cellHeight: CGFloat = 0.0
+    fileprivate var cellHeight: CGFloat = 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +59,19 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         print("My table view's height \(self.optionsTableViewController.frame.size.height)")
         
         
+        let totalSize = (cellHeight * CGFloat(icons.count)) + topCellHeight + bottomProfileCellHeight
+        
+        if #available(iOS 11.0, *) {
+            let window = UIApplication.shared.keyWindow
+            let topPadding = window?.safeAreaInsets.top
+            let bottomPadding = window?.safeAreaInsets.bottom
+            
+            leftOverSpace = UIScreen.main.bounds.size.height - totalSize - self.statusBarHeight - (bottomPadding ?? 0.0)
+        } else {
+            leftOverSpace = UIScreen.main.bounds.size.height - totalSize - self.statusBarHeight
+        }
+        
+        
         
         
         
@@ -68,17 +81,17 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewWillLayoutSubviews()
         
         
-        // This is the height that our uitableview will sit inside of
-        allowedViewHeight = UIScreen.main.bounds.size.height - self.statusBarHeight
-        
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            let topPadding = window?.safeAreaInsets.top
-            let bottomPadding = window?.safeAreaInsets.bottom
-            
-            allowedViewHeight = UIScreen.main.bounds.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
-            
-        }
+//        // This is the height that our uitableview will sit inside of
+//        allowedViewHeight = UIScreen.main.bounds.size.height - self.statusBarHeight
+//
+//        if #available(iOS 11.0, *) {
+//            let window = UIApplication.shared.keyWindow
+//            let topPadding = window?.safeAreaInsets.top
+//            let bottomPadding = window?.safeAreaInsets.bottom
+//
+//            allowedViewHeight = UIScreen.main.bounds.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
+//
+//        }
     }
     
     
@@ -113,8 +126,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             cell.selectionStyle = .none
             
             cell.menuOptionLabel.text = labels[indexPath.row]
-            cell.testimageView?.image = icons[indexPath.row]
-            cell.testimageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
+            cell.menuOptionImageView.image = icons[indexPath.row]
+            cell.menuOptionImageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
             cell.imageView?.clipsToBounds = true
             
             return cell
@@ -160,13 +173,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             return 1.0
             
         } else if section == 1 {
-            let leftOverSpace = allowedViewHeight - (87.0 + bottomProfileCellHeight)
-            let mediumCellHeight = (leftOverSpace / 7.0)
             
-            let spaceForCells = 5 * mediumCellHeight
-            let footerSpace = leftOverSpace - spaceForCells
-            
-            return footerSpace
+            return leftOverSpace
         } else {
             return 0.0
         }

@@ -18,18 +18,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="302" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rWd-14-4Hn">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rWd-14-4Hn">
                         <rect key="frame" x="23" y="10" width="40" height="40"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="lNK-7K-kAn"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-ZP-FJk">
-                        <rect key="frame" x="78" y="16" width="208" height="28"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-ZP-FJk">
+                        <rect key="frame" x="78" y="16" width="217" height="28"/>
                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="B7x-ZP-FJk" firstAttribute="leading" secondItem="rWd-14-4Hn" secondAttribute="trailing" constant="15" id="Ffr-s4-IZq"/>
+                    <constraint firstAttribute="bottom" secondItem="rWd-14-4Hn" secondAttribute="bottom" constant="9.5" id="RVV-7z-nW9"/>
+                    <constraint firstItem="B7x-ZP-FJk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="hQk-fF-LtE"/>
+                    <constraint firstAttribute="trailing" secondItem="B7x-ZP-FJk" secondAttribute="trailing" constant="7" id="hms-z5-2xi"/>
+                    <constraint firstAttribute="bottom" secondItem="B7x-ZP-FJk" secondAttribute="bottom" constant="15.5" id="jZE-on-IZT"/>
+                    <constraint firstItem="rWd-14-4Hn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="m4L-nc-v7V"/>
+                    <constraint firstItem="rWd-14-4Hn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="wCZ-jC-Z05"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
