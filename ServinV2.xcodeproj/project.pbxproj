@@ -79,6 +79,8 @@
 		8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDE4DC920C4672800967153 /* EditProfileViewController.swift */; };
 		8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8951D20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift */; };
 		8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */; };
+		8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */; };
+		8BEE79B920ED392700DB768C /* MessageUserPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -182,6 +184,8 @@
 		8BDE4DC920C4672800967153 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		8BE8951D20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryUserProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryUserProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMessageViewController.swift; sourceTree = "<group>"; };
+		8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUserPinViewController.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -466,6 +470,8 @@
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
 				8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */,
 				8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */,
+				8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */,
+				8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
+				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA1F0F920B45912000EA3AC /* PinsNearbyView.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */,
@@ -779,6 +786,7 @@
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
 				8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */,
 				8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */,
+				8BEE79B920ED392700DB768C /* MessageUserPinViewController.swift in Sources */,
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,

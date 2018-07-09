@@ -10,7 +10,7 @@ import UIKit
 import GoogleMaps
 
 // The following view controller displays the pin (discovery) of another user on the network.
-// To display one's own pin, please use MyDiscoveryViewController instead
+// To display one's own pin, use MyDiscoveryViewController instead
 class UserDiscoveryViewController: UIViewController {
     
     var discoveryCollectionView: UICollectionView!
@@ -134,10 +134,7 @@ class UserDiscoveryViewController: UIViewController {
         
         imInterestedButton.trailingAnchor.constraint(equalTo: imInterstedView.layoutMarginsGuide.trailingAnchor, constant: -8.0).isActive = true
         imInterestedButton.topAnchor.constraint(equalTo: imInterstedView.layoutMarginsGuide.topAnchor, constant: 10.0).isActive = true
-        //imInterestedButton.heightAnchor.constraint(equalTo: imInterestedButton.widthAnchor, multiplier: 1.0/5.0).isActive = true
-        //imInterestedButton.bottomAnchor.constraint(equalTo: imInterstedView.layoutMarginsGuide.bottomAnchor, constant: -10.0)
         imInterestedButton.widthAnchor.constraint(equalTo: imInterestedButton.heightAnchor, multiplier: 166.0 / 46.0).isActive = true
-        //imInterestedButton.addConstraint(NSLayoutConstraint.init(item: imInterestedButton, attribute: .height, relatedBy: .equal, toItem: imInterestedButton, attribute: .width, multiplier: imInterestedButton.frame.size.height / imInterestedButton.frame.size.width, constant: 0.0))
         
         numOfReplies.leadingAnchor.constraint(equalTo: imInterstedView.layoutMarginsGuide.leadingAnchor, constant: 12.0).isActive = true
         numOfReplies.topAnchor.constraint(equalTo: imInterstedView.layoutMarginsGuide.topAnchor, constant: 10.0).isActive = true

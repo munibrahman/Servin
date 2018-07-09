@@ -25,7 +25,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         
         messagesTableView.delegate = self
         messagesTableView.dataSource = self
-        
+        messagesTableView.tableFooterView = UIView.init(frame: CGRect.zero)
 
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
         
@@ -35,7 +35,16 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         //setupEmptyState()
     }
     
-    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // This deselects the row that was previously selected by the user.
+        // In a nice animation
+        
+        if let index = self.messagesTableView.indexPathForSelectedRow{
+            self.messagesTableView.deselectRow(at: index, animated: true)
+        }
+    }
     
     func setupNavigationController() {
         
@@ -48,7 +57,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
         
-        navigationController?.navigationBar.topItem?.title = "Messages"
+        self.navigationItem.title = "Messages"
     }
     
     @objc func barButtonPressed() {
@@ -95,7 +104,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -138,6 +147,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         if let cell = tableView.cellForRow(at: indexPath) as? MessageTableViewCell {
             cell.messageHasBeen(read: true)
         }
+        
+        let vc = DetailedMessageViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
