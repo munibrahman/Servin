@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Macaw
 import Pulley
 
 import AWSCognitoIdentityProvider
@@ -16,10 +15,7 @@ class LoginViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-    
-    
-    @IBOutlet var nextButtonSVGView: SVGView!
-    
+    @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     @IBOutlet var forgotPasswordLabel: UILabel!
     
     var emailText: String?
@@ -33,12 +29,6 @@ class LoginViewController: UIViewController {
         setupNavigationBar()
         // Do any additional setup after loading the view.
         
-        nextButtonSVGView.backgroundColor = .clear
-        nextButtonSVGView.isUserInteractionEnabled = true
-        
-        let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
-        
-        nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +39,13 @@ class LoginViewController: UIViewController {
         
         emailTextField.becomeFirstResponder()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,6 +54,10 @@ class LoginViewController: UIViewController {
     
     func setupViews() {
 
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         emailTextField.backgroundColor = UIColor.clear
         emailTextField.textColor = UIColor.white
         emailTextField.borderStyle = .none
@@ -75,6 +76,8 @@ class LoginViewController: UIViewController {
         
         forgotPasswordLabel.isUserInteractionEnabled = true
         forgotPasswordLabel.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(forgotPasswordTapped)))
+        
+        nextButtonSVGView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(goForward)))
     }
     
     @objc func forgotPasswordTapped() {
@@ -122,7 +125,23 @@ class LoginViewController: UIViewController {
             self.present(alertController, animated: true, completion: nil)
         }
     }
+    
 
+
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            passwordTextField.becomeFirstResponder()
+            return false
+        } else if textField == passwordTextField {
+            goForward()
+            return false
+        }
+        
+        return true
+    }
 }
 
 

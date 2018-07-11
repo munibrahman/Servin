@@ -85,6 +85,8 @@
 		8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */; };
 		8BEE79C020F56A0600DB768C /* MFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79BE20F56A0600DB768C /* MFAViewController.swift */; };
 		8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BEE79BF20F56A0600DB768C /* MFAViewController.xib */; };
+		8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */; };
+		8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -194,6 +196,8 @@
 		8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpViewController.swift; sourceTree = "<group>"; };
 		8BEE79BE20F56A0600DB768C /* MFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewController.swift; sourceTree = "<group>"; };
 		8BEE79BF20F56A0600DB768C /* MFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MFAViewController.xib; sourceTree = "<group>"; };
+		8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailActionSheetPresenter.swift; sourceTree = "<group>"; };
+		8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForwardMacawView.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +448,8 @@
 				8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */,
 				8BEE79BE20F56A0600DB768C /* MFAViewController.swift */,
 				8BEE79BF20F56A0600DB768C /* MFAViewController.xib */,
+				8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */,
+				8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */,
 			);
 			path = "SignUp Login ViewControllers";
 			sourceTree = "<group>";
@@ -779,6 +785,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */,
+				8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */,
 				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,
 				8BD3834920CBCE7700B4B653 /* CustomPhotoPickerViewController.swift in Sources */,
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
@@ -795,6 +802,7 @@
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */,
 				8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */,
+				8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */,
 				8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
 				8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */,

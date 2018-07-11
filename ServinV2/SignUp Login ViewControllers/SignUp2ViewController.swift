@@ -14,7 +14,7 @@ class SignUp2ViewController: UIViewController {
     @IBOutlet var emailAddressTextField: UITextField!
     @IBOutlet var askForNotifLabel: UILabel!
     
-    @IBOutlet var nextButtonSVGView: SVGView!
+    @IBOutlet var nextButtonSVGView: UIView!
     
     // These values are given to us by the previous VC
     var firstName: String?
@@ -93,6 +93,9 @@ class SignUp2ViewController: UIViewController {
     }
 
     func setupTextField() {
+        
+        emailAddressTextField.delegate = self
+        
         emailAddressTextField.backgroundColor = UIColor.clear
         emailAddressTextField.textColor = UIColor.white
         emailAddressTextField.borderStyle = .none
@@ -130,14 +133,17 @@ class SignUp2ViewController: UIViewController {
             print("Tapped none")
         }
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+}
+
+extension SignUp2ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailAddressTextField {
+            goForward()
+            return false
+        }
+        
+        return true
     }
-    */
-
 }

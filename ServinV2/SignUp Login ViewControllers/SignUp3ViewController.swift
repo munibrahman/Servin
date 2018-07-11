@@ -14,9 +14,7 @@ import AWSCognitoIdentityProvider
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
-        @IBOutlet var nextButtonSVGView: SVGView!
-    
-    
+    @IBOutlet var nextButtonSVGView: UIView!
     
     var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
@@ -39,7 +37,7 @@ class SignUp3ViewController: UIViewController {
         setupNavigationBar()
         setupTextField()
         
-        nextButtonSVGView.backgroundColor = .clear
+        
         nextButtonSVGView.isUserInteractionEnabled = true
         
         let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
@@ -167,6 +165,9 @@ class SignUp3ViewController: UIViewController {
     }
     
     func setupTextField() {
+        
+        passwordTextField.delegate = self
+        
         passwordTextField.backgroundColor = UIColor.clear
         passwordTextField.textColor = UIColor.white
         passwordTextField.borderStyle = .none
@@ -175,6 +176,7 @@ class SignUp3ViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardAppearance = .dark
     }
+
     
     /*
     // MARK: - Navigation
@@ -186,4 +188,16 @@ class SignUp3ViewController: UIViewController {
     }
     */
 
+}
+
+extension SignUp3ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == passwordTextField {
+            goForward()
+            return false
+        }
+        
+        return true
+    }
 }

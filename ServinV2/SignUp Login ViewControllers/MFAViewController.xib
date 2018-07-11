@@ -55,12 +55,12 @@
                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qe-1E-4Pd" customClass="SVGView" customModule="Macaw">
-                    <rect key="frame" x="340" y="336" width="19" height="31"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Qe-1E-4Pd" customClass="GoForwardMacawView" customModule="ServinV2" customModuleProvider="target">
+                    <rect key="frame" x="315" y="336" width="44" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="31" id="Zqj-Ic-ATH"/>
-                        <constraint firstAttribute="width" constant="19" id="Zsz-VY-e2K"/>
+                        <constraint firstAttribute="height" constant="44" id="Zqj-Ic-ATH"/>
+                        <constraint firstAttribute="width" constant="44" id="Zsz-VY-e2K"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="fileName" value="&gt;_clear"/>

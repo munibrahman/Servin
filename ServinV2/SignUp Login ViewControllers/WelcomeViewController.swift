@@ -36,7 +36,7 @@ class WelcomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        signOut()
+        //signOut()
     }
 
     func signOut() {

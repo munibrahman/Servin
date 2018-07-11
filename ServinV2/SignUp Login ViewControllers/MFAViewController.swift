@@ -26,7 +26,7 @@ class MFAViewController: UIViewController {
     
     @IBOutlet weak var sentTo: UILabel!
     @IBOutlet weak var confirmationCode: UITextField!
-    @IBOutlet var nextButtonSVGView: SVGView!
+    @IBOutlet var nextButtonSVGView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,8 +69,6 @@ class MFAViewController: UIViewController {
     }
     
     func setupNextButton() {
-        nextButtonSVGView.backgroundColor = .clear
-        nextButtonSVGView.isUserInteractionEnabled = true
         
         let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
         

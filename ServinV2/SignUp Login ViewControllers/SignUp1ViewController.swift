@@ -15,12 +15,13 @@ class SignUp1ViewController: UIViewController {
     @IBOutlet var firstNameTextField: UITextField!
     @IBOutlet var lastNameTextField: UITextField!
     
-    @IBOutlet var nextButtonSVGView: SVGView!
+    @IBOutlet var nextButtonSVGView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 
+        
         setupBackground()
         setupNavigationBar()
         setupTextFields()
@@ -37,12 +38,16 @@ class SignUp1ViewController: UIViewController {
         // This allows the keyboard to popup automatically
         firstNameTextField.becomeFirstResponder()
         
-        nextButtonSVGView.backgroundColor = .clear
-        nextButtonSVGView.isUserInteractionEnabled = true
-        
         let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
         
         nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        firstNameTextField.resignFirstResponder()
+        lastNameTextField.resignFirstResponder()
     }
 
     @objc func goForward () {
@@ -106,10 +111,30 @@ class SignUp1ViewController: UIViewController {
         lastNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         lastNameTextField.keyboardAppearance = .dark
         lastNameTextField.keyboardType = .default
+        
+        
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
     }
     
     @objc func barButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
+    
 
+
+}
+
+extension SignUp1ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == firstNameTextField {
+            lastNameTextField.becomeFirstResponder()
+            return false
+        } else if textField == lastNameTextField {
+            goForward()
+            return false
+        }
+        
+        return true
+    }
 }

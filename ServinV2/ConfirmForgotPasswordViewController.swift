@@ -17,7 +17,7 @@ class ConfirmForgotPasswordViewController: UIViewController {
     
     @IBOutlet weak var confirmationCode: UITextField!
     @IBOutlet weak var proposedPassword: UITextField!
-    @IBOutlet var nextButtonSVGView: SVGView!
+    @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +27,6 @@ class ConfirmForgotPasswordViewController: UIViewController {
     }
     
     func setupNextButton() {
-        nextButtonSVGView.backgroundColor = .clear
-        nextButtonSVGView.isUserInteractionEnabled = true
         
         let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
         

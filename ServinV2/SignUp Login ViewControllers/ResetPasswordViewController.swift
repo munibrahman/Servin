@@ -14,7 +14,7 @@ import AWSCognitoIdentityProvider
 class ResetPasswordViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var nextButtonSVGView: SVGView!
+    @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
     var pool: AWSCognitoIdentityUserPool?
     var user: AWSCognitoIdentityUser?
@@ -91,15 +91,14 @@ class ResetPasswordViewController: UIViewController {
     }
     
     func setupNextButton() {
-        nextButtonSVGView.backgroundColor = .clear
-        nextButtonSVGView.isUserInteractionEnabled = true
-        
+
         let nextScreenGesture = UITapGestureRecognizer.init(target: self, action: #selector(goForward))
         
         nextButtonSVGView.addGestureRecognizer(nextScreenGesture)
     }
     
     func setupTextField() {
+        emailTextField.delegate = self
         emailTextField.backgroundColor = UIColor.clear
         emailTextField.textColor = UIColor.white
         emailTextField.borderStyle = .none
@@ -107,6 +106,7 @@ class ResetPasswordViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
+        
     }
     
     func setupNavigationBar() {
@@ -119,6 +119,8 @@ class ResetPasswordViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+
+    
     /*
     // MARK: - Navigation
 
@@ -129,4 +131,15 @@ class ResetPasswordViewController: UIViewController {
     }
     */
 
+}
+
+extension ResetPasswordViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            goForward()
+            return false
+        }
+        
+        return true
+    }
 }
