@@ -16,6 +16,10 @@ class SignUp2ViewController: UIViewController {
     
     @IBOutlet var nextButtonSVGView: SVGView!
     
+    // These values are given to us by the previous VC
+    var firstName: String?
+    var lastName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,16 +40,38 @@ class SignUp2ViewController: UIViewController {
     }
     
     @objc func goForward () {
-        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
-        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController")
         
-        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
+        let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
+    
+        if emailAddressTextField.text?.isEmpty ?? true {
+            
+            let alertController = UIAlertController.init(title: nil, message: "Are you sure that's correct?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction.init(title: "Let me double check", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+           
+        } else {
+            
+            if let thirdSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController") as? SignUp3ViewController {
+                
+                thirdSignUpVC.emailAddress = self.emailAddressTextField.text
+                thirdSignUpVC.firstName = self.firstName
+                thirdSignUpVC.lastName = self.lastName
+                
+                self.navigationController?.pushViewController(thirdSignUpVC, animated: true)
+            }
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setProgress(2/4, animated: true)
+        self.navigationController?.setProgress(2/5, animated: true)
         
         // This allows the keyboard to popup automatically
         emailAddressTextField.becomeFirstResponder()

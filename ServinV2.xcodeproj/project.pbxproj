@@ -81,6 +81,10 @@
 		8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */; };
 		8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */; };
 		8BEE79B920ED392700DB768C /* MessageUserPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */; };
+		8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79BA20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift */; };
+		8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */; };
+		8BEE79C020F56A0600DB768C /* MFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79BE20F56A0600DB768C /* MFAViewController.swift */; };
+		8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BEE79BF20F56A0600DB768C /* MFAViewController.xib */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -186,6 +190,10 @@
 		8BE8951E20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryUserProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMessageViewController.swift; sourceTree = "<group>"; };
 		8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUserPinViewController.swift; sourceTree = "<group>"; };
+		8BEE79BA20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpViewController.swift; sourceTree = "<group>"; };
+		8BEE79BE20F56A0600DB768C /* MFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFAViewController.swift; sourceTree = "<group>"; };
+		8BEE79BF20F56A0600DB768C /* MFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MFAViewController.xib; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,6 +401,7 @@
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
 				8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */,
 				8BA6455D20830D44006EEEC5 /* Main.storyboard */,
+				8BEE79BA20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift */,
 				8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */,
 				8BA6456020830D44006EEEC5 /* Assets.xcassets */,
 				8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */,
@@ -432,6 +441,9 @@
 				8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */,
 				8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */,
 				8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */,
+				8BEE79BC20F4389A00DB768C /* ConfirmSignUpViewController.swift */,
+				8BEE79BE20F56A0600DB768C /* MFAViewController.swift */,
+				8BEE79BF20F56A0600DB768C /* MFAViewController.xib */,
 			);
 			path = "SignUp Login ViewControllers";
 			sourceTree = "<group>";
@@ -603,6 +615,7 @@
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
 				8B1C7A7820B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib in Resources */,
+				8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */,
 				8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */,
 				8BA6456420830D44006EEEC5 /* LaunchScreen.storyboard in Resources */,
 				8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */,
@@ -679,6 +692,9 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ServinV2/Pods-ServinV2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
@@ -695,6 +711,9 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
@@ -766,6 +785,7 @@
 				8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */,
 				8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
+				8BEE79C020F56A0600DB768C /* MFAViewController.swift in Sources */,
 				8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */,
 				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
@@ -788,6 +808,7 @@
 				8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */,
 				8BEE79B920ED392700DB768C /* MessageUserPinViewController.swift in Sources */,
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
+				8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
@@ -795,6 +816,7 @@
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
 				8BCB897420DB666200AF5A65 /* Data.swift in Sources */,
 				8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */,
+				8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */,

@@ -2,6 +2,11 @@ PODS:
   - Alamofire (4.7.2)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
+  - AWSCognitoIdentityProvider (2.6.22):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.6.22)
+  - AWSCognitoIdentityProviderASF (1.0.1)
+  - AWSCore (2.6.22)
   - DZNEmptyDataSet (1.8.1)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
@@ -29,6 +34,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.3)
+  - AWSCognitoIdentityProvider (~> 2.6.0)
+  - AWSCore (~> 2.6.0)
   - DZNEmptyDataSet
   - GoogleMaps
   - GooglePlaces
@@ -46,6 +53,9 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AlamofireImage
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
     - DZNEmptyDataSet
     - GoogleMaps
     - GooglePlaces
@@ -63,6 +73,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  AWSCognitoIdentityProvider: f7d15744ca3d70270de05a212e501f29a4a06307
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
+  AWSCore: faae134779f0f6e46a8d426c0ccc02e34466b785
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
@@ -77,6 +90,6 @@ SPEC CHECKSUMS:
   SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
 
-PODFILE CHECKSUM: 742d483ab74e4c577f101295c02e55fe6f1a8630
+PODFILE CHECKSUM: f40221541764b0f8418ff81b70a2a5502ac8d1ea
 
 COCOAPODS: 1.5.0

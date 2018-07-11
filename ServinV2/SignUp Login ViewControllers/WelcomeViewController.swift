@@ -8,6 +8,7 @@
 
 import UIKit
 import Macaw
+import AWSCognitoIdentityProvider
 
 class WelcomeViewController: UIViewController {
     
@@ -18,6 +19,11 @@ class WelcomeViewController: UIViewController {
     @IBOutlet var loginLabel: UILabel!
     
     
+    var response: AWSCognitoIdentityUserGetDetailsResponse?
+    var user: AWSCognitoIdentityUser?
+    var pool: AWSCognitoIdentityUserPool?
+    
+    
     @IBOutlet var termsOfServiceLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,18 @@ class WelcomeViewController: UIViewController {
         
         setupViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        signOut()
+    }
 
+    func signOut() {
+        self.user?.signOut()
+        self.response = nil
+        self.refresh()
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -49,10 +66,22 @@ class WelcomeViewController: UIViewController {
     
     @objc func showLogin () {
         
-        let sb = UIStoryboard.init(name: "Main", bundle: nil)
-        let navController = UINavigationController.init(rootViewController: sb.instantiateViewController(withIdentifier: "LoginViewController"))
+        print("Show login")
         
-        self.present(navController, animated: true, completion: nil)
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        if (self.user == nil) {
+            self.user = self.pool?.currentUser()
+        }
+        self.refresh()
+    }
+    
+    func refresh() {
+        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
+            DispatchQueue.main.async(execute: {
+                self.response = task.result
+            })
+            return nil
+        }
     }
     
     func setupNotificationLabel () {

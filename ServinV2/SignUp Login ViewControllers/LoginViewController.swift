@@ -10,13 +10,20 @@ import UIKit
 import Macaw
 import Pulley
 
+import AWSCognitoIdentityProvider
+
 class LoginViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-       @IBOutlet var nextButtonSVGView: SVGView!
+    
+    
+    @IBOutlet var nextButtonSVGView: SVGView!
     
     @IBOutlet var forgotPasswordLabel: UILabel!
+    
+    var emailText: String?
+    var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,9 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.passwordTextField.text = nil
+        self.emailTextField.text = emailText
+        
         emailTextField.becomeFirstResponder()
     }
 
@@ -46,10 +56,7 @@ class LoginViewController: UIViewController {
     }
     
     func setupViews() {
-        //        signInButton.layer.cornerRadius = signInButton.frame.height / 2
-        //        signInButton.layer.borderWidth = 1.0
-        //        signInButton.clipsToBounds = true
-        //
+
         emailTextField.backgroundColor = UIColor.clear
         emailTextField.textColor = UIColor.white
         emailTextField.borderStyle = .none
@@ -57,7 +64,6 @@ class LoginViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
-
 
         passwordTextField.backgroundColor = UIColor.clear
         passwordTextField.textColor = UIColor.white
@@ -82,8 +88,6 @@ class LoginViewController: UIViewController {
     
     func setupNavigationBar() {
         
-        
-        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
@@ -102,21 +106,56 @@ class LoginViewController: UIViewController {
     
     @objc func goForward() {
         
-        let constant = Constants()
+        print("forward pressed")
         
-        self.present(constant.getMainContentVC(), animated: true, completion: nil)
+        if (self.emailTextField.text != nil && self.passwordTextField.text != nil) {
+            
+            let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text! )
+            self.passwordAuthenticationCompletion?.set(result: authDetails)
+        } else {
+            let alertController = UIAlertController(title: "Missing information",
+                                                    message: "Please enter a valid user name and password",
+                                                    preferredStyle: .alert)
+            let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+            alertController.addAction(retryAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
+    
+    public func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput, passwordAuthenticationCompletionSource: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
+        self.passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
+        DispatchQueue.main.async {
+            if (self.emailText == nil) {
+                self.emailText = authenticationInput.lastKnownUsername
+            }
+        }
+    }
+    
+    public func didCompleteStepWithError(_ error: Error?) {
+        DispatchQueue.main.async {
+            if let error = error as NSError? {
+                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                                                        message: error.userInfo["message"] as? String,
+                                                        preferredStyle: .alert)
+                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+                alertController.addAction(retryAction)
+                
+                self.present(alertController, animated: true, completion:  nil)
+            } else {
+                
+                // Successfully signed into the app.
+                self.emailTextField.text = nil
+                
+                let constant = Constants()
+                self.present(constant.getMainContentVC(), animated: true, completion: nil)
+            }
+        }
+    }
+}
+

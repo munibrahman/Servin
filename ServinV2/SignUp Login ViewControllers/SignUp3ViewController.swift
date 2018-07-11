@@ -9,14 +9,30 @@
 import UIKit
 import Macaw
 
+import AWSCognitoIdentityProvider
+
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
         @IBOutlet var nextButtonSVGView: SVGView!
+    
+    
+    
+    var pool: AWSCognitoIdentityUserPool?
+    var sentTo: String?
+    
+    
+    // These values are given to us by the previous VC
+    var firstName: String?
+    var lastName: String?
+    var emailAddress: String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
 
-        view.backgroundColor = UIColor.green
         // Do any additional setup after loading the view.
         
         setupBackground()
@@ -32,17 +48,100 @@ class SignUp3ViewController: UIViewController {
     }
     
     @objc func goForward () {
-        self.navigationController?.finishProgress()
         
-        let constant = Constants()
         
-        self.present(constant.getMainContentVC(), animated: true, completion: nil)
+        if passwordTextField.text?.isEmpty ?? true {
+            let alertController = UIAlertController.init(title: nil, message: "Are you sure that's correct?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction.init(title: "Let me double check", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            // Do the confirmations here...
+            
+            
+            guard let userNameValue = self.emailAddress, !userNameValue.isEmpty,
+                let passwordValue = self.passwordTextField.text, !passwordValue.isEmpty else {
+                    let alertController = UIAlertController(title: "Missing Required Fields",
+                                                            message: "Username / Password are required for registration.",
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    
+                    self.present(alertController, animated: true, completion:  nil)
+                    return
+            }
+            
+            var attributes = [AWSCognitoIdentityUserAttributeType]()
+            
+            
+            if let emailValue = self.emailAddress, !emailValue.isEmpty {
+                let email = AWSCognitoIdentityUserAttributeType()
+                email?.name = "email"
+                email?.value = emailValue
+                attributes.append(email!)
+            }
+            
+            if let lastName = self.lastName {
+                let family_name = AWSCognitoIdentityUserAttributeType.init(name: "family_name", value: lastName)
+                attributes.append(family_name)
+            }
+            
+            if let firstName = self.firstName {
+                let given_name = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: firstName)
+                attributes.append(given_name)
+            }
+            
+            //sign up the user
+            self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
+                guard let strongSelf = self else { return nil }
+                DispatchQueue.main.async(execute: {
+                    if let error = task.error as NSError? {
+                        let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                                                                message: error.userInfo["message"] as? String,
+                                                                preferredStyle: .alert)
+                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+                        alertController.addAction(retryAction)
+                        
+                        self?.present(alertController, animated: true, completion:  nil)
+                    } else if let result = task.result  {
+                        // handle the case where user has to confirm his identity via email / SMS
+                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
+                            strongSelf.sentTo = result.codeDeliveryDetails?.destination
+                            
+                            if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
+                                
+                                signUpConfirmationViewController.sentTo = strongSelf.sentTo
+                                signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
+                                
+                                strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
+                            }
+                            
+                        } else {
+                            
+                            // If no confirmation required then just show the app.
+                            strongSelf.navigationController?.finishProgress()
+                            let constant = Constants()
+                            strongSelf.present(constant.getMainContentVC(), animated: true, completion: nil)
+                        }
+                    }
+                    
+                })
+                return nil
+            }
+        }
+        
+        
+        
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setProgress(3/4, animated: true)
+        self.navigationController?.setProgress(3/5, animated: true)
         
         // This allows the keyboard to popup automatically
         passwordTextField.becomeFirstResponder()

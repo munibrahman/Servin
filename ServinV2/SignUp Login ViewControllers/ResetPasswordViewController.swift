@@ -8,19 +8,26 @@
 
 import UIKit
 import Macaw
+import AWSCognitoIdentityProvider
+
 
 class ResetPasswordViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var nextButtonSVGView: SVGView!
     
+    var pool: AWSCognitoIdentityUserPool?
+    var user: AWSCognitoIdentityUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        
         setupNavigationBar()
         setupTextField()
         setupNextButton()
+        
 
         self.view.backgroundColor = UIColor.greyBackgroundColor
         
@@ -38,7 +45,49 @@ class ResetPasswordViewController: UIViewController {
     }
     
     @objc func goForward () {
+        guard let username = self.emailTextField.text, !username.isEmpty else {
+            
+            let alertController = UIAlertController(title: "Missing UserName",
+                                                    message: "Please enter a valid user name.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion:  nil)
+            return
+        }
         
+        self.user = self.pool?.getUser(self.emailTextField.text!)
+        self.user?.forgotPassword().continueWith{[weak self] (task: AWSTask) -> AnyObject? in
+            guard let strongSelf = self else {return nil}
+            DispatchQueue.main.async(execute: {
+                if let error = task.error as NSError? {
+                    
+                    // Error in resetting the passoword
+                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                                                            message: error.userInfo["message"] as? String,
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    
+                    self?.present(alertController, animated: true, completion:  nil)
+                } else {
+                    
+                    // Password reset is sent, open a new confirm forgot pass VC
+                    
+                    if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmForgotPasswordViewController") as? ConfirmForgotPasswordViewController {
+                        
+                        vc.user = self?.user
+                        
+                        strongSelf.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    
+                    
+                    
+                }
+            })
+            return nil
+        }
     }
     
     func setupNextButton() {

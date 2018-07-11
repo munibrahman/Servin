@@ -31,7 +31,7 @@ class SignUp1ViewController: UIViewController {
         
         // set progress with animation.
         self.navigationController?.progressTintColor = UIColor.navigationProgressColor
-        self.navigationController?.setProgress(1/4, animated: true)
+        self.navigationController?.setProgress(1/5, animated: true)
         self.navigationController?.progressHeight = 3.0
         
         // This allows the keyboard to popup automatically
@@ -47,9 +47,25 @@ class SignUp1ViewController: UIViewController {
 
     @objc func goForward () {
         let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
-        let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp2ViewController")
         
-        self.navigationController?.pushViewController(secondSignUpVC, animated: true)
+        if firstNameTextField.text?.isEmpty ?? true  || lastNameTextField.text?.isEmpty ?? true {
+            let alertController = UIAlertController.init(title: nil, message: "Please make sure that all the fields are complete", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+        } else {
+            
+            if let secondSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp2ViewController") as? SignUp2ViewController {
+                
+                secondSignUpVC.firstName = firstNameTextField.text
+                secondSignUpVC.lastName = lastNameTextField.text
+                self.navigationController?.pushViewController(secondSignUpVC, animated: true)
+            }
+        }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,8 +77,6 @@ class SignUp1ViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        
-        
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -95,19 +109,7 @@ class SignUp1ViewController: UIViewController {
     }
     
     @objc func barButtonPressed() {
-        print("bar button pressed")
         self.dismiss(animated: true, completion: nil)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
