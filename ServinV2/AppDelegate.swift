@@ -127,6 +127,7 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
             self.navigationController = UINavigationController.init(rootViewController: loginViewController!)
         }
         
+        // This is where you present the login controller
         DispatchQueue.main.async {
 //            self.navigationController!.popToRootViewController(animated: true)
             if (!self.navigationController!.isViewLoaded

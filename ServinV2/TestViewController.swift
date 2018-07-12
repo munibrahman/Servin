@@ -8,13 +8,17 @@
 
 import UIKit
 import SideMenu
+import AWSCognitoIdentityProvider
 
 class TestViewController: UIViewController {
     
+    var user: AWSCognitoIdentityUser?
+    var pool: AWSCognitoIdentityUserPool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         
         // Do any additional setup after loading the view.
     }
