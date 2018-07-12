@@ -40,14 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        #else
             // show the beginning storyboard only
             // Settings for PinpointKit
-//            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-//        
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-//        
-//            self.window?.rootViewController = initialViewController
-//            self.window?.makeKeyAndVisible()
+            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
+
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
+
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
         
         
 //        #endif
@@ -118,6 +118,9 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
     
     
     func startPasswordAuthentication() -> AWSCognitoIdentityPasswordAuthentication {
+        
+        print("startPasswordAuthentication")
+        
         if (self.navigationController == nil) {
             
             self.loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
@@ -125,10 +128,10 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
         }
         
         DispatchQueue.main.async {
-            self.navigationController!.popToRootViewController(animated: true)
+//            self.navigationController!.popToRootViewController(animated: true)
             if (!self.navigationController!.isViewLoaded
                 || self.navigationController!.view.window == nil) {
-                self.window?.rootViewController?.present(self.navigationController!,
+                UIApplication.topViewController()?.present(self.navigationController!,
                                                          animated: true,
                                                          completion: nil)
             }
@@ -209,3 +212,20 @@ extension AppDelegate: AWSCognitoIdentityRememberDevice {
     }
 }
 
+//MARK: - UIApplication Extension
+extension UIApplication {
+    class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = viewController as? UINavigationController {
+            return topViewController(viewController: nav.visibleViewController)
+        }
+        if let tab = viewController as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(viewController: selected)
+            }
+        }
+        if let presented = viewController?.presentedViewController {
+            return topViewController(viewController: presented)
+        }
+        return viewController
+    }
+}

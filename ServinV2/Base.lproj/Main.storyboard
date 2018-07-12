@@ -1893,7 +1893,7 @@
                                                     <constraint firstAttribute="width" secondItem="ENA-VR-ago" secondAttribute="height" multiplier="343:246" id="TYG-Q9-4i4"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZa-FQ-aZI" userLabel="mapView">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZa-FQ-aZI" userLabel="mapView" customClass="GMSMapView">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                                 <color key="backgroundColor" red="1" green="0.0" blue="0.074452651019999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
