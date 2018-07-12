@@ -172,7 +172,12 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                 self.emailTextField.text = nil
                 
                 let constant = Constants()
-                self.present(constant.getMainContentVC(), animated: true, completion: nil)
+                
+                weak var pvc = self.presentingViewController
+                
+                self.dismiss(animated: true, completion: {
+                    pvc?.present(constant.getMainContentVC(), animated: true, completion: nil)
+                })
             }
         }
     }
