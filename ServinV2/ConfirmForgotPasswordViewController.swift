@@ -10,13 +10,15 @@ import UIKit
 import AWSCognitoIdentityProvider
 import Macaw
 
-class ConfirmForgotPasswordViewController: UIViewController {
+class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate {
 
+    // TODO: Spread out the verification code, password and confirm password into 3 different views.
     
     var user: AWSCognitoIdentityUser?
     
     @IBOutlet weak var confirmationCode: UITextField!
     @IBOutlet weak var proposedPassword: UITextField!
+    @IBOutlet var confirmProposedPassword: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
     override func viewDidLoad() {
@@ -45,20 +47,38 @@ class ConfirmForgotPasswordViewController: UIViewController {
             return
         }
         
+        if confirmProposedPassword.text != proposedPassword.text {
+            let alertController = UIAlertController(title: "Password don't match",
+                                                    message: "Please make sure that you entered the same password.",
+                                                    preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            
+            self.present(alertController, animated: true, completion:  nil)
+        }
+        
         //confirm forgot password with input from ui.
         self.user?.confirmForgotPassword(confirmationCodeValue, password: self.proposedPassword.text!).continueWith {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: {
                 if let error = task.error as NSError? {
-                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                    let alertController = UIAlertController(title: "Cannot Reset Password",
                                                             message: error.userInfo["message"] as? String,
                                                             preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    let okAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
                     alertController.addAction(okAction)
                     
                     self?.present(alertController, animated: true, completion:  nil)
                 } else {
-                    let _ = strongSelf.navigationController?.popToRootViewController(animated: true)
+                    
+                    let presentingController = strongSelf.presentingViewController
+                    strongSelf.presentingViewController?.dismiss(animated: true, completion: {
+                        let alert = UIAlertController(title: "Password Reset", message: "Password reset.  Please log into the account with your email and new password.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        presentingController?.present(alert, animated: true, completion: nil)
+                        
+                    }
+                    )
                 }
             })
             return nil
@@ -73,6 +93,7 @@ class ConfirmForgotPasswordViewController: UIViewController {
         confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         confirmationCode.keyboardAppearance = .dark
         confirmationCode.keyboardType = .default
+        confirmationCode.delegate = self
         
         proposedPassword.backgroundColor = UIColor.clear
         proposedPassword.textColor = UIColor.white
@@ -82,6 +103,17 @@ class ConfirmForgotPasswordViewController: UIViewController {
         proposedPassword.keyboardAppearance = .dark
         proposedPassword.keyboardType = .default
         proposedPassword.isSecureTextEntry = true
+        proposedPassword.delegate = self
+        
+        confirmProposedPassword.backgroundColor = UIColor.clear
+        confirmProposedPassword.textColor = UIColor.white
+        confirmProposedPassword.borderStyle = .none
+        confirmProposedPassword.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
+        confirmProposedPassword.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        confirmProposedPassword.keyboardAppearance = .dark
+        confirmProposedPassword.keyboardType = .default
+        confirmProposedPassword.isSecureTextEntry = true
+        confirmProposedPassword.delegate = self
         
         
     }

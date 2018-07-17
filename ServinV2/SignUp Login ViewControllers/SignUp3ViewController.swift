@@ -29,7 +29,7 @@ class SignUp3ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pool = AWSCognitoIdentityUserPool.init(forKey: AWSCognitoUserPoolsSignInProviderKey)
+        self.pool = AppDelegate.defaultUserPool()
 
         // Do any additional setup after loading the view.
         
@@ -65,7 +65,7 @@ class SignUp3ViewController: UIViewController {
                     let alertController = UIAlertController(title: "Missing Required Fields",
                                                             message: "Username / Password are required for registration.",
                                                             preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alertController.addAction(okAction)
                     
                     self.present(alertController, animated: true, completion:  nil)
@@ -97,7 +97,7 @@ class SignUp3ViewController: UIViewController {
                 guard let strongSelf = self else { return nil }
                 DispatchQueue.main.async(execute: {
                     if let error = task.error as NSError? {
-                        let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+                        let alertController = UIAlertController(title: "Error",
                                                                 message: error.userInfo["message"] as? String,
                                                                 preferredStyle: .alert)
                         let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)

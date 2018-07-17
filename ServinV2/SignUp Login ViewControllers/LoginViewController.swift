@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
         setupNavigationBar()
         // Do any additional setup after loading the view.
         
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,6 +40,17 @@ class LoginViewController: UIViewController {
         self.emailTextField.text = emailText
         
         emailTextField.becomeFirstResponder()
+        
+        self.passwordTextField?.addTarget(self, action: #selector(inputDidChange(_:)), for: .editingChanged)
+        self.emailTextField?.addTarget(self, action: #selector(inputDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc func inputDidChange(_ sender:AnyObject) {
+        if (self.passwordTextField?.text != nil && self.emailTextField?.text != nil) {
+            self.nextButtonSVGView.isHidden = false
+        } else {
+            self.nextButtonSVGView?.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -111,9 +124,8 @@ class LoginViewController: UIViewController {
         
         print("forward pressed")
         
-        if (self.emailTextField.text != nil && self.passwordTextField.text != nil) {
-            
-            let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField.text!, password: self.passwordTextField.text! )
+        if (self.emailTextField?.text != nil && self.passwordTextField?.text != nil) {
+            let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField!.text!, password: self.passwordTextField!.text! )
             self.passwordAuthenticationCompletion?.set(result: authDetails)
         } else {
             let alertController = UIAlertController(title: "Missing information",
@@ -148,12 +160,14 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
     
     public func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput, passwordAuthenticationCompletionSource: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
+        
         self.passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
         DispatchQueue.main.async {
-            if (self.emailText == nil) {
-                self.emailText = authenticationInput.lastKnownUsername
+            if (self.emailTextField?.text == nil) {
+                self.emailTextField?.text = authenticationInput.lastKnownUsername
             }
         }
+        
     }
     
     public func didCompleteStepWithError(_ error: Error?) {
@@ -164,22 +178,40 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
                                                         preferredStyle: .alert)
                 let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
                 alertController.addAction(retryAction)
-                
+
                 self.present(alertController, animated: true, completion:  nil)
             } else {
-                
-                // Successfully signed into the app.
-                self.emailTextField.text = nil
-                
-                let constant = Constants()
-                
-                weak var pvc = self.presentingViewController
-                
-                self.dismiss(animated: true, completion: {
-                    pvc?.present(constant.getMainContentVC(), animated: true, completion: nil)
-                })
+
+                self.dismiss(animated: true, completion: nil)
+
+
             }
         }
+        
+//        DispatchQueue.main.async {
+//            if let error = error as NSError? {
+//                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
+//                                                        message: error.userInfo["message"] as? String,
+//                                                        preferredStyle: .alert)
+//                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+//                alertController.addAction(retryAction)
+//
+//                self.present(alertController, animated: true, completion:  nil)
+//            } else {
+//
+////                self.dismiss(animated: true, completion: {
+////                    self.emailTextField?.text = nil
+////                    self.passwordTextField?.text = nil
+////                })
+//
+//                print("Is signed on")
+//                print(AppDelegate.defaultUserPool().currentUser()?.isSignedIn)
+//
+//                print("Is signed on get user \(AppDelegate.defaultUserPool().getUser().isSignedIn)")
+//
+//            }
+//        }
+        
     }
 }
 

@@ -16,13 +16,10 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
-    var pool: AWSCognitoIdentityUserPool?
     var user: AWSCognitoIdentityUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
         
         setupNavigationBar()
         setupTextField()
@@ -57,7 +54,7 @@ class ResetPasswordViewController: UIViewController {
             return
         }
         
-        self.user = self.pool?.getUser(self.emailTextField.text!)
+        self.user = AppDelegate.defaultUserPool().getUser(self.emailTextField.text!)
         self.user?.forgotPassword().continueWith{[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else {return nil}
             DispatchQueue.main.async(execute: {

@@ -21,29 +21,44 @@ class WelcomeViewController: UIViewController {
     
     var response: AWSCognitoIdentityUserGetDetailsResponse?
     var user: AWSCognitoIdentityUser?
-    var pool: AWSCognitoIdentityUserPool?
-    
     
     @IBOutlet var termsOfServiceLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
         setupViews()
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        //signOut()
+        var userAttributes: [AWSCognitoIdentityProviderAttributeType]?
+        var user = AppDelegate.defaultUserPool().currentUser()
+        
+        let pool = AppDelegate.defaultUserPool()
+        if (user == nil) {
+            user = pool.currentUser()
+        }
+        
+        print(user)
+        if (user?.isSignedIn)! {
+            print("Current User is still signed in")
+             print(user?.username)
+            // Show the main VC...
+            let constant = Constants()
+            self.present(constant.getMainContentVC(), animated: false, completion: nil)
+           
+        } else {
+            // Do nothing...
+            print("Current User is nil...")
+        }
     }
-
-    func signOut() {
-        self.user?.signOut()
-        self.response = nil
-        self.refresh()
-    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -68,10 +83,7 @@ class WelcomeViewController: UIViewController {
         
         print("Show login")
         
-        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
-        if (self.user == nil) {
-            self.user = self.pool?.currentUser()
-        }
+        self.user = AppDelegate.defaultUserPool().getUser()
         self.refresh()
     }
     

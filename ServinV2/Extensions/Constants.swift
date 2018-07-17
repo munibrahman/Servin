@@ -9,16 +9,6 @@
 import Foundation
 import UIKit
 
-import AWSCognitoIdentityProvider
-
-let CognitoIdentityUserPoolRegion: AWSRegionType = .USEast1
-let CognitoIdentityUserPoolId = "us-east-1_7LKEJQapZ"
-let CognitoIdentityUserPoolAppClientId = "4725opiclggf294l97hfdet7ih"
-let CognitoIdentityUserPoolAppClientSecret = "ipsihgq3f7vlkhqnk9e6g3h0cvgsrcou4pmge1sr48ov0dt0ru7"
-
-let AWSCognitoUserPoolsSignInProviderKey = "UserPool"
-
-
 class Constants {
     
     static var searchBarFrame: CGRect? = nil

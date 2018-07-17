@@ -12,8 +12,15 @@ import IQKeyboardManagerSwift
 import PinpointKit
 import AWSCognitoIdentityProvider
 
+let userPoolID = "SampleUserPool"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    class func defaultUserPool() -> AWSCognitoIdentityUserPool {
+        return AWSCognitoIdentityUserPool(forKey: userPoolID)
+    }
+    
 
     var window: UIWindow?
     let googleMapsApiKey = "AIzaSyAGFQhWxsHh3UpGzvoTzB4flwsV_eCYODk"
@@ -23,8 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var loginViewController: LoginViewController?
     var navigationController: UINavigationController?
     var mfaViewController: MFAViewController?
+    var softwaremfaViewController: SoftwareMFAViewController?
     
-    var storyboard: UIStoryboard?
+    var cognitoConfig: CognitoConfig?
+    
+    var storyboard: UIStoryboard? {
+        return UIStoryboard(name: "Main", bundle: nil)
+    }
+    
     var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -34,57 +47,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup for IQKeyboardManagerSwift
         IQKeyboardManager.shared.enable = true
         
-//        #if DEBUG
-            // show whichever storbyboard you want to
-        
-//        #else
-            // show the beginning storyboard only
-            // Settings for PinpointKit
-            self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "WelcomeViewController")
-
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        
-        
-//        #endif
-        
-        
-        // MARK: AWS Related Calls
-        // Warn user if configuration not updated
-        if (CognitoIdentityUserPoolId == "YOUR_USER_POOL_ID") {
-            let alertController = UIAlertController(title: "Invalid Configuration",
-                                                    message: "Please configure user pool constants in Constants.swift file.",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            self.window?.rootViewController!.present(alertController, animated: true, completion:  nil)
-        }
         
         // setup logging
         AWSDDLog.sharedInstance.logLevel = .verbose
+        //        AWSDDLog.add(AWSDDTTYLogger.sharedInstance)
         
-        // setup service configuration
-        let serviceConfiguration = AWSServiceConfiguration(region: CognitoIdentityUserPoolRegion, credentialsProvider: nil)
+        // setup cognito config
+        self.cognitoConfig = CognitoConfig()
         
-        // create pool configuration
-        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: CognitoIdentityUserPoolAppClientId,
-                                                                        clientSecret: CognitoIdentityUserPoolAppClientSecret,
-                                                                        poolId: CognitoIdentityUserPoolId)
+        // setup cognito
+        setupCognitoUserPool()
         
-        // initialize user pool client
-        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: poolConfiguration, forKey: AWSCognitoUserPoolsSignInProviderKey)
-        
-        // fetch the user pool client we initialized in above step
-        let pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
-        self.storyboard = UIStoryboard(name: "Main", bundle: nil)
-        pool.delegate = self
+        // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
+        showFirstViewController()
 
         return true
+    }
+    
+    func setupCognitoUserPool() {
+        
+        print("Did setup cognito pool inside AppDelegate")
+        
+        let clientId:String = self.cognitoConfig!.getClientId()
+        let poolId:String = self.cognitoConfig!.getPoolId()
+        let clientSecret:String = self.cognitoConfig!.getClientSecret()
+        let region:AWSRegionType = self.cognitoConfig!.getRegion()
+        
+        let serviceConfiguration:AWSServiceConfiguration = AWSServiceConfiguration(region: region, credentialsProvider: nil)
+        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: clientId, clientSecret: clientSecret, poolId: poolId)
+        AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: cognitoConfiguration, forKey: userPoolID)
+        let pool:AWSCognitoIdentityUserPool = AppDelegate.defaultUserPool()
+        pool.delegate = self
+    }
+    
+    func showFirstViewController() {
+        // NOTE: This MUST BE
+        //        #if DEBUG
+        // show whichever storbyboard you want to
+        
+        //        #else
+        // show the beginning storyboard only
+        // Settings for PinpointKit
+        self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
+        
+        
+        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+        
+        //let initialViewController = InitialViewController()
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
+        
+        //        #endif
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -114,6 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK:- AWSCognitoIdentityInteractiveAuthenticationDelegate protocol delegate
 
+// This function handles presenting the UI for Signing in.
 extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
     
     
@@ -129,16 +144,45 @@ extension AppDelegate: AWSCognitoIdentityInteractiveAuthenticationDelegate {
         
         // This is where you present the login controller
         DispatchQueue.main.async {
-//            self.navigationController!.popToRootViewController(animated: true)
+            
             if (!self.navigationController!.isViewLoaded
                 || self.navigationController!.view.window == nil) {
-                UIApplication.topViewController()?.present(self.navigationController!,
-                                                         animated: true,
-                                                         completion: nil)
+                UIApplication.topViewController()?.present(self.navigationController!, animated: true, completion: nil)
             }
             
         }
         return self.loginViewController!
+    }
+    
+    func startSoftwareMfaSetupRequired() -> AWSCognitoIdentitySoftwareMfaSetupRequired {
+        
+        if softwaremfaViewController == nil {
+            softwaremfaViewController = SoftwareMFAViewController()
+        }
+        
+        
+        DispatchQueue.main.async {
+            
+            
+            if (!self.softwaremfaViewController!.isViewLoaded || self.softwaremfaViewController!.view.window == nil) {
+                //display mfa as popover on current view controller
+                
+                let viewController = UIApplication.topViewController()
+                viewController?.present(self.softwaremfaViewController!,
+                                        animated: true,
+                                        completion: nil)
+                
+                // configure popover vc
+                let presentationController = self.softwaremfaViewController!.popoverPresentationController
+                presentationController?.permittedArrowDirections = UIPopoverArrowDirection.left
+                presentationController?.sourceView = viewController!.view
+                presentationController?.sourceRect = viewController!.view.bounds
+            }
+            
+        }
+        
+        return softwaremfaViewController!
+        
     }
     
     func startMultiFactorAuthentication() -> AWSCognitoIdentityMultiFactorAuthentication {

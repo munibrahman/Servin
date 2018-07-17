@@ -24,9 +24,6 @@ class SettingsViewController: UIViewController {
     let about = ["Legal"]
     
     
-    var response: AWSCognitoIdentityUserGetDetailsResponse?
-    var user: AWSCognitoIdentityUser?
-    var pool: AWSCognitoIdentityUserPool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +34,6 @@ class SettingsViewController: UIViewController {
         
         settingsTableView.separatorStyle = .none
         
-        self.pool = AWSCognitoIdentityUserPool(forKey: AWSCognitoUserPoolsSignInProviderKey)
-        if (self.user == nil) {
-            self.user = self.pool?.currentUser()
-        }
-//        self.refresh()
-        
         settingsTableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         settingsTableView.register(LogOutTableViewCell.self, forCellReuseIdentifier: logoutCellIdentifier)
         // Do any additional setup after loading the view.
@@ -52,20 +43,10 @@ class SettingsViewController: UIViewController {
     }
     
     func signOut() {
-        self.user?.signOut()
-        self.response = nil
+        AppDelegate.defaultUserPool().currentUser()?.signOutAndClearLastKnownUser()
         //self.refresh()
     }
     
-    func refresh() {
-        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
-            DispatchQueue.main.async(execute: {
-                self.response = task.result
-                self.title = self.user?.username
-            })
-            return nil
-        }
-    }
     
     func setupNavigationController() {
         
@@ -183,9 +164,13 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             let cancelAlertAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
             
             let yesAlertAction = UIAlertAction.init(title: "Log Out", style: .destructive) { (didFinish) in
-                self.present(UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self)), animated: false, completion: {
+                
+                
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    (appDelegate.window?.rootViewController as? UINavigationController)?.popToRootViewController(animated: true)
                     self.signOut()
-                })
+                }
             }
             
             alertController.addAction(yesAlertAction)

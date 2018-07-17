@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import AWSCognitoIdentityProvider
 
 class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -71,7 +72,17 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             leftOverSpace = UIScreen.main.bounds.size.height - totalSize - self.statusBarHeight
         }
         
-        
+        let user = AppDelegate.defaultUserPool().currentUser()
+
+        if user != nil {
+            user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
+                task.result?.userAttributes?.forEach({ (attribute) in
+                    if attribute.name == "given_name" {
+                        print("User's first name is \(attribute.value!)")
+                    }
+                })
+            })
+        }
         
         
         
@@ -203,7 +214,6 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("row selected")
         
         if let mainViewController = mainVC {
             
@@ -218,6 +228,10 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                 //
                 //                    mainViewController.present(navController, animated: true, completion: nil)
                 //                }
+                
+    
+                print("Top most VC")
+                print(UIApplication.topViewController())
                 
                 
                 switch indexPath.section {
