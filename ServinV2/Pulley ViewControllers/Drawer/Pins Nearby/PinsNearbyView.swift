@@ -9,7 +9,7 @@
 import UIKit
 
 class PinsNearbyView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,22 +48,24 @@ class PinsNearbyView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return Data.allPins.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! PinsNearbyCollectionViewCell
-        myCell.imageView.image = #imageLiteral(resourceName: "room1")
-        myCell.titleLabel.text = "Looking to get my dorm cleaned!"
-        myCell.priceLabel.text = "$ 90"
-        myCell.distanceLabel.text = "3 mins away"
+        myCell.imageView.image = Data.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "room1")
+        myCell.titleLabel.text = Data.allPins[indexPath.row]._title ?? " "
+        myCell.priceLabel.text = "$ \(Data.allPins[indexPath.row]._price ?? 0)"
+        myCell.distanceLabel.text = "4 mins away"
         
         return myCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let parentVC = self.parentContainerViewController() {
-            parentVC.present(UINavigationController.init(rootViewController: UserDiscoveryViewController()), animated: true, completion: nil)
+            let discoveryVC = UserDiscoveryViewController()
+            discoveryVC.pin = Data.allPins[indexPath.row]
+            parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
         }
     }
     

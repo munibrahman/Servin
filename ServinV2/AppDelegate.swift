@@ -58,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup cognito
         setupCognitoUserPool()
         
+        let data = Data.init()
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
         showFirstViewController()
 

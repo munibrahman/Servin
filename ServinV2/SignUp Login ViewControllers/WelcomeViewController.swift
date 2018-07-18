@@ -47,7 +47,7 @@ class WelcomeViewController: UIViewController {
         
         print(user)
         if (user?.isSignedIn)! {
-            print("Current User is still signed in")
+            print("Current User is signed in")
              print(user?.username)
             // Show the main VC...
             let constant = Constants()
@@ -55,7 +55,7 @@ class WelcomeViewController: UIViewController {
            
         } else {
             // Do nothing...
-            print("Current User is nil...")
+            print("Current User is not logged in...")
         }
     }
     

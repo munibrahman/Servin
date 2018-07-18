@@ -29,6 +29,8 @@ class UserDiscoveryViewController: UIViewController {
     var statusBarView = UIView()
     var navigationBarShadow = UIView()
     
+    var pin: Pin?
+    
     // TODO: Retrieve if this discovery has been saved by the user or not
     var discoverySaved = false
     
@@ -392,6 +394,13 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             cell.timeAwayLabel.text = "10 mins away"
             cell.descriptionLabel.text = "I’m looking for someone to come and clean my dorm room, its dirty and messy! Willing to pay $90."
             cell.descriptionLabel.sizeToFit()
+            
+            if pin != nil {
+                cell.priceLabel.text = "$ \(pin?._price ?? 0)"
+                cell.titleLabel.text = pin?._title
+                cell.descriptionLabel.text = pin?._desctiption
+            }
+            
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
@@ -400,9 +409,18 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             
         } else if indexPath.row == 3 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellIdentifier, for: indexPath) as! DiscoveryUserProfileCollectionViewCell
+            
             cell.userImageView.image = #imageLiteral(resourceName: "adriana")
             cell.userFirstNameLabel.text = "Adriana"
             cell.userUniversityLabel.text = "University Of Calgary"
+            
+            if let myPin = pin {
+                cell.userImageView.image = Data.arrayOfUsers.first?._profilePicture
+                cell.userFirstNameLabel.text = Data.arrayOfUsers.first?._firstName
+                cell.userUniversityLabel.text = Data.arrayOfUsers.first?._institution
+            }
+            
+            
             
             return cell
         }

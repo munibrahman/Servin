@@ -181,10 +181,8 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
 
                 self.present(alertController, animated: true, completion:  nil)
             } else {
-
+                
                 self.dismiss(animated: true, completion: nil)
-
-
             }
         }
         

@@ -423,7 +423,6 @@
 				8BBFFC37209D970A00BA5D06 /* HelpViewController.swift */,
 				8BBFFC39209D971400BA5D06 /* SettingsViewController.swift */,
 				8BA6455D20830D44006EEEC5 /* Main.storyboard */,
-				8BEE79BA20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift */,
 				8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */,
 				8BA6456020830D44006EEEC5 /* Assets.xcassets */,
 				8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */,
@@ -457,6 +456,7 @@
 		8BBFFC27209D032000BA5D06 /* SignUp Login ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8BEE79BA20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift */,
 				8B81591D20AF714900EDA1FC /* LoginViewController.swift */,
 				8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */,
 				8BA8F629209A6C3200AE4640 /* WelcomeViewController.swift */,
