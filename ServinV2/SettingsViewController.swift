@@ -44,7 +44,6 @@ class SettingsViewController: UIViewController {
     
     func signOut() {
         AppDelegate.defaultUserPool().currentUser()?.signOutAndClearLastKnownUser()
-        //self.refresh()
     }
     
     

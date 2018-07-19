@@ -30,18 +30,12 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         
         scrollView = UIScrollView.init(frame: self.view.bounds)
         
-        //let myNearbyPins = PinsNearbyView.init(frame: CGRect.init(x: 0, y: 15, width: self.view.frame.size.width, height: 212))
         let nearbyPinsSize = setupPinsNearbyCollectionView(x: 0.0, y: 15.0, width: self.view.frame.size.width, height: 212.0)
-        
-//        let recommendedPinSize = setupRecommendedPinsCollectionView(x: )
-        
-        //let myRecommendations = RecommendedPinsView.init(frame: CGRect.init(x: 0, y: 212 + 30, width: self.view.frame.width, height: (240.0 * 5.0) + 35 + 20.0))
-        
         let recommendedPinSize = setupRecommendedPinsCollectionView(x: 0, y: nearbyPinsSize.height + 30.0, width: self.view.frame.size.width, height: (240.0 * 5.0) + 35 + 20.0)
         
         
         // TODO: Calculate the actual height here
-        scrollViewHeight = (nearbyPinsSize.height + recommendedPinSize.height + 180)
+        scrollViewHeight = (nearbyPinsSize.height + recommendedPinSize.height)
         scrollView.contentSize = CGSize.init(width: self.view.frame.size.width, height: scrollViewHeight)
         scrollView.scrollsToTop = true
 
@@ -169,7 +163,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         
         self.scrollView.addSubview(recommendedPinsCollectionView)
         
-        return CGSize.init(width: width, height: titleLabel.frame.size.height + recommendedPinsCollectionView.frame.size.height)
+        return CGSize.init(width: width, height: titleLabel.frame.size.height + recommendedPinsCollectionView.frame.size.height + 180.0)
     }
 
 }
