@@ -16,12 +16,14 @@ class SettingsViewController: UIViewController {
     let cellIdentifier = "cell"
     let logoutCellIdentifier = "LogoutCell"
     
-    let sections = ["Rewards", "Invite", "Device", "Account", "About", nil]
-    let rewards = ["Redeem Servin Credits"]
+    let sections = ["Invite", "Rewards", "Account", "Notifications", "Support", "About", "Logins"]
     let invite = ["Invite Members", "Submit Feedback", "About"]
-    let device = [ "Push Notifications"]
-    let account = [ "Password", "Payment History", "Payment History", "Payment Information"]
-    let about = ["Legal"]
+    let rewards = ["Redeem Servin Credits"]
+    let account = [ "Password", "Payments History", "Payment Methods", "Transaction History", "Multi Factor Authentication"]
+    let notifications = ["Push Notifications", "Email and SMS Notifications"]
+    let support = ["Help Center", "Report a Problem"]
+    let about = ["Ads", "Data Policy", "Open Source Libraries", "Terms"]
+    let logins = ["Log Out"]
     
     
     
@@ -75,13 +77,24 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if section == 0 || section == 2 || section == 4 || section == 5 {
-            return 1
-        } else if section == 1 || section == 3 {
-            return 3
+        switch section {
+        case 0:
+            return invite.count
+        case 1:
+            return rewards.count
+        case 2:
+            return account.count
+        case 3:
+            return notifications.count
+        case 4:
+            return support.count
+        case 5:
+            return about.count
+        case 6:
+            return logins.count
+        default:
+            return 0
         }
-        
-        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,15 +112,19 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         
         switch indexPath.section {
         case 0:
-            label = rewards[indexPath.row]
-        case 1:
             label = invite[indexPath.row]
+        case 1:
+            label = rewards[indexPath.row]
         case 2:
-            label = device[indexPath.row]
-        case 3:
             label = account[indexPath.row]
+        case 3:
+            label = notifications[indexPath.row]
         case 4:
+            label = support[indexPath.row]
+        case 5:
             label = about[indexPath.row]
+        case 6:
+            label = logins[indexPath.row]
         default:
             label = ""
         }
@@ -142,7 +159,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 34.0
+        return 50.0
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -205,7 +222,7 @@ class SettingsTableViewCell: UITableViewCell {
         
         arrowView.translatesAutoresizingMaskIntoConstraints = false
         arrowView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor).isActive = true
-        arrowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12.0).isActive = true
+        arrowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0).isActive = true
         arrowView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor).isActive = true
         
         arrowView.image = #imageLiteral(resourceName: ">_grey")
