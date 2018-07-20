@@ -31,6 +31,7 @@
 		8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */; };
 		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
 		8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */; };
+		8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */; };
 		8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B52724620F81ED200425717 /* CognitoConfig.swift */; };
 		8B52724920F81F0300425717 /* CognitoConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B52724820F81F0300425717 /* CognitoConfig.plist */; };
 		8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */; };
@@ -138,6 +139,7 @@
 		8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoftwareMFAViewController.xib; sourceTree = "<group>"; };
 		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiscoveryViewController.swift; sourceTree = "<group>"; };
+		8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesViewController.swift; sourceTree = "<group>"; };
 		8B52724620F81ED200425717 /* CognitoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoConfig.swift; sourceTree = "<group>"; };
 		8B52724820F81F0300425717 /* CognitoConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CognitoConfig.plist; sourceTree = "<group>"; };
 		8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp1ViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */,
 				8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */,
 				8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */,
+				8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */,
 			);
 			path = "SignUp Login ViewControllers";
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
+				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,

@@ -50,9 +50,11 @@ class WelcomeViewController: UIViewController {
             print("Current User is signed in")
              print(user?.username)
             // Show the main VC...
-            let constant = Constants()
-            self.present(constant.getMainContentVC(), animated: false, completion: nil)
-           
+//            let constant = Constants()
+//            self.present(constant.getMainContentVC(), animated: false, completion: nil)
+//
+            let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
+            self.present(navVC, animated: true, completion: nil)
         } else {
             // Do nothing...
             print("Current User is not logged in...")

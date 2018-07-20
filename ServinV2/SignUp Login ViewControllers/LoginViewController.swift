@@ -186,30 +186,6 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
             }
         }
         
-//        DispatchQueue.main.async {
-//            if let error = error as NSError? {
-//                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-//                                                        message: error.userInfo["message"] as? String,
-//                                                        preferredStyle: .alert)
-//                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-//                alertController.addAction(retryAction)
-//
-//                self.present(alertController, animated: true, completion:  nil)
-//            } else {
-//
-////                self.dismiss(animated: true, completion: {
-////                    self.emailTextField?.text = nil
-////                    self.passwordTextField?.text = nil
-////                })
-//
-//                print("Is signed on")
-//                print(AppDelegate.defaultUserPool().currentUser()?.isSignedIn)
-//
-//                print("Is signed on get user \(AppDelegate.defaultUserPool().getUser().isSignedIn)")
-//
-//            }
-//        }
-        
     }
 }
 
