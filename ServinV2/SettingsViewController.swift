@@ -8,20 +8,20 @@
 
 import UIKit
 import AWSCognitoIdentityProvider
+import Eureka
 
-class SettingsViewController: UIViewController {
-    
-    @IBOutlet var settingsTableView: UITableView!
+
+class SettingsViewController: FormViewController {
     
     let cellIdentifier = "cell"
     let logoutCellIdentifier = "LogoutCell"
     
     let sections = ["Invite", "Rewards", "Account", "Notifications", "Support", "About", "Logins"]
-    let invite = ["Invite Members", "Submit Feedback", "About"]
+    let invite = ["Invite Your Friends"]
     let rewards = ["Redeem Servin Credits"]
-    let account = [ "Password", "Payments History", "Payment Methods", "Transaction History", "Multi Factor Authentication"]
+    let account = [ "Password", "Payment Methods", "Transaction History", "Multi Factor Authentication"]
     let notifications = ["Push Notifications", "Email and SMS Notifications"]
-    let support = ["Help Center", "Report a Problem"]
+    let support = ["Help Center", "Report a Problem", "Submit Feedback"]
     let about = ["Ads", "Data Policy", "Open Source Libraries", "Terms"]
     let logins = ["Log Out"]
     
@@ -30,22 +30,254 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableView.separatorStyle = .none
         
-        settingsTableView.delegate = self
-        settingsTableView.dataSource = self
-        
-        settingsTableView.separatorStyle = .none
-        
-        settingsTableView.register(SettingsTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        settingsTableView.register(LogOutTableViewCell.self, forCellReuseIdentifier: logoutCellIdentifier)
         // Do any additional setup after loading the view.
         setupNavigationController()
         
+        form
+            
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Invite"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Invite Your Friends") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: { (vc) in
+                    vc.navigationController?.popViewController(animated: true)
+                    print("vc did run")
+                })
+            }
         
-    }
-    
-    func signOut() {
-        AppDelegate.defaultUserPool().currentUser()?.signOutAndClearLastKnownUser()
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Rewards"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Redeem Servin Credits") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+            
+            <<< ButtonRow("Servin Balance") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Account"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Password") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+            <<< ButtonRow("Payment Methods") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+        
+            <<< ButtonRow("Transaction History") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            <<< ButtonRow("Multifactor Authentication") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+        
+        
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Notifications"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Push Notifications") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            <<< ButtonRow("Email and SMS Notifications") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Support"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Help Center") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HelpViewController")
+                }), onDismiss: nil)
+                
+            }
+            
+            <<< ButtonRow("Report a Problem") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            <<< ButtonRow("Submit Feedback") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+        
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "About"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Ads") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HelpViewController")
+                }), onDismiss: nil)
+                
+            }
+            
+            <<< ButtonRow("Data Policy") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+            }
+            
+            <<< ButtonRow("Open Source Libraries") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+                }
+            
+            <<< ButtonRow("Terms") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return RandomViewController()
+                }), onDismiss: nil)
+                
+        }
+        
+        
+        
+            +++ Section() { section in
+                var header = HeaderFooterView<SettingsTableView>(.class)
+                header.height = {50}
+                header.onSetupView = { view, _ in
+                    view.titleLabel.text = "Logins"
+                }
+                section.header = header
+                
+                var footer = HeaderFooterView<ContentDividerView>(.class)
+                footer.height = {1}
+                
+                section.footer = footer
+            }
+            
+            <<< ButtonRow("Log Out from this device") {
+                $0.title = $0.tag
+                
+                }.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textAlignment = .left
+                    cell.textLabel?.textColor = UIColor.red
+                }).onCellSelection({ (cell, row) in
+                    AppDelegate.defaultUserPool().currentUser()?.signOutAndClearLastKnownUser()
+                })
     }
     
     
@@ -54,6 +286,8 @@ class SettingsViewController: UIViewController {
         navigationItem.title = "Settings"
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.largeTitleDisplayMode = .automatic
         
         
         navigationController?.navigationBar.tintColor = UIColor.black
@@ -71,170 +305,6 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 }
-
-
-
-extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch section {
-        case 0:
-            return invite.count
-        case 1:
-            return rewards.count
-        case 2:
-            return account.count
-        case 3:
-            return notifications.count
-        case 4:
-            return support.count
-        case 5:
-            return about.count
-        case 6:
-            return logins.count
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
-        if indexPath.section == sections.count - 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: logoutCellIdentifier) as! LogOutTableViewCell
-            
-            return cell
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! SettingsTableViewCell
-        
-        var label = ""
-        
-        switch indexPath.section {
-        case 0:
-            label = invite[indexPath.row]
-        case 1:
-            label = rewards[indexPath.row]
-        case 2:
-            label = account[indexPath.row]
-        case 3:
-            label = notifications[indexPath.row]
-        case 4:
-            label = support[indexPath.row]
-        case 5:
-            label = about[indexPath.row]
-        case 6:
-            label = logins[indexPath.row]
-        default:
-            label = ""
-        }
-        
-        cell.titleLabel.text = label
-        
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let view = UIView.init()
-        view.backgroundColor = UIColor.contentDivider
-        return view
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 1.0
-    }
-    
-
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 48.0
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let header = view as? UITableViewHeaderFooterView {
-            header.backgroundView?.backgroundColor = .white
-        }
-        
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == sections.count - 1 {
-            
-            print("logged out")
-            
-            let alertController = UIAlertController.init(title: "Are you sure?", message: nil, preferredStyle: .alert)
-            
-            let cancelAlertAction = UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil)
-            
-            let yesAlertAction = UIAlertAction.init(title: "Log Out", style: .destructive) { (didFinish) in
-                
-                
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                    (appDelegate.window?.rootViewController as? UINavigationController)?.popToRootViewController(animated: true)
-                    self.signOut()
-                }
-            }
-            
-            alertController.addAction(yesAlertAction)
-            alertController.addAction(cancelAlertAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-
-            
-        }
-    }
-    
-    
-}
-
-
-class SettingsTableViewCell: UITableViewCell {
-    
-    var titleLabel = UILabel()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        titleLabel = UILabel.init(frame: CGRect.init(x: 14.0, y: 0.0, width: contentView.frame.size.width - 14.0, height: contentView.frame.size.height))
-        titleLabel.frame.offsetBy(dx: 14.0, dy: 0.0)
-        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        titleLabel.textColor = UIColor.blackFontColor
-        
-        let arrowView = UIImageView.init()
-        
-        contentView.backgroundColor = .white
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(arrowView)
-        
-        arrowView.translatesAutoresizingMaskIntoConstraints = false
-        arrowView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor).isActive = true
-        arrowView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0).isActive = true
-        arrowView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor).isActive = true
-        
-        arrowView.image = #imageLiteral(resourceName: ">_grey")
-        arrowView.contentMode = .scaleAspectFit
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
 
 
 class LogOutTableViewCell: UITableViewCell {
@@ -267,14 +337,68 @@ class LogOutTableViewCell: UITableViewCell {
 }
 
 
+class SettingsTableView: UIView {
+    
+    var titleLabel = UILabel()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        titleLabel = UILabel.init(frame: CGRect.init(x: 0.0, y: 0.0, width: self.frame.width, height: self.frame.height))
+        //titleLabel.frame.offsetBy(dx: 14.0, dy: 0.0)
+        titleLabel.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        titleLabel.textColor = UIColor.black
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        self.backgroundColor = .white
+        self.addSubview(titleLabel)
+        
+        titleLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14.0).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        //self.addSubview(arrowView)
+        
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class ContentDividerView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.contentDivider
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
 
 
 
 
-
-
-
-
+class RandomViewController: UIViewController {
+    
+    override func loadView() {
+        view = UIView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .white
+        self.navigationItem.largeTitleDisplayMode = .never
+    }
+}
 
 
 

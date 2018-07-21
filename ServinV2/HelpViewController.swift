@@ -26,10 +26,8 @@ class HelpViewController: UIViewController {
     
     func setupNavigationController() {
         
-        navigationController?.navigationBar.tintColor = UIColor.black
         
-        let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(barButtonPressed))
-        navigationItem.leftBarButtonItem = barButtonItem
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     @objc func barButtonPressed() {

@@ -20,6 +20,7 @@ pod 'ImageSlideshow', '~> 1.6'
 pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'AlamofireImage', '~> 3.3'
+pod 'Eureka'
 
 #AWS Pods
 pod 'AWSCore', '~> 2.6.0'
