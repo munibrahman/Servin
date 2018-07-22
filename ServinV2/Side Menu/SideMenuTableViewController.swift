@@ -16,9 +16,9 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     var mainVC: MasterPulleyViewController? = nil
     
-    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "SavedPinsViewController", "HelpViewController", "SettingsViewController"]
-    let labels = ["Messages", "Drop a Pin", "My Pins", "Saved Pins", "Help", "Settings"]
-    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "savedPins_icon"), #imageLiteral(resourceName: "help_icon"), #imageLiteral(resourceName: "settings_icon")]
+    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "SavedPinsViewController", "SettingsViewController"]
+    let labels = ["Messages", "Drop a Pin", "My Pins", "Saved Pins", "Settings"]
+    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "savedPins_icon"), #imageLiteral(resourceName: "settings_icon")]
     
     fileprivate let reuseIdentifier = "NormalCell"
     fileprivate let profileCellReuseIdentifier = "ProfileCell"
@@ -88,23 +88,6 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        
-//        // This is the height that our uitableview will sit inside of
-//        allowedViewHeight = UIScreen.main.bounds.size.height - self.statusBarHeight
-//
-//        if #available(iOS 11.0, *) {
-//            let window = UIApplication.shared.keyWindow
-//            let topPadding = window?.safeAreaInsets.top
-//            let bottomPadding = window?.safeAreaInsets.bottom
-//
-//            allowedViewHeight = UIScreen.main.bounds.size.height - (topPadding ?? 0.0) - (bottomPadding ?? 0.0)
-//
-//        }
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,7 +97,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - DataSource & Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return 6
+            return 4
         } else {
             return 1
         }
@@ -142,6 +125,18 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             cell.imageView?.clipsToBounds = true
             
             return cell
+            
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! SideMenuTableViewCell
+            
+            cell.selectionStyle = .none
+            
+            cell.menuOptionLabel.text = labels.last
+            cell.menuOptionImageView.image = icons.last
+            cell.menuOptionImageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
+            cell.imageView?.clipsToBounds = true
+            
+            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellReuseIdentifier, for: indexPath) as! SideMenuProfileTableViewCell
             cell.profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
@@ -157,7 +152,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     
@@ -173,6 +168,10 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         case 1:
             
             return cellHeight
+            
+        case 2:
+            return cellHeight
+            
         default:
             return bottomProfileCellHeight
         }
@@ -254,6 +253,16 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                         
                         mainViewController.present(navController, animated: true, completion: nil)
                     }
+                    
+                    
+                case 2:
+                    
+
+                        print("Open the correct VC")
+                        
+                        let navController = UINavigationController.init(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: self.viewControllers.last!))!)
+                        
+                        mainViewController.present(navController, animated: true, completion: nil)
                     
                     
                 default:

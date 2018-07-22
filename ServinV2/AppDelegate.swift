@@ -92,9 +92,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         
         
-//        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-        let initialViewController = UINavigationController.init(rootViewController: (storyboard?.instantiateViewController(withIdentifier: String.init(describing: SettingsViewController.self)))!)
+//        let initialViewController = UINavigationController.init(rootViewController: (storyboard?.instantiateViewController(withIdentifier: String.init(describing: SettingsViewController.self)))!)
         
         
         //let initialViewController = InitialViewController()
