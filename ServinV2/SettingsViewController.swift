@@ -11,6 +11,7 @@ import AWSCognitoIdentityProvider
 import Eureka
 
 
+// TODO: Come in here and add views for all the settings...
 class SettingsViewController: FormViewController {
     
     let cellIdentifier = "cell"
@@ -108,7 +109,7 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("Password") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return RandomViewController()
+                    return ChangePasswordViewController()
                 }), onDismiss: nil)
                 
             }
@@ -401,6 +402,85 @@ class RandomViewController: UIViewController {
 }
 
 
+class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
+    
+    var currentPassword: CustomFloatingTextfield!
+    var newPassword: CustomFloatingTextfield!
+    var newPasswordConfirm: CustomFloatingTextfield!
+    
+    override func loadView() {
+        view = UIView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        navigationItem.largeTitleDisplayMode = .never
+        
+        setupViews()
+        setupNavBar()
+    }
+    
+    func setupViews() {
+        currentPassword = CustomFloatingTextfield.init()
+        newPassword = CustomFloatingTextfield.init()
+        newPasswordConfirm = CustomFloatingTextfield.init()
+        
+        currentPassword.placeholder = "Current Password"
+        newPassword.placeholder = "New Password"
+        newPasswordConfirm.placeholder = "One more time"
+        
+        currentPassword.isSecureTextEntry = true
+        newPassword.isSecureTextEntry = true
+        newPasswordConfirm.isSecureTextEntry = true
+        
+        currentPassword.selectedPlaceHolderColor = .lightGray
+        newPassword.selectedPlaceHolderColor = .lightGray
+        newPasswordConfirm.selectedPlaceHolderColor = .lightGray
+        
+        currentPassword.clearButtonMode = .always
+        newPassword.clearButtonMode = .always
+        newPasswordConfirm.clearButtonMode = .always
+        
+        
+        view.addSubview(currentPassword)
+        view.addSubview(newPassword)
+        view.addSubview(newPasswordConfirm)
+        
+        currentPassword.translatesAutoresizingMaskIntoConstraints = false
+        currentPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
+        currentPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        currentPassword.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 20.0).isActive = true
+        currentPassword.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        
+        
+        newPassword.translatesAutoresizingMaskIntoConstraints = false
+        newPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
+        newPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        newPassword.topAnchor.constraint(equalTo: currentPassword.bottomAnchor).isActive = true
+        newPassword.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+        
+        newPasswordConfirm.translatesAutoresizingMaskIntoConstraints = false
+        newPasswordConfirm.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
+        newPasswordConfirm.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        newPasswordConfirm.topAnchor.constraint(equalTo: newPassword.bottomAnchor).isActive = true
+        newPasswordConfirm.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
+    }
+    
+    
+    func setupNavBar() {
+        let nextButton = UIBarButtonItem.init(title: "Done", style: .plain, target: self, action: #selector(updatePassword))
+        self.navigationItem.rightBarButtonItem = nextButton
+    }
+    
+    @objc func updatePassword() {
+        // TODO: Send password request here.
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+}
 
 
 
