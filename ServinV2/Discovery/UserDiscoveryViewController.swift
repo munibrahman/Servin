@@ -461,14 +461,7 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
                 
             }
             
-            let messageText = pin?._desctiption
-            let size = CGSize.init(width: collectionView.frame.size.width - 16.0, height: 1000)
-            let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-            
-            let estimatedFrame = NSString.init(string: messageText!).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18.0, weight: .medium)], context: nil)
-            
-            return CGSize.init(width: collectionView.frame.size.width, height: estimatedFrame.height + 166.0)
-//             return CGSize.init(width: collectionView.frame.size.width, height: 250.0)
+             return CGSize.init(width: collectionView.frame.size.width, height: 250.0)
         }
         // Image cell
         else if indexPath.row == 2 {
