@@ -101,6 +101,7 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
     var pinPrice: UILabel!
     var timeAway: UILabel!
     var isSaved: Bool = false
+    
     var savedView: SaveIconView!
     
     let leftPadding: CGFloat = 20.0
@@ -166,12 +167,6 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
         timeAway.font = UIFont.systemFont(ofSize: 13, weight: .light)
         timeAway.textColor = UIColor.blackFontColor.withAlphaComponent(0.3)
         
-//        pinImageView.backgroundColor = .red
-//        pinTitle.backgroundColor = .blue
-//        pinPrice.backgroundColor = .red
-//        timeAway.backgroundColor = .orange
-        
-        
         savedView = SaveIconView.init(frame: CGRect.init(x: 20, y: 0, width: 40, height: 40))
         self.addSubview(savedView)
         
@@ -196,13 +191,17 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
     @objc func userDidTapSave() {
         print("Did tap save")
         
-        if isSaved {
-            savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
-        } else {
-            savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_fill")
+        if savedView != nil {
+            if isSaved {
+                savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
+            } else {
+                savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_fill")
+            }
+            
+            isSaved = !isSaved
         }
         
-        isSaved = !isSaved
+        
         
     }
     

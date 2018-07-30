@@ -24,9 +24,10 @@ class Pin {
     var _location: CLLocationCoordinate2D?
     var _images = [UIImage?]()
     var typeOfRequest: typeOfRequest?
+    var isSaved = false
     
     
-    init(title: String?, description: String?, price: Int?, views: Int?, location: CLLocationCoordinate2D?, images: [UIImage?], typeOfRequest: typeOfRequest) {
+    init(title: String?, description: String?, price: Int?, views: Int?, location: CLLocationCoordinate2D?, images: [UIImage?], typeOfRequest: typeOfRequest, isSaved: Bool) {
         
         self._title = title
         self._desctiption = description
@@ -35,6 +36,7 @@ class Pin {
         self._location = location
         self._images = images
         self.typeOfRequest = typeOfRequest
+        self.isSaved = isSaved
     }
     
     func add(image: UIImage?) {

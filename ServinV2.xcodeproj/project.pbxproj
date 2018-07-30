@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		53E0616D9EF920DF33A0828D /* Pods_ServinV2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */; };
 		7DBBC905C791BD3BD31B505D /* Pods_ServinV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D566F623AEBCAFFBB31DDC90 /* Pods_ServinV2.framework */; };
-		8B1C7A7720B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1C7A7520B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift */; };
-		8B1C7A7820B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1C7A7620B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib */; };
 		8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */; };
 		8B3FEF7120CD01DB0056C22A /* SideMenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */; };
 		8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */; };
@@ -118,8 +116,6 @@
 		634FA61F8ACA402D3C651A84 /* Pods-ServinV2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2Tests/Pods-ServinV2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		63793A76737115F8C39DB347 /* Pods-ServinV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2/Pods-ServinV2.release.xcconfig"; sourceTree = "<group>"; };
 		654382927B9EECADF9248D33 /* Pods-ServinV2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2Tests/Pods-ServinV2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		8B1C7A7520B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedPinsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8B1C7A7620B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecommendedPinsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuProfileTableViewCell.xib; sourceTree = "<group>"; };
 		8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuServinLogoTableViewCell.swift; sourceTree = "<group>"; };
@@ -259,8 +255,6 @@
 		8B1C7A7420B49F7A00BA3954 /* Discoveries */ = {
 			isa = PBXGroup;
 			children = (
-				8B1C7A7520B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift */,
-				8B1C7A7620B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib */,
 			);
 			path = Discoveries;
 			sourceTree = "<group>";
@@ -648,7 +642,6 @@
 				8BD3834C20CBD03D00B4B653 /* CustomCell_Instagram.xib in Resources */,
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
-				8B1C7A7820B4A23400BA3954 /* RecommendedPinsCollectionViewCell.xib in Resources */,
 				8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */,
 				8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */,
 				8B52724920F81F0300425717 /* CognitoConfig.plist in Resources */,
@@ -867,7 +860,6 @@
 				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,
 				8BCB897120DB622900AF5A65 /* Pin.swift in Sources */,
-				8B1C7A7720B4A23400BA3954 /* RecommendedPinsCollectionViewCell.swift in Sources */,
 				8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,

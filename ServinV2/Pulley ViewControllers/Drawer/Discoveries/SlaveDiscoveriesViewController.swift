@@ -25,13 +25,16 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     let pinsNearbyCellIdentifier = "PinsNearbyCell"
     let recommendedPinsCellIdentifier = "RecommendedPinsCell"
     
+    let recommendedCellCount = Data.allPins.count
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         scrollView = UIScrollView.init(frame: self.view.bounds)
         
         let nearbyPinsSize = setupPinsNearbyCollectionView(x: 0.0, y: 15.0, width: self.view.frame.size.width, height: 212.0)
-        let recommendedPinSize = setupRecommendedPinsCollectionView(x: 0, y: nearbyPinsSize.height + 30.0, width: self.view.frame.size.width, height: (240.0 * 5.0) + 35 + 20.0)
+
+        let recommendedPinSize = setupRecommendedPinsCollectionView(x: 0, y: nearbyPinsSize.height + 40.0, width: self.view.frame.size.width, height: CGFloat((220 * recommendedCellCount) + Int((UICollectionViewFlowLayout().minimumInteritemSpacing * CGFloat(recommendedCellCount))) + 35 + 20))
         
         
         // TODO: Calculate the actual height here
@@ -140,17 +143,17 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         self.scrollView.addSubview(titleLabel)
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
-        layout.itemSize = CGSize(width: (width - 60.0) / 2, height: 240.0)
+        let layout = UICollectionViewFlowLayout.init()
+        layout.estimatedItemSize = CGSize.init(width: view.frame.size.width, height: 220.0)
+        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
         
-        layout.scrollDirection = .vertical
         
         recommendedPinsCollectionView = UICollectionView(frame: CGRect.init(x: 0.0, y: 35.0 + y, width:width, height: height - 35.0), collectionViewLayout: layout)
-        recommendedPinsCollectionView.dataSource = self
-        recommendedPinsCollectionView.delegate = self
         
-        recommendedPinsCollectionView.register(UINib.init(nibName: String.init(describing: RecommendedPinsCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: recommendedPinsCellIdentifier)
+        recommendedPinsCollectionView.register(SavedPinsCollectionViewCell.self, forCellWithReuseIdentifier: recommendedPinsCellIdentifier)
+        
+        
+        
         recommendedPinsCollectionView.backgroundColor = UIColor.white
         
         recommendedPinsCollectionView.delegate = self
@@ -175,7 +178,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         if collectionView == pinsNearbyCollectionView {
             return Data.allPins.count
         } else {
-            return 10
+            return recommendedCellCount
         }
     }
     
@@ -190,13 +193,13 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
             
             return myCell
         } else {
-            let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedPinsCellIdentifier, for: indexPath) as! RecommendedPinsCollectionViewCell
+            let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedPinsCellIdentifier, for: indexPath) as! SavedPinsCollectionViewCell
             
-            myCell.imageView.image = #imageLiteral(resourceName: "soccer")
-            myCell.titleLabel.text = "Soccer coach for hire, accepting K-12 students."
-            myCell.priceLabel.text = "$ 90"
-            myCell.distanceLabel.text = "5 mins away"
-            
+            myCell.pinImageView.image = Data.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
+            myCell.pinTitle.text = Data.allPins[indexPath.row]._title ?? " "
+            myCell.pinPrice.text = "$ \(Data.allPins[indexPath.row]._price ?? 0)"
+            myCell.timeAway.text = "5 mins away"
+            myCell.isSaved = Data.allPins[indexPath.row].isSaved
             return myCell
         }
         
