@@ -191,18 +191,25 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
     @objc func userDidTapSave() {
         print("Did tap save")
         
-        if savedView != nil {
+        changeSavedState(isSaved: isSaved)
+        
+        isSaved = !isSaved
+        
+        
+        
+    }
+    
+    func changeSavedState(isSaved: Bool) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.savedView.transform = CGAffineTransform.init(scaleX: 0.9, y: 0.9)
             if isSaved {
-                savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
+                self.savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
             } else {
-                savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_fill")
+                self.savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_fill")
             }
-            
-            isSaved = !isSaved
+        }) { (finish) in
+            self.savedView.transform = .identity
         }
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -9,6 +9,7 @@
 import UIKit
 import Macaw
 import AWSCognitoIdentityProvider
+import Alamofire
 
 class WelcomeViewController: UIViewController {
     
@@ -52,6 +53,36 @@ class WelcomeViewController: UIViewController {
             // Show the main VC...
 //            let constant = Constants()
 //            self.present(constant.getMainContentVC(), animated: false, completion: nil)
+            
+            
+            user?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
+                print("ID Token \(session.result?.idToken?.tokenString)")
+                print("Access Token \(session.result?.accessToken?.tokenString)")
+                print("Refresh Token \(session.result?.refreshToken?.tokenString)")
+                
+                
+//                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user").response(completionHandler: { (response) in
+//                    print("Unauthenticated")
+//                    print(response.)
+//                })
+                
+                let headers: HTTPHeaders = [
+                    "Authorization": (session.result?.idToken?.tokenString)!
+                ]
+                
+                
+                
+                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user", headers: headers).responseJSON(completionHandler: { (response) in
+                    print("Authorized")
+                    print("Request is \(response.request?.allHTTPHeaderFields)")
+                    //print(response.request)
+                    print("result")
+                    print(response.result)
+                    print(response.result.value)
+                })
+                
+                return nil
+            })
 //
             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
             self.present(navVC, animated: true, completion: nil)

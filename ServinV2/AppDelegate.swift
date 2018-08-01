@@ -94,7 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: (storyboard?.instantiateViewController(withIdentifier: String.init(describing: SettingsViewController.self)))!)
+//        let initialViewController = UINavigationController.init(rootViewController: ReviewViewController())
         
         
         //let initialViewController = InitialViewController()

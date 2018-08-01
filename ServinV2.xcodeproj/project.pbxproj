@@ -26,6 +26,7 @@
 		8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */; };
 		8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */; };
 		8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */; };
+		8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */; };
 		8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */; };
 		8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */; };
 		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
@@ -133,6 +134,7 @@
 		8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinsNearbyCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinTableViewCell.swift; sourceTree = "<group>"; };
 		8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinTableViewCell.xib; sourceTree = "<group>"; };
+		8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareMFAViewController.swift; sourceTree = "<group>"; };
 		8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoftwareMFAViewController.xib; sourceTree = "<group>"; };
 		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -500,6 +502,7 @@
 				8B51798A20D9800900774BDE /* UserProfileViewController.swift */,
 				8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */,
 				8BDE4DC920C4672800967153 /* EditProfileViewController.swift */,
+				8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
 				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
+				8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
