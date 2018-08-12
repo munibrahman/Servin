@@ -15,7 +15,6 @@
 		8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FEF7520CD18090056C22A /* SideMenuServinLogoTableViewCell.xib */; };
 		8B43C47D2107C6EB004D9D0F /* CustomFloatingTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43C47C2107C6EB004D9D0F /* CustomFloatingTextfield.swift */; };
 		8B43D38D20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43D38B20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift */; };
-		8B43D38E20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B43D38C20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib */; };
 		8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43D38F20D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift */; };
 		8B43D39220D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B43D39020D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib */; };
 		8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C1FF20D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift */; };
@@ -123,7 +122,6 @@
 		8B3FEF7520CD18090056C22A /* SideMenuServinLogoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuServinLogoTableViewCell.xib; sourceTree = "<group>"; };
 		8B43C47C2107C6EB004D9D0F /* CustomFloatingTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFloatingTextfield.swift; sourceTree = "<group>"; };
 		8B43D38B20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
-		8B43D38C20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryDetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B43D38F20D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B43D39020D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B45C1FF20D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFullScreenMapViewController.swift; sourceTree = "<group>"; };
@@ -281,7 +279,6 @@
 				8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */,
 				8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */,
 				8B43D38B20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift */,
-				8B43D38C20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib */,
 				8B43D38F20D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift */,
 				8B43D39020D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib */,
 				8BE8951D20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift */,
@@ -651,7 +648,6 @@
 				8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */,
 				8BA6456420830D44006EEEC5 /* LaunchScreen.storyboard in Resources */,
 				8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */,
-				8B43D38E20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.xib in Resources */,
 				8B3FEF7120CD01DB0056C22A /* SideMenuProfileTableViewCell.xib in Resources */,
 				8BA6456120830D44006EEEC5 /* Assets.xcassets in Resources */,
 				8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */,

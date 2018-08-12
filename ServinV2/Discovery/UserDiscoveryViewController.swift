@@ -87,7 +87,7 @@ class UserDiscoveryViewController: UIViewController {
         
         
         discoveryCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: mapCellIdentifier)
-        discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryDetailsCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: detailsCellIdentifier)
+        discoveryCollectionView.register(DiscoveryDetailsCollectionViewCell.self, forCellWithReuseIdentifier: detailsCellIdentifier)
         discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryImagesCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: imagesCellIdentifier)
         discoveryCollectionView.register(UINib.init(nibName: String.init(describing: DiscoveryUserProfileCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: profileCellIdentifier)
         discoveryCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: emptyCellIdentifier)
@@ -401,6 +401,11 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
                 cell.descriptionLabel.text = pin?._desctiption
             }
             
+            cell.priceLabel.sizeToFit()
+            cell.titleLabel.sizeToFit()
+            cell.timeAwayLabel.sizeToFit()
+            cell.descriptionLabel.sizeToFit()
+            
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
@@ -441,27 +446,20 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
         // Detail cell
         else if indexPath.row == 1 {
             
-            if let cell = collectionView.cellForItem(at: indexPath) as? DiscoveryDetailsCollectionViewCell {
-                
-                
-                let size = CGSize.init(width: collectionView.frame.size.width - 16.0, height: 1000)
-                let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-                
-                let estimatedTitleFrame = NSString.init(string: pin?._title ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : cell.titleLabel?.font], context: nil)
-                
-                let estimatedPriceFrame = NSString.init(string: "$ \(pin?._price ?? 0)").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : cell.priceLabel?.font], context: nil)
-                
-                let estimatedTimeFrame = NSString.init(string: "10 mins away").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : cell.timeAwayLabel?.font], context: nil)
-                
-                let estimatedDescriptionFrame = NSString.init(string: pin?._desctiption ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : cell.descriptionLabel?.font], context: nil)
-                
-                
-                return CGSize.init(width: collectionView.frame.size.width, height: estimatedTitleFrame.height + estimatedPriceFrame.height + estimatedTimeFrame.height + estimatedDescriptionFrame.height + 42.0)
-                
-                
-            }
+            let size = CGSize.init(width: collectionView.frame.size.width - 16.0, height: 1000)
+            let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             
-             return CGSize.init(width: collectionView.frame.size.width, height: 250.0)
+            let estimatedTitleFrame = NSString.init(string: pin?._title ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 30, weight: .semibold)], context: nil)
+            
+            let estimatedPriceFrame = NSString.init(string: "$ \(pin?._price ?? 0)").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 30, weight: .medium)], context: nil)
+            
+            let estimatedTimeFrame = NSString.init(string: "10 mins away").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 13, weight: .light)], context: nil)
+            
+            let estimatedDescriptionFrame = NSString.init(string: pin?._desctiption ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 18, weight: .medium)], context: nil)
+            
+            
+            return CGSize.init(width: collectionView.frame.size.width, height: estimatedTitleFrame.height + estimatedPriceFrame.height + estimatedTimeFrame.height + estimatedDescriptionFrame.height + 60.0)
+            
         }
         // Image cell
         else if indexPath.row == 2 {
