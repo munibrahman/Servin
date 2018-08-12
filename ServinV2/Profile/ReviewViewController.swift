@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class ReviewViewController: UIViewController {
     
     let cellIdentifier = "CellIdentifer"
+    let headerID = "headerId"
+    
+    fileprivate let reviewArray = [Review.init(name: "Andrea", timeAgo: "2 weeks ago", review: "Couldn't have asked for a better cook! Larry is amazing when it comes to the culinary arts! He made my breakfast without issues and helped me clean up after. Would definetly recommend"), Review.init(name: "Simon", timeAgo: "6 weeks ago", review: "My lawn looks brand new thanks to larry. He was on time and ready to roll, no issues at all. 10/10"), Review.init(name: "Moe", timeAgo: "3 months", review: "Thank you larry for helping me with MATH 271, i aced my exam thanks to your help. :)")]
     
     override func loadView() {
         view = UIView()
@@ -45,6 +50,8 @@ class ReviewViewController: UIViewController {
         leftBarButton.tintColor = .black
         self.navigationItem.leftBarButtonItem = leftBarButton
         
+        self.navigationController?.navigationBar.transparentNavigationBar()
+        
     }
     
     @objc func dismissViewController() {
@@ -53,20 +60,26 @@ class ReviewViewController: UIViewController {
     
     func setupViews()  {
         let layout = UICollectionViewFlowLayout.init()
-        layout.estimatedItemSize = CGSize.init(width: 250, height: 300.0)
+        layout.estimatedItemSize = CGSize.init(width: 250, height: 300)
+        layout.headerReferenceSize = CGSize.init(width: 250, height: 100)
         
-        let collectionView = UICollectionView.init(frame: self.view.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = .red
+        let collectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
+        //collectionView.contentInset = UIEdgeInsets.init(top: 0, left: 16, bottom: 0, right: 16)
+        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        collectionView.showsVerticalScrollIndicator = false
+        
         collectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+        
         
         self.view.addSubview(collectionView)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
         collectionView.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
@@ -75,17 +88,60 @@ class ReviewViewController: UIViewController {
 
 extension ReviewViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return reviewArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ReviewCollectionViewCell
-        cell.backgroundColor = .blue
+        
+        cell.firstNameLabel.text = reviewArray[indexPath.row].name
+        cell.reviewDateLabel.text = reviewArray[indexPath.row].timeAgo
+        cell.reviewTextView.text = reviewArray[indexPath.row].review
+        
+        
+        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
+            
+            if let image = response.result.value {
+                cell.profileImageView.image = image
+            }
+            
+        }
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.init(width: collectionView.frame.size.width, height: 300)
+        
+        let size = CGSize.init(width: collectionView.frame.size.width, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        
+        
+        let estimatedTitleFrame = NSString.init(string: reviewArray[indexPath.row].review).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17, weight: .regular)], context: nil)
+        
+        return CGSize.init(width: collectionView.frame.size.width, height: estimatedTitleFrame.size.height + 100)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if indexPath.row == 0 {
+            var v : UICollectionReusableView! = nil
+            if kind == UICollectionElementKindSectionHeader {
+                v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerID, for: indexPath)
+                if v.subviews.count == 0 {
+                    v.addSubview(UILabel(frame:CGRect.init(x: 0, y: 0, width: collectionView.frame.size.width, height: v.frame.size.height)))
+                }
+                let lab = v.subviews[0] as! UILabel
+                lab.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+                lab.textColor = UIColor.blackFontColor
+                lab.textAlignment = .left
+                
+                // TODO: Show actual reviews
+                lab.text = "\(reviewArray.count) \(reviewArray.count > 1 ? "Reviews" : "Review")"
+            }
+            return v
+        }
+        
+        return UICollectionReusableView()
     }
     
 }
@@ -95,7 +151,7 @@ private class ReviewCollectionViewCell: UICollectionViewCell {
     var profileImageView: UIImageView!
     var firstNameLabel: UILabel!
     var reviewDateLabel: UILabel!
-    var reviewTextLabel: UILabel!
+    var reviewTextView: UITextView!
     
     
     override init(frame: CGRect) {
@@ -117,7 +173,8 @@ private class ReviewCollectionViewCell: UICollectionViewCell {
         profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
         
         firstNameLabel = UILabel.init()
-        firstNameLabel.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        firstNameLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        firstNameLabel.textColor = UIColor.blackFontColor
         
         firstNameLabel.textColor = UIColor.blackFontColor
         
@@ -129,23 +186,41 @@ private class ReviewCollectionViewCell: UICollectionViewCell {
         firstNameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         
         firstNameLabel.text = "Andrea"
-        firstNameLabel.backgroundColor = .green
+        firstNameLabel.textColor = UIColor.blackFontColor
         
-        
-        reviewDateLabel = UILabel.init()
-        
+        reviewDateLabel = UILabel()
         self.contentView.addSubview(reviewDateLabel)
         
-        reviewDateLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        reviewDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        reviewDateLabel.leadingAnchor.constraint(equalTo: firstNameLabel.leadingAnchor).isActive = true
+        reviewDateLabel.topAnchor.constraint(equalTo: firstNameLabel.bottomAnchor, constant: 4.0).isActive = true
         
+        reviewDateLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
+        reviewDateLabel.text = "2 weeks ago"
         reviewDateLabel.textColor = UIColor.blackFontColor
         
-        reviewDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        reviewTextView = UITextView()
         
-        reviewDateLabel.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 8.0).isActive = true
-        reviewDateLabel.topAnchor.constraint(equalTo: firstNameLabel.bottomAnchor).isActive = true
+        reviewTextView.isUserInteractionEnabled = false
         
-//
+        self.contentView.addSubview(reviewTextView)
+        
+        reviewTextView.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        
+        reviewTextView.textColor = UIColor.blackFontColor
+        
+        reviewTextView.translatesAutoresizingMaskIntoConstraints = false
+        
+        reviewTextView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        reviewTextView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 12.0).isActive = true
+        reviewTextView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        reviewTextView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+        
+        reviewTextView.text = "Could have not asked for a better person to work on my lawn, Larry was on time and punctual. He moved everything down "
+        reviewTextView.textColor = UIColor.blackFontColor
+        reviewTextView.textContainerInset = .zero
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -153,7 +228,19 @@ private class ReviewCollectionViewCell: UICollectionViewCell {
     }
 }
 
-
+private class Review {
+    
+    var name: String!
+    var timeAgo: String!
+    var review: String!
+    
+    init(name: String, timeAgo: String, review: String) {
+        self.name = name
+        self.timeAgo = timeAgo
+        self.review = review
+    }
+    
+}
 
 
 

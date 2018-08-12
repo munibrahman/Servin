@@ -76,6 +76,9 @@ class UserProfileViewController: UIViewController {
 
     @objc func userDidTapReadReviews() {
         print("Read all reviews tapped")
+        
+        let navController = UINavigationController.init(rootViewController: ReviewViewController())
+        self.navigationController?.present(navController, animated: true, completion: nil)
     }
     
     @objc func userDidTapBack() {
