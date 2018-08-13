@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -142,7 +144,16 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func populateInfo() {
-        profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
+        
+        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
+            
+            if let image = response.result.value {
+                self.profileImageView.image = image
+            }
+        }
+        
+        
+//        profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
         
     }
 
@@ -200,8 +211,36 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @objc func saveProfile() {
         // TODO: Save changes here
         print("Saving profile")
+        
+        
+        
+        
+        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
+            
+            let headers: HTTPHeaders = [
+                "Authorization": (session.result?.idToken?.tokenString)!
+            ]
+            
+            
+            
+            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
+            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
+                return nil
+            }
+            
+            Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
+                if let JSON = response.result.value as? NSDictionary {
+                    print(JSON)
+                } else {
+                    let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
+                    print(message)
+                }
+            }
+            
+            return nil
+        })
     }
-    
     
     
     @IBAction func editAboutMePressed(_ sender: UIButton) {

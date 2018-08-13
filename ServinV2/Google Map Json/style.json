@@ -1,6 +1,31 @@
  [
   {
-  "featureType": "administrative.land_parcel",
+  "stylers": [
+              {
+              "saturation": "32"
+              },
+              {
+              "lightness": "-3"
+              },
+              {
+              "visibility": "on"
+              },
+              {
+              "weight": "1.18"
+              }
+              ]
+  },
+  {
+  "featureType": "administrative",
+  "elementType": "labels",
+  "stylers": [
+              {
+              "visibility": "off"
+              }
+              ]
+  },
+  {
+  "featureType": "landscape",
   "elementType": "labels",
   "stylers": [
               {
@@ -12,131 +37,61 @@
   "featureType": "landscape.man_made",
   "stylers": [
               {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "landscape.natural",
-  "stylers": [
+              "saturation": -70
+              },
               {
-              "color": "#e6e6e6"
+              "lightness": 15
               }
               ]
   },
   {
   "featureType": "poi",
-  "elementType": "labels.text",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.business",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.place_of_worship",
-  "stylers": [
-              {
-              "visibility": "on"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.school",
-  "elementType": "geometry",
-  "stylers": [
-              {
-              "visibility": "on"
-              }
-              ]
-  },
-  {
-  "featureType": "poi.school",
   "elementType": "labels",
   "stylers": [
               {
-              "visibility": "on"
+              "visibility": "off"
               }
               ]
   },
   {
   "featureType": "road",
-  "elementType": "labels.icon",
-  "stylers": [
-              {
-              "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "road.arterial",
-  "elementType": "labels.text.fill",
-  "stylers": [
-              {
-              "color": "#666666"
-              }
-              ]
-  },
-  {
-  "featureType": "road.local",
   "elementType": "labels",
   "stylers": [
               {
-              "visibility": "off"
+              "visibility": "simplified"
               }
               ]
   },
   {
   "featureType": "transit",
+  "elementType": "labels",
   "stylers": [
               {
               "visibility": "off"
-              }
-              ]
-  },
-  {
-  "featureType": "transit.line",
-  "stylers": [
-              {
-              "visibility": "on"
-              }
-              ]
-  },
-  {
-  "featureType": "transit.station",
-  "stylers": [
-              {
-              "visibility": "on"
-              }
-              ]
-  },
-  {
-  "featureType": "transit.station.airport",
-  "stylers": [
-              {
-              "visibility": "on"
-              }
-              ]
-  },
-  {
-  "featureType": "transit.station.rail",
-  "stylers": [
-              {
-              "visibility": "on"
               }
               ]
   },
   {
   "featureType": "water",
   "stylers": [
+              {
+              "color": "#9fd3ff"
+              },
+              {
+              "saturation": 100
+              },
+              {
+              "lightness": -15
+              }
+              ]
+  },
+  {
+  "featureType": "water",
+  "elementType": "labels",
+  "stylers": [
+              {
+              "lightness": "12"
+              },
               {
               "visibility": "off"
               }

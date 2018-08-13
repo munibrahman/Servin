@@ -25,6 +25,14 @@ pod 'Eureka'
 #AWS Pods
 pod 'AWSCore', '~> 2.6.0'
 pod 'AWSCognitoIdentityProvider', '~> 2.6.0'
+
+
+#Stripe
+pod 'Stripe'
+
+#cardIO
+pod 'CardIO'
+
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing

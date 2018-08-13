@@ -11,6 +11,7 @@ import GoogleMaps
 import IQKeyboardManagerSwift
 import PinpointKit
 import AWSCognitoIdentityProvider
+import Stripe
 
 let userPoolID = "SampleUserPool"
 
@@ -40,8 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
     
+    private let stripePublishableKey = "pk_test_eLAT9Nvbd7M9F3hnNX2EWO4k"
+    
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // Stripe Key
+        STPPaymentConfiguration.shared().publishableKey = self.stripePublishableKey
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.com.servin"
+        STPPaymentConfiguration.shared().companyName = "Servin"
+        
+        // Google Maps Key
         GMSServices.provideAPIKey(googleMapsApiKey)
         
         // Setup for IQKeyboardManagerSwift

@@ -20,7 +20,7 @@ class SettingsViewController: FormViewController {
     let sections = ["Invite", "Rewards", "Account", "Notifications", "Support", "About", "Logins"]
     let invite = ["Invite Your Friends"]
     let rewards = ["Redeem Servin Credits"]
-    let account = [ "Password", "Payment Methods", "Transaction History", "Multi Factor Authentication"]
+    let account = [ "Password", "Payment Methods", "Payout Methods", "Transaction History", "Multi Factor Authentication"]
     let notifications = ["Push Notifications", "Email and SMS Notifications"]
     let support = ["Help Center", "Report a Problem", "Submit Feedback"]
     let about = ["Ads", "Data Policy", "Open Source Libraries", "Terms"]
@@ -116,7 +116,15 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("Payment Methods") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return RandomViewController()
+                    return PaymentMethodsViewController()
+                }), onDismiss: nil)
+                
+            }
+            
+            <<< ButtonRow("Payout Methods") {
+                $0.title = $0.tag
+                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
+                    return CardFieldViewController()
                 }), onDismiss: nil)
                 
             }
@@ -277,7 +285,28 @@ class SettingsViewController: FormViewController {
                     cell.textLabel?.textAlignment = .left
                     cell.textLabel?.textColor = UIColor.red
                 }).onCellSelection({ (cell, row) in
-                    AppDelegate.defaultUserPool().currentUser()?.signOutAndClearLastKnownUser()
+                    
+                    
+                    let actionController = UIAlertController.init(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    
+                    let cancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+                    let logout = UIAlertAction.init(title: "Logout", style: UIAlertActionStyle.destructive, handler: { (action) in
+                        print("Sign out")
+                        
+                        if let user = AppDelegate.defaultUserPool().currentUser() {
+                            user.signOutAndClearLastKnownUser()
+                            print("Signed out the user")
+                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        }
+                    })
+                    
+                    actionController.addAction(cancel)
+                    actionController.addAction(logout)
+                    
+                    self.present(actionController, animated: true, completion: nil)
+                    
+                    
+                    
                 })
     }
     
