@@ -85,8 +85,7 @@ class SelectCategoriesViewController: UIViewController {
         
         print(finalArray)
         
-        let constant = Constants()
-        let mainVC = constant.getMainContentVC()
+        let mainVC = Constants.getMainContentVC()
         
         self.present(mainVC, animated: true, completion: nil)
         

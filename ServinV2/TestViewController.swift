@@ -25,10 +25,9 @@ class TestViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    
         
-        let constant = Constants()
-        
-        self.present(constant.getMainContentVC(), animated: true, completion: nil)
+        self.present(Constants.getMainContentVC(), animated: true, completion: nil)
         
 //        self.present(UINavigationController.init(rootViewController: EditMapViewController()), animated: true, completion: nil)
     }

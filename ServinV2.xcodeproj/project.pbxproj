@@ -70,6 +70,11 @@
 		8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */; };
 		8BC7D0B32121245700F2CD8F /* CardFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0B22121245700F2CD8F /* CardFieldViewController.swift */; };
 		8BC7D0B52121E8CA00F2CD8F /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */; };
+		8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */; };
+		8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */; };
+		8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */; };
+		8BC7D0C921227B5900F2CD8F /* DeeplinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C421227B5800F2CD8F /* DeeplinkParser.swift */; };
+		8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */; };
 		8BCB896F20DB621C00AF5A65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB896E20DB621C00AF5A65 /* User.swift */; };
 		8BCB897120DB622900AF5A65 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897020DB622900AF5A65 /* Pin.swift */; };
 		8BCB897420DB666200AF5A65 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* Data.swift */; };
@@ -186,6 +191,11 @@
 		8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServinV2.entitlements; sourceTree = "<group>"; };
 		8BC7D0B22121245700F2CD8F /* CardFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardFieldViewController.swift; path = ServinV2/CardFieldViewController.swift; sourceTree = SOURCE_ROOT; };
 		8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
+		8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkManager.swift; sourceTree = "<group>"; };
+		8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkNavigator.swift; sourceTree = "<group>"; };
+		8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationParser.swift; sourceTree = "<group>"; };
+		8BC7D0C421227B5800F2CD8F /* DeeplinkParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkParser.swift; sourceTree = "<group>"; };
+		8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutParser.swift; sourceTree = "<group>"; };
 		8BCB896E20DB621C00AF5A65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BCB897020DB622900AF5A65 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		8BCB897320DB666200AF5A65 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -411,6 +421,9 @@
 			isa = PBXGroup;
 			children = (
 				8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */,
+				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
+				8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */,
+				8BC7D0B62122014B00F2CD8F /* DeepLinks */,
 				8B52724520F81E2D00425717 /* CognitoSettings */,
 				8B78417420B8794A005C87DA /* PannableViewController.swift */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
@@ -421,7 +434,6 @@
 				8BBFFC28209D034500BA5D06 /* Google Map Json */,
 				8B78416D20B86EC1005C87DA /* Side Menu */,
 				8B78416C20B86E9D005C87DA /* Extensions */,
-				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8BFADF6A20EBFB8F001502DB /* Messages */,
 				8B51799220D9A37800774BDE /* My Pins */,
 				8BD3833F20C6049200B4B653 /* Profile */,
@@ -489,6 +501,25 @@
 				8BA645892083305D006EEEC5 /* style.json */,
 			);
 			path = "Google Map Json";
+			sourceTree = "<group>";
+		};
+		8BC7D0B62122014B00F2CD8F /* DeepLinks */ = {
+			isa = PBXGroup;
+			children = (
+				8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */,
+				8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */,
+				8BC7D0C421227B5800F2CD8F /* DeeplinkParser.swift */,
+				8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */,
+				8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */,
+			);
+			path = DeepLinks;
+			sourceTree = "<group>";
+		};
+		8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Stripe-Payments";
 			sourceTree = "<group>";
 		};
 		8BCB897220DB623F00AF5A65 /* Models */ = {
@@ -610,6 +641,9 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -842,6 +876,7 @@
 				8B43C47D2107C6EB004D9D0F /* CustomFloatingTextfield.swift in Sources */,
 				8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */,
 				8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */,
+				8BC7D0C921227B5900F2CD8F /* DeeplinkParser.swift in Sources */,
 				8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */,
 				8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
@@ -862,12 +897,14 @@
 				8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
+				8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */,
 				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
 				8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
 				8BCB897420DB666200AF5A65 /* Data.swift in Sources */,
+				8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */,
 				8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */,
 				8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
@@ -878,6 +915,8 @@
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,
 				8BCB897120DB622900AF5A65 /* Pin.swift in Sources */,
 				8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */,
+				8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */,
+				8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,

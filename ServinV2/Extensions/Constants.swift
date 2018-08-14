@@ -17,9 +17,9 @@ class Constants {
     
     static let googleMapsApiKey = "AIzaSyAGFQhWxsHh3UpGzvoTzB4flwsV_eCYODk"
 
-    fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
+    static fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
     
-    func getMainContentVC() -> MasterPulleyViewController {
+    static func getMainContentVC() -> MasterPulleyViewController {
         
         
         if let pulleyVC = pulleyMasterController {
@@ -40,7 +40,7 @@ class Constants {
         pulleyController.myDiscoveriesViewController = drawerContentVC
         pulleyController.myPostAdViewController = drawerPostAdVC
         
-        self.pulleyMasterController = pulleyController
+        Constants.pulleyMasterController = pulleyController
         return pulleyController
     }
     

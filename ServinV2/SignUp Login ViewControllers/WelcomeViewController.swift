@@ -66,20 +66,20 @@ class WelcomeViewController: UIViewController {
 //                    print(response.)
 //                })
                 
-                let headers: HTTPHeaders = [
-                    "Authorization": (session.result?.idToken?.tokenString)!
-                ]
-                
-                
-                
-                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user", headers: headers).responseJSON(completionHandler: { (response) in
-                    print("Authorized")
-                    print("Request is \(response.request?.allHTTPHeaderFields)")
-                    //print(response.request)
-                    print("result")
-                    print(response.result)
-                    print(response.result.value)
-                })
+//                let headers: HTTPHeaders = [
+//                    "Authorization": (session.result?.idToken?.tokenString)!
+//                ]
+//                
+//                
+//                
+//                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user", headers: headers).responseJSON(completionHandler: { (response) in
+//                    print("Authorized")
+//                    print("Request is \(response.request?.allHTTPHeaderFields)")
+//                    //print(response.request)
+//                    print("result")
+//                    print(response.result)
+//                    print(response.result.value)
+//                })
                 
                 return nil
             })

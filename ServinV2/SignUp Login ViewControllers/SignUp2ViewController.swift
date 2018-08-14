@@ -57,6 +57,8 @@ class SignUp2ViewController: UIViewController {
             
             if let thirdSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController") as? SignUp3ViewController {
                 
+                self.emailAddressTextField.text = self.emailAddressTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                
                 thirdSignUpVC.emailAddress = self.emailAddressTextField.text
                 thirdSignUpVC.firstName = self.firstName
                 thirdSignUpVC.lastName = self.lastName

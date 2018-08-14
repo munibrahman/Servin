@@ -121,8 +121,8 @@ class SignUp3ViewController: UIViewController {
                             
                             // If no confirmation required then just show the app.
                             strongSelf.navigationController?.finishProgress()
-                            let constant = Constants()
-                            strongSelf.present(constant.getMainContentVC(), animated: true, completion: nil)
+//                            let constant = Constants()
+                            strongSelf.present(Constants.getMainContentVC(), animated: true, completion: nil)
                         }
                     }
                     
