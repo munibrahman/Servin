@@ -124,7 +124,7 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("Payout Methods") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return CardFieldViewController()
+                    return PayoutMethodsViewController()
                 }), onDismiss: nil)
                 
             }
