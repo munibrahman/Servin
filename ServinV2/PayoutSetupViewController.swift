@@ -516,6 +516,9 @@ private class PayoutFullNameViewController: UIViewController, UITextFieldDelegat
     
     @objc func userDidPressNext() {
         print("go next")
+        
+        self.navigationController?.pushViewController(PayoutBankAccountInfoViewController(), animated: true)
+        
     }
     
     
@@ -709,9 +712,252 @@ private class PayoutFullNameViewController: UIViewController, UITextFieldDelegat
     
 }
 
+import Macaw
 
 
+class PayoutBankAccountInfoViewController: UIViewController, UITextFieldDelegate {
+    
+    
+    var chequeImageView: UIImageView!
+    
+    var chequeImageViewLeadingAnchor : NSLayoutConstraint?
+    
+    
+    var transitField: UITextField!
+    var instututionField: UITextField!
+    var accountField: UITextField!
+    
+    
+    let textFieldHeight:CGFloat = 50
+    let textFieldFontSize: CGFloat = 21
+    
+    override func loadView() {
+        view = UIView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        setupNavigationBar()
+        setupViews()
+    }
+    
+    func setupViews() {
+        
+        let topLabel = UILabel.init()
+        view.addSubview(topLabel)
+        
+        topLabel.translatesAutoresizingMaskIntoConstraints = false
+        topLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        topLabel.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
+        topLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
+        
+        topLabel.text = "Enter your banking info"
+        topLabel.font = UIFont.systemFont(ofSize: 34, weight: .regular)
+        topLabel.textColor = UIColor.blackFontColor
+        topLabel.numberOfLines = 2
+        
+        topLabel.sizeToFit()
+        
+        let chequeLabel = UILabel()
+        view.addSubview(chequeLabel)
+        
+        chequeLabel.translatesAutoresizingMaskIntoConstraints = false
+        chequeLabel.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 8).isActive = true
+        chequeLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        chequeLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
+        
+        chequeLabel.text = "You can usually find this information on your bank cheque"
+        chequeLabel.textColor = UIColor.blackFontColor
+        chequeLabel.numberOfLines = 10
+        chequeLabel.sizeToFit()
+        
+        chequeImageView = UIImageView()
+        view.addSubview(chequeImageView)
 
+        
+        chequeImageView.translatesAutoresizingMaskIntoConstraints = false
+        chequeImageViewLeadingAnchor =  chequeImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        chequeImageViewLeadingAnchor?.isActive = true
+        chequeImageView.topAnchor.constraint(equalTo: chequeLabel.bottomAnchor, constant: 20).isActive = true
+        chequeImageView.widthAnchor.constraint(equalToConstant: 651).isActive = true
+        chequeImageView.heightAnchor.constraint(equalToConstant: 163).isActive = true
+        
+        chequeImageView.image = #imageLiteral(resourceName: "cheque_normal")
+        
+        
+        
+        transitField = UITextField.init()
+        transitField.borderStyle = .none
+        view.addSubview(transitField)
+        
+        transitField.translatesAutoresizingMaskIntoConstraints = false
+        transitField.topAnchor.constraint(equalTo: chequeImageView.bottomAnchor, constant: 0).isActive = true
+        transitField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        transitField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
+        transitField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        
+        transitField.placeholder = "Transit number"
+        transitField.textColor = UIColor.gray
+        transitField.font = UIFont.systemFont(ofSize: textFieldFontSize)
+        transitField.delegate = self
+        
+        
+        instututionField = UITextField.init()
+        instututionField.borderStyle = .none
+        view.addSubview(instututionField)
+        
+        instututionField.translatesAutoresizingMaskIntoConstraints = false
+        instututionField.topAnchor.constraint(equalTo: transitField.bottomAnchor).isActive = true
+        instututionField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        instututionField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
+        instututionField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        
+        instututionField.placeholder = "Institution number"
+        instututionField.textColor = UIColor.gray
+        instututionField.font = UIFont.systemFont(ofSize: textFieldFontSize)
+        instututionField.delegate = self
+        
+        
+        accountField = UITextField.init()
+        accountField.borderStyle = .none
+        view.addSubview(accountField)
+        
+        accountField.translatesAutoresizingMaskIntoConstraints = false
+        accountField.topAnchor.constraint(equalTo: instututionField.bottomAnchor).isActive = true
+        accountField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16).isActive = true
+        accountField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
+        accountField.heightAnchor.constraint(equalToConstant: textFieldHeight).isActive = true
+        
+        accountField.placeholder = "Account Number"
+        accountField.textColor = UIColor.gray
+        accountField.font = UIFont.systemFont(ofSize: textFieldFontSize)
+        accountField.delegate = self
+    }
+    
+    func setupNavigationBar() {
+        let leftBarItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_white"), style: .plain, target: self, action: #selector(userDidPressBack))
+        leftBarItem.tintColor = .black
+        
+        self.navigationItem.leftBarButtonItem = leftBarItem
+        
+        let rightBarItem = UIBarButtonItem.init(title: "Next", style: .plain, target: self, action: #selector(userDidPressNext))
+        rightBarItem.tintColor = .black
+        
+        self.navigationItem.rightBarButtonItem = rightBarItem
+        
+    }
+    
+    @objc func userDidPressBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func userDidPressNext() {
+        print("go next")
+        
+        print("Routing Number \(transitField.text)\(instututionField.text)")
+        print("Account Number \(accountField.text)")
+        
+    }
+    
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if textField.textColor == UIColor.gray {
+            textField.textColor = UIColor.blackFontColor
+            textField.text = nil
+        }
+        
+        if textField == transitField {
+            
+            chequeImageViewLeadingAnchor?.constant = 0
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.chequeImageView.image = #imageLiteral(resourceName: "transit_cheque")
+                self.chequeImageView.superview?.layoutIfNeeded()
+            })
+            
+        } else if textField == instututionField {
+            
+            chequeImageViewLeadingAnchor?.constant = -80
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.chequeImageView.image = #imageLiteral(resourceName: "institution_cheque")
+                self.chequeImageView.superview?.layoutIfNeeded()
+            })
+            
+            
+        } else if textField == accountField {
+            
+            chequeImageViewLeadingAnchor?.constant = -200
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.chequeImageView.image = #imageLiteral(resourceName: "account_cheque")
+                self.chequeImageView.superview?.layoutIfNeeded()
+            })
+            
+        }
+    }
+    
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if textField.text == nil {
+            textField.textColor = UIColor.gray
+            
+            if textField == transitField {
+                textField.text = "Transit Number"
+            } else if textField == instututionField {
+                textField.text = "Institution Number"
+            } else if textField == accountField {
+                textField.text = "Account Number"
+            }
+            
+        }
+        
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        transitField.addBottomBorderWithColor(color: UIColor.black.withAlphaComponent(0.4), width: 1)
+        instututionField.addBottomBorderWithColor(color: UIColor.black.withAlphaComponent(0.4), width: 1)
+        accountField.addBottomBorderWithColor(color: UIColor.black.withAlphaComponent(0.4), width: 1)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    @objc func keyboardWillAppear() {
+        print("Keyboard will appear")
+    }
+    
+    @objc func keyboardWillDisappear() {
+        print("Keyboard will dissapear")
+        
+        self.chequeImageView.image = #imageLiteral(resourceName: "cheque_normal")
+        
+        if let anchor = chequeImageViewLeadingAnchor {
+            if anchor.constant != 0 {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.chequeImageViewLeadingAnchor?.constant = 0
+                    self.chequeImageView.superview?.layoutIfNeeded()
+                })
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
+}
 
 
 

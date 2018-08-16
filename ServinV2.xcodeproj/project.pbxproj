@@ -80,6 +80,8 @@
 		8BCB897420DB666200AF5A65 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* Data.swift */; };
 		8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */; };
 		8BD2E5892124C47C00DFCFC6 /* PayoutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */; };
+		8BD2E58B2125CF0D00DFCFC6 /* account.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8BD2E58A2125CF0C00DFCFC6 /* account.svg */; };
+		8BD2E58D2125CF1600DFCFC6 /* routing.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8BD2E58C2125CF1600DFCFC6 /* routing.svg */; };
 		8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */; };
 		8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3834420CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift */; };
 		8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BD3834520CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib */; };
@@ -202,6 +204,8 @@
 		8BCB897320DB666200AF5A65 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPinsViewController.swift; sourceTree = "<group>"; };
 		8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutSetupViewController.swift; sourceTree = "<group>"; };
+		8BD2E58A2125CF0C00DFCFC6 /* account.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = account.svg; sourceTree = "<group>"; };
+		8BD2E58C2125CF1600DFCFC6 /* routing.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = routing.svg; sourceTree = "<group>"; };
 		8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlavePostAdViewController.swift; sourceTree = "<group>"; };
 		8BD3834420CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAdImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BD3834520CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostAdImageCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 		8BA1F0F720B2AF50000EA3AC /* SVG Files */ = {
 			isa = PBXGroup;
 			children = (
+				8BD2E58C2125CF1600DFCFC6 /* routing.svg */,
+				8BD2E58A2125CF0C00DFCFC6 /* account.svg */,
 				8B81591F20AF746C00EDA1FC /* >_clear.svg */,
 				8B6B7DFE20ADB56400867F18 /* logo_servin.svg */,
 			);
@@ -706,6 +712,8 @@
 				8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */,
 				8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */,
 				8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */,
+				8BD2E58D2125CF1600DFCFC6 /* routing.svg in Resources */,
+				8BD2E58B2125CF0D00DFCFC6 /* account.svg in Resources */,
 				8BA6458A2083305D006EEEC5 /* style.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
