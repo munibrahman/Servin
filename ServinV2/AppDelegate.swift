@@ -106,9 +106,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         
         
-        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+//        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: ReviewViewController())
+        let initialViewController = UINavigationController.init(rootViewController: PayoutSetupViewController())
         
         
         //let initialViewController = InitialViewController()
