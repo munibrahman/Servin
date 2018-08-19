@@ -98,6 +98,7 @@
 		8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */; };
 		8BF2AF0C2126267D0073B139 /* PayoutMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0B2126267D0073B139 /* PayoutMethodsViewController.swift */; };
 		8BF2AF0E2126314C0073B139 /* IdentificationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */; };
+		8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1721273E060073B139 /* MockCustomerContext.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -221,6 +222,7 @@
 		8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForwardMacawView.swift; sourceTree = "<group>"; };
 		8BF2AF0B2126267D0073B139 /* PayoutMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethodsViewController.swift; sourceTree = "<group>"; };
 		8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationRequestViewController.swift; sourceTree = "<group>"; };
+		8BF2AF1721273E060073B139 /* MockCustomerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCustomerContext.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -561,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */,
+				8BF2AF1721273E060073B139 /* MockCustomerContext.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -909,6 +912,7 @@
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
+				8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */,
 				8BC7D0B52121E8CA00F2CD8F /* PaymentMethodsViewController.swift in Sources */,
 				8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,

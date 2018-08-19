@@ -99,7 +99,7 @@ class PayoutMethodsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! PayoutTableViewCell
-        cell.titleLabel.text = "No payment methods"
+        cell.titleLabel.text = "No payout methods"
         return cell
     }
     

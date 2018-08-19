@@ -437,6 +437,9 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
     var newPassword: CustomFloatingTextfield!
     var newPasswordConfirm: CustomFloatingTextfield!
     
+    var progressBarButton: UIBarButtonItem!
+    var backButton: UIBarButtonItem!
+    
     override func loadView() {
         view = UIView()
     }
@@ -449,9 +452,19 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
         
         setupViews()
         setupNavBar()
+        
+        self.navigationItem.title = "Change Password"
     }
     
     func setupViews() {
+        
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.black
+        progressSpinner.startAnimating()
+        
+        progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        
+        
         currentPassword = CustomFloatingTextfield.init()
         newPassword = CustomFloatingTextfield.init()
         newPasswordConfirm = CustomFloatingTextfield.init()
@@ -478,35 +491,98 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
         view.addSubview(newPasswordConfirm)
         
         currentPassword.translatesAutoresizingMaskIntoConstraints = false
-        currentPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
-        currentPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        currentPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0).isActive = true
+        currentPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0).isActive = true
         currentPassword.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor, constant: 20.0).isActive = true
         currentPassword.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         
         newPassword.translatesAutoresizingMaskIntoConstraints = false
-        newPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
-        newPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        newPassword.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0).isActive = true
+        newPassword.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0).isActive = true
         newPassword.topAnchor.constraint(equalTo: currentPassword.bottomAnchor).isActive = true
         newPassword.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
         
         newPasswordConfirm.translatesAutoresizingMaskIntoConstraints = false
-        newPasswordConfirm.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 12.0).isActive = true
-        newPasswordConfirm.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        newPasswordConfirm.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 16.0).isActive = true
+        newPasswordConfirm.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16.0).isActive = true
         newPasswordConfirm.topAnchor.constraint(equalTo: newPassword.bottomAnchor).isActive = true
         newPasswordConfirm.heightAnchor.constraint(equalToConstant: 50.0).isActive = true
     }
     
     
+    var doneButton: UIBarButtonItem!
+    
     func setupNavBar() {
-        let nextButton = UIBarButtonItem.init(title: "Done", style: .plain, target: self, action: #selector(updatePassword))
-        self.navigationItem.rightBarButtonItem = nextButton
+        doneButton = UIBarButtonItem.init(title: "Done", style: .plain, target: self, action: #selector(changePassword))
+        self.navigationItem.rightBarButtonItem = doneButton
     }
     
-    @objc func updatePassword() {
+    @objc func changePassword() {
         // TODO: Send password request here.
         
-        self.navigationController?.popViewController(animated: true)
+        guard let currentText = currentPassword.text, !currentText.isEmpty else {
+            
+            currentPassword.errorText = "This field can't be left empty"
+            currentPassword.showError()
+            return
+        }
+        
+        guard let newText = newPassword.text, !newText.isEmpty else {
+            
+            newPassword.errorText = "This field can't be left empty"
+            newPassword.showError()
+            return
+        }
+        
+        guard let newTextConfirm = newPasswordConfirm.text, !newTextConfirm.isEmpty else {
+            
+            newPasswordConfirm.errorText = "This field can't be left empty"
+            newPasswordConfirm.showError()
+            
+            return
+        }
+        
+        if newText != newTextConfirm {
+            
+            newPassword.showError()
+            
+            
+            newPasswordConfirm.errorText = "The passwords do not match"
+            newPasswordConfirm.showError()
+            
+            return
+        }
+        
+        self.navigationItem.rightBarButtonItem = progressBarButton
+        
+        
+        AppDelegate.defaultUserPool().currentUser()?.changePassword(currentPassword.text!, proposedPassword: newPassword.text!).continueWith(block: { [weak self] (task: AWSTask) -> Any? in
+            guard let strongSelf = self else {return nil}
+            DispatchQueue.main.async(execute: {
+
+                strongSelf.navigationItem.rightBarButtonItem = strongSelf.doneButton
+
+                if let error = task.error as NSError? {
+
+
+                    let alertController = UIAlertController(title: "Error",
+                                                            message: error.userInfo["message"] as? String,
+                                                            preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+
+                    strongSelf.present(alertController, animated: true, completion:  nil)
+                } else {
+
+                    strongSelf.navigationController?.popViewController(animated: true)
+
+                }
+            })
+            return nil
+        })
+        
+        
     }
     
 }

@@ -11,13 +11,8 @@ import Macaw
 
 class GoForwardMacawView: UIView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var progressView: UIActivityIndicatorView!
+    var svgView: SVGView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,15 +25,35 @@ class GoForwardMacawView: UIView {
     }
     
     func setupViews() {
-        let svgView = SVGView.init(frame: self.bounds)
+        
+        progressView = UIActivityIndicatorView.init(frame: self.bounds)
+        progressView.color = .white
+        progressView.startAnimating()
+        progressView.backgroundColor = .clear
+        
+        self.svgView = SVGView.init(frame: self.bounds)
         svgView.fileName = ">_clear"
         svgView.contentMode = .scaleAspectFit
+        progressView.isUserInteractionEnabled = false
         
         self.backgroundColor = .clear
         svgView.backgroundColor = .clear
         svgView.isUserInteractionEnabled = true
         self.isUserInteractionEnabled = true
         self.addSubview(svgView)
+    }
+    
+    func toggleProgress(showProgress: Bool) {
+        if showProgress {
+            self.addSubview(progressView)
+            
+            svgView.removeFromSuperview()
+            
+        } else {
+            self.addSubview(svgView)
+            
+            progressView.removeFromSuperview()
+        }
     }
     
 }

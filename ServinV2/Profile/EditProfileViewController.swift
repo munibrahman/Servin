@@ -145,13 +145,29 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func populateInfo() {
         
-        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
+        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
             
-            if let image = response.result.value {
-                self.profileImageView.image = image
-            }
-        }
-        
+            let headers: HTTPHeaders = [
+                "Authorization": (session.result?.idToken?.tokenString)!
+            ]
+            
+            
+            
+            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
+            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            
+            Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
+                if let image = response.result.value {
+                    self.profileImageView.image = image
+                } else {
+                    print(response.data)
+                    print(response)
+                }
+            })
+            
+            return nil
+        })
         
 //        profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
         
@@ -223,7 +239,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             
             
-            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
+            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
             url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
             guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
                 return nil

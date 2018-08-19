@@ -14,7 +14,7 @@ import AWSCognitoIdentityProvider
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var nextButtonSVGView: UIView!
+    @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
     var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
@@ -48,6 +48,8 @@ class SignUp3ViewController: UIViewController {
     @objc func goForward () {
         
         
+        
+        
         if passwordTextField.text?.isEmpty ?? true {
             let alertController = UIAlertController.init(title: nil, message: "Are you sure that's correct?", preferredStyle: .alert)
             
@@ -58,6 +60,7 @@ class SignUp3ViewController: UIViewController {
             
         } else {
             // Do the confirmations here...
+            
             
             
             guard let userNameValue = self.emailAddress, !userNameValue.isEmpty,
@@ -92,10 +95,17 @@ class SignUp3ViewController: UIViewController {
                 attributes.append(given_name)
             }
             
+            nextButtonSVGView.toggleProgress(showProgress: true)
+            nextButtonSVGView.isUserInteractionEnabled = false
+            
             //sign up the user
             self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
                 guard let strongSelf = self else { return nil }
                 DispatchQueue.main.async(execute: {
+                    
+                    strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
+                    strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
+                    
                     if let error = task.error as NSError? {
                         let alertController = UIAlertController(title: "Error",
                                                                 message: error.userInfo["message"] as? String,
