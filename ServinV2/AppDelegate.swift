@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: IdentificationRequestViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: PaymentViewController())
         
         
         //let initialViewController = InitialViewController()

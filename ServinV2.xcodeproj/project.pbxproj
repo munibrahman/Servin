@@ -68,7 +68,6 @@
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
 		8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */; };
-		8BC7D0B52121E8CA00F2CD8F /* PaymentMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */; };
 		8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */; };
 		8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */; };
 		8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */; };
@@ -96,9 +95,9 @@
 		8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BEE79BF20F56A0600DB768C /* MFAViewController.xib */; };
 		8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */; };
 		8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */; };
-		8BF2AF0C2126267D0073B139 /* PayoutMethodsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0B2126267D0073B139 /* PayoutMethodsViewController.swift */; };
 		8BF2AF0E2126314C0073B139 /* IdentificationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */; };
 		8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1721273E060073B139 /* MockCustomerContext.swift */; };
+		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -192,7 +191,6 @@
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
 		8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServinV2.entitlements; sourceTree = "<group>"; };
-		8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodsViewController.swift; sourceTree = "<group>"; };
 		8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkManager.swift; sourceTree = "<group>"; };
 		8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkNavigator.swift; sourceTree = "<group>"; };
 		8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationParser.swift; sourceTree = "<group>"; };
@@ -220,9 +218,9 @@
 		8BEE79BF20F56A0600DB768C /* MFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MFAViewController.xib; sourceTree = "<group>"; };
 		8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailActionSheetPresenter.swift; sourceTree = "<group>"; };
 		8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForwardMacawView.swift; sourceTree = "<group>"; };
-		8BF2AF0B2126267D0073B139 /* PayoutMethodsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethodsViewController.swift; sourceTree = "<group>"; };
 		8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationRequestViewController.swift; sourceTree = "<group>"; };
 		8BF2AF1721273E060073B139 /* MockCustomerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCustomerContext.swift; sourceTree = "<group>"; };
+		8BF2AF19212A543C0073B139 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,7 +551,6 @@
 			isa = PBXGroup;
 			children = (
 				8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */,
-				8BF2AF0B2126267D0073B139 /* PayoutMethodsViewController.swift */,
 				8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */,
 			);
 			path = Payout;
@@ -562,8 +559,8 @@
 		8BF2AF0A2126266B0073B139 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				8BC7D0B42121E8CA00F2CD8F /* PaymentMethodsViewController.swift */,
 				8BF2AF1721273E060073B139 /* MockCustomerContext.swift */,
+				8BF2AF19212A543C0073B139 /* PaymentViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -913,7 +910,6 @@
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
 				8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */,
-				8BC7D0B52121E8CA00F2CD8F /* PaymentMethodsViewController.swift in Sources */,
 				8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
@@ -925,6 +921,7 @@
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
 				8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */,
+				8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */,
 				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
 				8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
@@ -947,7 +944,6 @@
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,
-				8BF2AF0C2126267D0073B139 /* PayoutMethodsViewController.swift in Sources */,
 				8B43D38D20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift in Sources */,
 				8B45C20420D74355009FF0F9 /* LocationManager.swift in Sources */,
 				8BD3834D20CBD03D00B4B653 /* CustomCell_Instagram.swift in Sources */,

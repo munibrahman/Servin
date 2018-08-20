@@ -16,9 +16,9 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     
     var mainVC: MasterPulleyViewController? = nil
     
-    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "SavedPinsViewController", "SettingsViewController"]
-    let labels = ["Messages", "Drop a Pin", "My Pins", "Saved Pins", "Settings"]
-    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "savedPins_icon"), #imageLiteral(resourceName: "settings_icon")]
+    let viewControllers = ["MessageViewController", "DropPin" , "MyPinsTableViewController", "SavedPinsViewController","Payments", "SettingsViewController"]
+    let labels = ["Messages", "Drop a Pin", "My Pins", "Saved Pins", "Payment", "Settings"]
+    let icons = [#imageLiteral(resourceName: "messages_icon"), #imageLiteral(resourceName: "drop_pin_icon"), #imageLiteral(resourceName: "my_pin_icon"), #imageLiteral(resourceName: "savedPins_icon"),#imageLiteral(resourceName: "payments_icon") , #imageLiteral(resourceName: "settings_icon")]
     
     fileprivate let reuseIdentifier = "NormalCell"
     fileprivate let profileCellReuseIdentifier = "ProfileCell"
@@ -32,6 +32,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupConstraints()
+        
         optionsTableViewController.delegate = self
         optionsTableViewController.dataSource = self
         
@@ -43,22 +45,6 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         optionsTableViewController.register(UINib.init(nibName: "SideMenuProfileTableViewCell", bundle: nil), forCellReuseIdentifier: profileCellReuseIdentifier)
         optionsTableViewController.register(UINib.init(nibName: "SideMenuServinLogoTableViewCell", bundle: nil), forCellReuseIdentifier: servinCellReuseIdentifier)
         // Do any additional setup after loading the view.
-        
-        
-        print("Top bar height with nav controller\(self.topbarHeight)")
-        
-        if let navVc = self.navigationController {
-            print("Im inside a nav controller")
-            navVc.navigationBar.isHidden = true
-            
-            print("Top bar height without nav controller\(self.topbarHeight)")
-        }
-        
-        print("Screen height \(UIScreen.main.bounds.size.height)")
-        print("My view heigt \(self.view.frame.size.height)")
-        print("My status bar height \(self.statusBarHeight)")
-        print("My table view's height \(self.optionsTableViewController.frame.size.height)")
-        
         
         let totalSize = (cellHeight * CGFloat(icons.count)) + topCellHeight + bottomProfileCellHeight
         
@@ -84,20 +70,25 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             })
         }
         
+        optionsTableViewController.backgroundColor = .red
         
         
     }
     
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func setupConstraints() {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        optionsTableViewController.translatesAutoresizingMaskIntoConstraints = false
+        optionsTableViewController.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        optionsTableViewController.topAnchor.constraint(equalTo: self.view.layoutMarginsGuide.topAnchor).isActive = true
+        optionsTableViewController.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        optionsTableViewController.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor).isActive = true
     }
+    
     
     // MARK: - DataSource & Delegate
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1 {
-            return 4
+            return 5
         } else {
             return 1
         }
@@ -112,6 +103,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             cell.selectionStyle = .none
             cell.imageView?.clipsToBounds = true
             cell.contentView.clipsToBounds = true
+            
             return cell
             
         case 1:
@@ -218,21 +210,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             
             SideMenuManager.default.menuLeftNavigationController?.dismiss(animated: true, completion: {
-                
-                //                if indexPath.section == 1 && indexPath.row == 1 {
-                //                    print("Logout")
-                //                    mainViewController.present((self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController"))!, animated: true, completion: nil)
-                //                } else {
-                //                    let navController = UINavigationController.init(rootViewController: (self.storyboard?.instantiateViewController(withIdentifier: self.viewControllers[(indexPath.section * 4) + indexPath.row]))!)
-                //
-                //                    mainViewController.present(navController, animated: true, completion: nil)
-                //                }
-                
-    
-                print("Top most VC")
-                print(UIApplication.topViewController())
-                
-                
+            
                 switch indexPath.section {
                 case 0:
                     print("Pressed on the servin logo")
@@ -246,6 +224,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                         if let myVC = self.mainVC {
                             myVC.myMapViewController?.dropAPin()
                         }
+                    case 4:
+                        mainViewController.present(UINavigationController.init(rootViewController: PaymentViewController()), animated: true, completion: nil)
                     default:
                         print("Open the correct VC")
                         
@@ -275,23 +255,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                 
             })
             
-            
-            
-            
         }
         
-        
-        
-        
-        
     }
-    /*
-     // MARK: - Navigation
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

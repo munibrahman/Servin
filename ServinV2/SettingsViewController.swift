@@ -113,18 +113,10 @@ class SettingsViewController: FormViewController {
                 }), onDismiss: nil)
                 
             }
-            <<< ButtonRow("Payment Methods") {
+            <<< ButtonRow("Payment") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return PaymentMethodsViewController()
-                }), onDismiss: nil)
-                
-            }
-            
-            <<< ButtonRow("Payout Methods") {
-                $0.title = $0.tag
-                $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return PayoutMethodsViewController()
+                    return PaymentViewController()
                 }), onDismiss: nil)
                 
             }
