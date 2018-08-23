@@ -33,9 +33,9 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         myPinsTableView.rowHeight = 104.0
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
         
-        Data.init()
+        ServinData.init()
         
-        myPins = Data.me._pinsOnMap
+        myPins = ServinData.me._pinsOnMap
     }
     
     func setupNavigationController() {

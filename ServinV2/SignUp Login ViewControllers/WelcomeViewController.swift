@@ -10,6 +10,8 @@ import UIKit
 import Macaw
 import AWSCognitoIdentityProvider
 import Alamofire
+import JWTDecode
+import SwiftyJSON
 
 class WelcomeViewController: UIViewController {
     
@@ -50,15 +52,54 @@ class WelcomeViewController: UIViewController {
         if (user?.isSignedIn)! {
             print("Current User is signed in")
              print(user?.username)
-            // Show the main VC...
-//            let constant = Constants()
-//            self.present(constant.getMainContentVC(), animated: false, completion: nil)
             
             
             user?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
                 print("ID Token \(session.result?.idToken?.tokenString)")
                 print("Access Token \(session.result?.accessToken?.tokenString)")
                 print("Refresh Token \(session.result?.refreshToken?.tokenString)")
+                
+                if let idToken = session.result?.idToken {
+                    
+                    let jwt = try? decode(jwt: idToken.tokenString)
+                    
+                    if let jwtokenized = jwt {
+                        print(jwtokenized.body)
+                        
+                        if let givenName = jwtokenized.body["given_name"] as? String {
+                            DefaultsWrapper.setString(key: Key.firstName, value: givenName)
+                        }
+                        
+                        if let familyName = jwtokenized.body["family_name"] as? String {
+                            DefaultsWrapper.setString(key: Key.lastName, value: familyName)
+                        }
+                        
+                        
+                    }
+                    
+                }
+                
+        let identityProvider = AWSCognitoIdentityProvider.default()
+
+
+        let requestAttributeChange = AWSCognitoIdentityProviderAdminUpdateUserAttributesRequest()
+        requestAttributeChange?.username = user?.username
+        requestAttributeChange?.userPoolId = AppDelegate.defaultUserPool().userPoolConfiguration.poolId
+
+        let attribute = AWSCognitoIdentityProviderAttributeType.init()
+        attribute?.name = "given_name"
+        attribute?.value = "TEST"
+
+        if let att = attribute {
+
+            print("Change attribute")
+            requestAttributeChange?.userAttributes = [att]
+
+            identityProvider.adminUpdateUserAttributes(requestAttributeChange!).continueWith(block: { (res) -> Any? in
+                print(res.error)
+            })
+        }
+                
                 
                 
 //                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user").response(completionHandler: { (response) in

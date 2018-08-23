@@ -75,7 +75,7 @@
 		8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */; };
 		8BCB896F20DB621C00AF5A65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB896E20DB621C00AF5A65 /* User.swift */; };
 		8BCB897120DB622900AF5A65 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897020DB622900AF5A65 /* Pin.swift */; };
-		8BCB897420DB666200AF5A65 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* Data.swift */; };
+		8BCB897420DB666200AF5A65 /* ServinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* ServinData.swift */; };
 		8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */; };
 		8BD2E5892124C47C00DFCFC6 /* PayoutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */; };
 		8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */; };
@@ -98,6 +98,7 @@
 		8BF2AF0E2126314C0073B139 /* IdentificationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */; };
 		8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1721273E060073B139 /* MockCustomerContext.swift */; };
 		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
+		8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -198,7 +199,7 @@
 		8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutParser.swift; sourceTree = "<group>"; };
 		8BCB896E20DB621C00AF5A65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8BCB897020DB622900AF5A65 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
-		8BCB897320DB666200AF5A65 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		8BCB897320DB666200AF5A65 /* ServinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServinData.swift; sourceTree = "<group>"; };
 		8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPinsViewController.swift; sourceTree = "<group>"; };
 		8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutSetupViewController.swift; sourceTree = "<group>"; };
 		8BD3834020C9D2F200B4B653 /* SlavePostAdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlavePostAdViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 		8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationRequestViewController.swift; sourceTree = "<group>"; };
 		8BF2AF1721273E060073B139 /* MockCustomerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCustomerContext.swift; sourceTree = "<group>"; };
 		8BF2AF19212A543C0073B139 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsWrapper.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -454,7 +456,7 @@
 				8BCB897220DB623F00AF5A65 /* Models */,
 				8B43C47C2107C6EB004D9D0F /* CustomFloatingTextfield.swift */,
 				8BF2AF0A2126266B0073B139 /* Payment */,
-				8BF2AF09212626640073B139 /* Payout */,
+				8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -531,7 +533,7 @@
 			children = (
 				8BCB896E20DB621C00AF5A65 /* User.swift */,
 				8BCB897020DB622900AF5A65 /* Pin.swift */,
-				8BCB897320DB666200AF5A65 /* Data.swift */,
+				8BCB897320DB666200AF5A65 /* ServinData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -559,6 +561,7 @@
 		8BF2AF0A2126266B0073B139 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				8BF2AF09212626640073B139 /* Payout */,
 				8BF2AF1721273E060073B139 /* MockCustomerContext.swift */,
 				8BF2AF19212A543C0073B139 /* PaymentViewController.swift */,
 			);
@@ -798,6 +801,7 @@
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
+				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
 				"${BUILT_PRODUCTS_DIR}/KYNavigationProgress/KYNavigationProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Macaw/Macaw.framework",
 				"${BUILT_PRODUCTS_DIR}/PinpointKit/PinpointKit.framework",
@@ -819,6 +823,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYNavigationProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Macaw.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinpointKit.framework",
@@ -927,7 +932,7 @@
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
-				8BCB897420DB666200AF5A65 /* Data.swift in Sources */,
+				8BCB897420DB666200AF5A65 /* ServinData.swift in Sources */,
 				8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */,
 				8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */,
 				8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */,
@@ -949,6 +954,7 @@
 				8BD3834D20CBD03D00B4B653 /* CustomCell_Instagram.swift in Sources */,
 				8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */,
 				8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */,
+				8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

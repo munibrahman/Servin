@@ -25,7 +25,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     let pinsNearbyCellIdentifier = "PinsNearbyCell"
     let recommendedPinsCellIdentifier = "RecommendedPinsCell"
     
-    let recommendedCellCount = Data.allPins.count
+    let recommendedCellCount = ServinData.allPins.count
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,7 +176,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == pinsNearbyCollectionView {
-            return Data.allPins.count
+            return ServinData.allPins.count
         } else {
             return recommendedCellCount
         }
@@ -186,20 +186,20 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         
         if collectionView == pinsNearbyCollectionView {
             let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: pinsNearbyCellIdentifier, for: indexPath) as! PinsNearbyCollectionViewCell
-            myCell.imageView.image = Data.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "room1")
-            myCell.titleLabel.text = Data.allPins[indexPath.row]._title ?? " "
-            myCell.priceLabel.text = "$ \(Data.allPins[indexPath.row]._price ?? 0)"
+            myCell.imageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "room1")
+            myCell.titleLabel.text = ServinData.allPins[indexPath.row]._title ?? " "
+            myCell.priceLabel.text = "$ \(ServinData.allPins[indexPath.row]._price ?? 0)"
             myCell.distanceLabel.text = "4 mins away"
             
             return myCell
         } else {
             let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedPinsCellIdentifier, for: indexPath) as! SavedPinsCollectionViewCell
             
-            myCell.pinImageView.image = Data.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
-            myCell.pinTitle.text = Data.allPins[indexPath.row]._title ?? " "
-            myCell.pinPrice.text = "$ \(Data.allPins[indexPath.row]._price ?? 0)"
+            myCell.pinImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
+            myCell.pinTitle.text = ServinData.allPins[indexPath.row]._title ?? " "
+            myCell.pinPrice.text = "$ \(ServinData.allPins[indexPath.row]._price ?? 0)"
             myCell.timeAway.text = "5 mins away"
-            myCell.isSaved = Data.allPins[indexPath.row].isSaved
+            myCell.isSaved = ServinData.allPins[indexPath.row].isSaved
             return myCell
         }
         
@@ -210,7 +210,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         if collectionView == pinsNearbyCollectionView {
             if let parentVC = self.parent {
                 let discoveryVC = UserDiscoveryViewController()
-                discoveryVC.pin = Data.allPins[indexPath.row]
+                discoveryVC.pin = ServinData.allPins[indexPath.row]
                 parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
             }
         }

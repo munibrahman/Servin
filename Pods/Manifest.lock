@@ -21,6 +21,7 @@ PODS:
     - ImageSlideshow/Core (= 1.6.1)
   - ImageSlideshow/Core (1.6.1)
   - IQKeyboardManagerSwift (6.0.4)
+  - JWTDecode (2.1.1)
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
     - SWXMLHash
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - GooglePlaces
   - ImageSlideshow (~> 1.6)
   - IQKeyboardManagerSwift
+  - JWTDecode (~> 2.1)
   - KYNavigationProgress
   - Macaw (= 0.9.1)
   - PinpointKit
@@ -69,6 +71,7 @@ SPEC REPOS:
     - GooglePlaces
     - ImageSlideshow
     - IQKeyboardManagerSwift
+    - JWTDecode
     - KYNavigationProgress
     - Macaw
     - PinpointKit
@@ -92,6 +95,7 @@ SPEC CHECKSUMS:
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   ImageSlideshow: f0f33e1a20668e83d77f5fb7729e4ae4437c0759
   IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
+  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
   PinpointKit: d1196cba6acc77fb76af50155f816228f03eaa9c
@@ -102,6 +106,6 @@ SPEC CHECKSUMS:
   SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
 
-PODFILE CHECKSUM: a7e5dc6658c4d8f0283b0b5806add7a2e454535c
+PODFILE CHECKSUM: 3bd030ef58a361b49c778d03eaf9a9ce07488c6a
 
 COCOAPODS: 1.5.0

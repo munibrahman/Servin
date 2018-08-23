@@ -40,7 +40,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
             let alertController = UIAlertController(title: "Password Field Empty",
                                                     message: "Please enter a password of your choice.",
                                                     preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             self.present(alertController, animated: true, completion:  nil)
@@ -48,19 +48,26 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         }
         
         if confirmProposedPassword.text != proposedPassword.text {
-            let alertController = UIAlertController(title: "Password don't match",
+            let alertController = UIAlertController(title: "Password incorrect",
                                                     message: "Please make sure that you entered the same password.",
                                                     preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             self.present(alertController, animated: true, completion:  nil)
         }
         
+        nextButtonSVGView.toggleProgress(showProgress: true)
+        nextButtonSVGView.isUserInteractionEnabled = false
+        
         //confirm forgot password with input from ui.
         self.user?.confirmForgotPassword(confirmationCodeValue, password: self.proposedPassword.text!).continueWith {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: {
+                
+                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
+                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
+                
                 if let error = task.error as NSError? {
                     let alertController = UIAlertController(title: "Cannot Reset Password",
                                                             message: error.userInfo["message"] as? String,
@@ -73,7 +80,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
                     
                     let presentingController = strongSelf.presentingViewController
                     strongSelf.presentingViewController?.dismiss(animated: true, completion: {
-                        let alert = UIAlertController(title: "Password Reset", message: "Password reset.  Please log into the account with your email and new password.", preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Password Reset", message: "Password reset complete. Please log into the account with your email and new password.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         presentingController?.present(alert, animated: true, completion: nil)
                         
@@ -127,5 +134,19 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
     @objc func barButtonPressed() {
         _ = self.navigationController?.popViewController(animated: true)
     }
-
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == confirmationCode {
+            proposedPassword.becomeFirstResponder()
+            return false
+        } else if textField == proposedPassword {
+            confirmProposedPassword.becomeFirstResponder()
+            return false
+        } else if textField == confirmProposedPassword {
+            goForward()
+            return false
+        }
+        
+        return true
+    }
 }

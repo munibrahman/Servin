@@ -65,8 +65,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         firstNameTextField.backgroundColor = .clear
         firstNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
         
+        firstNameTextField.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
+        
         lastNameTextField.backgroundColor = .clear
         lastNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
+        lastNameTextField.text = DefaultsWrapper.getString(key: Key.lastName, defaultValue: "")
         
         schoolTextField.backgroundColor = .clear
         schoolTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)

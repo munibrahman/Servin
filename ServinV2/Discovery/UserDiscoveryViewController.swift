@@ -420,9 +420,9 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             cell.userUniversityLabel.text = "University Of Calgary"
             
             if let myPin = pin {
-                cell.userImageView.image = Data.arrayOfUsers.first?._profilePicture
-                cell.userFirstNameLabel.text = Data.arrayOfUsers.first?._firstName
-                cell.userUniversityLabel.text = Data.arrayOfUsers.first?._institution
+                cell.userImageView.image = ServinData.arrayOfUsers.first?._profilePicture
+                cell.userFirstNameLabel.text = ServinData.arrayOfUsers.first?._firstName
+                cell.userUniversityLabel.text = ServinData.arrayOfUsers.first?._institution
             }
             
             

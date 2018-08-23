@@ -44,7 +44,7 @@ class ResetPasswordViewController: UIViewController {
     @objc func goForward () {
         guard let username = self.emailTextField.text, !username.isEmpty else {
             
-            let alertController = UIAlertController(title: "Missing UserName",
+            let alertController = UIAlertController(title: "Missing email",
                                                     message: "Please enter a valid user name.",
                                                     preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -54,10 +54,17 @@ class ResetPasswordViewController: UIViewController {
             return
         }
         
+        nextButtonSVGView.toggleProgress(showProgress: true)
+        nextButtonSVGView.isUserInteractionEnabled = false
+        
         self.user = AppDelegate.defaultUserPool().getUser(self.emailTextField.text!)
         self.user?.forgotPassword().continueWith{[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else {return nil}
             DispatchQueue.main.async(execute: {
+                
+                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
+                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
+                
                 if let error = task.error as NSError? {
                     
                     // Error in resetting the passoword

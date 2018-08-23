@@ -72,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup cognito
         setupCognitoUserPool()
         
-        let data = Data.init()
+        let data = ServinData.init()
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
         showFirstViewController()
 
@@ -88,11 +88,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let clientSecret:String = self.cognitoConfig!.getClientSecret()
         let region:AWSRegionType = self.cognitoConfig!.getRegion()
         
+        
+        
         let serviceConfiguration:AWSServiceConfiguration = AWSServiceConfiguration(region: region, credentialsProvider: nil)
         let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: clientId, clientSecret: clientSecret, poolId: poolId)
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: cognitoConfiguration, forKey: userPoolID)
         let pool:AWSCognitoIdentityUserPool = AppDelegate.defaultUserPool()
         pool.delegate = self
+        
+        AWSServiceManager.default().defaultServiceConfiguration = serviceConfiguration
     }
     
     func showFirstViewController() {
@@ -106,9 +110,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         
         
-        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+//        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: PaymentViewController())
+        let initialViewController = UINavigationController.init(rootViewController: PaymentViewController())
         
         
         //let initialViewController = InitialViewController()

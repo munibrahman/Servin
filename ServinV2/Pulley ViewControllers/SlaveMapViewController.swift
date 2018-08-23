@@ -30,17 +30,10 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         
-        
-        
         checkLocationServices()
         setupMap()
-        //setupSearchBar()
-        
-        
-    }
-    
 
-    
+    }
     
     func setupMap() {
         // Create a GMSCameraPosition that tells the map to display the
@@ -83,14 +76,6 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             let currentLocationLat = position.target.latitude.truncate(places: 3)
             let currentLocationLong = position.target.longitude.truncate(places: 3)
             
-//            print(userLocationLat)
-//            print(userLocationLong)
-//
-//            print("\n")
-//
-//            print(currentLocationLat)
-//            print(currentLocationLong)
-            
             if currentLocationLat == userLocationLat && currentLocationLong == userLocationLong  {
                 mapView.settings.myLocationButton = false
             } else {
@@ -102,7 +87,14 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     
     // Function used by our master view controller
     func dropAPin() {
-        self.mapView(homeMapView, didLongPressAt: (locationManager.location?.coordinate)!)
+        
+        
+        if let location = locationManager.location {
+            self.mapView(homeMapView, didLongPressAt: location.coordinate)
+        } else {
+            print("Location is nil right now...")
+        }
+        
     }
     
     // Delegate function
@@ -127,16 +119,20 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
     func checkLocationServices() {
+        
+        print("Cheking location services")
         switch CLLocationManager.authorizationStatus() {
         case .authorizedAlways, .authorizedWhenInUse:
             
-            print("location granted")
+            print("Location granted")
             break
         // ...
         case .notDetermined:
+            print("Location not determined")
             locationManager.requestWhenInUseAuthorization()
             
         case .restricted, .denied:
+            print("Location restricted or denied")
             let alertController = UIAlertController(
                 title: "Location Access is disabled",
                 message: "In order to view discoveries near you, please open this app's settings and set location access to 'While Using the App'.",

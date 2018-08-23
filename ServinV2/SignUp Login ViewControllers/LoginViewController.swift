@@ -123,6 +123,8 @@ class LoginViewController: UIViewController {
     @objc func goForward() {
         
         print("forward pressed")
+        self.nextButtonSVGView.toggleProgress(showProgress: true)
+        self.nextButtonSVGView.isUserInteractionEnabled = false
         
         if (self.emailTextField?.text != nil && self.passwordTextField?.text != nil) {
             let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField!.text!, password: self.passwordTextField!.text! )
@@ -171,7 +173,12 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
     }
     
     public func didCompleteStepWithError(_ error: Error?) {
+        
         DispatchQueue.main.async {
+            
+            self.nextButtonSVGView.toggleProgress(showProgress: false)
+            self.nextButtonSVGView.isUserInteractionEnabled = true
+            
             if let error = error as NSError? {
                 let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
                                                         message: error.userInfo["message"] as? String,
@@ -181,7 +188,6 @@ extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
 
                 self.present(alertController, animated: true, completion:  nil)
             } else {
-                
                 self.dismiss(animated: true, completion: nil)
             }
         }

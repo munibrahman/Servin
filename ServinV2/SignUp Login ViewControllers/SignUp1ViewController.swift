@@ -103,6 +103,7 @@ class SignUp1ViewController: UIViewController {
         firstNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         firstNameTextField.keyboardAppearance = .dark
         firstNameTextField.keyboardType = .default
+        firstNameTextField.autocapitalizationType = .words
         
         lastNameTextField.backgroundColor = UIColor.clear
         lastNameTextField.textColor = UIColor.white
@@ -111,6 +112,7 @@ class SignUp1ViewController: UIViewController {
         lastNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         lastNameTextField.keyboardAppearance = .dark
         lastNameTextField.keyboardType = .default
+        lastNameTextField.autocapitalizationType = .words
         
         
         firstNameTextField.delegate = self

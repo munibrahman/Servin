@@ -133,7 +133,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellReuseIdentifier, for: indexPath) as! SideMenuProfileTableViewCell
             cell.profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
             cell.selectionStyle = .none
-            cell.userNameLabel.text = "Larry"
+            cell.userNameLabel.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
             
             return cell
         }

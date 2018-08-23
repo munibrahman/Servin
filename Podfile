@@ -21,7 +21,7 @@ pod 'Alamofire', '~> 4.7'
 pod 'SwiftyJSON', '~> 4.0'
 pod 'AlamofireImage', '~> 3.3'
 pod 'Eureka'
-
+pod 'JWTDecode', '~> 2.1'
 #AWS Pods
 pod 'AWSCore', '~> 2.6.0'
 pod 'AWSCognitoIdentityProvider', '~> 2.6.0'

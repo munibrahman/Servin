@@ -20,6 +20,8 @@ class PaymentViewController: UITableViewController {
     let paymentReuseIdentifier = "PaymentCell"
     let addPaymentReuseIdentifier = "AddPaymentCell"
     
+    let sectionHeaderHeight: CGFloat = 75
+    
     override func loadView() {
         view = UIView()
         tableView = UITableView.init(frame: self.view.bounds, style: .grouped)
@@ -87,7 +89,7 @@ class PaymentViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return sectionHeaderHeight
     }
     
     
@@ -101,18 +103,32 @@ class PaymentViewController: UITableViewController {
         return 60
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: sectionHeaderHeight))
+        
+        let label = UILabel.init()
+        
+        view.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+        label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -4).isActive = true
+        
+        label.textColor = UIColor.blackFontColor
+        label.font = UIFont.systemFont(ofSize: 21, weight: .semibold)
         
         if section == 0 {
-            return "Payment Methods"
+            label.text =  "Payment Methods"
         }
         
         if section == 1 {
-            return "Accept payments"
-            
+            label.text = "Accept payments"
         }
         
-        return nil
+        view.addSubview(label)
+        
+        return view
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,8 +137,11 @@ class PaymentViewController: UITableViewController {
             
             
             if indexPath.row == paymentMethods.count {
-                let cell = tableView.dequeueReusableCell(withIdentifier: addPaymentReuseIdentifier, for: indexPath) as! AddPaymentTableViewCell
-                cell.addPaymentLabel.text = "Add Payment Method"
+                let cell = tableView.dequeueReusableCell(withIdentifier: paymentReuseIdentifier, for: indexPath) as! PaymentMethodTableViewCell
+                cell.paymentLabel.text = "Add Payment Method"
+                cell.paymentImageView.image = #imageLiteral(resourceName: "add_icon")
+                cell.paymentImageView.contentMode = .scaleAspectFit
+                
                 return cell
             }
             
@@ -137,8 +156,11 @@ class PaymentViewController: UITableViewController {
         if indexPath.section == 1 {
             
             if indexPath.row == payoutMethods.count {
-                let cell = tableView.dequeueReusableCell(withIdentifier: addPaymentReuseIdentifier, for: indexPath) as! AddPaymentTableViewCell
-                cell.addPaymentLabel.text = "Add Payout Method"
+                let cell = tableView.dequeueReusableCell(withIdentifier: paymentReuseIdentifier, for: indexPath) as! PaymentMethodTableViewCell
+                cell.paymentLabel.text = "Add Payout Method"
+                cell.paymentImageView.image = #imageLiteral(resourceName: "add_icon")
+                cell.paymentImageView.contentMode = .scaleAspectFit
+                
                 return cell
             }
             

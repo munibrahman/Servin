@@ -11,17 +11,17 @@ import UIKit
 import MapKit
 
 
-class Data {
+class ServinData {
     
     static var me: User!
     static var arrayOfUsers: [User]!
     static var allPins = [Pin]()
     
     init() {
-        Data.me = User.init(firstName: "Larry", lastName: "Page", profilePicture: #imageLiteral(resourceName: "larry_avatar"), institution: "University Of Calgary")
-        Data.me._pinsOnMap.append(Pin.init(title: "Residential/Commercial/ New Construction/Repainting Services", description: "We are a well-established painting business specializing in both residential and commercial painting, new construction and repaints. We also run a shop with a spray booth. With over 3000 projects completed in Calgary in the last 17 years, we have the experience and manpower to complete any project in a timely manner at the highest standards. Feel free to contact us for a free quote. www.propaintingsolutions.com", price: 300, views: 32, location: CLLocationCoordinate2D.init(latitude: 51.078028, longitude: -114.075867), images: [#imageLiteral(resourceName: "painting1"), #imageLiteral(resourceName: "painting2"), #imageLiteral(resourceName: "painting3")], typeOfRequest: .offer, isSaved: false))
+        ServinData.me = User.init(firstName: "Larry", lastName: "Page", profilePicture: #imageLiteral(resourceName: "larry_avatar"), institution: "University Of Calgary")
+        ServinData.me._pinsOnMap.append(Pin.init(title: "Residential/Commercial/ New Construction/Repainting Services", description: "We are a well-established painting business specializing in both residential and commercial painting, new construction and repaints. We also run a shop with a spray booth. With over 3000 projects completed in Calgary in the last 17 years, we have the experience and manpower to complete any project in a timely manner at the highest standards. Feel free to contact us for a free quote. www.propaintingsolutions.com", price: 300, views: 32, location: CLLocationCoordinate2D.init(latitude: 51.078028, longitude: -114.075867), images: [#imageLiteral(resourceName: "painting1"), #imageLiteral(resourceName: "painting2"), #imageLiteral(resourceName: "painting3")], typeOfRequest: .offer, isSaved: false))
         
-        Data.me._pinsOnMap.append(Pin.init(title: "Looking to hire a math tutor!", description: "I am having trouble understanding MATH 30 and calculus, looking for someone that can help me with the squeeze theorem.", price: 90, views: 3, location: CLLocationCoordinate2D.init(latitude: 51.078028, longitude: -114.075867), images: [nil], typeOfRequest: .offer, isSaved: false))
+        ServinData.me._pinsOnMap.append(Pin.init(title: "Looking to hire a math tutor!", description: "I am having trouble understanding MATH 30 and calculus, looking for someone that can help me with the squeeze theorem.", price: 90, views: 3, location: CLLocationCoordinate2D.init(latitude: 51.078028, longitude: -114.075867), images: [nil], typeOfRequest: .offer, isSaved: false))
         
         let andrea = User.init(firstName: "Adrianna", lastName: "Bennet", profilePicture: #imageLiteral(resourceName: "adriana"), institution: "University Of Calgary")
         
@@ -53,15 +53,15 @@ class Data {
         erik._pinsOnMap.append( Pin.init(title: "Part Time Dance Instructor (Ballet)", description: "Ballet Classique Methusela is centrally located in Calgary, AB. We are currently seeking an R.A.D. certified teacher to begin teaching as of September 2018 for the 2018/19 season for grades 3 - Intermediate. Our season runs from September until June. Classes will be two or three nights a week. The position is a permanent part-time teaching opportunity. A two year ++ contract is preferable. Salary is negotiable and dependent upon experience. The students participate in 2 recitals/year. Preparation of recital choreography would be greatly appreciated. Our students have not yet participated in an RAD exams. However, we expect students to be fully prepared for examinations and to participate in exams when appropriate (hopefully this upcoming year!). Therefore, the Teacher must be qualified to enter the students into their exams, as well as do the administrative work to have them entered. The ability to teach any additional disciplines would be an asset. The ideal candidate is positive, responsible and enthusiastic with strong motivational and communication skills. Must be passionate about ballet and teaching. Experience is a must. If you are interested in this position please contact Sara-Lynne Dewar 403 245-4346 or email your resume to balletcalgary@telus.net. Do not reply to this ad. Please include your salary expectations. Thank you.. www.propaintingsolutions.com", price: 300, views: 32, location: CLLocationCoordinate2D.init(latitude: 51.078028, longitude: -114.075867), images: [#imageLiteral(resourceName: "ballet")], typeOfRequest: .offer, isSaved: false))
         
         
-        Data.arrayOfUsers = [User]()
-        Data.arrayOfUsers.append(andrea)
-        Data.arrayOfUsers.append(joshua)
-        Data.arrayOfUsers.append(erik)
+        ServinData.arrayOfUsers = [User]()
+        ServinData.arrayOfUsers.append(andrea)
+        ServinData.arrayOfUsers.append(joshua)
+        ServinData.arrayOfUsers.append(erik)
         
-        for user in Data.arrayOfUsers {
+        for user in ServinData.arrayOfUsers {
             for pin in user._pinsOnMap {
                 if pin != nil {
-                    Data.allPins.append(pin!)
+                    ServinData.allPins.append(pin!)
                 }
             }
         }

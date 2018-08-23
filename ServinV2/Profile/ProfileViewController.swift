@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2.0
         profileImageView.clipsToBounds = true
         
-        firstNameLabel.text = "Larry"
+        firstNameLabel.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
         
         creditsLabel.text = "14,000 servin credits"
         
