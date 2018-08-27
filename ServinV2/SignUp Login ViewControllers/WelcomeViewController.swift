@@ -67,10 +67,12 @@ class WelcomeViewController: UIViewController {
                         print(jwtokenized.body)
                         
                         if let givenName = jwtokenized.body["given_name"] as? String {
+                            print("saved given name")
                             DefaultsWrapper.setString(key: Key.firstName, value: givenName)
                         }
                         
                         if let familyName = jwtokenized.body["family_name"] as? String {
+                            print("saved family name")
                             DefaultsWrapper.setString(key: Key.lastName, value: familyName)
                         }
                         
@@ -79,27 +81,34 @@ class WelcomeViewController: UIViewController {
                     
                 }
                 
-        let identityProvider = AWSCognitoIdentityProvider.default()
-
-
-        let requestAttributeChange = AWSCognitoIdentityProviderAdminUpdateUserAttributesRequest()
-        requestAttributeChange?.username = user?.username
-        requestAttributeChange?.userPoolId = AppDelegate.defaultUserPool().userPoolConfiguration.poolId
-
-        let attribute = AWSCognitoIdentityProviderAttributeType.init()
-        attribute?.name = "given_name"
-        attribute?.value = "TEST"
-
-        if let att = attribute {
-
-            print("Change attribute")
-            requestAttributeChange?.userAttributes = [att]
-
-            identityProvider.adminUpdateUserAttributes(requestAttributeChange!).continueWith(block: { (res) -> Any? in
-                print(res.error)
-            })
-        }
+//        let identityProvider = AWSCognitoIdentityProvider.default()
+//
+//
+//        let requestAttributeChange = AWSCognitoIdentityProviderAdminUpdateUserAttributesRequest()
+//        requestAttributeChange?.username = user?.username
+//        requestAttributeChange?.userPoolId = AppDelegate.defaultUserPool().userPoolConfiguration.poolId
+//
+//        let attribute = AWSCognitoIdentityProviderAttributeType.init()
+//        attribute?.name = "given_name"
+//        attribute?.value = "TEST"
+//
+//        if let att = attribute {
+//
+//            print("Change attribute")
+//            requestAttributeChange?.userAttributes = [att]
+//
+//            identityProvider.adminUpdateUserAttributes(requestAttributeChange!).continueWith(block: { (res) -> Any? in
+//                print(res.error)
+//            })
+//        }
+//
                 
+                let attr = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: "TEST")
+                
+                user?.update([attr]).continueOnSuccessWith(block: { (response) -> Any? in
+                    // Was successful, do any changes, UI changes must be done on the main thread.
+                    return nil
+                })
                 
                 
 //                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user").response(completionHandler: { (response) in

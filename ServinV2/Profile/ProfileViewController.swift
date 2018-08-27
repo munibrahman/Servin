@@ -45,15 +45,37 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
         
         
-        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
+        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
             
-            if let image = response.result.value {
-                self.profileImageView.image = image
-            }
-        }
+            let headers: HTTPHeaders = [
+                "Authorization": (session.result?.idToken?.tokenString)!
+            ]
+            
+            
+            
+            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
+            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            
+            
+            Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
+                if let image = response.result.value {
+                    self.profileImageView.image = image
+                } else {
+                    print(response.data)
+                    print(response)
+                }
+            })
+            
+            return nil
+        })
         
         
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageView.layer.cornerRadius = 50.0
     }
     
     func setupNavigationController() {

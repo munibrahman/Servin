@@ -19,6 +19,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet var schoolTextField: UITextField!
     
     
+    var progressBarButton: UIBarButtonItem!
+    var saveButtonItem: UIBarButtonItem!
+    
+    
     var textFieldChanged = false
     
     var imagePicker = UIImagePickerController()
@@ -49,6 +53,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func setupViews() {
+        
+        
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.isUserInteractionEnabled = false
         
@@ -182,6 +188,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     func setupNavigationController() {
+        
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.black
+        progressSpinner.startAnimating()
+        
+        progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        
         navigationController?.navigationBar.tintColor = UIColor.black
         
         let barButtonItem = UIBarButtonItem.init(title: "Cancel", style: .plain, target: self, action: #selector(barButtonPressed))
@@ -189,9 +202,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         navigationController?.navigationBar.topItem?.title = "Edit Profile"
         
-        let editButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveProfile))
+        saveButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveProfile))
         
-        navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItem = saveButtonItem
     }
     
     @objc func barButtonPressed() {
@@ -232,7 +245,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         print("Saving profile")
         
         
-        
+        self.navigationItem.rightBarButtonItem = progressBarButton
         
         AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
             
@@ -245,6 +258,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
             url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
             guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
+                self.navigationItem.rightBarButtonItem = self.saveButtonItem
                 return nil
             }
             
@@ -256,6 +270,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     print(message)
                 }
             }
+            
+            self.navigationItem.rightBarButtonItem = self.saveButtonItem
             
             return nil
         })

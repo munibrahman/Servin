@@ -8,8 +8,12 @@
 
 import UIKit
 import Pulley
+import GoogleMaps
+
 
 class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, PulleyDrawerViewControllerDelegate {
+    
+    
 
     var scrollView: UIScrollView! = nil
     var scrollViewHeight: CGFloat = 0.0
@@ -215,13 +219,27 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
             }
         }
     }
-    
-    
-    
 }
 
 
-
+extension SlaveDiscoveriesViewController: SlaveMapViewControllerDelegate {
+    
+    func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+    }
+    
+    func didSelectMarker(pin: Pin) {
+        
+        if let offset = ServinData.allPins.index(where: {$0._price == pin._price}) {
+            // do something with fooOffset
+            
+            let indexPath = IndexPath.init(row: offset, section: 0)
+            pinsNearbyCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        } else {
+            // item could not be found
+        }
+    }
+    
+}
 
 
 

@@ -9,12 +9,17 @@
 import UIKit
 import GoogleMaps
 import Pulley
+import Alamofire
+import SwiftyJSON
 
 protocol SlaveMapViewControllerDelegate {
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D)
+    func didSelectMarker(pin: Pin)
 }
 
 class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+    
+    
 
     let locationManager = CLLocationManager()
     var userLocationCameraPosition: GMSCameraPosition? = nil
@@ -22,6 +27,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     var homeMapView: GMSMapView!
     
     var delegate: SlaveMapViewControllerDelegate?
+    var mapDelegate: SlaveMapViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         checkLocationServices()
         setupMap()
-
+        setupPins()
     }
     
     func setupMap() {
@@ -64,6 +70,73 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         homeMapView.isUserInteractionEnabled = true
 
     }
+    
+    func setupPins() {
+        let data = ServinData.allPins
+        
+        for pin in data {
+            
+            if let location = pin._location {
+                let marker = GMSMarker(position: location)
+                
+                marker.map = homeMapView
+            }
+            
+        }
+        
+        let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
+        
+        
+        
+        Alamofire.request(urlString, method: .get, parameters: ["minLat":"50.906684", "minLong":"-114.227922", "maxLat" : "51.174889", "maxLong" : "-113.908390"], encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            
+            //print(response.request)
+            
+            switch(response.result) {
+            case .success(_):
+                if let data = response.result.value{
+                    //print(response.result.value)
+                    
+                    let json = JSON.init(response.result.value)
+                    
+                    print(json)
+                    
+                    for item in json["discoveries"].arrayValue {
+                        print(item)
+                        
+                        let marker = GMSMarker.init()
+                        
+                        var first = true
+                        for double in item["coordinates"].arrayValue {
+                            print(Double(double.stringValue))
+                            
+                            if first {
+                                marker.position.latitude = Double(double.stringValue) ?? 0.0
+                            } else {
+                                marker.position.longitude = Double(double.stringValue) ?? 0.0
+                            }
+                            
+                            first = false
+                        }
+                        
+                        print(marker.position)
+                        marker.map = self.homeMapView
+                        
+                        
+                    }
+                    
+                }
+                
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                break
+                
+            }
+        }
+        
+    }
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         
@@ -83,6 +156,30 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             }
             
         }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        print("did tap marker")
+        
+        let location = marker.position
+        
+        let data = ServinData.allPins
+        
+        let pin = data.filter { (pin) -> Bool in
+            if let loc = pin._location {
+                if loc.latitude == location.latitude && loc.longitude == loc.longitude {
+                    return true
+                }
+            }
+            
+            return false
+        }
+        
+        if let specificPin = pin.first {
+            mapDelegate?.didSelectMarker(pin: specificPin)
+        }
+        
+        return false
     }
     
     // Function used by our master view controller
@@ -111,8 +208,9 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         mapView.animate(to: camera)
         marker.map = mapView
         
-        
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

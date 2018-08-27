@@ -12,9 +12,9 @@ import UIKit
 import Pulley
 import GoogleMaps
 import SideMenu
+import Alamofire
 
 class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDelegate {
-
     
     var searchBar: SearchView!
     
@@ -109,7 +109,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             // dont do anything, just jot down the new coordinate, thats it.
             
         } else {
-            drawerShouldShow(postAd: true)
+            drawerShouldShow(postAd: true, coordinate: coordinate)
         }
         
     }
@@ -118,7 +118,11 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     var topBlurView: UIView! = nil
     var viewArray = [UIView]()
     
-    func drawerShouldShow(postAd: Bool) {
+    var currentCoordinate: CLLocationCoordinate2D?
+    
+    func drawerShouldShow(postAd: Bool, coordinate: CLLocationCoordinate2D?) {
+        
+        currentCoordinate = coordinate
         
         // If the user did a long press onto the map, we will be posting the ad.
         // Show the appropriate view for posting an ad.
@@ -151,8 +155,9 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 
                 //let fakeView = UIView.init(frame: self.topBlurView.frame)
                 
-                let backButton = UIButton.init(frame: CGRect.init(x: 17.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
+                let backButton = UIButton.init(frame: CGRect.init(x: 16.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
                 backButton.setImage(#imageLiteral(resourceName: "x_white"), for: .normal)
+                
                 self.viewArray.append(backButton)
                 self.view.addSubview(backButton)
                 
@@ -179,9 +184,6 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 } else {
                     fatalError("My post drawer is empty, this should never happen")
                 }
-                
-                
-                
             }
             
         }
@@ -218,6 +220,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             // This clears the pin from the map
             if let mapVC = self.primaryContentViewController as? SlaveMapViewController {
                 mapVC.homeMapView.clear()
+                mapVC.setupPins()
             }
             
             // If you press the back button, you just get rid of all the info that was saved.
@@ -231,12 +234,33 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     
     @objc func backPressed() {
         print("Back pressed")
-        drawerShouldShow(postAd: false)
+        drawerShouldShow(postAd: false, coordinate: nil)
         
     }
 
     @objc func postPressed() {
         print("Post pressed")
+        
+        
+        if let coordinate = currentCoordinate {
+            let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
+            
+            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)"],encoding: JSONEncoding.default, headers: nil).responseJSON {
+                response in
+                switch response.result {
+                case .success:
+                    print(response)
+                    self.drawerShouldShow(postAd: false, coordinate: nil)
+                    break
+                case .failure(let error):
+                    
+                    print(error)
+                }
+            }
+        }
+        
+        
+        
     }
     
     override func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
@@ -253,5 +277,8 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func didSelectMarker(pin: Pin) {
+    }
 
 }

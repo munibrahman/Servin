@@ -35,6 +35,7 @@ class Constants {
         let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
         
         mainContentVC.delegate = pulleyController
+        mainContentVC.mapDelegate = drawerContentVC
         
         pulleyController.myMapViewController = mainContentVC
         pulleyController.myDiscoveriesViewController = drawerContentVC
