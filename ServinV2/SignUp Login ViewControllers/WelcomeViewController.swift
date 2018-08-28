@@ -53,87 +53,9 @@ class WelcomeViewController: UIViewController {
             print("Current User is signed in")
              print(user?.username)
             
+            // On the first time, just refresh all tokens in the keychain.
+            KeyChainStore.shared.refreshTokens()
             
-            user?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
-                print("ID Token \(session.result?.idToken?.tokenString)")
-                print("Access Token \(session.result?.accessToken?.tokenString)")
-                print("Refresh Token \(session.result?.refreshToken?.tokenString)")
-                
-                if let idToken = session.result?.idToken {
-                    
-                    let jwt = try? decode(jwt: idToken.tokenString)
-                    
-                    if let jwtokenized = jwt {
-                        print(jwtokenized.body)
-                        
-                        if let givenName = jwtokenized.body["given_name"] as? String {
-                            print("saved given name")
-                            DefaultsWrapper.setString(key: Key.firstName, value: givenName)
-                        }
-                        
-                        if let familyName = jwtokenized.body["family_name"] as? String {
-                            print("saved family name")
-                            DefaultsWrapper.setString(key: Key.lastName, value: familyName)
-                        }
-                        
-                        
-                    }
-                    
-                }
-                
-//        let identityProvider = AWSCognitoIdentityProvider.default()
-//
-//
-//        let requestAttributeChange = AWSCognitoIdentityProviderAdminUpdateUserAttributesRequest()
-//        requestAttributeChange?.username = user?.username
-//        requestAttributeChange?.userPoolId = AppDelegate.defaultUserPool().userPoolConfiguration.poolId
-//
-//        let attribute = AWSCognitoIdentityProviderAttributeType.init()
-//        attribute?.name = "given_name"
-//        attribute?.value = "TEST"
-//
-//        if let att = attribute {
-//
-//            print("Change attribute")
-//            requestAttributeChange?.userAttributes = [att]
-//
-//            identityProvider.adminUpdateUserAttributes(requestAttributeChange!).continueWith(block: { (res) -> Any? in
-//                print(res.error)
-//            })
-//        }
-//
-                
-                let attr = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: "TEST")
-                
-                user?.update([attr]).continueOnSuccessWith(block: { (response) -> Any? in
-                    // Was successful, do any changes, UI changes must be done on the main thread.
-                    return nil
-                })
-                
-                
-//                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user").response(completionHandler: { (response) in
-//                    print("Unauthenticated")
-//                    print(response.)
-//                })
-                
-//                let headers: HTTPHeaders = [
-//                    "Authorization": (session.result?.idToken?.tokenString)!
-//                ]
-//                
-//                
-//                
-//                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user", headers: headers).responseJSON(completionHandler: { (response) in
-//                    print("Authorized")
-//                    print("Request is \(response.request?.allHTTPHeaderFields)")
-//                    //print(response.request)
-//                    print("result")
-//                    print(response.result)
-//                    print(response.result.value)
-//                })
-                
-                return nil
-            })
-//
             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
             self.present(navVC, animated: true, completion: nil)
         } else {
@@ -231,16 +153,6 @@ class WelcomeViewController: UIViewController {
             print("Tapped none")
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AWSCognitoIdentityProvider
 
 class ProfileViewController: UIViewController {
     
@@ -33,8 +34,6 @@ class ProfileViewController: UIViewController {
     }
     
     func setupViews() {
-        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2.0
-        profileImageView.clipsToBounds = true
         
         firstNameLabel.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
         
@@ -45,37 +44,31 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
         
         
-        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
-            
+        if let idToken = KeyChainStore.shared.fetchIdToken() {
             let headers: HTTPHeaders = [
-                "Authorization": (session.result?.idToken?.tokenString)!
+                "Authorization": idToken
             ]
             
-            
-            
-            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
-            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            
-            
-            Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
+            Alamofire.request("\(BackendServer.baseUrl)/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
                 if let image = response.result.value {
                     self.profileImageView.image = image
+                    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
                 } else {
-                    print(response.data)
                     print(response)
                 }
             })
-            
-            return nil
-        })
-        
-        
+        } else {
+            KeyChainStore.shared.refreshTokens()
+        }
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        profileImageView.layer.cornerRadius = 50.0
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height / 2.0
+        profileImageView.clipsToBounds = true
     }
     
     func setupNavigationController() {
@@ -109,17 +102,6 @@ class ProfileViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

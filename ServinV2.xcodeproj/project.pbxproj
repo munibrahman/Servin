@@ -33,12 +33,13 @@
 		8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */; };
 		8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B52724620F81ED200425717 /* CognitoConfig.swift */; };
 		8B52724920F81F0300425717 /* CognitoConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B52724820F81F0300425717 /* CognitoConfig.plist */; };
+		8B53487B2134FF20009E4C3E /* KeyChainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B53487A2134FF20009E4C3E /* KeyChainStore.swift */; };
+		8B53487D21350D08009E4C3E /* BackendServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B53487C21350D08009E4C3E /* BackendServer.swift */; };
 		8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */; };
 		8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */; };
 		8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */; };
 		8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B6B7DFE20ADB56400867F18 /* logo_servin.svg */; };
 		8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */; };
-		8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B78417420B8794A005C87DA /* PannableViewController.swift */; };
 		8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81591D20AF714900EDA1FC /* LoginViewController.swift */; };
 		8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B81591F20AF746C00EDA1FC /* >_clear.svg */; };
 		8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */; };
@@ -150,12 +151,13 @@
 		8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesViewController.swift; sourceTree = "<group>"; };
 		8B52724620F81ED200425717 /* CognitoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CognitoConfig.swift; sourceTree = "<group>"; };
 		8B52724820F81F0300425717 /* CognitoConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CognitoConfig.plist; sourceTree = "<group>"; };
+		8B53487A2134FF20009E4C3E /* KeyChainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStore.swift; sourceTree = "<group>"; };
+		8B53487C21350D08009E4C3E /* BackendServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendServer.swift; sourceTree = "<group>"; };
 		8B68E30B209B725200F7F365 /* SignUp1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp1ViewController.swift; sourceTree = "<group>"; };
 		8B68E30D209B726300F7F365 /* SignUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp2ViewController.swift; sourceTree = "<group>"; };
 		8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp3ViewController.swift; sourceTree = "<group>"; };
 		8B6B7DFE20ADB56400867F18 /* logo_servin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = logo_servin.svg; sourceTree = "<group>"; };
 		8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		8B78417420B8794A005C87DA /* PannableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		8B81591D20AF714900EDA1FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B81591F20AF746C00EDA1FC /* >_clear.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ">_clear.svg"; sourceTree = "<group>"; };
 		8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +342,15 @@
 			path = CognitoSettings;
 			sourceTree = "<group>";
 		};
+		8B5348792134FECD009E4C3E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */,
+				8B53487A2134FF20009E4C3E /* KeyChainStore.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		8B78416C20B86E9D005C87DA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,10 +439,10 @@
 			children = (
 				8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
+				8BF2AF0A2126266B0073B139 /* Payment */,
 				8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */,
 				8BC7D0B62122014B00F2CD8F /* DeepLinks */,
 				8B52724520F81E2D00425717 /* CognitoSettings */,
-				8B78417420B8794A005C87DA /* PannableViewController.swift */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
 				8BA1F0F720B2AF50000EA3AC /* SVG Files */,
 				8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */,
@@ -455,8 +466,8 @@
 				8B45C1FE20D70EB3009FF0F9 /* Discovery */,
 				8BCB897220DB623F00AF5A65 /* Models */,
 				8B43C47C2107C6EB004D9D0F /* CustomFloatingTextfield.swift */,
-				8BF2AF0A2126266B0073B139 /* Payment */,
-				8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */,
+				8B5348792134FECD009E4C3E /* Storage */,
+				8B53487C21350D08009E4C3E /* BackendServer.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -892,6 +903,7 @@
 				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,
 				8BD3834920CBCE7700B4B653 /* CustomPhotoPickerViewController.swift in Sources */,
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
+				8B53487B2134FF20009E4C3E /* KeyChainStore.swift in Sources */,
 				8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */,
 				8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */,
 				8B68E30C209B725200F7F365 /* SignUp1ViewController.swift in Sources */,
@@ -899,6 +911,7 @@
 				8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */,
 				8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */,
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
+				8B53487D21350D08009E4C3E /* BackendServer.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
@@ -912,7 +925,6 @@
 				8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */,
 				8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
-				8B78417520B8794A005C87DA /* PannableViewController.swift in Sources */,
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
