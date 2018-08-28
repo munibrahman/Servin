@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     var window: UIWindow?
-    let googleMapsApiKey = "AIzaSyAGFQhWxsHh3UpGzvoTzB4flwsV_eCYODk"
+    let googleMapsApiKey = Constants.googleMapsApiKey
     
     private static let pinpointKit = PinpointKit(feedbackRecipients: ["servin.feedback@gmail.com"])
     

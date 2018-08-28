@@ -95,7 +95,8 @@ class DiscoveryFullScreenMapViewController: UIViewController {
         let destination = "\(destinationLoc.latitude),\(destinationLoc.longitude)"
         
         
-        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=\(Constants.googleMapsApiKey)"
+        
+        let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving&key=\(Constants.googleMapsDirectionKey)"
         
         Alamofire.request(url).responseJSON { response in
             print(response.request)  // original URL request
@@ -113,12 +114,14 @@ class DiscoveryFullScreenMapViewController: UIViewController {
                 let points = routeOverviewPolyline?["points"]?.stringValue
                 let path = GMSPath.init(fromEncodedPath: points!)
                 let polyline = GMSPolyline.init(path: path)
-                polyline.strokeWidth = 5.0
-                polyline.strokeColor = UIColor.greyBackgroundColor
+                polyline.strokeWidth = 3.0
+                polyline.strokeColor = UIColor.greyBackgroundColor.withAlphaComponent(0.5)
                 
                 polyline.map = self.gmsMap
                 
-                self.gmsMap.animate(with: GMSCameraUpdate.fit(GMSCoordinateBounds(path: polyline.path!), withPadding: 30))
+                self.gmsMap.animate(with: GMSCameraUpdate.fit(GMSCoordinateBounds(path: polyline.path!), withPadding: 50))
+                
+                self.gmsMap.isMyLocationEnabled = true
             }
         }
     }
