@@ -56,6 +56,7 @@ class WelcomeViewController: UIViewController {
             // On the first time, just refresh all tokens in the keychain.
             KeyChainStore.shared.refreshTokens()
             
+            
             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
             self.present(navVC, animated: true, completion: nil)
         } else {

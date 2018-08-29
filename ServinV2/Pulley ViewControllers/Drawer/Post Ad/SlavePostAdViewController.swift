@@ -97,11 +97,17 @@ class SlavePostAdViewController: UIViewController {
         descriptionTextField.textContainer.lineFragmentPadding = 0
         
         titleTextField.placeholder = "e.g. Tutor for hire"
-        priceTextField.placeholder = "Price"
+        priceTextField.placeholder = "Amount"
+        
         descriptionTextField.placeholder = "Description"
         descriptionTextField.placeholderColor = UIColor.placeHolderColor
         
-        priceTextField.leftView = UIImageView.init(image: #imageLiteral(resourceName: "dollar_sign_icon"))
+        let paddingView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 25))
+        let priceImageView = UIImageView.init(image: #imageLiteral(resourceName: "dollar_sign_icon"))
+        
+        paddingView.addSubview(priceImageView)
+        
+        priceTextField.leftView = paddingView
         priceTextField.leftViewMode = .always
         
         

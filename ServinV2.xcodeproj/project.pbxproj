@@ -18,7 +18,6 @@
 		8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B43D38F20D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift */; };
 		8B43D39220D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B43D39020D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib */; };
 		8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C1FF20D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift */; };
-		8B45C20420D74355009FF0F9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20320D74355009FF0F9 /* LocationManager.swift */; };
 		8B45C20620D76AF9009FF0F9 /* AlamoFireSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20520D76AF9009FF0F9 /* AlamoFireSource.swift */; };
 		8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */; };
 		8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */; };
@@ -136,7 +135,6 @@
 		8B43D38F20D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B43D39020D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoveryImagesCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B45C1FF20D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryFullScreenMapViewController.swift; sourceTree = "<group>"; };
-		8B45C20320D74355009FF0F9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8B45C20520D76AF9009FF0F9 /* AlamoFireSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamoFireSource.swift; sourceTree = "<group>"; };
 		8B45C20720D890B9009FF0F9 /* MyDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinsNearbyCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -356,7 +354,6 @@
 			children = (
 				8BA6458720832C74006EEEC5 /* Extensions.swift */,
 				8BBFFC4120A0EED700BA5D06 /* Constants.swift */,
-				8B45C20320D74355009FF0F9 /* LocationManager.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -965,7 +962,6 @@
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,
 				8B43D38D20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift in Sources */,
-				8B45C20420D74355009FF0F9 /* LocationManager.swift in Sources */,
 				8BD3834D20CBD03D00B4B653 /* CustomCell_Instagram.swift in Sources */,
 				8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */,
 				8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */,

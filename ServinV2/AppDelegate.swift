@@ -40,19 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
-    
-    private let stripePublishableKey = "pk_test_eLAT9Nvbd7M9F3hnNX2EWO4k"
-    
-    
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         ShortcutParser.shared.registerShortcuts()
         
         // Stripe Key
-        STPPaymentConfiguration.shared().publishableKey = self.stripePublishableKey
-        STPPaymentConfiguration.shared().appleMerchantIdentifier = "merchant.com.servin"
+        STPPaymentConfiguration.shared().publishableKey = Constants.stripePublishableKey
+        STPPaymentConfiguration.shared().appleMerchantIdentifier = Constants.appleMerchantIdentifier
         STPPaymentConfiguration.shared().companyName = "Servin"
         
         // Google Maps Key
@@ -100,27 +96,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func showFirstViewController() {
-        // NOTE: This MUST BE
-        //        #if DEBUG
-        // show whichever storbyboard you want to
-        
-        //        #else
-        // show the beginning storyboard only
+
         // Settings for PinpointKit
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
-        
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
 //        let initialViewController = UINavigationController.init(rootViewController: PaymentViewController())
         
-        
         //let initialViewController = InitialViewController()
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
-        
-        //        #endif
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -306,20 +293,4 @@ extension AppDelegate: AWSCognitoIdentityRememberDevice {
     }
 }
 
-//MARK: - UIApplication Extension
-extension UIApplication {
-    class func topViewController(viewController: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let nav = viewController as? UINavigationController {
-            return topViewController(viewController: nav.visibleViewController)
-        }
-        if let tab = viewController as? UITabBarController {
-            if let selected = tab.selectedViewController {
-                return topViewController(viewController: selected)
-            }
-        }
-        if let presented = viewController?.presentedViewController {
-            return topViewController(viewController: presented)
-        }
-        return viewController
-    }
-}
+

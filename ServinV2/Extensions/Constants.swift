@@ -17,6 +17,10 @@ class Constants {
     
     static let googleMapsApiKey = "AIzaSyAoqms5Li-1iHtwPmE_EPFFG9ZLqQex3CY"
     static let googleMapsDirectionKey = "AIzaSyAS70BbAapdWTm52ujbq4EKrIlE8-MvZGs"
+    
+    static let stripePublishableKey = "pk_test_eLAT9Nvbd7M9F3hnNX2EWO4k"
+    
+    static let appleMerchantIdentifier = "merchant.com.servin"
 
     static fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
     

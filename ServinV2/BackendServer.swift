@@ -12,4 +12,8 @@ class BackendServer: NSObject {
     
     static let baseUrl = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com"
     
+    func downloadUserImage() {
+        
+    }
+    
 }
