@@ -72,6 +72,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
         showFirstViewController()
 
+        performReachabilityTest()
+        
         return true
     }
     
@@ -108,6 +110,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
+    }
+    
+    func performReachabilityTest() {
+        do {
+            Network.reachability = try Reachability(hostname: "www.google.com")
+            do {
+                try Network.reachability?.start()
+            } catch let error as Network.Error {
+                print(error)
+            } catch {
+                print(error)
+            }
+        } catch {
+            print(error)
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

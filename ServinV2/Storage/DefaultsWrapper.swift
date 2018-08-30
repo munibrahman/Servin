@@ -16,6 +16,7 @@ enum Key: String {
     case school
     case imagePath
     case servinPoints
+    case userName
 }
 
 class DefaultsWrapper {
@@ -175,7 +176,7 @@ class DefaultsWrapper {
         UserDefaults.standard.synchronize()
     }
     
-    class func save(image: UIImage, named: Key) -> Bool {
+    class func set(image: UIImage, named: Key) -> Bool {
         guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else {
             return false
         }
@@ -191,11 +192,34 @@ class DefaultsWrapper {
         }
     }
     
-    func getImage(named: Key) -> UIImage? {
+    class func getImage(named: Key) -> UIImage? {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
             return UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(named.rawValue).path)
         }
         return nil
     }
+    
+    class func removeEverything() {
+        if let appDomain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+        }
+        
+        
+        // This deletes all the files in the documents directory, like the profile picture...
+        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        
+        do {
+            let fileURLs = try FileManager.default.contentsOfDirectory(at: documentsUrl,
+                                                                       includingPropertiesForKeys: nil,
+                                                                       options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            for fileURL in fileURLs {
+                if fileURL.pathExtension == "mp3" {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+            }
+        } catch  { print(error) }
+        
+    }
+
     
 }

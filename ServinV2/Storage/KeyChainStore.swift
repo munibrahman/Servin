@@ -59,6 +59,12 @@ class KeyChainStore: NSObject {
                                 DefaultsWrapper.setString(key: Key.lastName, value: familyName)
                             }
                             
+                            if let userName = jwtokenized.body["cognito:username"] as? String {
+                                print("saved user name")
+                                DefaultsWrapper.setString(key: Key.userName, value: userName)
+                                
+                            }
+                            
                         }
                         
                     }
@@ -74,11 +80,17 @@ class KeyChainStore: NSObject {
                             print("unable to store refresh token")
                         }
                     }
+                    
+                    _ = BackendServer.shared.fetchProfileImage()
         
                     return nil
                 })
+                
+                
             }
         }
+        
+        
     }
     
     func fetchRefreshToken() -> String? {
@@ -91,6 +103,10 @@ class KeyChainStore: NSObject {
     
     func fetchAccessToken() -> String? {
         return keychain.string(forKey: KeyChainStore.Keys.accessToken.rawValue)
+    }
+    
+    func removeAllKeys() {
+        keychain.removeAllItems()
     }
 
 }

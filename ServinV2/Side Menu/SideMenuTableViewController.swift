@@ -135,30 +135,13 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             cell.selectionStyle = .none
             cell.userNameLabel.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
-            
-            AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
-                
-                let headers: HTTPHeaders = [
-                    "Authorization": (session.result?.idToken?.tokenString)!
-                ]
-                
-                
-                
-                var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
-                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-                
-                
-                Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
-                    if let image = response.result.value {
-                        cell.profileImageView.image = image
-                    } else {
-                        print(response.data)
-                        print(response)
-                    }
-                })
-                
-                return nil
-            })
+            if let image = BackendServer.shared.fetchProfileImage() {
+                cell.profileImageView.image = image
+            } else {
+                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5) {
+                    cell.profileImageView.image = BackendServer.shared.fetchProfileImage()
+                }
+            }
             
             return cell
         }

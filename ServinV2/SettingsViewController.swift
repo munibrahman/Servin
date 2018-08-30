@@ -287,6 +287,8 @@ class SettingsViewController: FormViewController {
                         
                         if let user = AppDelegate.defaultUserPool().currentUser() {
                             user.signOutAndClearLastKnownUser()
+                            DefaultsWrapper.removeEverything()
+                            KeyChainStore.shared.removeAllKeys()
                             print("Signed out the user")
                             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                         }

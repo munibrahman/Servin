@@ -30,6 +30,11 @@ class ProfileViewController: UIViewController {
         
         setupNavigationController()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         setupViews()
     }
     
@@ -39,27 +44,15 @@ class ProfileViewController: UIViewController {
         
         creditsLabel.text = "14,000 servin credits"
         
+        aboutMeLabel.numberOfLines = 0
         aboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        aboutMeLabel.sizeToFit()
         
         othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
         
         
-        if let idToken = KeyChainStore.shared.fetchIdToken() {
-            let headers: HTTPHeaders = [
-                "Authorization": idToken
-            ]
-            
-            Alamofire.request("\(BackendServer.baseUrl)/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
-                if let image = response.result.value {
-                    self.profileImageView.image = image
-                    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
-                } else {
-                    print(response)
-                }
-            })
-        } else {
-            KeyChainStore.shared.refreshTokens()
-        }
+        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
         
     }
     

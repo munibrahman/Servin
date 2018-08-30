@@ -143,7 +143,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
         let titleLabel = UILabel.init(frame: CGRect.init(x: 20, y: y, width: width, height: 25.0))
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.textColor = UIColor.greyBackgroundColor.withAlphaComponent(0.7)
-        titleLabel.text = "Recommended just for you"
+        titleLabel.text = "Recommended for you"
         titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         self.scrollView.addSubview(titleLabel)
         

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import AWSCognitoIdentityProvider
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -24,6 +25,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     
     var textFieldChanged = false
+    var didPickImage = false
     
     var imagePicker = UIImagePickerController()
     
@@ -38,18 +40,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         setupNavigationController()
         populateInfo()
         // Do any additional setup after loading the view.
+        
+        setupViews()
     }
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         print("Textfield started editing")
         textFieldChanged = true
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        setupViews()
     }
     
     func setupViews() {
@@ -141,6 +139,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             profileImageView.image = chosenImage //4
+            
+            didPickImage = true
         }
         
         dismiss(animated:true, completion: nil)
@@ -154,31 +154,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func populateInfo() {
         
-        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
-            
-            let headers: HTTPHeaders = [
-                "Authorization": (session.result?.idToken?.tokenString)!
-            ]
-            
-            
-            
-            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
-            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            
-            
-            Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
-                if let image = response.result.value {
-                    self.profileImageView.image = image
-                } else {
-                    print(response.data)
-                    print(response)
-                }
-            })
-            
-            return nil
-        })
-        
-//        profileImageView.image = #imageLiteral(resourceName: "larry_avatar")
+        profileImageView.image = BackendServer.shared.fetchProfileImage()
         
     }
 
@@ -209,7 +185,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @objc func barButtonPressed() {
         
-        if textFieldChanged {
+        if textFieldChanged  || didPickImage {
             
             let alertViewController = UIAlertController.init(title: "If you exit now, your edits won't be saved.", message: "" , preferredStyle: .alert)
             
@@ -244,37 +220,88 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // TODO: Save changes here
         print("Saving profile")
         
+        self.resignFirstResponder()
         
         self.navigationItem.rightBarButtonItem = progressBarButton
         
-        AppDelegate.defaultUserPool().currentUser()?.getSession().continueOnSuccessWith(block: { (session) -> Any? in
+        let myGroup = DispatchGroup()
+        
+        if didPickImage {
             
-            let headers: HTTPHeaders = [
-                "Authorization": (session.result?.idToken?.tokenString)!
-            ]
-            
-            
-            
-            var url = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture"
-            url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-            guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
-                self.navigationItem.rightBarButtonItem = self.saveButtonItem
-                return nil
-            }
-            
-            Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
-                if let JSON = response.result.value as? NSDictionary {
-                    print(JSON)
-                } else {
-                    let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
-                    print(message)
+            myGroup.enter()
+            print("started request for profile pic")
+            if let idToken = KeyChainStore.shared.fetchIdToken() {
+                let headers: HTTPHeaders = [
+                    "Authorization": idToken
+                ]
+                
+                guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
+                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
+                    
+                    return
+                }
+                
+                var url = "\(BackendServer.shared.baseUrl)/dev/user/picture"
+                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+                
+                Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
+                    if let JSON = response.result.value as? NSDictionary {
+                        
+                        // saved the image
+                        _ = DefaultsWrapper.set(image: self.profileImageView.image!, named: Key.imagePath)
+                        print(JSON)
+                    } else {
+                        
+                        // show error
+                        let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
+                        print(message)
+                        
+                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
+                        
+                    }
+                    
+                    print("finished request for profile pic")
+                    myGroup.leave()
                 }
             }
+        }
+        
+        if textFieldChanged {
+            myGroup.enter()
+            print("started request for text field")
+            if let user = AppDelegate.defaultUserPool().currentUser() {
+                
+                var attributes = [AWSCognitoIdentityUserAttributeType]()
+                
+                if let firstName = self.firstNameTextField.text {
+                    let attr = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: firstName)
+                    DefaultsWrapper.setString(key: Key.firstName, value: firstName)
+                    attributes.append(attr)
+                }
+                
+                if let lastName = self.lastNameTextField.text {
+                    let attr = AWSCognitoIdentityUserAttributeType.init(name: "family_name", value: lastName)
+                    DefaultsWrapper.setString(key: Key.lastName, value: lastName)
+                    attributes.append(attr)
+                }
+                
+                user.update(attributes).continueOnSuccessWith { (res) -> Any? in
+                    
+                    print("finished request for textfield")
+                    myGroup.leave()
+                    return nil
+                    
+                }
+                
+            }
             
-            self.navigationItem.rightBarButtonItem = self.saveButtonItem
-            
-            return nil
-        })
+        }
+        
+        myGroup.notify(queue: .main) {
+            print("Finished all requests, exiting now")
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        
     }
     
     
