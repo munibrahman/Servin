@@ -12,5 +12,9 @@
 		<string>merchant.servin</string>
 		<string>merchant.com.servin</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.volticlabs.servin</string>
+	</array>
 </dict>
 </plist>

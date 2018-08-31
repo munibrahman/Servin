@@ -13,6 +13,10 @@ import Alamofire
 
 class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    var profileImageView: UIImageView?
+    var userNameLabel: UILabel?
+    
     @IBOutlet var optionsTableViewController: UITableView!
     
     var mainVC: MasterPulleyViewController? = nil
@@ -76,6 +80,13 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.userNameLabel?.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
+        self.profileImageView?.image = BackendServer.shared.fetchProfileImage()
+    }
+    
     func setupConstraints() {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         optionsTableViewController.translatesAutoresizingMaskIntoConstraints = false
@@ -134,21 +145,18 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCell(withIdentifier: profileCellReuseIdentifier, for: indexPath) as! SideMenuProfileTableViewCell
             
             cell.selectionStyle = .none
-            cell.userNameLabel.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
-            if let image = BackendServer.shared.fetchProfileImage() {
-                cell.profileImageView.image = image
-            } else {
-                DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 5) {
-                    cell.profileImageView.image = BackendServer.shared.fetchProfileImage()
-                }
-            }
+            cell.userNameLabel.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
+            
+            self.userNameLabel = cell.userNameLabel
+            
+            cell.profileImageView.image = BackendServer.shared.fetchProfileImage()
+            
+            
+            self.profileImageView = cell.profileImageView
+            
             
             return cell
         }
-        
-        
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -10,13 +10,18 @@ import Foundation
 import UIKit
 
 enum Key: String {
-    case firstName
-    case lastName
+    case givenName = "given_name"
+    case familyName = "family_name"
     case memberSince
-    case school
+    case school = "custom:school"
     case imagePath
     case servinPoints
     case userName
+    case sub = "sub"
+    case emailVerified = "email_verified"
+    case aboutMe = "custom:about_me"
+    case email = "email"
+    
 }
 
 class DefaultsWrapper {

@@ -55,6 +55,8 @@ class WelcomeViewController: UIViewController {
             
             // On the first time, just refresh all tokens in the keychain.
             KeyChainStore.shared.refreshTokens()
+            BackendServer.shared.downloadProfileImage()
+            BackendServer.shared.fetchAttributes()
             
             
             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())

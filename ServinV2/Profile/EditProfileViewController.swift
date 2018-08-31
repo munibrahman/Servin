@@ -69,14 +69,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         firstNameTextField.backgroundColor = .clear
         firstNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
         
-        firstNameTextField.text = DefaultsWrapper.getString(key: Key.firstName, defaultValue: "")
+        firstNameTextField.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
         
         lastNameTextField.backgroundColor = .clear
         lastNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
-        lastNameTextField.text = DefaultsWrapper.getString(key: Key.lastName, defaultValue: "")
+        lastNameTextField.text = DefaultsWrapper.getString(key: Key.familyName, defaultValue: "")
         
         schoolTextField.backgroundColor = .clear
         schoolTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
+        schoolTextField.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
         
         
     }
@@ -274,20 +275,31 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 var attributes = [AWSCognitoIdentityUserAttributeType]()
                 
                 if let firstName = self.firstNameTextField.text {
-                    let attr = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: firstName)
-                    DefaultsWrapper.setString(key: Key.firstName, value: firstName)
+                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.givenName.rawValue, value: firstName)
+                    DefaultsWrapper.setString(key: Key.givenName, value: firstName)
                     attributes.append(attr)
                 }
                 
                 if let lastName = self.lastNameTextField.text {
-                    let attr = AWSCognitoIdentityUserAttributeType.init(name: "family_name", value: lastName)
-                    DefaultsWrapper.setString(key: Key.lastName, value: lastName)
+                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.familyName.rawValue, value: lastName)
+                    DefaultsWrapper.setString(key: Key.familyName, value: lastName)
                     attributes.append(attr)
                 }
                 
-                user.update(attributes).continueOnSuccessWith { (res) -> Any? in
+                if let school = self.schoolTextField.text {
+                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.school.rawValue, value: school)
+                    DefaultsWrapper.setString(key: Key.school, value: school)
+                    attributes.append(attr)
+                }
+                
+                user.update(attributes).continueWith { (res) -> Any? in
                     
-                    print("finished request for textfield")
+                    if let error = res.error as NSError? {
+                        print("Error: \(error)")
+                        return nil
+                    }
+                    
+                    print("finished request for updating attributes")
                     myGroup.leave()
                     return nil
                     
@@ -334,6 +346,9 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     var aboutMeTextInput = UITextView()
     var textViewChanged = false
     
+    var progressBarButton: UIBarButtonItem!
+    var saveButtonItem: UIBarButtonItem!
+    
     override func loadView() {
         
         view = UIView()
@@ -360,6 +375,7 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
         aboutMeTextInput.font = UIFont.systemFont(ofSize: 20.0, weight: .regular)
         aboutMeTextInput.textColor = UIColor.blackFontColor
         aboutMeTextInput.toolbarPlaceholder = "Say something nice about yourself!"
+        aboutMeTextInput.text = DefaultsWrapper.getString(key: Key.aboutMe, defaultValue: "")
         aboutMeTextInput.delegate = self
         aboutMeTextInput.textContainer.lineFragmentPadding = 0
         view.addSubview(aboutMeTextInput)
@@ -380,6 +396,13 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     }
     
     func setupNavigationController() {
+        
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.black
+        progressSpinner.startAnimating()
+        
+        progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        
         navigationController?.navigationBar.tintColor = UIColor.black
         navigationController?.navigationBar.backgroundColor = .white
         
@@ -388,12 +411,13 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
         
         navigationController?.navigationBar.topItem?.title = ""
         
-        let editButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveAboutMe))
+        saveButtonItem = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(saveAboutMe))
         
-        navigationItem.rightBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItem = saveButtonItem
     }
     
     @objc func barButtonPressed() {
+        
         
         // Text has been changed, ask to save or not.
         if textViewChanged {
@@ -432,6 +456,44 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     @objc func saveAboutMe() {
         // TODO: Save changes here
         print("Saving about me")
+        
+        navigationItem.rightBarButtonItem = progressBarButton
+        
+        if let text = aboutMeTextInput.text {
+            let attribute = AWSCognitoIdentityUserAttributeType.init(name: Key.aboutMe.rawValue, value: text)
+            
+            
+            if let user = AppDelegate.defaultUserPool().currentUser() {
+                user.update([attribute]).continueWith { (res) -> Any? in
+                    
+                    DispatchQueue.main.async {
+                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
+                    }
+                    
+                    if let error = res.error as NSError? {
+                        print("Error: \(error)")
+                        return nil
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: nil)
+                        
+                    }
+                    
+                    DefaultsWrapper.setString(key: Key.aboutMe, value: text)
+                    
+                    return nil
+                }
+            }
+            
+            
+            
+            
+        }
+        
+        
+        
+        
     }
     
     

@@ -11,10 +11,7 @@ import AWSCognitoIdentityProvider
 import JWTDecode
 
 class KeyChainStore: NSObject {
-    
-    // Constant Identifiers
-    static let service = "com.volticlabs.servin"
-    static let accessGroup = "com.volticlabs.servin.user"
+
     
     enum Keys: String {
         case refreshToken = "refresh_token"
@@ -24,7 +21,7 @@ class KeyChainStore: NSObject {
     
     static let shared = KeyChainStore()
     
-    let keychain = AWSUICKeyChainStore.init(service: KeyChainStore.service, accessGroup: KeyChainStore.accessGroup)
+    let keychain = AWSUICKeyChainStore.init()
     
     func refreshTokens() {
         
@@ -49,14 +46,14 @@ class KeyChainStore: NSObject {
                         if let jwtokenized = jwt {
                             print(jwtokenized.body)
                             
-                            if let givenName = jwtokenized.body["given_name"] as? String {
+                            if let givenName = jwtokenized.body[Key.givenName.rawValue] as? String {
                                 print("saved given name")
-                                DefaultsWrapper.setString(key: Key.firstName, value: givenName)
+                                DefaultsWrapper.setString(key: Key.givenName, value: givenName)
                             }
                             
-                            if let familyName = jwtokenized.body["family_name"] as? String {
+                            if let familyName = jwtokenized.body[Key.familyName.rawValue] as? String {
                                 print("saved family name")
-                                DefaultsWrapper.setString(key: Key.lastName, value: familyName)
+                                DefaultsWrapper.setString(key: Key.familyName, value: familyName)
                             }
                             
                             if let userName = jwtokenized.body["cognito:username"] as? String {
@@ -81,7 +78,6 @@ class KeyChainStore: NSObject {
                         }
                     }
                     
-                    _ = BackendServer.shared.fetchProfileImage()
         
                     return nil
                 })
