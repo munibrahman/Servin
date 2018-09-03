@@ -68,6 +68,8 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         super.viewDidAppear(animated)
         
         setDrawerPosition(position: .partiallyRevealed, animated: true)
+        
+        let view = self.showAlertView(alertType: UIViewController.Alert.success, message: "Internet connected!", duration: 3)
     }
     
     override func didReceiveMemoryWarning() {
@@ -245,8 +247,10 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         if let coordinate = currentCoordinate {
             let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
             
-            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)"],encoding: JSONEncoding.default, headers: nil).responseJSON {
+            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)", "title": myPostAdViewController?.titleTextField.text ?? "", "price": myPostAdViewController?.priceTextField.text ?? "","reqORoff": "request","description": myPostAdViewController?.descriptionTextField.text ?? ""],encoding: JSONEncoding.default, headers: nil).responseJSON {
                 response in
+                
+                print(response.request)
                 switch response.result {
                 case .success:
                     print(response)
@@ -258,9 +262,6 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 }
             }
         }
-        
-        
-        
     }
     
     override func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {

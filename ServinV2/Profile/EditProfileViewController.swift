@@ -186,6 +186,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     @objc func barButtonPressed() {
         
+        self.view.resignFirstResponder()
+        
         if textFieldChanged  || didPickImage {
             
             let alertViewController = UIAlertController.init(title: "If you exit now, your edits won't be saved.", message: "" , preferredStyle: .alert)
@@ -221,7 +223,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         // TODO: Save changes here
         print("Saving profile")
         
-        self.resignFirstResponder()
+        self.view.resignFirstResponder()
         
         self.navigationItem.rightBarButtonItem = progressBarButton
         

@@ -247,3 +247,129 @@ extension UIApplication {
     }
 }
 
+extension UIViewController {
+    
+    enum Alert {
+        case error
+        case warning
+        case success
+    }
+    
+    func showAlertView(alertType: Alert, message: String, duration: Int) -> UIView {
+        let alertView = UIView.init()
+        
+        self.view.addSubview(alertView)
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        alertView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        alertView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        
+        let zeroConstraint = alertView.heightAnchor.constraint(equalToConstant: 0)
+        zeroConstraint.isActive = true
+        
+        view.layoutIfNeeded()
+        
+        let label = UILabel.init()
+        alertView.addSubview(label)
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.leadingAnchor.constraint(equalTo: alertView.leadingAnchor).isActive = true
+        label.topAnchor.constraint(equalTo: alertView.topAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: alertView.trailingAnchor).isActive = true
+        label.bottomAnchor.constraint(equalTo: alertView.bottomAnchor).isActive = true
+        
+        label.textAlignment = .center
+        
+        label.backgroundColor = .clear
+        
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .white
+        
+        label.text = message
+        
+        
+        if alertType == Alert.error {
+            alertView.backgroundColor = UIColor.init(red: 255.0/255.0, green: 59.0/255.0, blue: 48.0/255.0, alpha: 1.0)
+        } else if alertType == Alert.warning {
+            alertView.backgroundColor = UIColor.init(red: 255.0/255.0, green: 149.0/255.0, blue: 48.0/255.0, alpha: 1.0)
+        } else if alertType == Alert.success {
+            alertView.backgroundColor = UIColor.init(red: 76.0/255.0, green: 217.0/255.0, blue: 100.0/255.0, alpha: 1.0)
+        } else {
+            fatalError("Alert type must be specified or exhausted")
+        }
+        
+        
+        let heightConstraint = alertView.heightAnchor.constraint(equalToConstant: 25)
+        
+        zeroConstraint.isActive = false
+        heightConstraint.isActive = true
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: {(didComplete) in
+            
+            
+            heightConstraint.isActive = false
+            zeroConstraint.isActive = true
+            
+            
+            UIView.animate(withDuration: 0.5, delay: Double(duration), usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: { (_) in
+                alertView.removeFromSuperview()
+            })
+            
+        } )
+        
+        return alertView
+    }
+    
+    func subscribeToNetworkChanges() {
+        NotificationCenter.default.addObserver(self, selector: #selector(statusManager), name: .flagsChanged, object: Network.reachability)
+        updateUserInterface()
+    }
+    
+    @objc func updateUserInterface() {
+        guard let status = Network.reachability?.status else { return }
+        switch status {
+        case .unreachable:
+            view.backgroundColor = .red
+        case .wifi:
+            view.backgroundColor = .green
+        case .wwan:
+            view.backgroundColor = .yellow
+        }
+        print("Reachability Summary")
+        print("Status:", status)
+        print("HostName:", Network.reachability?.hostname ?? "nil")
+        print("Reachable:", Network.reachability?.isReachable ?? "nil")
+        print("Wifi:", Network.reachability?.isReachableViaWiFi ?? "nil")
+    }
+    @objc func statusManager(_ notification: Notification) {
+        updateUserInterface()
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

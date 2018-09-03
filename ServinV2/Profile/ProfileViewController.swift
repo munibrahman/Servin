@@ -32,6 +32,12 @@ class ProfileViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.showAlertView(alertType: UIViewController.Alert.error, message: "No internet connection", duration: 3)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
