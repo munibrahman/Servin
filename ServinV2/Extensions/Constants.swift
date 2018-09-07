@@ -22,9 +22,9 @@ class Constants {
     
     static let appleMerchantIdentifier = "merchant.com.servin"
 
-    static fileprivate var pulleyMasterController: MasterPulleyViewController? = nil
+    static fileprivate var pulleyMasterController: UINavigationController? = nil
     
-    static func getMainContentVC() -> MasterPulleyViewController {
+    static func getMainContentVC() -> UINavigationController {
         
         
         if let pulleyVC = pulleyMasterController {
@@ -39,6 +39,8 @@ class Constants {
         
         let pulleyController = MasterPulleyViewController(contentViewController: mainContentVC, drawerViewController: drawerContentVC)
         
+        let pulleyNavController = UINavigationController.init(rootViewController: pulleyController)
+        
         mainContentVC.delegate = pulleyController
         mainContentVC.mapDelegate = drawerContentVC
         
@@ -46,8 +48,8 @@ class Constants {
         pulleyController.myDiscoveriesViewController = drawerContentVC
         pulleyController.myPostAdViewController = drawerPostAdVC
         
-        Constants.pulleyMasterController = pulleyController
-        return pulleyController
+        Constants.pulleyMasterController = pulleyNavController
+        return pulleyNavController
     }
     
 }

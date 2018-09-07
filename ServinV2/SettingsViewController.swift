@@ -133,7 +133,7 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("Multifactor Authentication") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return RandomViewController()
+                    return MFASettingsViewController()
                 }), onDismiss: nil)
                 
             }
@@ -580,6 +580,165 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
     }
     
 }
+
+
+private class MFASettingsViewController: UIViewController {
+    
+    var mfaSwitch: UISwitch!
+    var mfaSettings:[AWSCognitoIdentityProviderMFAOptionType]?
+    var userAttributes:[AWSCognitoIdentityProviderAttributeType]?
+    var user:AWSCognitoIdentityUser?
+    
+    override func loadView() {
+        view = UIView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+        
+        setupViews()
+        setupNavigationBar()
+        loadUserValues()
+    }
+    
+    func setupViews() {
+        mfaSwitch = UISwitch.init()
+        
+        self.view.addSubview(mfaSwitch)
+        
+        mfaSwitch.translatesAutoresizingMaskIntoConstraints = false
+        mfaSwitch.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8.0).isActive = true
+        mfaSwitch.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 8.0).isActive = true
+        
+        mfaSwitch.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
+    }
+    
+    @objc func switchValueDidChange(_ sender: UISwitch) {
+        
+        print("switch value did change")
+        
+        let settings = AWSCognitoIdentityUserSettings()
+        if mfaSwitch.isOn {
+            // Enable MFA
+            let mfaOptions = AWSCognitoIdentityUserMFAOption()
+            mfaOptions.attributeName = "phone_number"
+            mfaOptions.deliveryMedium = .sms
+            settings.mfaOptions = [mfaOptions]
+        } else {
+            // Disable MFA
+            settings.mfaOptions = []
+        }
+        
+         user?.setUserSettings(settings)
+            .continueWith(block: { (response) -> Any? in
+                if response.error != nil {
+                    let alert = UIAlertController(title: "Error", message: (response.error! as NSError).userInfo["message"] as? String, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion:nil)
+                    self.resetAttributeValues()
+                } else {
+                    self.fetchUserAttributes()
+                }
+                return nil
+            })
+    }
+    
+    func setupNavigationBar() {
+        
+        self.view.backgroundColor = .white
+        self.navigationItem.largeTitleDisplayMode = .never
+
+    }
+    
+    func loadUserValues() {
+        self.resetAttributeValues()
+        self.fetchUserAttributes()
+    }
+    
+    func fetchUserAttributes() {
+        self.resetAttributeValues()
+        user = AppDelegate.defaultUserPool().currentUser()
+        user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
+            guard task.result != nil else {
+                return nil
+            }
+            self.userAttributes = task.result?.userAttributes
+            self.mfaSettings = task.result?.mfaOptions
+            self.userAttributes?.forEach({ (attribute) in
+                print("Name: " + attribute.name!)
+            })
+            DispatchQueue.main.async {
+                self.setAttributeValues()
+            }
+            return nil
+        })
+    }
+    
+    func isEmailMFAEnabled() -> Bool {
+        let values = self.mfaSettings?.filter { $0.deliveryMedium == AWSCognitoIdentityProviderDeliveryMediumType.sms }
+        if values?.first != nil {
+            return true
+        }
+        return false
+    }
+    
+    func resetAttributeValues() {
+        DispatchQueue.main.async {
+            self.mfaSwitch.setOn(false, animated: false)
+        }
+    }
+    
+    func setAttributeValues() {
+        DispatchQueue.main.async {
+            if self.mfaSettings == nil {
+                self.mfaSwitch.setOn(false, animated: false)
+            } else {
+                self.mfaSwitch.setOn(self.isEmailMFAEnabled(), animated: false)
+            }
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

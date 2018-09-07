@@ -22,6 +22,8 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     var myDiscoveriesViewController: SlaveDiscoveriesViewController?
     var myPostAdViewController: SlavePostAdViewController?
     
+    var postBarButton: UIBarButtonItem!
+    var progressBarButton: UIBarButtonItem!
     
     enum States {
         case normal
@@ -33,7 +35,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         
         setupSearchBar()
         setupSideMenu()
-
+        setupNavigationBar()
         
         // Do any additional setup after loading the view.
         
@@ -64,12 +66,73 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         
     }
     
+    func setupNavigationBar() {
+        
+        if self.navigationController == nil {
+            fatalError("Must be presented inside a UINavigationController")
+        }
+        
+         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        self.navigationController?.navigationBar.transparentNavigationBar()
+        
+        let leftItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(userDidTapX))
+        leftItem.tintColor = .white
+        
+        postBarButton = UIBarButtonItem.init(title: "Post", style: .plain, target: self, action: #selector(userDidTapPost))
+        postBarButton.tintColor = .white
+        
+        self.navigationItem.leftBarButtonItem = leftItem
+        self.navigationItem.rightBarButtonItem = postBarButton
+        
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.white
+        progressSpinner.startAnimating()
+        
+        progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        progressBarButton.tintColor = .white
+        
+        
+    }
+    
+    @objc func userDidTapX() {
+        print("Back pressed")
+        drawerShouldShow(postAd: false, coordinate: nil)
+    }
+    
+    @objc func userDidTapPost() {
+        
+        print("Post pressed")
+        
+        navigationItem.rightBarButtonItem = progressBarButton
+        
+        if let coordinate = currentCoordinate {
+            let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
+            
+            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)", "title": myPostAdViewController?.titleTextField.text ?? "", "price": myPostAdViewController?.priceTextField.text ?? "","reqORoff": "request","description": myPostAdViewController?.descriptionTextField.text ?? ""],encoding: JSONEncoding.default, headers: nil).responseJSON {
+                response in
+                
+                self.navigationItem.rightBarButtonItem = self.postBarButton
+                
+                print(response.request)
+                switch response.result {
+                case .success:
+                    print(response)
+                    self.drawerShouldShow(postAd: false, coordinate: nil)
+                    break
+                case .failure(let error):
+                    
+                    print(error)
+                }
+            }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setDrawerPosition(position: .partiallyRevealed, animated: true)
-        
-        let view = self.showAlertView(alertType: UIViewController.Alert.success, message: "Internet connected!", duration: 3)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,7 +142,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     
     func setupSearchBar() {
   
-        let topPadding = self.topbarHeight + 15.0
+        let topPadding = self.statusBarHeight + 15.0
         
         
         searchBar = SearchView.init(frame: CGRect.init(x: 0.0 , y: topPadding, width: self.view.frame.size.width, height: 40.0), daddyVC: self)
@@ -89,6 +152,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         Constants.searchBarFrame = searchBar.frame
         
         self.view.addSubview(searchBar)
+//        searchBar.translatesAutoresizingMaskIntoConstraints
         
         
         
@@ -145,6 +209,9 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             }) { (didComplete) in
                 
                 print(self.topbarHeight)
+                
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+                
                 self.topBlurView = UIView.init(frame: CGRect.init(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.topbarHeight + 50.0))
                 let gradient = CAGradientLayer()
                 gradient.frame = self.topBlurView.bounds
@@ -155,34 +222,10 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 self.myMapViewController?.view.addSubview(self.topBlurView)
                 
                 
-                //let fakeView = UIView.init(frame: self.topBlurView.frame)
-                
-                let backButton = UIButton.init(frame: CGRect.init(x: 16.0, y: self.topbarHeight + 15.0, width: 30.0, height: 30.0))
-                backButton.setImage(#imageLiteral(resourceName: "x_white"), for: .normal)
-                
-                self.viewArray.append(backButton)
-                self.view.addSubview(backButton)
-                
-                let backTap = UITapGestureRecognizer.init(target: self, action: #selector(self.backPressed))
-                backButton.addGestureRecognizer(backTap)
-                
-                let postButton = UIButton.init(frame: CGRect.init(x: self.view.frame.size.width - 17.0 - 50.0, y: self.topbarHeight + 15.0, width: 50.0, height: 30.0))
-                postButton.setTitle("Post", for: .normal)
-                postButton.titleLabel?.font = UIFont.systemFont(ofSize: 18.0, weight: .semibold)
-                
-                let postTap = UITapGestureRecognizer.init(target: self, action: #selector(self.postPressed))
-                postButton.addGestureRecognizer(postTap)
-                
-                self.viewArray.append(postButton)
-                self.view.addSubview(postButton)
-                
-                
-                
                 if let postAdDrawer = self.myPostAdViewController {
                     self.setDrawerPosition(position: .partiallyRevealed, animated: false)
                     self.setDrawerContentViewController(controller: postAdDrawer)
                     
-                    //setNeedsSupportedDrawerPositionsUpdate()
                 } else {
                     fatalError("My post drawer is empty, this should never happen")
                 }
@@ -195,6 +238,8 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             
             // We are not showing the posting menu, we are shoing the discoveries instead.
             isShowingPostMenu = false
+            
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
             
 //            self.drawerCornerRadius = 0.0
             self.backgroundDimmingColor = UIColor.white
@@ -234,50 +279,12 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     }
     
     
-    @objc func backPressed() {
-        print("Back pressed")
-        drawerShouldShow(postAd: false, coordinate: nil)
-        
-    }
-
-    @objc func postPressed() {
-        print("Post pressed")
-        
-        
-        if let coordinate = currentCoordinate {
-            let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
-            
-            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)", "title": myPostAdViewController?.titleTextField.text ?? "", "price": myPostAdViewController?.priceTextField.text ?? "","reqORoff": "request","description": myPostAdViewController?.descriptionTextField.text ?? ""],encoding: JSONEncoding.default, headers: nil).responseJSON {
-                response in
-                
-                print(response.request)
-                switch response.result {
-                case .success:
-                    print(response)
-                    self.drawerShouldShow(postAd: false, coordinate: nil)
-                    break
-                case .failure(let error):
-                    
-                    print(error)
-                }
-            }
-        }
-    }
-    
     override func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
         super.drawerPositionDidChange(drawer: drawer, bottomSafeArea: bottomSafeArea)
         
         print("Changed position of drawer")
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func didSelectMarker(pin: Pin) {
     }

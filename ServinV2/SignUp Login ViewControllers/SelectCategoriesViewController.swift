@@ -77,7 +77,13 @@ class SelectCategoriesViewController: UIViewController {
     
     @objc func didTapNext() {
         
-        print("didTap")
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.black
+        progressSpinner.startAnimating()
+        
+        let progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        
+        self.navigationItem.rightBarButtonItem = progressBarButton
         
         let finalArray = data.filter { (value) -> Bool in
             return highlightedArray[data.index(of: value)!] == true

@@ -104,9 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: PaymentViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: NotificationsAroundYouViewController())
         
-        //let initialViewController = InitialViewController()
+//        let initialViewController = NotificationsAroundYouViewController()
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         

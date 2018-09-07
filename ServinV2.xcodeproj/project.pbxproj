@@ -100,6 +100,7 @@
 		8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1721273E060073B139 /* MockCustomerContext.swift */; };
 		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
 		8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */; };
+		8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */; };
 		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
 		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
@@ -225,6 +226,7 @@
 		8BF2AF1721273E060073B139 /* MockCustomerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCustomerContext.swift; sourceTree = "<group>"; };
 		8BF2AF19212A543C0073B139 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsWrapper.swift; sourceTree = "<group>"; };
+		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
 		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -468,6 +470,7 @@
 				8B5348792134FECD009E4C3E /* Storage */,
 				8B53487C21350D08009E4C3E /* BackendServer.swift */,
 				8B53487E213779AC009E4C3E /* Reachability.swift */,
+				8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -932,6 +935,7 @@
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
+				8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */,
 				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
 				8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */,
 				8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */,
