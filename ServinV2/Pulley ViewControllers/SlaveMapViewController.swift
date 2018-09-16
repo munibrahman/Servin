@@ -29,6 +29,9 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     var delegate: SlaveMapViewControllerDelegate?
     var mapDelegate: SlaveMapViewControllerDelegate?
     
+    
+    var inviteButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -36,9 +39,46 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         
+        let inviteButtonHeight: CGFloat = 40.0
+        let inviteButtonWidth: CGFloat = 110.0
+        
+        inviteButton = UIButton.init(frame: CGRect.init(x: self.view.frame.size.width - inviteButtonWidth - 5, y: self.view.frame.size.height - inviteButtonHeight - 5, width: inviteButtonWidth, height: inviteButtonHeight))
+        
+        inviteButton.backgroundColor = .white
+        inviteButton.layer.cornerRadius = inviteButtonHeight / 2
+        inviteButton.clipsToBounds = true
+        inviteButton.layer.borderColor = UIColor.blackFontColor.withAlphaComponent(0.2).cgColor
+        inviteButton.layer.borderWidth = 1.0
+        
+        inviteButton.addTarget(self, action: #selector(didTapInviteFriends), for: .touchUpInside)
+        
+        
+        let inviteLabel = UILabel.init()
+        inviteLabel.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        inviteLabel.textColor = UIColor.blackFontColor
+        inviteLabel.text = "Invite Friends!"
+        
+        inviteButton.addSubview(inviteLabel)
+        
+        inviteLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        inviteLabel.centerXAnchor.constraint(equalTo: inviteButton.centerXAnchor).isActive = true
+        inviteLabel.centerYAnchor.constraint(equalTo: inviteButton.centerYAnchor).isActive = true
+        
+        
         checkLocationServices()
         setupMap()
         setupPins()
+    }
+    
+    @objc func didTapInviteFriends() {
+        
+        if let parent = self.parent as? MasterPulleyViewController {
+            print("Yeah my parent is the master pulley")
+            
+            UIApplication.topViewController()?.present(UINavigationController.init(rootViewController: InviteOthersViewController()), animated: true, completion: nil)
+        }
+        
     }
     
     func setupMap() {
@@ -68,6 +108,8 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         homeMapView.isMyLocationEnabled = true
         homeMapView.isUserInteractionEnabled = true
+        
+        self.view.insertSubview(inviteButton, aboveSubview: homeMapView)
 
     }
     
@@ -151,7 +193,14 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             
             if currentLocationLat == userLocationLat && currentLocationLong == userLocationLong  {
                 mapView.settings.myLocationButton = false
+                inviteButton.isEnabled = true
+                inviteButton.isHidden = false
+                
             } else {
+                
+                inviteButton.isHidden = true
+                inviteButton.isEnabled = false
+                
                 mapView.settings.myLocationButton = true
             }
             
@@ -286,20 +335,48 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
     func drawerChangedDistanceFromBottom(drawer: PulleyViewController, distance: CGFloat, bottomSafeArea: CGFloat)
     {
         
+        let xPosition = inviteButton.frame.origin.x
+        
+        //View will slide 20px up
+        var yPosition = inviteButton.frame.origin.y
+        
+        let height = inviteButton.frame.size.height
+        let width = inviteButton.frame.size.width
+        
         // If we are posting an ad, send the screen all the way to the top. Otherwise just follow the drawer.
         if (drawer.drawerContentViewController as? SlavePostAdViewController) != nil {
             homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: (UIScreen.main.bounds.size.height * (2/3)) - bottomSafeArea, right: 0.0)
+            
+            print("1 here")
+            yPosition = yPosition - bottomSafeArea
+            
+            self.inviteButton.frame = CGRect.init(x: xPosition, y: yPosition, width: width, height: height)
+            
             
         } else {
             // This allows us to keep the google logo and the location button at the top
             // of the drawer at all times
             if distance <= 268.0 + bottomSafeArea
             {
+                
+                print("2 here")
                 homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
+                
+                yPosition = (self.view.frame.size.height) - (distance + height + 10.0)
+                
+                self.inviteButton.frame = CGRect.init(x: xPosition, y: yPosition, width: width, height: height)
+                
             }
             else
             {
+                
+                print("3 here")
                 homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
+                
+                yPosition = (self.view.frame.size.height) - (268.0 + bottomSafeArea + height + 10.0)
+                
+                self.inviteButton.frame = CGRect.init(x: xPosition, y: yPosition, width: width, height: height)
+                
             }
         }
         

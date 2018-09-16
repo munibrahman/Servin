@@ -16,7 +16,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet var profileImageView: UIImageView!
     
     @IBOutlet var firstNameLabel: UILabel!
-    @IBOutlet var creditsLabel: UILabel!
     @IBOutlet var aboutMeLabel: UILabel!
     @IBOutlet var othersSayAboutMeLabel: UILabel!
     @IBOutlet var memberSinceLabel: UILabel!
@@ -42,14 +41,12 @@ class ProfileViewController: UIViewController {
         
         firstNameLabel.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
         
-        creditsLabel.text = "14,000 servin credits"
-        
         
         aboutMeLabel.text = DefaultsWrapper.getString(key: Key.aboutMe, defaultValue: "")
         aboutMeLabel.numberOfLines = 0
         aboutMeLabel.sizeToFit()
         
-        othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
         othersSayAboutMeLabel.numberOfLines = 0
         othersSayAboutMeLabel.sizeToFit()
         
@@ -59,7 +56,7 @@ class ProfileViewController: UIViewController {
         self.profileImageView.image = BackendServer.shared.fetchProfileImage()
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
 
-        
+        self.view.layoutIfNeeded()
     }
     
     

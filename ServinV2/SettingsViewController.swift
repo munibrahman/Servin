@@ -55,7 +55,7 @@ class SettingsViewController: FormViewController {
             <<< ButtonRow("Invite Your Friends") {
                 $0.title = $0.tag
                 $0.presentationMode = PresentationMode.show(controllerProvider: ControllerProvider.callback(builder: { () -> UIViewController in
-                    return RandomViewController()
+                    return InviteOthersViewController()
                 }), onDismiss: { (vc) in
                     vc.navigationController?.popViewController(animated: true)
                     print("vc did run")

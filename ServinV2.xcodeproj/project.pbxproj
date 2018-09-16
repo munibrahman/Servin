@@ -40,6 +40,8 @@
 		8B68E310209B726C00F7F365 /* SignUp3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */; };
 		8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B6B7DFE20ADB56400867F18 /* logo_servin.svg */; };
 		8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */; };
+		8B743E272148BB9A00322EF8 /* TestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B743E262148BB9A00322EF8 /* TestingViewController.swift */; };
+		8B743E29214967AA00322EF8 /* InviteOthersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */; };
 		8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81591D20AF714900EDA1FC /* LoginViewController.swift */; };
 		8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */ = {isa = PBXBuildFile; fileRef = 8B81591F20AF746C00EDA1FC /* >_clear.svg */; };
 		8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */; };
@@ -159,6 +161,8 @@
 		8B68E30F209B726C00F7F365 /* SignUp3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp3ViewController.swift; sourceTree = "<group>"; };
 		8B6B7DFE20ADB56400867F18 /* logo_servin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = logo_servin.svg; sourceTree = "<group>"; };
 		8B6CF0C320CCAB360013F372 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		8B743E262148BB9A00322EF8 /* TestingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingViewController.swift; sourceTree = "<group>"; };
+		8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteOthersViewController.swift; sourceTree = "<group>"; };
 		8B81591D20AF714900EDA1FC /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B81591F20AF746C00EDA1FC /* >_clear.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ">_clear.svg"; sourceTree = "<group>"; };
 		8B81592120B09BB900EDA1FC /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 			children = (
 				8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
+				8B743E262148BB9A00322EF8 /* TestingViewController.swift */,
 				8BF2AF0A2126266B0073B139 /* Payment */,
 				8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */,
 				8BC7D0B62122014B00F2CD8F /* DeepLinks */,
@@ -471,6 +476,7 @@
 				8B53487C21350D08009E4C3E /* BackendServer.swift */,
 				8B53487E213779AC009E4C3E /* Reachability.swift */,
 				8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */,
+				8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -945,6 +951,7 @@
 				8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */,
 				8BEE79B920ED392700DB768C /* MessageUserPinViewController.swift in Sources */,
 				8B81591E20AF714900EDA1FC /* LoginViewController.swift in Sources */,
+				8B743E29214967AA00322EF8 /* InviteOthersViewController.swift in Sources */,
 				8BEE79BD20F4389A00DB768C /* ConfirmSignUpViewController.swift in Sources */,
 				8B45C20820D890B9009FF0F9 /* MyDiscoveryViewController.swift in Sources */,
 				8BBFFC38209D970A00BA5D06 /* HelpViewController.swift in Sources */,
@@ -973,6 +980,7 @@
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,
 				8B43D38D20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift in Sources */,
+				8B743E272148BB9A00322EF8 /* TestingViewController.swift in Sources */,
 				8BD3834D20CBD03D00B4B653 /* CustomCell_Instagram.swift in Sources */,
 				8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */,
 				8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */,

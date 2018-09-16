@@ -72,6 +72,7 @@ class UserProfileViewController: UIViewController {
         self.whatOthersSayDescriptionLabel.text = "Adriana was awesome! She helped me mow my lawn and it looks like new, she was on time and finished on time too! No issues whatsoever! I would highly recommend her for any other job! She completely surpassed my expectations!"
         
         self.memberSinceLabel.text = "2018"
+        self.view.layoutIfNeeded()
     }
 
     @objc func userDidTapReadReviews() {

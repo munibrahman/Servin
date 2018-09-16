@@ -104,9 +104,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: NotificationsAroundYouViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: InviteOthersViewController())
         
-//        let initialViewController = NotificationsAroundYouViewController()
+//        let initialViewController = TestingViewController()
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
