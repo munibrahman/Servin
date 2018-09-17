@@ -103,8 +103,6 @@
 		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
 		8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */; };
 		8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */; };
-		8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */; };
-		8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -231,8 +229,6 @@
 		8BF2AF19212A543C0073B139 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsWrapper.swift; sourceTree = "<group>"; };
 		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
-		8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
-		8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageTableViewCell.xib; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -592,8 +588,6 @@
 			isa = PBXGroup;
 			children = (
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
-				8BFADF6620EBFB87001502DB /* MessageTableViewCell.swift */,
-				8BFADF6720EBFB87001502DB /* MessageTableViewCell.xib */,
 				8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */,
 				8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */,
 			);
@@ -750,7 +744,6 @@
 				8BA6456120830D44006EEEC5 /* Assets.xcassets in Resources */,
 				8BA6455F20830D44006EEEC5 /* Main.storyboard in Resources */,
 				8B43D39220D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.xib in Resources */,
-				8BFADF6920EBFB87001502DB /* MessageTableViewCell.xib in Resources */,
 				8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */,
 				8BE8952020D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.xib in Resources */,
 				8BD3834720CB7EB000B4B653 /* PostAdImageCollectionViewCell.xib in Resources */,
@@ -964,7 +957,6 @@
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,
 				8BCB897420DB666200AF5A65 /* ServinData.swift in Sources */,
 				8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */,
-				8BFADF6820EBFB87001502DB /* MessageTableViewCell.swift in Sources */,
 				8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,

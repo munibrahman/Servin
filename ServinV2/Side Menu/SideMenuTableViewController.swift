@@ -235,6 +235,9 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                 case 1:
                     
                     switch indexPath.row {
+                        
+                    case 0:
+                        mainViewController.present(UINavigationController.init(rootViewController: MessageViewController()), animated: true, completion: nil)
                     case 1:
                         print("Drop a pin silly")
                         if let myVC = self.mainVC {

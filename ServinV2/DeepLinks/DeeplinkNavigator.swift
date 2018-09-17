@@ -43,7 +43,7 @@ class DeeplinkNavigator {
     }
     
     private func showMessages() {
-        let navController = UINavigationController.init(rootViewController: (UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: MessageViewController.self))))
+        let navController = UINavigationController.init(rootViewController: MessageViewController())
         
         UIApplication.topViewController()?.present(navController, animated: true, completion: nil)
     }

@@ -916,40 +916,6 @@
             </objects>
             <point key="canvasLocation" x="2370.4000000000001" y="4229.2353823088461"/>
         </scene>
-        <!--Message View Controller-->
-        <scene sceneID="w2X-aD-ooB">
-            <objects>
-                <viewController storyboardIdentifier="MessageViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XkV-lT-ncH" customClass="MessageViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JZy-CL-a8U"/>
-                        <viewControllerLayoutGuide type="bottom" id="lmv-Va-eXk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7pv-ka-KXX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pEf-Xq-KaX">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="lmv-Va-eXk" firstAttribute="top" secondItem="pEf-Xq-KaX" secondAttribute="bottom" id="Oac-vd-pcC"/>
-                            <constraint firstItem="pEf-Xq-KaX" firstAttribute="top" secondItem="JZy-CL-a8U" secondAttribute="bottom" id="XPL-di-KVB"/>
-                            <constraint firstAttribute="trailing" secondItem="pEf-Xq-KaX" secondAttribute="trailing" id="ilu-lo-yfj"/>
-                            <constraint firstItem="pEf-Xq-KaX" firstAttribute="leading" secondItem="7pv-ka-KXX" secondAttribute="leading" id="wib-N1-ZRZ"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="aWN-E1-0sw"/>
-                    <connections>
-                        <outlet property="messagesTableView" destination="pEf-Xq-KaX" id="1Ir-69-HE4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IfB-qc-Ul0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="837.60000000000002" y="2685.6071964017992"/>
-        </scene>
         <!--My Pins Table View Controller-->
         <scene sceneID="BIO-eg-9FD">
             <objects>
