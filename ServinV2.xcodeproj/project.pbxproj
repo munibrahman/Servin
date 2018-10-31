@@ -57,6 +57,8 @@
 		8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA6458720832C74006EEEC5 /* Extensions.swift */; };
 		8BA6458A2083305D006EEEC5 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BA645892083305D006EEEC5 /* style.json */; };
 		8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8F629209A6C3200AE4640 /* WelcomeViewController.swift */; };
+		8BBBF5312165C655006A2A3F /* MyStripeAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBBF5302165C655006A2A3F /* MyStripeAPIClient.swift */; };
+		8BBBF53321665F73006A2A3F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBBF53221665F73006A2A3F /* CheckoutViewController.swift */; };
 		8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */; };
 		8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */; };
 		8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */; };
@@ -99,7 +101,6 @@
 		8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */; };
 		8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */; };
 		8BF2AF0E2126314C0073B139 /* IdentificationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */; };
-		8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1721273E060073B139 /* MockCustomerContext.swift */; };
 		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
 		8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */; };
 		8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */; };
@@ -182,6 +183,8 @@
 		8BA6458720832C74006EEEC5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8BA645892083305D006EEEC5 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		8BA8F629209A6C3200AE4640 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		8BBBF5302165C655006A2A3F /* MyStripeAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStripeAPIClient.swift; sourceTree = "<group>"; };
+		8BBBF53221665F73006A2A3F /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -225,7 +228,6 @@
 		8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailActionSheetPresenter.swift; sourceTree = "<group>"; };
 		8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoForwardMacawView.swift; sourceTree = "<group>"; };
 		8BF2AF0D2126314C0073B139 /* IdentificationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationRequestViewController.swift; sourceTree = "<group>"; };
-		8BF2AF1721273E060073B139 /* MockCustomerContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCustomerContext.swift; sourceTree = "<group>"; };
 		8BF2AF19212A543C0073B139 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsWrapper.swift; sourceTree = "<group>"; };
 		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
@@ -578,8 +580,9 @@
 			isa = PBXGroup;
 			children = (
 				8BF2AF09212626640073B139 /* Payout */,
-				8BF2AF1721273E060073B139 /* MockCustomerContext.swift */,
 				8BF2AF19212A543C0073B139 /* PaymentViewController.swift */,
+				8BBBF5302165C655006A2A3F /* MyStripeAPIClient.swift */,
+				8BBBF53221665F73006A2A3F /* CheckoutViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -921,6 +924,7 @@
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
+				8BBBF5312165C655006A2A3F /* MyStripeAPIClient.swift in Sources */,
 				8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */,
 				8B43C47D2107C6EB004D9D0F /* CustomFloatingTextfield.swift in Sources */,
 				8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */,
@@ -936,7 +940,6 @@
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */,
 				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
-				8BF2AF1821273E060073B139 /* MockCustomerContext.swift in Sources */,
 				8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
@@ -976,6 +979,7 @@
 				8BD3834D20CBD03D00B4B653 /* CustomCell_Instagram.swift in Sources */,
 				8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */,
 				8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */,
+				8BBBF53321665F73006A2A3F /* CheckoutViewController.swift in Sources */,
 				8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

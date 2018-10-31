@@ -132,12 +132,12 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         Alamofire.request(urlString, method: .get, parameters: ["minLat":"50.906684", "minLong":"-114.227922", "maxLat" : "51.174889", "maxLong" : "-113.908390"], encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
             
-            //print(response.request)
+            print(response.request)
             
             switch(response.result) {
             case .success(_):
                 if let data = response.result.value{
-                    //print(response.result.value)
+                    print(response.result.value)
                     
                     let json = JSON.init(response.result.value)
                     

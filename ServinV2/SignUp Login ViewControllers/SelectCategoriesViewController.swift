@@ -29,6 +29,10 @@ class SelectCategoriesViewController: UIViewController {
         rightBarItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarItem
         
+        let leftBarItem = UIBarButtonItem.init(title: "Skip", style: .plain, target: self, action: #selector(didTapSkip))
+        leftBarItem.tintColor = .blackFontColor
+        leftBarItem.isEnabled = true
+        self.navigationItem.leftBarButtonItem = leftBarItem
         
         self.highlightedArray =  Array.init(repeating: false, count: data.count)
         
@@ -73,6 +77,13 @@ class SelectCategoriesViewController: UIViewController {
         // Leading/Trailing gutter CellSpacing+ShadowWidth
         collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: minCellSpacing + layout.sectionInset.left).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -(minCellSpacing + layout.sectionInset.right)).isActive = true
+    }
+    
+    @objc func didTapSkip() {
+        print("Skip choosing categories")
+        let mainVC = Constants.getMainContentVC()
+        
+        self.present(mainVC, animated: true, completion: nil)
     }
     
     @objc func didTapNext() {

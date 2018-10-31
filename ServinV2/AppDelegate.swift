@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let initialViewController = UINavigationController.init(rootViewController: InviteOthersViewController())
         
-//        let initialViewController = TestingViewController()
+//        let initialViewController = CheckoutViewController.init(product: "Thing", price: 1000)
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
         
@@ -154,7 +154,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Shortcuts
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-         completionHandler(Deeplinker.handleShortcut(item: shortcutItem))
+        completionHandler(Deeplinker.handleShortcut(item: shortcutItem))
+        
     }
     
     // MARK: Deep link

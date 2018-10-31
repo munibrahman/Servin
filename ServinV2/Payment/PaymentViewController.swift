@@ -9,18 +9,22 @@
 import Foundation
 import UIKit
 import Stripe
+import WebKit
 
 class PaymentViewController: UITableViewController {
     
     
     let paymentMethods = ["Apple Pay", "**** 2575", "**** 4323"]
     let paymentMethodIcon = [STPApplePayPaymentMethod().image, STPPaymentCardTextField.brandImage(for: .visa), STPPaymentCardTextField.brandImage(for: STPCardBrand.masterCard)]
-    let payoutMethods = ["Royal Bank of Canada", "TD Bank", "Scotiabank"]
+    let payoutInfo = "Add your stripe account to recieve payments automatically"
     
     let paymentReuseIdentifier = "PaymentCell"
     let addPaymentReuseIdentifier = "AddPaymentCell"
+    let stripeInfoReuseIdentifier = "StripeInfoCell"
     
     let sectionHeaderHeight: CGFloat = 75
+    
+    var webView: WKWebView!
     
     override func loadView() {
         view = UIView()
@@ -38,6 +42,7 @@ class PaymentViewController: UITableViewController {
         
         self.tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: paymentReuseIdentifier)
         self.tableView.register(AddPaymentTableViewCell.self, forCellReuseIdentifier: addPaymentReuseIdentifier)
+        self.tableView.register(StripeConnectTableViewCell.self, forCellReuseIdentifier: stripeInfoReuseIdentifier)
     }
     
     func setupNavigationBar() {
@@ -81,7 +86,7 @@ class PaymentViewController: UITableViewController {
         
             // Payout methods
         else if section == 1 {
-            return payoutMethods.count + 1
+            return 2
         }
         
         return 0
@@ -155,19 +160,18 @@ class PaymentViewController: UITableViewController {
         
         if indexPath.section == 1 {
             
-            if indexPath.row == payoutMethods.count {
+            if indexPath.row == 1 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: paymentReuseIdentifier, for: indexPath) as! PaymentMethodTableViewCell
-                cell.paymentLabel.text = "Add Payout Method"
+                cell.paymentLabel.text = "Connect With Stripe"
                 cell.paymentImageView.image = #imageLiteral(resourceName: "add_icon")
                 cell.paymentImageView.contentMode = .scaleAspectFit
                 
                 return cell
             }
             
-            let cell = tableView.dequeueReusableCell(withIdentifier: paymentReuseIdentifier, for: indexPath) as! PaymentMethodTableViewCell
-            cell.paymentLabel.text = payoutMethods[indexPath.row]
-            cell.paymentImageView.image = #imageLiteral(resourceName: "bank_icon")
-            cell.paymentImageView.contentMode = .scaleAspectFit
+            let cell = tableView.dequeueReusableCell(withIdentifier: stripeInfoReuseIdentifier, for: indexPath) as! StripeConnectTableViewCell
+            cell.infoLabel.text = "Connect your stripe account to recieve funds today."
+            
             
             return cell
         }
@@ -190,7 +194,7 @@ class PaymentViewController: UITableViewController {
                 theme.primaryBackgroundColor = .white
                 theme.accentColor = UIColor.blackFontColor
                 
-                let customerContext = MockCustomerContext()
+                let customerContext = STPCustomerContext(keyProvider: MyStripeAPIClient.sharedClient)
                 
                 let viewController = STPPaymentMethodsViewController(configuration: config,
                                                                      theme: theme,
@@ -210,11 +214,14 @@ class PaymentViewController: UITableViewController {
         // Payout Methods
         if indexPath.section == 1 {
             
-            if indexPath.row == payoutMethods.count {
-                let payoutSetupVC = PayoutSetupViewController()
-                let navVc = UINavigationController.init(rootViewController: payoutSetupVC)
+            if indexPath.row == 1 {
+                // If/When you decide to go with stripe custom or express, you can use PayoutSetupViewController
+//                let payoutSetupVC = PayoutSetupViewController()
+//                let navVc = UINavigationController.init(rootViewController: payoutSetupVC)
+//
+//                self.present(navVc, animated: true, completion: nil)
                 
-                self.present(navVc, animated: true, completion: nil)
+                
             }
         }
         
@@ -296,6 +303,31 @@ class PaymentViewController: UITableViewController {
         
     }
     
+    private class StripeConnectTableViewCell: UITableViewCell {
+        var infoLabel: UILabel!
+        
+        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+            super.init(style: style, reuseIdentifier: reuseIdentifier)
+            
+            
+            infoLabel = UILabel.init()
+            self.contentView.addSubview(infoLabel)
+            
+            infoLabel.translatesAutoresizingMaskIntoConstraints = false
+            infoLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16).isActive = true
+            infoLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+            
+            
+            infoLabel.textColor = UIColor.blackFontColor
+            infoLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+            
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+    
 }
 
 extension PaymentViewController: STPPaymentMethodsViewControllerDelegate {
@@ -361,29 +393,6 @@ class PaymentDetailViewController: UIViewController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//private class AddPayment: STPPaymentMethodsViewController {
-//
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//
-//        self.
-//    }
-//
-//}
 
 
 
