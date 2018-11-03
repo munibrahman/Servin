@@ -102,9 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Settings for PinpointKit
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         
-//        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-        let initialViewController = UINavigationController.init(rootViewController: PayoutSetupViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: PayoutSetupViewController())
         
 //        let initialViewController = CheckoutViewController.init(product: "Thing", price: 1000)
         self.window?.rootViewController = initialViewController

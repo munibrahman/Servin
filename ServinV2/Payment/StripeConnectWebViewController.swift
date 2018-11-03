@@ -56,8 +56,6 @@ class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigati
 //        urlString.append("&stripe_user[state]=AB")
 //        urlString.append("&stripe_user[zip]=T0L0X0")
         
-//        ,Heritage Pointe, AB T0L 0X0
-        
 
         
         if let fname = DefaultsWrapper.getString(Key.givenName) {
@@ -85,15 +83,24 @@ class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigati
     }
     
     func setupNavigationBar() {
-        let leftBarItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(userDidPressX))
-        leftBarItem.tintColor = .black
-        
-        self.navigationItem.leftBarButtonItem = leftBarItem
+        if self.navigationController?.viewControllers.first == self {
+            let leftBarButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(userDidTapX))
+            leftBarButton.tintColor = .black
+            self.navigationItem.leftBarButtonItem = leftBarButton
+        } else {
+            let leftBarButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(userDidTapBack))
+            leftBarButton.tintColor = .black
+            self.navigationItem.leftBarButtonItem = leftBarButton
+        }
         
     }
     
-    @objc func userDidPressX() {
+    @objc func userDidTapX() {
         self.navigationController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func userDidTapBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setupProgressView() {
@@ -138,9 +145,10 @@ class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigati
             // Make a call to your own api and save the given account id.
             APIManager.sharedInstance.updateStripeConnectAccount(accountId: code, onSuccess: { (json) in
                 print("successfully saved stripe account id in dynamodb")
-                
+                // TODO: Show some success message maybe.
                 print(json)
             }) { (err) in
+                print("unable to save account in dynamodb")
                 print(err)
             }
         }
@@ -148,7 +156,7 @@ class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigati
         if let error = webView.url?.valueOf("error") {
             // Something went wrong, user didn't authenticate properly or maybe some other error.
             print("error")
-            self.dismiss(animated: true, completion: nil)
+            
         }
         
         
