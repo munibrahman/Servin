@@ -25,6 +25,8 @@
 		8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */; };
 		8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */; };
 		8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */; };
+		8B4D5724218A954D00A28CEA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D5723218A954D00A28CEA /* APIManager.swift */; };
+		8B4D962C218A4D260031E616 /* StripeConnectWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */; };
 		8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */; };
 		8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */; };
 		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
@@ -145,6 +147,8 @@
 		8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinTableViewCell.swift; sourceTree = "<group>"; };
 		8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinTableViewCell.xib; sourceTree = "<group>"; };
 		8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		8B4D5723218A954D00A28CEA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConnectWebViewController.swift; sourceTree = "<group>"; };
 		8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareMFAViewController.swift; sourceTree = "<group>"; };
 		8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoftwareMFAViewController.xib; sourceTree = "<group>"; };
 		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -475,6 +479,7 @@
 				8B53487E213779AC009E4C3E /* Reachability.swift */,
 				8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */,
 				8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */,
+				8B4D5723218A954D00A28CEA /* APIManager.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				8BF2AF19212A543C0073B139 /* PaymentViewController.swift */,
 				8BBBF5302165C655006A2A3F /* MyStripeAPIClient.swift */,
 				8BBBF53221665F73006A2A3F /* CheckoutViewController.swift */,
+				8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -954,6 +960,7 @@
 				8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */,
 				8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */,
 				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
+				8B4D5724218A954D00A28CEA /* APIManager.swift in Sources */,
 				8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
@@ -971,6 +978,7 @@
 				8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */,
 				8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */,
 				8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */,
+				8B4D962C218A4D260031E616 /* StripeConnectWebViewController.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,

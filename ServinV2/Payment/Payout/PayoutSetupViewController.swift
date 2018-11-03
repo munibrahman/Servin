@@ -35,7 +35,7 @@ class PayoutSetupViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem = leftBarItem
         
-        self.navigationController?.navigationBar.transparentNavigationBar()
+        //self.navigationController?.navigationBar.transparentNavigationBar()
     }
     
     @objc func userDidPressX() {
@@ -68,7 +68,7 @@ class PayoutSetupViewController: UIViewController {
         descriptionLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -16).isActive = true
         
         
-        descriptionLabel.text = "You will need to have an option ready to accept the payouts you earn from your offered services"
+        descriptionLabel.text = "You will need a Stripe account to accept payments, you can either authorize your existing stripe account or create a new one"
         descriptionLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.9)
         descriptionLabel.font = UIFont.systemFont(ofSize: 21, weight: .regular)
         descriptionLabel.numberOfLines = 5
@@ -102,7 +102,12 @@ class PayoutSetupViewController: UIViewController {
     }
     
     @objc func userDidTapContinue() {
-        self.navigationController?.pushViewController(PayoutAddressViewController(), animated: true)
+//        self.navigationController?.pushViewController(PayoutAddressViewController(), animated: true)
+         self.navigationController?.pushViewController(StripeConnectWebViewController(), animated: true)
+        
+//        let stripeConnectWebVC = StripeConnectWebViewController()
+//        self.present(UINavigationController.init(rootViewController: stripeConnectWebVC), animated: true, completion: nil)
+
     }
     
     

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Stripe
-import WebKit
 
 class PaymentViewController: UITableViewController {
     
@@ -23,8 +22,6 @@ class PaymentViewController: UITableViewController {
     let stripeInfoReuseIdentifier = "StripeInfoCell"
     
     let sectionHeaderHeight: CGFloat = 75
-    
-    var webView: WKWebView!
     
     override func loadView() {
         view = UIView()
@@ -216,12 +213,10 @@ class PaymentViewController: UITableViewController {
             
             if indexPath.row == 1 {
                 // If/When you decide to go with stripe custom or express, you can use PayoutSetupViewController
-//                let payoutSetupVC = PayoutSetupViewController()
-//                let navVc = UINavigationController.init(rootViewController: payoutSetupVC)
-//
-//                self.present(navVc, animated: true, completion: nil)
-                
-                
+                let payoutSetupVC = PayoutSetupViewController()
+                let navVc = UINavigationController.init(rootViewController: payoutSetupVC)
+
+                self.present(navVc, animated: true, completion: nil)
             }
         }
         
