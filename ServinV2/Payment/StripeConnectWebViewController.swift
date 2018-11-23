@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
+import AWSAppSync
 
 class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     

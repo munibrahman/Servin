@@ -2,6 +2,10 @@ PODS:
   - Alamofire (4.7.2)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
+  - AWSAppSync (2.6.22):
+    - AWSCore (~> 2.6.6)
+    - ReachabilitySwift (~> 4.0.0)
+    - SQLite.swift (= 0.11.4)
   - AWSCognitoIdentityProvider (2.6.22):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
     - AWSCore (= 2.6.22)
@@ -29,7 +33,11 @@ PODS:
     - PinpointKit/Core (= 1.2.0)
   - PinpointKit/Core (1.2.0)
   - Pulley (2.4.2)
+  - ReachabilitySwift (4.0.0)
   - SideMenu (4.0.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
   - Stripe (13.0.3)
   - SwiftyJSON (4.1.0)
   - SWXMLHash (4.7.0)
@@ -38,6 +46,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.3)
+  - AWSAppSync (~> 2.6.22)
   - AWSCognitoIdentityProvider (~> 2.6.0)
   - AWSCore (~> 2.6.0)
   - CardIO
@@ -61,6 +70,7 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AlamofireImage
+    - AWSAppSync
     - AWSCognitoIdentityProvider
     - AWSCognitoIdentityProviderASF
     - AWSCore
@@ -76,7 +86,9 @@ SPEC REPOS:
     - Macaw
     - PinpointKit
     - Pulley
+    - ReachabilitySwift
     - SideMenu
+    - SQLite.swift
     - Stripe
     - SwiftyJSON
     - SWXMLHash
@@ -85,6 +97,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
+  AWSAppSync: 5694ffc209ce6726b58a9cfd3bc49086d7120bd1
   AWSCognitoIdentityProvider: f7d15744ca3d70270de05a212e501f29a4a06307
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
   AWSCore: faae134779f0f6e46a8d426c0ccc02e34466b785
@@ -100,12 +113,14 @@ SPEC CHECKSUMS:
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
   PinpointKit: d1196cba6acc77fb76af50155f816228f03eaa9c
   Pulley: d3d144a0323b65b8aa1dd601d515d08481103034
+  ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
   SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
   Stripe: 76c203e21555089b708e6cbe972a3e3baf1ab4d8
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
   TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
 
-PODFILE CHECKSUM: 3bd030ef58a361b49c778d03eaf9a9ce07488c6a
+PODFILE CHECKSUM: 9cb480ecfe97ea16d411bc5a533c9dde11cbb2bf
 
 COCOAPODS: 1.5.0
