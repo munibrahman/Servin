@@ -448,7 +448,6 @@
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8B743E262148BB9A00322EF8 /* TestingViewController.swift */,
 				8BF2AF0A2126266B0073B139 /* Payment */,
-				8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */,
 				8BC7D0B62122014B00F2CD8F /* DeepLinks */,
 				8B52724520F81E2D00425717 /* CognitoSettings */,
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
@@ -542,13 +541,6 @@
 				8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */,
 			);
 			path = DeepLinks;
-			sourceTree = "<group>";
-		};
-		8BC7D0CB21227B8000F2CD8F /* Stripe-Payments */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Stripe-Payments";
 			sourceTree = "<group>";
 		};
 		8BCB897220DB623F00AF5A65 /* Models */ = {
