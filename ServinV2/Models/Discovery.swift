@@ -26,6 +26,10 @@ class Discovery {
     var typeOfRequest: typeOfRequest?
     var isSaved = false
     
+    var imagesUrl = [String]()
+    
+    var user: ServinUser?
+    
     
     init(title: String?, description: String?, price: Int?, views: Int?, location: CLLocationCoordinate2D?, images: [UIImage?], typeOfRequest: typeOfRequest, isSaved: Bool) {
         
@@ -42,5 +46,6 @@ class Discovery {
     func add(image: UIImage?) {
         self._images.append(image)
     }
+    
     
 }

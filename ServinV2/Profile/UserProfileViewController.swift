@@ -27,6 +27,7 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet var memberSinceLabel: UILabel!
     
+    var discovery: Discovery?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,18 +62,36 @@ class UserProfileViewController: UIViewController {
     }
     
     func populateUserInfo() {
-        self.profileImageView.image = #imageLiteral(resourceName: "adriana")
-        self.firstNameLabel.text = "Adriana"
-        self.universityLabel.text = "University Of Calgary"
-        self.aboutLabel.text = "About \(firstNameLabel.text ?? "")"
-        self.aboutDescriptionLabel.text = "People find me to be an upbeat, self-motivated team player with excellent communication skills. For the past several years I have worked in lead qualification, telemarketing, and customer service in the technology industry. My experience includes successfully calling people in director-level positions of technology departments and developing viable leads. I have a track record of maintaining a consistent call and activity volume and consistently achieving the top 10 percent in sales, and I can do the same thing for your company."
-        self.aboutDescriptionLabel.sizeToFit()
         
-        self.whatOthersSayLabel.text = "What others say about \(firstNameLabel.text ?? "")"
-        self.whatOthersSayDescriptionLabel.text = "Adriana was awesome! She helped me mow my lawn and it looks like new, she was on time and finished on time too! No issues whatsoever! I would highly recommend her for any other job! She completely surpassed my expectations!"
+        if let discovery = discovery {
+            self.profileImageView.af_setImage(withURL: URL.init(string: (discovery.user?._profilePictureUrl)!)!)
+            self.firstNameLabel.text = discovery.user?._firstName
+            self.universityLabel.text = "University Of Calgary"
+            self.aboutLabel.text = "About \(discovery.user?._firstName ?? "")"
+            self.aboutDescriptionLabel.text = discovery.user?._about
+            self.aboutDescriptionLabel.sizeToFit()
+            
+            self.whatOthersSayLabel.text = "What others say about \(discovery.user?._firstName ?? "")"
+            self.whatOthersSayDescriptionLabel.text = ""
+            
+            self.memberSinceLabel.text = "2018"
+            self.view.layoutIfNeeded()
+        } else {
+            self.profileImageView.image = #imageLiteral(resourceName: "adriana")
+            self.firstNameLabel.text = "Adriana"
+            self.universityLabel.text = "University Of Calgary"
+            self.aboutLabel.text = "About \(firstNameLabel.text ?? "")"
+            self.aboutDescriptionLabel.text = "People find me to be an upbeat, self-motivated team player with excellent communication skills. For the past several years I have worked in lead qualification, telemarketing, and customer service in the technology industry. My experience includes successfully calling people in director-level positions of technology departments and developing viable leads. I have a track record of maintaining a consistent call and activity volume and consistently achieving the top 10 percent in sales, and I can do the same thing for your company."
+            self.aboutDescriptionLabel.sizeToFit()
+            
+            self.whatOthersSayLabel.text = "What others say about \(firstNameLabel.text ?? "")"
+            self.whatOthersSayDescriptionLabel.text = "Adriana was awesome! She helped me mow my lawn and it looks like new, she was on time and finished on time too! No issues whatsoever! I would highly recommend her for any other job! She completely surpassed my expectations!"
+            
+            self.memberSinceLabel.text = "2018"
+            self.view.layoutIfNeeded()
+        }
         
-        self.memberSinceLabel.text = "2018"
-        self.view.layoutIfNeeded()
+        
     }
 
     @objc func userDidTapReadReviews() {

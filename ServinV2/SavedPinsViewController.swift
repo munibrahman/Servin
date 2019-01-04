@@ -186,6 +186,22 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
         savedView.addGestureRecognizer(saveTapGesture)
         
         savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
+        
+        
+        /// HERE BE GHOSTS!
+        // For some random fucking reason, if you add this test view, all the cells look nice and properly resized.
+        // The moment you take it off, everything gets fucked.
+        // Leave is here for now, but come back and fix it (yeah right)
+        
+        let testView = UIView.init()
+        testView.backgroundColor = .clear
+        self.addSubview(testView)
+        
+        testView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 14).isActive = true
+        testView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -14).isActive = true
+        testView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14).isActive = true
+        testView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -14).isActive = true
+        
     }
     
     @objc func userDidTapSave() {

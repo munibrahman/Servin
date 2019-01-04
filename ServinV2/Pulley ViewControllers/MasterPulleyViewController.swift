@@ -103,28 +103,75 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     @objc func userDidTapPost() {
         
         print("Post pressed")
-        
-        navigationItem.rightBarButtonItem = progressBarButton
-        
+
         if let coordinate = currentCoordinate {
-            let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
             
-            Alamofire.request(urlString, method: .post, parameters: ["lat": "\(coordinate.latitude)", "long" : "\(coordinate.longitude)", "title": myPostAdViewController?.titleTextField.text ?? "", "price": myPostAdViewController?.priceTextField.text ?? "","reqORoff": "request","description": myPostAdViewController?.descriptionTextField.text ?? ""],encoding: JSONEncoding.default, headers: nil).responseJSON {
-                response in
-                
-                self.navigationItem.rightBarButtonItem = self.postBarButton
-                
-                print(response.request)
-                switch response.result {
-                case .success:
-                    print(response)
-                    self.drawerShouldShow(postAd: false, coordinate: nil)
-                    break
-                case .failure(let error):
-                    
-                    print(error)
+            if let postAdVC = myPostAdViewController {
+                if !postAdVC.validateData() {
+                    print("Data invalid")
+                    return
                 }
+                
+                navigationItem.rightBarButtonItem = progressBarButton
+                
+                let body : [String: Any] = [
+                    "lat": coordinate.latitude,
+                    "long": coordinate.longitude,
+                    "title": postAdVC.titleTextField.text ?? "",
+                    "description": postAdVC.descriptionTextField.text ?? "",
+                    "request_or_offer": postAdVC.discoveryType == .offer ? "offer" : "request",
+                    "price": Int(postAdVC.priceTextField.text ?? "0") ?? 0
+                ]
+                
+                APIManager.sharedInstance.postDiscovery(body: body, onSuccess: { (json) in
+                    print("Successfully dropped a pin")
+                    print(json)
+                    
+                    let dispatchGroup = DispatchGroup()
+                    
+                    let images = postAdVC.selectedAssets
+                    
+                    for (index, image) in images.enumerated() {
+                        
+                        dispatchGroup.enter()
+                        
+                        if let url = json["image_\(index)"].string {
+                            print("image \(index) url")
+                            print(url)
+                            
+                            APIManager.sharedInstance.putImage(url: url, image: image.fullResolutionImage!, onSuccess: { json in
+                                print("success uploading image")
+                                dispatchGroup.leave()
+                            }, onFailure: { (err) in
+                                print(err)
+                                print("error uploding image")
+                                dispatchGroup.leave()
+                            })
+                        }
+                        
+                        dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
+                            
+                            DispatchQueue.main.async {
+                                self.navigationItem.rightBarButtonItem = self.postBarButton
+                                // everything is done, just close and show a success message?
+                                self.userDidTapX()
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }) { (err) in
+                    print("Error")
+                    print(err)
+                    self.navigationItem.rightBarButtonItem = self.postBarButton
+                }
+                
             }
+            
+
         }
     }
     
@@ -286,7 +333,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     }
 
     
-    func didSelectMarker(pin: Pin) {
+    func didSelectMarker(pin: Discovery) {
     }
 
 }

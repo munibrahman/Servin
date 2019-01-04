@@ -14,6 +14,9 @@ class DiscoveryImagesCollectionViewCell: UICollectionViewCell, UIScrollViewDeleg
 
     var mySlideShow = ImageSlideshow()
     
+    var imageInputs = [String]()
+    var inputSources = [InputSource]()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,19 +29,20 @@ class DiscoveryImagesCollectionViewCell: UICollectionViewCell, UIScrollViewDeleg
         // Settings must be done BEFORE images are to be loaded, otherwise nothing works...
         mySlideShow.circular = false
         mySlideShow.contentScaleMode = .scaleAspectFill
-        
-        mySlideShow.setImageInputs([AlamofireSource(urlString: "https://picsum.photos/400/300/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/500/300/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/700/300/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/400/600/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/200/300/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/600/300/?random")!,
-                                    AlamofireSource(urlString: "https://picsum.photos/800/500/?random")!])
-        
+
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap))
         mySlideShow.addGestureRecognizer(gestureRecognizer)
         
+        
         self.addSubview(mySlideShow)
+    }
+    
+    func setupInputs() {
+        for url in imageInputs {
+            inputSources.append(AlamofireSource(urlString: url)!)
+        }
+        
+        mySlideShow.setImageInputs(inputSources)
     }
     
     @objc func didTap() {

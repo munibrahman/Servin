@@ -17,6 +17,7 @@ class ServinUser {
     var _profilePicture: UIImage?
     var _pinsOnMap =  [Discovery?]()
     var _about: String?
+    var _profilePictureUrl: String?
     
     init(firstName: String?, lastName: String?, profilePicture: UIImage?, institution: String, about: String?) {
         self._firstName = firstName

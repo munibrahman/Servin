@@ -17,7 +17,7 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     let reuseIdentifier = "cell"
     
-    var myPins: [Pin?]!
+    var myPins: [Discovery?]!
     
     override func viewDidLoad() {
         super.viewDidLoad()

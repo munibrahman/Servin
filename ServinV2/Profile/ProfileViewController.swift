@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         
         firstNameLabel.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
         
-        
+        // TODO: Add about me label
         aboutMeLabel.text = DefaultsWrapper.getString(key: Key.aboutMe, defaultValue: "")
         aboutMeLabel.numberOfLines = 0
         aboutMeLabel.sizeToFit()
@@ -50,7 +50,8 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.numberOfLines = 0
         othersSayAboutMeLabel.sizeToFit()
         
-        schoolLabel.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
+        // TODO: Add school
+//        schoolLabel.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
         
         
         self.profileImageView.image = BackendServer.shared.fetchProfileImage()

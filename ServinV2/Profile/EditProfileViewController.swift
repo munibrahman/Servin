@@ -77,7 +77,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         schoolTextField.backgroundColor = .clear
         schoolTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
-        schoolTextField.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
+        
+        // TODO: Get school field here
+//        schoolTextField.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
         
         
     }
@@ -233,6 +235,32 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             myGroup.enter()
             print("started request for profile pic")
+            
+            let body = ["about" : DefaultsWrapper.getString(Key.aboutMe) ?? ""]
+            APIManager.sharedInstance.putUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, body: body, onSuccess: { (json) in
+                print(json)
+                if let url = json["updateImageURL"].string {
+                    
+                    myGroup.enter()
+                    APIManager.sharedInstance.putImage(url: url, image: self.profileImageView.image!, onSuccess: { (json) in
+                        print(json)
+                        
+                        myGroup.leave()
+                    }, onFailure: { (err) in
+                        print(err)
+                        myGroup.leave()
+                    })
+                    
+                }
+                
+                myGroup.leave()
+                    
+            }) { (err) in
+                print(err)
+                myGroup.leave()
+            }
+            
+            myGroup.enter()
             if let idToken = KeyChainStore.shared.fetchIdToken() {
                 let headers: HTTPHeaders = [
                     "Authorization": idToken
@@ -259,7 +287,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
                         print(message)
                         
-                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
+                       
                         
                     }
                     
@@ -288,12 +316,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     attributes.append(attr)
                 }
                 
-                if let school = self.schoolTextField.text {
-                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.school.rawValue, value: school)
-                    DefaultsWrapper.setString(key: Key.school, value: school)
-                    attributes.append(attr)
-                }
-                
                 user.update(attributes).continueWith { (res) -> Any? in
                     
                     if let error = res.error as NSError? {
@@ -312,6 +334,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         }
         
         myGroup.notify(queue: .main) {
+            self.navigationItem.rightBarButtonItem = self.saveButtonItem
             print("Finished all requests, exiting now")
             self.navigationController?.dismiss(animated: true, completion: nil)
         }
@@ -461,32 +484,52 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
         
         navigationItem.rightBarButtonItem = progressBarButton
         
-        if let text = aboutMeTextInput.text {
-            let attribute = AWSCognitoIdentityUserAttributeType.init(name: Key.aboutMe.rawValue, value: text)
+        if let text = aboutMeTextInput.text, !text.isEmpty {
             
+            let body = ["about" : text]
             
-            if let user = AppDelegate.defaultUserPool().currentUser() {
-                user.update([attribute]).continueWith { (res) -> Any? in
-                    
-                    DispatchQueue.main.async {
-                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
-                    }
-                    
-                    if let error = res.error as NSError? {
-                        print("Error: \(error)")
-                        return nil
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.dismiss(animated: true, completion: nil)
-                        
-                    }
-                    
-                    DefaultsWrapper.setString(key: Key.aboutMe, value: text)
-                    
-                    return nil
+            APIManager.sharedInstance.putUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, body: body, onSuccess: { (json) in
+                print(json)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+
+                }
+            }) { (err) in
+                print(err)
+                
+                DispatchQueue.main.async {
+                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
+
                 }
             }
+            
+            
+            // TODO: Change about me.
+//            let attribute = AWSCognitoIdentityUserAttributeType.init(name: Key.aboutMe.rawValue, value: text)
+            
+            
+//            if let user = AppDelegate.defaultUserPool().currentUser() {
+//                user.update([attribute]).continueWith { (res) -> Any? in
+//
+//                    DispatchQueue.main.async {
+//                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
+//                    }
+//
+//                    if let error = res.error as NSError? {
+//                        print("Error: \(error)")
+//                        return nil
+//                    }
+//
+//                    DispatchQueue.main.async {
+//                        self.dismiss(animated: true, completion: nil)
+//
+//                    }
+//
+//                    DefaultsWrapper.setString(key: Key.aboutMe, value: text)
+//
+//                    return nil
+//                }
+//            }
             
             
             

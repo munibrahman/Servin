@@ -144,14 +144,15 @@ class StripeConnectWebViewController: UIViewController, WKUIDelegate, WKNavigati
             
             // The user was able to connect their account.
             // Make a call to your own api and save the given account id.
-            APIManager.sharedInstance.updateStripeConnectAccount(accountId: code, onSuccess: { (json) in
-                print("successfully saved stripe account id in dynamodb")
-                // TODO: Show some success message maybe.
-                print(json)
-            }) { (err) in
-                print("unable to save account in dynamodb")
-                print(err)
-            }
+            // TODO: Come here and fix this shit, stripe should have a seperate serverless stack. This will also have a seperate url too.
+//            APIManager.sharedInstance.updateStripeConnectAccount(accountId: code, onSuccess: { (json) in
+//                print("successfully saved stripe account id in dynamodb")
+//                // TODO: Show some success message maybe.
+//                print(json)
+//            }) { (err) in
+//                print("unable to save account in dynamodb")
+//                print(err)
+//            }
         }
         
         if let error = webView.url?.valueOf("error") {

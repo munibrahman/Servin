@@ -19,7 +19,7 @@ enum Key: String {
     case userName
     case sub = "sub"
     case emailVerified = "email_verified"
-    case aboutMe = "custom:about_me"
+    case aboutMe = "about_me"
     case email = "email"
     
 }

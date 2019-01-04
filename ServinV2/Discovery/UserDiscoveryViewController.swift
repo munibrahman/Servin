@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Alamofire
+import AlamofireImage
 
 // The following view controller displays the pin (discovery) of another user on the network.
 // To display one's own pin, use MyDiscoveryViewController instead
@@ -29,7 +31,7 @@ class UserDiscoveryViewController: UIViewController {
     var statusBarView = UIView()
     var navigationBarShadow = UIView()
     
-    var pin: Pin?
+    var pin: Discovery?
     
     // TODO: Retrieve if this discovery has been saved by the user or not
     var discoverySaved = false
@@ -181,12 +183,23 @@ class UserDiscoveryViewController: UIViewController {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
         
-        let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
-        let marker = GMSMarker(position: position)
-        marker.title = "Hello World"
-        marker.map = gmsMap
-        
-        let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+        if let pos = pin?._location {
+            let position = CLLocationCoordinate2D(latitude: pos.latitude, longitude:  pos.longitude)
+            let marker = GMSMarker(position: position)
+            marker.title = "Hello World"
+            marker.map = gmsMap
+            
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+            gmsMap.camera = camera
+        } else {
+            let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
+            let marker = GMSMarker(position: position)
+            marker.title = "Hello World"
+            marker.map = gmsMap
+            
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+            gmsMap.camera = camera
+        }
         
         
         if #available(iOS 11.0, *) {
@@ -200,7 +213,6 @@ class UserDiscoveryViewController: UIViewController {
             
         }
         
-        gmsMap.camera = camera
         
         self.view.insertSubview(gmsMap, belowSubview: discoveryCollectionView)
     }
@@ -279,11 +291,17 @@ class UserDiscoveryViewController: UIViewController {
     }
     
     func userDidTapMap() {
-        self.navigationController?.pushViewController(DiscoveryFullScreenMapViewController(), animated: true)
+        let vc = DiscoveryFullScreenMapViewController()
+        vc.position = pin?._location
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func userDidTapProfile() {
-        self.navigationController?.pushViewController(UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: UserProfileViewController.self)), animated: true)
+        let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: UserProfileViewController.self)) as! UserProfileViewController
+        
+        vc.discovery = pin
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -409,21 +427,26 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
+            cell.imageInputs = pin?.imagesUrl ?? []
+            cell.setupInputs()
             
             return cell
             
         } else if indexPath.row == 3 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellIdentifier, for: indexPath) as! DiscoveryUserProfileCollectionViewCell
             
-            cell.userImageView.image = #imageLiteral(resourceName: "adriana")
-            cell.userFirstNameLabel.text = "Adriana"
+            if let firstName = pin?.user?._firstName {
+                cell.userFirstNameLabel.text = firstName
+            } else {
+                cell.userFirstNameLabel.text = "Servin User"
+            }
+            
+            if let userImageUrl = pin?.user?._profilePictureUrl {
+                cell.userImageView.af_setImage(withURL: URL.init(string: userImageUrl)!)
+            }
+            
             cell.userUniversityLabel.text = "University Of Calgary"
             
-            if let myPin = pin {
-                cell.userImageView.image = ServinData.arrayOfUsers.first?._profilePicture
-                cell.userFirstNameLabel.text = ServinData.arrayOfUsers.first?._firstName
-                cell.userUniversityLabel.text = ServinData.arrayOfUsers.first?._institution
-            }
             
             
             

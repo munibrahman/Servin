@@ -11,10 +11,15 @@ import Pulley
 import TLPhotoPicker
 
 class SlavePostAdViewController: UIViewController {
+    
+    enum DiscoveryType: String {
+        case offer = "offer"
+        case request = "request"
+    }
 
     //TODO: Come here and clean everything up, especially the segmented control and fix the collectionview for ALL screens!...
-    @IBOutlet var titleTextField: UITextField!
-    @IBOutlet var priceTextField: UITextField!
+    @IBOutlet var titleTextField: CustomFloatingTextfield!
+    @IBOutlet var priceTextField: CustomFloatingTextfield!
     @IBOutlet var descriptionTextField: UIPlaceHolderTextView!
     
     @IBOutlet var imageTitleLabel: UILabel!
@@ -37,6 +42,8 @@ class SlavePostAdViewController: UIViewController {
     
     @IBOutlet var collectionViewXIB: UIView!
     
+    var discoveryType: DiscoveryType = .offer
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,15 +58,13 @@ class SlavePostAdViewController: UIViewController {
     
     @objc func segmentValueChanged(sender: Any?) {
         
-        print("segment value changed")
-        
         switch offerRequestSegmentedControl.selectedIndex {
         case 0:
             print("Offer")
-            
+            discoveryType = .offer
         default:
             print("Requests")
-            
+            discoveryType = .request
         }
         
     }
@@ -99,16 +104,22 @@ class SlavePostAdViewController: UIViewController {
         titleTextField.placeholder = "e.g. Tutor for hire"
         priceTextField.placeholder = "Amount"
         
+        titleTextField.selectedPlaceHolderColor = UIColor.placeHolderColor
+        priceTextField.selectedPlaceHolderColor = UIColor.placeHolderColor
+        
+        
         descriptionTextField.placeholder = "Description"
         descriptionTextField.placeholderColor = UIColor.placeHolderColor
+        
         
         let paddingView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 25))
         let priceImageView = UIImageView.init(image: #imageLiteral(resourceName: "dollar_sign_icon"))
         
         paddingView.addSubview(priceImageView)
         
-        priceTextField.leftView = paddingView
-        priceTextField.leftViewMode = .always
+        priceTextField.leftViewWidth = 110.0
+//        priceTextField.leftView = paddingView
+//        priceTextField.leftViewMode = .always
         
         
         let numberOfCellsPerRow: CGFloat = 3
@@ -119,10 +130,7 @@ class SlavePostAdViewController: UIViewController {
         let cellWidth = (collectionViewXIB.frame.width - max(0, numberOfCellsPerRow - 1)*horizontalSpacing)/numberOfCellsPerRow
         flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
         
-        
         flowLayout.scrollDirection = .vertical
-        
-        
         
         myCollectionView = UICollectionView(frame:
             collectionViewXIB.frame, collectionViewLayout: flowLayout)
@@ -169,6 +177,44 @@ class SlavePostAdViewController: UIViewController {
         //scrollView.contentSize = contentRect.size
         
         //self.scrollView.resizeScrollViewContentSize()
+    }
+    
+    func validateData() -> Bool {
+        
+        guard let titleText = titleTextField.text, !titleText.isEmpty else {
+            titleTextField.showErrorWithText(errorText: "Missing title!")
+            return false
+        }
+        
+        guard let priceText = priceTextField.text, !priceText.isEmpty else {
+            priceTextField.showErrorWithText(errorText: "Missing price!")
+            return false
+        }
+        
+        if selectedAssets.count == 0 {
+            
+            let alert = UIAlertController(title: "Error", message: "Please select an image.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+            
+            
+            return false
+        }
+        
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {

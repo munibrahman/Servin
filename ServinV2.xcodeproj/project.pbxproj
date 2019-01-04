@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		53E0616D9EF920DF33A0828D /* Pods_ServinV2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */; };
 		7DBBC905C791BD3BD31B505D /* Pods_ServinV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D566F623AEBCAFFBB31DDC90 /* Pods_ServinV2.framework */; };
+		8B24113421B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */; };
 		8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */; };
 		8B3FEF7120CD01DB0056C22A /* SideMenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */; };
 		8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */; };
@@ -80,8 +81,8 @@
 		8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */; };
 		8BC7D0C921227B5900F2CD8F /* DeeplinkParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C421227B5800F2CD8F /* DeeplinkParser.swift */; };
 		8BC7D0CA21227B5900F2CD8F /* ShortcutParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */; };
-		8BCB896F20DB621C00AF5A65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB896E20DB621C00AF5A65 /* User.swift */; };
-		8BCB897120DB622900AF5A65 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897020DB622900AF5A65 /* Pin.swift */; };
+		8BCB896F20DB621C00AF5A65 /* ServinUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB896E20DB621C00AF5A65 /* ServinUser.swift */; };
+		8BCB897120DB622900AF5A65 /* Discovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897020DB622900AF5A65 /* Discovery.swift */; };
 		8BCB897420DB666200AF5A65 /* ServinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897320DB666200AF5A65 /* ServinData.swift */; };
 		8BCB897620E16F6100AF5A65 /* SavedPinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */; };
 		8BD2E5892124C47C00DFCFC6 /* PayoutSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */; };
@@ -131,6 +132,9 @@
 		634FA61F8ACA402D3C651A84 /* Pods-ServinV2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2Tests/Pods-ServinV2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		63793A76737115F8C39DB347 /* Pods-ServinV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2.release.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2/Pods-ServinV2.release.xcconfig"; sourceTree = "<group>"; };
 		654382927B9EECADF9248D33 /* Pods-ServinV2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2Tests/Pods-ServinV2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B24113121B4CB1F00AA37E5 /* AWSApiGatewayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSApiGatewayBridge.h; sourceTree = "<group>"; };
+		8B24113221B4CB1F00AA37E5 /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
+		8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERVINAPIMERGENCEClient.swift; sourceTree = "<group>"; };
 		8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuProfileTableViewCell.xib; sourceTree = "<group>"; };
 		8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuServinLogoTableViewCell.swift; sourceTree = "<group>"; };
@@ -209,8 +213,8 @@
 		8BC7D0C321227B5800F2CD8F /* NotificationParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationParser.swift; sourceTree = "<group>"; };
 		8BC7D0C421227B5800F2CD8F /* DeeplinkParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeeplinkParser.swift; sourceTree = "<group>"; };
 		8BC7D0C521227B5800F2CD8F /* ShortcutParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutParser.swift; sourceTree = "<group>"; };
-		8BCB896E20DB621C00AF5A65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		8BCB897020DB622900AF5A65 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		8BCB896E20DB621C00AF5A65 /* ServinUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServinUser.swift; sourceTree = "<group>"; };
+		8BCB897020DB622900AF5A65 /* Discovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Discovery.swift; sourceTree = "<group>"; };
 		8BCB897320DB666200AF5A65 /* ServinData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServinData.swift; sourceTree = "<group>"; };
 		8BCB897520E16F6100AF5A65 /* SavedPinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPinsViewController.swift; sourceTree = "<group>"; };
 		8BD2E5882124C47C00DFCFC6 /* PayoutSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutSetupViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +448,9 @@
 		8BA6455820830D44006EEEC5 /* ServinV2 */ = {
 			isa = PBXGroup;
 			children = (
+				8B24113121B4CB1F00AA37E5 /* AWSApiGatewayBridge.h */,
+				8B24113221B4CB1F00AA37E5 /* Bridging_Header.h */,
+				8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */,
 				8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8B743E262148BB9A00322EF8 /* TestingViewController.swift */,
@@ -546,8 +553,8 @@
 		8BCB897220DB623F00AF5A65 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8BCB896E20DB621C00AF5A65 /* User.swift */,
-				8BCB897020DB622900AF5A65 /* Pin.swift */,
+				8BCB896E20DB621C00AF5A65 /* ServinUser.swift */,
+				8BCB897020DB622900AF5A65 /* Discovery.swift */,
 				8BCB897320DB666200AF5A65 /* ServinData.swift */,
 			);
 			path = Models;
@@ -812,6 +819,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ServinV2/Pods-ServinV2-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAPIGateway/AWSAPIGateway.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSAppSync/AWSAppSync.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/AWSCognitoIdentityProviderASF/AWSCognitoIdentityProviderASF.framework",
@@ -837,6 +845,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAPIGateway.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAppSync.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCognitoIdentityProviderASF.framework",
@@ -926,6 +935,7 @@
 				8B53487D21350D08009E4C3E /* BackendServer.swift in Sources */,
 				8B53487F213779AC009E4C3E /* Reachability.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
+				8B24113421B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift in Sources */,
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8BBBF5312165C655006A2A3F /* MyStripeAPIClient.swift in Sources */,
@@ -943,7 +953,7 @@
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */,
-				8BCB896F20DB621C00AF5A65 /* User.swift in Sources */,
+				8BCB896F20DB621C00AF5A65 /* ServinUser.swift in Sources */,
 				8B52724720F81ED200425717 /* CognitoConfig.swift in Sources */,
 				8B81592220B09BB900EDA1FC /* ResetPasswordViewController.swift in Sources */,
 				8B68E30E209B726300F7F365 /* SignUp2ViewController.swift in Sources */,
@@ -972,7 +982,7 @@
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,
 				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,
 				8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */,
-				8BCB897120DB622900AF5A65 /* Pin.swift in Sources */,
+				8BCB897120DB622900AF5A65 /* Discovery.swift in Sources */,
 				8B43D39120D0DAB1002B0615 /* DiscoveryImagesCollectionViewCell.swift in Sources */,
 				8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */,
 				8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */,
@@ -1163,6 +1173,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volticlabs.servin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ServinV2/Bridging_Header.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1181,6 +1192,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volticlabs.servin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = ServinV2/Bridging_Header.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

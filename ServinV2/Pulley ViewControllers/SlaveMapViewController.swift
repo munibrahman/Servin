@@ -11,10 +11,11 @@ import GoogleMaps
 import Pulley
 import Alamofire
 import SwiftyJSON
+import AlamofireImage
 
 protocol SlaveMapViewControllerDelegate {
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D)
-    func didSelectMarker(pin: Pin)
+    func didSelectMarker(pin: Discovery)
 }
 
 class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
@@ -31,6 +32,11 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     
     
     var inviteButton: UIButton!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.setupPins()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,74 +120,180 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
     func setupPins() {
-        let data = ServinData.allPins
+//        let data = ServinData.allPins
+//
+//        for pin in data {
+//
+//            if let location = pin._location {
+//                let marker = GMSMarker(position: location)
+//
+//                marker.map = homeMapView
+//            }
+//
+//        }
         
-        for pin in data {
+        if userLocationCameraPosition != nil {
+        
+            let projection = homeMapView.projection.visibleRegion()
             
-            if let location = pin._location {
-                let marker = GMSMarker(position: location)
+            let topRightCorner: CLLocationCoordinate2D = projection.farRight
+            let bottomLeftCorner: CLLocationCoordinate2D = projection.nearLeft
+            
+//            let marker = GMSMarker.init()
+//            marker.position = topRightCorner
+//
+//            let marker2 = GMSMarker.init(position: bottomLeftCorner)
+//
+//            marker.map = self.homeMapView
+//            marker2.map = self.homeMapView
+            
+            print(topRightCorner)
+            print(bottomLeftCorner)
+            
+            let params: Parameters = [
+                "latMin" : bottomLeftCorner.latitude,
+                "latMax" : topRightCorner.latitude,
+                "longMin" : bottomLeftCorner.longitude,
+                "longMax" : topRightCorner.longitude
+            ]
+            
+            APIManager.sharedInstance.getDiscoveries(params: params, onSuccess: { (json) in
+                print("successful")
                 
-                marker.map = homeMapView
-            }
-            
-        }
-        
-        let urlString = "https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/dummy"
-        
-        
-        
-        Alamofire.request(urlString, method: .get, parameters: ["minLat":"50.906684", "minLong":"-114.227922", "maxLat" : "51.174889", "maxLong" : "-113.908390"], encoding: URLEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
-            
-            print(response.request)
-            
-            switch(response.result) {
-            case .success(_):
-                if let data = response.result.value{
-                    print(response.result.value)
+                print(json)
+                
+                var discoveres = [Discovery]()
+                
+                for item in json["discoveries"].arrayValue {
+                    print(item)
                     
-                    let json = JSON.init(response.result.value)
                     
-                    print(json)
+                    guard let lat = item["lat"].float else {
+                        return
+                    }
                     
-                    for item in json["discoveries"].arrayValue {
-                        print(item)
+                    guard let long = item["long"].float else {
+                        return
+                    }
+                    
+                    let marker = GMSMarker.init(position: CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(lat),
+                                                                                      longitude: CLLocationDegrees.init(long)))
+                    
+                    
+                    
+                    print(marker.position)
+                    marker.map = self.homeMapView
+                    
+                    var images = [UIImage]()
+                    var imagesUrls = [String]()
+                    
+                    if let url = item["image_0"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
+
+                    }
+                    
+                    if let url = item["image_1"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
                         
-                        let marker = GMSMarker.init()
+                    }
+                    if let url = item["image_2"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
                         
-                        var first = true
-                        for double in item["coordinates"].arrayValue {
-                            print(Double(double.stringValue))
-                            
-                            if first {
-                                marker.position.latitude = Double(double.stringValue) ?? 0.0
-                            } else {
-                                marker.position.longitude = Double(double.stringValue) ?? 0.0
-                            }
-                            
-                            first = false
-                        }
+                    }
+                    if let url = item["image_3"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
                         
-                        print(marker.position)
-                        marker.map = self.homeMapView
+                    }
+                    if let url = item["image_4"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
                         
+                    }
+                    if let url = item["image_5"].string {
+                        print("url")
+                        print(url)
+                        imagesUrls.append(url)
                         
                     }
                     
+                    
+                    let discovery = Discovery.init(title: item["title"].string, description: item["description"].string, price: Int.init(string: item["price"].string ?? "0") , views: 0, location: marker.position, images: images, typeOfRequest: typeOfRequest.offer, isSaved: false)
+                    discovery.imagesUrl = imagesUrls
+                    
+                    
+                    if let userName = item["username"].string {
+                        APIManager.sharedInstance.getUser(username: userName, onSuccess: { (jsonUser) in
+                            print("Successfully retrieved username")
+                            
+                            let family_name = jsonUser["family_name"].string
+                            let given_name = jsonUser["given_name"].string
+                            let about = jsonUser["about"].string
+                            let imageUrl = jsonUser["imageURL"].string
+                            
+                            print(family_name)
+                            print(given_name)
+                            print(about)
+                            print(imageUrl)
+                            
+                            let user = ServinUser.init(firstName: given_name, lastName: family_name, profilePicture: nil, institution: "University Of Calgary", about: about)
+                            user._profilePictureUrl = imageUrl
+                            
+                            discovery.user = user
+                            
+                        }, onFailure: { (err) in
+                            
+                            print("error occured")
+                            print(err)
+                        })
+                    }
+                    
+                    
+                    
+                    discoveres.append(discovery)
+                    
                 }
                 
-                break
                 
-            case .failure(_):
-                print(response.result.error)
-                break
+                if let parentVC = self.parent {
+                    if let parentVC = parentVC as? MasterPulleyViewController {
+                        print("Super is master pulley view controller")
+                        parentVC.myDiscoveriesViewController?.pinsNearby = discoveres
+                        parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
+                        // parentVC is someViewController
+                    }
+                }
                 
+                
+                
+                
+            }) { (err) in
+                print("error")
+                print(err)
             }
+            
         }
         
+        
     }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        if gesture {
+            print("Moving because of gesture")
+            self.setupPins()
+        }
+    }
+    
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        
         
         if (userLocationCameraPosition != nil) {
             //print("moved location")
@@ -310,6 +422,9 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         
         //Finally stop updating location otherwise it will come again and again in this delegate
         self.locationManager.stopUpdatingLocation()
+        
+        // Call this after user's location has been updated.
+        self.setupPins()
     }
 
 }
@@ -347,7 +462,7 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
         if (drawer.drawerContentViewController as? SlavePostAdViewController) != nil {
             homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: (UIScreen.main.bounds.size.height * (2/3)) - bottomSafeArea, right: 0.0)
             
-            print("1 here")
+//            print("1 here")
             yPosition = yPosition - bottomSafeArea
             
             self.inviteButton.frame = CGRect.init(x: xPosition, y: yPosition, width: width, height: height)
@@ -359,7 +474,7 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
             if distance <= 268.0 + bottomSafeArea
             {
                 
-                print("2 here")
+//                print("2 here")
                 homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: distance - bottomSafeArea, right: 0.0)
                 
                 yPosition = (self.view.frame.size.height) - (distance + height + 10.0)
@@ -370,7 +485,7 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
             else
             {
                 
-                print("3 here")
+//                print("3 here")
                 homeMapView.padding = UIEdgeInsets.init(top: 0.0, left: 0.0, bottom: 268.0, right: 0.0)
                 
                 yPosition = (self.view.frame.size.height) - (268.0 + bottomSafeArea + height + 10.0)

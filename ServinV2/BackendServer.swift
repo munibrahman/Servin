@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import AlamofireImage
 
 
 class BackendServer: NSObject {
@@ -31,32 +32,25 @@ class BackendServer: NSObject {
         // Image doesn't exist download from server
         print("Image doesn't exist, need to download from server")
         
-        if let idToken = KeyChainStore.shared.fetchIdToken() {
-            
-            print("id token is here")
-            let headers: HTTPHeaders = [
-                "Authorization": idToken
-            ]
-            
-            
-            Alamofire.request("\(self.baseUrl)/dev/user/picture", method: HTTPMethod.get, headers: headers).responseImage(completionHandler: { (response) in
-                
-                print("got response")
-                if let img = response.result.value {
-                    print(response)
-                    _ = DefaultsWrapper.set(image: img, named: Key.imagePath)
-                    
-                } else {
-                    print(response)
-                    
+        // TODO Handle nil cases
+        APIManager.sharedInstance.getUser(username: (AppDelegate.defaultUserPool().currentUser()?.username!)!, onSuccess: { (json) in
+            print(json)
+            if let url = json["imageURL"].string {
+                Alamofire.request(url).responseImage { response in
+                    if let image = response.result.value {
+                        debugPrint(response)
+                        
+                        print(response.request)
+                        print(response.response)
+                        debugPrint(response.result)
+                        _ = DefaultsWrapper.set(image: image, named: Key.imagePath)
+                    }
                 }
-                
-            })
-        } else {
-            
-            print("No keychain...")
-            //KeyChainStore.shared.refreshTokens()
+            }
+        }) { (err) in
+            print(err)
         }
+        
 
         
     }
@@ -75,6 +69,16 @@ class BackendServer: NSObject {
     }
     
     func fetchAttributes() {
+        
+        APIManager.sharedInstance.getUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, onSuccess: { (json) in
+            print(json)
+            if let about = json["about"].string {
+                DefaultsWrapper.setString(key: Key.aboutMe, value: about)
+            }
+            
+        }) { (err) in
+            print(err)
+        }
        
         if let user = AppDelegate.defaultUserPool().currentUser() {
             
@@ -94,12 +98,8 @@ class BackendServer: NSObject {
                                     DefaultsWrapper.setString(key: Key.givenName, value: attr.value)
                                 case Key.familyName.rawValue:
                                     DefaultsWrapper.setString(key: Key.familyName, value: attr.value)
-                                case Key.school.rawValue:
-                                    DefaultsWrapper.setString(key: Key.school, value: attr.value)
                                 case Key.emailVerified.rawValue:
                                     DefaultsWrapper.setBool(key: Key.emailVerified, value: Bool(attr.value ?? "0")!)
-                                case Key.aboutMe.rawValue:
-                                    DefaultsWrapper.setString(key: Key.aboutMe, value: attr.value)
                                 case Key.email.rawValue:
                                     DefaultsWrapper.setString(key: Key.email, value: attr.value)
                                 default:

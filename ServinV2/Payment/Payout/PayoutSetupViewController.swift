@@ -114,7 +114,7 @@ class PayoutSetupViewController: UIViewController {
 }
 
 
-private class PayoutAddressViewController: UIViewController, UITextFieldDelegate, ScrollViewControllerDelegate {
+ class PayoutAddressViewController: UIViewController, UITextFieldDelegate, ScrollViewControllerDelegate {
     
     
     

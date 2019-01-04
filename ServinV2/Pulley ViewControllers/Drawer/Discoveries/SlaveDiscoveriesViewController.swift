@@ -9,7 +9,8 @@
 import UIKit
 import Pulley
 import GoogleMaps
-
+import Alamofire
+import AlamofireImage
 
 class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, PulleyDrawerViewControllerDelegate {
     
@@ -19,6 +20,8 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     var scrollViewHeight: CGFloat = 0.0
     var pulleyTapGestureRecognizer: UITapGestureRecognizer!
     var drawerTapView: UIView!
+    
+    var pinsNearby = [Discovery]()
     
     var pinsNearbyCollectionView: UICollectionView!
     var recommendedPinsCollectionView: UICollectionView!
@@ -180,7 +183,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == pinsNearbyCollectionView {
-            return ServinData.allPins.count
+            return pinsNearby.count
         } else {
             return recommendedCellCount
         }
@@ -190,9 +193,32 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         
         if collectionView == pinsNearbyCollectionView {
             let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: pinsNearbyCellIdentifier, for: indexPath) as! PinsNearbyCollectionViewCell
-            myCell.imageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "room1")
-            myCell.titleLabel.text = ServinData.allPins[indexPath.row]._title ?? " "
-            myCell.priceLabel.text = "$ \(ServinData.allPins[indexPath.row]._price ?? 0)"
+            
+            DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
+            
+            if let url = pinsNearby[indexPath.row].imagesUrl.first {
+                
+                Alamofire.request(url).responseImage { response in
+                    debugPrint(response)
+                    
+                    print(response.request)
+                    print(response.response)
+                    debugPrint(response.result)
+                    
+                    if let image = response.result.value {
+                        print("image downloaded: \(image)")
+                        myCell.imageView.image = image
+                    }
+                    else {
+                        print("unable to download image")
+                        myCell.imageView.image =  #imageLiteral(resourceName: "default_image_icon")
+                    }
+                }
+            }
+            
+
+            myCell.titleLabel.text = pinsNearby[indexPath.row]._title ?? " "
+            myCell.priceLabel.text = "$ \(pinsNearby[indexPath.row]._price ?? 0)"
             myCell.distanceLabel.text = "4 mins away"
             
             return myCell
@@ -214,7 +240,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         if collectionView == pinsNearbyCollectionView {
             if let parentVC = self.parent {
                 let discoveryVC = UserDiscoveryViewController()
-                discoveryVC.pin = ServinData.allPins[indexPath.row]
+                discoveryVC.pin = pinsNearby[indexPath.row]
                 parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
             }
         }
@@ -227,7 +253,7 @@ extension SlaveDiscoveriesViewController: SlaveMapViewControllerDelegate {
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
     }
     
-    func didSelectMarker(pin: Pin) {
+    func didSelectMarker(pin: Discovery) {
         
         if let offset = ServinData.allPins.index(where: {$0._price == pin._price}) {
             // do something with fooOffset

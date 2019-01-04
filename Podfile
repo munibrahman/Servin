@@ -27,6 +27,7 @@ pod 'JWTDecode', '~> 2.1'
 pod 'AWSCore', '~> 2.6.0'
 pod 'AWSCognitoIdentityProvider', '~> 2.6.0'
 pod 'AWSAppSync', '~> 2.6.22'
+pod 'AWSAPIGateway'
 
 #Stripe
 pod 'Stripe'
