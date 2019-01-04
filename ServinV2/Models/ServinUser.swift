@@ -9,19 +9,21 @@
 import Foundation
 import UIKit
 
-class User {
+class ServinUser {
     
     var _firstName: String?
     var _lastName: String?
     var _institution: String?
     var _profilePicture: UIImage?
-    var _pinsOnMap =  [Pin?]()
+    var _pinsOnMap =  [Discovery?]()
+    var _about: String?
     
-    init(firstName: String?, lastName: String?, profilePicture: UIImage?, institution: String) {
+    init(firstName: String?, lastName: String?, profilePicture: UIImage?, institution: String, about: String?) {
         self._firstName = firstName
         self._lastName = lastName
         self._institution = institution
         self._profilePicture = profilePicture
+        self._about = about
     }
     
 }

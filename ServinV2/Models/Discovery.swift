@@ -15,7 +15,7 @@ enum typeOfRequest {
     case request
 }
 
-class Pin {
+class Discovery {
     
     var _title: String?
     var _desctiption: String?
