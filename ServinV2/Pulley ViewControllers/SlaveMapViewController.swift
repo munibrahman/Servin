@@ -226,13 +226,14 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                     }
                     
                     
-                    let discovery = Discovery.init(title: item["title"].string, description: item["description"].string, price: Int.init(string: item["price"].string ?? "0") , views: 0, location: marker.position, images: images, typeOfRequest: typeOfRequest.offer, isSaved: false)
+                    let discovery = Discovery.init(id: item["discoveryId"].string, title: item["title"].string, description: item["description"].string, price: Int.init(string: item["price"].string ?? "0") , views: 0, location: marker.position, images: images, typeOfRequest: typeOfRequest.offer, isSaved: false)
                     discovery.imagesUrl = imagesUrls
                     
                     
                     if let userName = item["username"].string {
                         APIManager.sharedInstance.getUser(username: userName, onSuccess: { (jsonUser) in
                             print("Successfully retrieved username")
+                            print(jsonUser)
                             
                             let family_name = jsonUser["family_name"].string
                             let given_name = jsonUser["given_name"].string
@@ -244,7 +245,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                             print(about)
                             print(imageUrl)
                             
-                            let user = ServinUser.init(firstName: given_name, lastName: family_name, profilePicture: nil, institution: "University Of Calgary", about: about)
+                            let user = ServinUser.init(firstName: given_name, lastName: family_name, profilePicture: nil, institution: "University Of Calgary", about: about, cognitoId: userName)
                             user._profilePictureUrl = imageUrl
                             
                             discovery.user = user

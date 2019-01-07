@@ -75,6 +75,8 @@
 		8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */; };
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
+		8BC006C821E280E000B292B0 /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC006C721E280E000B292B0 /* ChatAPI.swift */; };
+		8BC006CA21E28A8400B292B0 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */; };
 		8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */; };
 		8BC7D0C721227B5900F2CD8F /* DeeplinkNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C221227B5800F2CD8F /* DeeplinkNavigator.swift */; };
@@ -206,6 +208,8 @@
 		8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapSearchBar.swift; sourceTree = "<group>"; };
 		8BBFFC4120A0EED700BA5D06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
+		8BC006C721E280E000B292B0 /* ChatAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
+		8BC006C921E28A8400B292B0 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServinV2.entitlements; sourceTree = "<group>"; };
 		8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeepLinkManager.swift; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 		8BA6454D20830D44006EEEC5 = {
 			isa = PBXGroup;
 			children = (
+				8BC006C921E28A8400B292B0 /* awsconfiguration.json */,
+				8BC006C721E280E000B292B0 /* ChatAPI.swift */,
 				8BA6455820830D44006EEEC5 /* ServinV2 */,
 				8BA6456D20830D44006EEEC5 /* ServinV2Tests */,
 				8BA6457820830D44006EEEC5 /* ServinV2UITests */,
@@ -742,6 +748,7 @@
 				8BD3834C20CBD03D00B4B653 /* CustomCell_Instagram.xib in Resources */,
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
+				8BC006CA21E28A8400B292B0 /* awsconfiguration.json in Resources */,
 				8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */,
 				8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */,
 				8B52724920F81F0300425717 /* CognitoConfig.plist in Resources */,
@@ -919,6 +926,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BC006C821E280E000B292B0 /* ChatAPI.swift in Sources */,
 				8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */,
 				8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */,
 				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,

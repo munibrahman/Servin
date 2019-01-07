@@ -1,0 +1,94 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateConversation($discoveryId: String!) {
+  createConversation(discoveryId: $discoveryId) {
+    createdAt
+    id
+    discoveryId
+    messages {
+      messages {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      nextToken
+    }
+  }
+}
+mutation CreateMessage($content: String, $conversationId: ID!) {
+  createMessage(content: $content, conversationId: $conversationId) {
+    author {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    content
+    conversationId
+    createdAt
+    id
+    isSent
+    recipient {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    sender
+  }
+}
+mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
+  createUserConversations(conversationId: $conversationId, userId: $userId) {
+    associated {
+      associated {
+        conversationId
+        userId
+      }
+      conversation {
+        createdAt
+        id
+        discoveryId
+      }
+      conversationId
+      user {
+        userId
+        username
+        registered
+      }
+      userId
+    }
+    conversation {
+      createdAt
+      id
+      discoveryId
+      messages {
+        nextToken
+      }
+    }
+    conversationId
+    user {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    userId
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "ervin2-20190106112938-authRole",
+      "UnauthRoleArn": "arn:aws:iam::810093522723:role/ervin2-20190106112938-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::810093522723:role/ervin2-20190106112938-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "ervin2-20190106112938-deployment",
+      "UnauthRoleName": "ervin2-20190106112938-unauthRole",
+      "StackName": "ervin2-20190106112938",
+      "StackId": "arn:aws:cloudformation:us-east-1:810093522723:stack/ervin2-20190106112938/06db4d20-11e1-11e9-b1bf-0ec11b444504"
+    }
+  },
+  "api": {
+    "ServinChatGraphQL": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS",
+        "GraphQLAPIIdOutput": "dbx5yvxssjdrxhaxd7xagyzvzq",
+        "GraphQLAPIEndpointOutput": "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2019-01-06T18:30:21.686Z"
+    }
+  }
+}

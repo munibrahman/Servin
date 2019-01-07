@@ -18,13 +18,15 @@ class ServinUser {
     var _pinsOnMap =  [Discovery?]()
     var _about: String?
     var _profilePictureUrl: String?
+    var _cognitoId: String?
     
-    init(firstName: String?, lastName: String?, profilePicture: UIImage?, institution: String, about: String?) {
+    init(firstName: String?, lastName: String?, profilePicture: UIImage?, institution: String, about: String?, cognitoId: String?) {
         self._firstName = firstName
         self._lastName = lastName
         self._institution = institution
         self._profilePicture = profilePicture
         self._about = about
+        self._cognitoId = cognitoId
     }
     
 }

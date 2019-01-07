@@ -165,6 +165,13 @@ class UserDiscoveryViewController: UIViewController {
     
     @objc func userDidTapImInterested() {
         print("Im interested did tap")
+        
+        let vc = DetailedMessageViewController()
+        
+        vc.aDiscovery = pin
+        vc.disableTopPinView = true
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

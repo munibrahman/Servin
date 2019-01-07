@@ -17,6 +17,7 @@ enum typeOfRequest {
 
 class Discovery {
     
+    var _id: String?
     var _title: String?
     var _desctiption: String?
     var _price: Int?
@@ -31,8 +32,9 @@ class Discovery {
     var user: ServinUser?
     
     
-    init(title: String?, description: String?, price: Int?, views: Int?, location: CLLocationCoordinate2D?, images: [UIImage?], typeOfRequest: typeOfRequest, isSaved: Bool) {
+    init(id: String?, title: String?, description: String?, price: Int?, views: Int?, location: CLLocationCoordinate2D?, images: [UIImage?], typeOfRequest: typeOfRequest, isSaved: Bool) {
         
+        self._id = id
         self._title = title
         self._desctiption = description
         self._price = price

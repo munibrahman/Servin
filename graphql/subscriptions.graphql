@@ -1,0 +1,76 @@
+# this is an auto generated file. This will be overwritten
+subscription SubscribeToNewMessage($conversationId: ID!) {
+  subscribeToNewMessage(conversationId: $conversationId) {
+    author {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    content
+    conversationId
+    createdAt
+    id
+    isSent
+    recipient {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    sender
+  }
+}
+subscription SubscribeToNewUCs($userId: ID!) {
+  subscribeToNewUCs(userId: $userId) {
+    associated {
+      associated {
+        conversationId
+        userId
+      }
+      conversation {
+        createdAt
+        id
+        discoveryId
+      }
+      conversationId
+      user {
+        userId
+        username
+        registered
+      }
+      userId
+    }
+    conversation {
+      createdAt
+      id
+      discoveryId
+      messages {
+        nextToken
+      }
+    }
+    conversationId
+    user {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    userId
+  }
+}

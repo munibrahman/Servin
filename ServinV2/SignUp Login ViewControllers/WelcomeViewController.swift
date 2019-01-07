@@ -58,7 +58,8 @@ class WelcomeViewController: UIViewController {
             BackendServer.shared.downloadProfileImage()
             BackendServer.shared.fetchAttributes()
             
-            
+
+            // Present an option to select categories, otherwise just show the app?
             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
             self.present(navVC, animated: true, completion: nil)
         } else {

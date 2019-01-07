@@ -12,11 +12,17 @@ import IQKeyboardManagerSwift
 import PinpointKit
 import AWSCognitoIdentityProvider
 import Stripe
+import AWSAppSync
+
 
 let userPoolID = "SampleUserPool"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let AppSyncRegion: AWSRegionType = AWSRegionType.USEast1
+    let AppSyncEndpointURL: URL = URL(string: "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql")!
+    let database_name: String = "local-appsync-db"
     
     class func defaultUserPool() -> AWSCognitoIdentityUserPool {
         return AWSCognitoIdentityUserPool(forKey: userPoolID)
@@ -40,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var rememberDeviceCompletionSource: AWSTaskCompletionSource<NSNumber>?
+    
+    var appSyncClient: AWSAppSyncClient?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -56,7 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup for IQKeyboardManagerSwift
         IQKeyboardManager.shared.enable = true
-        
+        // If you remove this, you start to see weird spacing between the text bar and the keyboard...
+        IQKeyboardManager.shared.disabledDistanceHandlingClasses.append(DetailedMessageViewController.self)
+        IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         // setup logging
         AWSDDLog.sharedInstance.logLevel = .verbose
@@ -67,6 +79,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // setup cognito
         setupCognitoUserPool()
+        
+        // setup app sync
+        initializeAppSync()
         
         let data = ServinData.init()
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
@@ -97,14 +112,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AWSServiceManager.default().defaultServiceConfiguration = serviceConfiguration
     }
     
+    func initializeAppSync() {
+        // You can choose your database location, accessible by the SDK
+        let databaseURL = URL(fileURLWithPath:NSTemporaryDirectory()).appendingPathComponent("todos_db")
+        
+        do {
+            // Initialize the AWS AppSync configuration
+            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncClientInfo: AWSAppSyncClientInfo(),
+                                                                  userPoolsAuthProvider: {
+                                                                    class MyCognitoUserPoolsAuthProvider : AWSCognitoUserPoolsAuthProviderAsync {
+                                                                        func getLatestAuthToken(_ callback: @escaping (String?, Error?) -> Void) {
+                                                                           
+                                                                            callback(KeyChainStore.shared.fetchIdToken() ?? "", nil)
+                                                                        }
+                                                                    }
+                                                                    return MyCognitoUserPoolsAuthProvider()}(),
+                                                                  databaseURL:databaseURL)
+            
+            // Initialize the AWS AppSync client
+            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
+            
+        } catch {
+            print("Error initializing appsync client. \(error)")
+        }
+    }
+    
     func showFirstViewController() {
 
         // Settings for PinpointKit
         self.window = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
         
-//        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+        let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-        let initialViewController = UINavigationController.init(rootViewController: PayoutAddressViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: PayoutAddressViewController())
         
 //        let initialViewController = CheckoutViewController.init(product: "Thing", price: 1000)
         self.window?.rootViewController = initialViewController

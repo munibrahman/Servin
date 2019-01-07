@@ -1,0 +1,152 @@
+# this is an auto generated file. This will be overwritten
+query AllMessage($after: String, $conversationId: ID!, $first: Int) {
+  allMessage(after: $after, conversationId: $conversationId, first: $first) {
+    author {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    content
+    conversationId
+    createdAt
+    id
+    isSent
+    recipient {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    sender
+  }
+}
+query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
+  allMessageConnection(
+    after: $after
+    conversationId: $conversationId
+    first: $first
+  ) {
+    messages {
+      author {
+        userId
+        username
+        registered
+      }
+      content
+      conversationId
+      createdAt
+      id
+      isSent
+      recipient {
+        userId
+        username
+        registered
+      }
+      sender
+    }
+    nextToken
+  }
+}
+query AllMessageFrom(
+  $after: String
+  $conversationId: ID!
+  $first: Int
+  $sender: String!
+) {
+  allMessageFrom(
+    after: $after
+    conversationId: $conversationId
+    first: $first
+    sender: $sender
+  ) {
+    author {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    content
+    conversationId
+    createdAt
+    id
+    isSent
+    recipient {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      username
+      registered
+    }
+    sender
+  }
+}
+query AllUser($after: String, $first: Int) {
+  allUser(after: $after, first: $first) {
+    userId
+    conversations {
+      nextToken
+      userConversations {
+        conversationId
+        userId
+      }
+    }
+    messages {
+      messages {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      nextToken
+    }
+    username
+    registered
+  }
+}
+query Me {
+  me {
+    userId
+    conversations {
+      nextToken
+      userConversations {
+        conversationId
+        userId
+      }
+    }
+    messages {
+      messages {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      nextToken
+    }
+    username
+    registered
+  }
+}
