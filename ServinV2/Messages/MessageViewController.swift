@@ -179,10 +179,11 @@
 import Foundation
 import UIKit
 import DZNEmptyDataSet
+import AWSAppSync
 
 class MessageViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    
+    var appSyncClient: AWSAppSyncClient?
     let reuseIdentifier = "cell"
     let headerID = "header"
     
@@ -196,6 +197,9 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appSyncClient = appDelegate.appSyncClient
+        
         view.backgroundColor = .white
         
         collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -205,6 +209,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         collectionView?.backgroundColor = .white
         
         setupNavigationBar()
+        fetchConversations()
     }
     
     func setupNavigationBar() {
@@ -222,6 +227,41 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         self.navigationController?.navigationBar.backgroundColor = .white
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.navigationItem.largeTitleDisplayMode = .never
+        
+        
+    }
+    
+    var userConversations: [MeQuery.Data.Me.Conversation.UserConversation?]?
+    
+    func fetchConversations() {
+        
+        
+        let convoQuery = getUserConversationConnectionThroughUser()
+
+        appSyncClient?.fetch(query: convoQuery, cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
+            
+            if let error = error {
+                print("Error fetching conversations: \(error)")
+            } else {
+                
+                print("Fetched all the conversations")
+                print(result)
+//                if let userConversations = result?.data?.me?.conversations?.userConversations {
+//                    self.userConversations = userConversations
+//
+//                    for eachUserConvo in userConversations {
+//                        print(eachUserConvo?.__typename)
+//                        print(eachUserConvo?.conversationId)
+//                        print(eachUserConvo?.snapshot)
+//                        print(eachUserConvo?.userId)
+//                    }
+//
+//                }
+            }
+            
+        })
+        
+        
         
         
     }
@@ -423,3 +463,355 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
 }
 
 
+
+
+
+public final class getUserConversationConnectionThroughUser: GraphQLQuery {
+    public static let operationString = "query getUserConversationConnectionThroughUser($after: String, $first: Int) {\n    me {\n    userId\n    __typename\n    conversations(first: $first, after: $after) {\n    __typename\n    nextToken\n    userConversations {\n    __typename\n    userId\n    conversationId\n    associated {\n    __typename\n    userId\n    }\n    conversation {\n    __typename\n    id\n    discoveryId\n    }\n    }\n    }\n    }\n}"
+    
+    public init() {
+    }
+    
+    public struct Data: GraphQLSelectionSet {
+        public static let possibleTypes = ["Query"]
+        
+        public static let selections: [GraphQLSelection] = [
+            GraphQLField("me", type: .object(Me.selections)),
+            ]
+        
+        public var snapshot: Snapshot
+        
+        public init(snapshot: Snapshot) {
+            self.snapshot = snapshot
+        }
+        
+        public init(me: Me? = nil) {
+            self.init(snapshot: ["__typename": "Query", "me": me.flatMap { $0.snapshot }])
+        }
+        
+        /// Get my user.
+        public var me: Me? {
+            get {
+                return (snapshot["me"] as? Snapshot).flatMap { Me(snapshot: $0) }
+            }
+            set {
+                snapshot.updateValue(newValue?.snapshot, forKey: "me")
+            }
+        }
+        
+        public struct Me: GraphQLSelectionSet {
+            public static let possibleTypes = ["User"]
+            
+            public static let selections: [GraphQLSelection] = [
+                GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                GraphQLField("userId", type: .nonNull(.scalar(GraphQLID.self))),
+                GraphQLField("conversations", type: .object(Conversation.selections)),
+                GraphQLField("messages", type: .object(Message.selections)),
+                GraphQLField("username", type: .nonNull(.scalar(String.self))),
+                GraphQLField("registered", type: .scalar(Bool.self)),
+                ]
+            
+            public var snapshot: Snapshot
+            
+            public init(snapshot: Snapshot) {
+                self.snapshot = snapshot
+            }
+            
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, username: String, registered: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "username": username, "registered": registered])
+            }
+            
+            public var __typename: String {
+                get {
+                    return snapshot["__typename"]! as! String
+                }
+                set {
+                    snapshot.updateValue(newValue, forKey: "__typename")
+                }
+            }
+            
+            /// A unique identifier for the user. (cognito id)
+            public var userId: GraphQLID {
+                get {
+                    return snapshot["userId"]! as! GraphQLID
+                }
+                set {
+                    snapshot.updateValue(newValue, forKey: "userId")
+                }
+            }
+            
+            /// A user's enrolled Conversations. This is an interesting case. This is an interesting pagination case.
+            public var conversations: Conversation? {
+                get {
+                    return (snapshot["conversations"] as? Snapshot).flatMap { Conversation(snapshot: $0) }
+                }
+                set {
+                    snapshot.updateValue(newValue?.snapshot, forKey: "conversations")
+                }
+            }
+            
+            /// Get a users messages by querying a GSI on the Messages table.
+            public var messages: Message? {
+                get {
+                    return (snapshot["messages"] as? Snapshot).flatMap { Message(snapshot: $0) }
+                }
+                set {
+                    snapshot.updateValue(newValue?.snapshot, forKey: "messages")
+                }
+            }
+            
+            /// The username
+            public var username: String {
+                get {
+                    return snapshot["username"]! as! String
+                }
+                set {
+                    snapshot.updateValue(newValue, forKey: "username")
+                }
+            }
+            
+            /// is the user registered?
+            public var registered: Bool? {
+                get {
+                    return snapshot["registered"] as? Bool
+                }
+                set {
+                    snapshot.updateValue(newValue, forKey: "registered")
+                }
+            }
+            
+            public struct Conversation: GraphQLSelectionSet {
+                public static let possibleTypes = ["UserConverstationsConnection"]
+                
+                public static let selections: [GraphQLSelection] = [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("nextToken", type: .scalar(String.self)),
+                    GraphQLField("userConversations", type: .list(.object(UserConversation.selections))),
+                    ]
+                
+                public var snapshot: Snapshot
+                
+                public init(snapshot: Snapshot) {
+                    self.snapshot = snapshot
+                }
+                
+                public init(nextToken: String? = nil, userConversations: [UserConversation?]? = nil) {
+                    self.init(snapshot: ["__typename": "UserConverstationsConnection", "nextToken": nextToken, "userConversations": userConversations.flatMap { $0.map { $0.flatMap { $0.snapshot } } }])
+                }
+                
+                public var __typename: String {
+                    get {
+                        return snapshot["__typename"]! as! String
+                    }
+                    set {
+                        snapshot.updateValue(newValue, forKey: "__typename")
+                    }
+                }
+                
+                public var nextToken: String? {
+                    get {
+                        return snapshot["nextToken"] as? String
+                    }
+                    set {
+                        snapshot.updateValue(newValue, forKey: "nextToken")
+                    }
+                }
+                
+                public var userConversations: [UserConversation?]? {
+                    get {
+                        return (snapshot["userConversations"] as? [Snapshot?]).flatMap { $0.map { $0.flatMap { UserConversation(snapshot: $0) } } }
+                    }
+                    set {
+                        snapshot.updateValue(newValue.flatMap { $0.map { $0.flatMap { $0.snapshot } } }, forKey: "userConversations")
+                    }
+                }
+                
+                public struct UserConversation: GraphQLSelectionSet {
+                    public static let possibleTypes = ["UserConversations"]
+                    
+                    public static let selections: [GraphQLSelection] = [
+                        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                        GraphQLField("conversationId", type: .nonNull(.scalar(GraphQLID.self))),
+                        GraphQLField("userId", type: .nonNull(.scalar(GraphQLID.self))),
+                        ]
+                    
+                    public var snapshot: Snapshot
+                    
+                    public init(snapshot: Snapshot) {
+                        self.snapshot = snapshot
+                    }
+                    
+                    public init(conversationId: GraphQLID, userId: GraphQLID) {
+                        self.init(snapshot: ["__typename": "UserConversations", "conversationId": conversationId, "userId": userId])
+                    }
+                    
+                    public var __typename: String {
+                        get {
+                            return snapshot["__typename"]! as! String
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "__typename")
+                        }
+                    }
+                    
+                    public var conversationId: GraphQLID {
+                        get {
+                            return snapshot["conversationId"]! as! GraphQLID
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "conversationId")
+                        }
+                    }
+                    
+                    public var userId: GraphQLID {
+                        get {
+                            return snapshot["userId"]! as! GraphQLID
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "userId")
+                        }
+                    }
+                }
+            }
+            
+            public struct Message: GraphQLSelectionSet {
+                public static let possibleTypes = ["MessageConnection"]
+                
+                public static let selections: [GraphQLSelection] = [
+                    GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                    GraphQLField("messages", type: .list(.object(Message.selections))),
+                    GraphQLField("nextToken", type: .scalar(String.self)),
+                    ]
+                
+                public var snapshot: Snapshot
+                
+                public init(snapshot: Snapshot) {
+                    self.snapshot = snapshot
+                }
+                
+                public init(messages: [Message?]? = nil, nextToken: String? = nil) {
+                    self.init(snapshot: ["__typename": "MessageConnection", "messages": messages.flatMap { $0.map { $0.flatMap { $0.snapshot } } }, "nextToken": nextToken])
+                }
+                
+                public var __typename: String {
+                    get {
+                        return snapshot["__typename"]! as! String
+                    }
+                    set {
+                        snapshot.updateValue(newValue, forKey: "__typename")
+                    }
+                }
+                
+                public var messages: [Message?]? {
+                    get {
+                        return (snapshot["messages"] as? [Snapshot?]).flatMap { $0.map { $0.flatMap { Message(snapshot: $0) } } }
+                    }
+                    set {
+                        snapshot.updateValue(newValue.flatMap { $0.map { $0.flatMap { $0.snapshot } } }, forKey: "messages")
+                    }
+                }
+                
+                public var nextToken: String? {
+                    get {
+                        return snapshot["nextToken"] as? String
+                    }
+                    set {
+                        snapshot.updateValue(newValue, forKey: "nextToken")
+                    }
+                }
+                
+                public struct Message: GraphQLSelectionSet {
+                    public static let possibleTypes = ["Message"]
+                    
+                    public static let selections: [GraphQLSelection] = [
+                        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+                        GraphQLField("content", type: .nonNull(.scalar(String.self))),
+                        GraphQLField("conversationId", type: .nonNull(.scalar(GraphQLID.self))),
+                        GraphQLField("createdAt", type: .scalar(Int.self)),
+                        GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
+                        GraphQLField("isSent", type: .scalar(Bool.self)),
+                        GraphQLField("sender", type: .scalar(String.self)),
+                        ]
+                    
+                    public var snapshot: Snapshot
+                    
+                    public init(snapshot: Snapshot) {
+                        self.snapshot = snapshot
+                    }
+                    
+                    public init(content: String, conversationId: GraphQLID, createdAt: Int? = nil, id: GraphQLID, isSent: Bool? = nil, sender: String? = nil) {
+                        self.init(snapshot: ["__typename": "Message", "content": content, "conversationId": conversationId, "createdAt": createdAt, "id": id, "isSent": isSent, "sender": sender])
+                    }
+                    
+                    public var __typename: String {
+                        get {
+                            return snapshot["__typename"]! as! String
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "__typename")
+                        }
+                    }
+                    
+                    /// The message content.
+                    public var content: String {
+                        get {
+                            return snapshot["content"]! as! String
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "content")
+                        }
+                    }
+                    
+                    /// The id of the Conversation this message belongs to. This is the table primary key.
+                    public var conversationId: GraphQLID {
+                        get {
+                            return snapshot["conversationId"]! as! GraphQLID
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "conversationId")
+                        }
+                    }
+                    
+                    /// The message timestamp. This is also the table sort key.
+                    public var createdAt: Int? {
+                        get {
+                            return snapshot["createdAt"] as? Int
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "createdAt")
+                        }
+                    }
+                    
+                    /// Generated id for a message -- read-only
+                    public var id: GraphQLID {
+                        get {
+                            return snapshot["id"]! as! GraphQLID
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "id")
+                        }
+                    }
+                    
+                    /// Flag denoting if this message has been accepted by the server or not.
+                    public var isSent: Bool? {
+                        get {
+                            return snapshot["isSent"] as? Bool
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "isSent")
+                        }
+                    }
+                    
+                    public var sender: String? {
+                        get {
+                            return snapshot["sender"] as? String
+                        }
+                        set {
+                            snapshot.updateValue(newValue, forKey: "sender")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

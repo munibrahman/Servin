@@ -101,8 +101,15 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
             containerViewBottomAnchor?.constant = -keyboardFrame.height
             
             if let keyboardDuration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
-                UIView.animate(withDuration: keyboardDuration) {
+                
+                
+                UIView.animate(withDuration: keyboardDuration, animations: {
                     self.view.layoutIfNeeded()
+                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                }) { (completion) in
+//                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+//                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                 }
             }
         }
@@ -129,15 +136,6 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        for constraint in (collectionView?.constraints)! {
-//            collectionView?.removeConstraint(constraint)
-//            print("removed constraints")
-//        }
-//
-//    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages?.count ?? 0
@@ -415,6 +413,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                     
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
+                        let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
                 }
             }
