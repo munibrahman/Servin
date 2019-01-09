@@ -84,7 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeAppSync()
         
         let data = ServinData.init()
-        
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
         showFirstViewController()
 
