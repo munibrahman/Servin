@@ -9,8 +9,9 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     content
     conversationId
@@ -25,8 +26,9 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     sender
   }
@@ -40,8 +42,9 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
     messages {
       author {
         userId
-        username
         registered
+        firstName
+        lastName
       }
       content
       conversationId
@@ -50,8 +53,9 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
       isSent
       recipient {
         userId
-        username
         registered
+        firstName
+        lastName
       }
       sender
     }
@@ -78,8 +82,9 @@ query AllMessageFrom(
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     content
     conversationId
@@ -94,8 +99,9 @@ query AllMessageFrom(
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     sender
   }
@@ -121,8 +127,9 @@ query AllUser($after: String, $first: Int) {
       }
       nextToken
     }
-    username
     registered
+    firstName
+    lastName
   }
 }
 query Me {
@@ -146,7 +153,167 @@ query Me {
       }
       nextToken
     }
-    username
     registered
+    firstName
+    lastName
+  }
+}
+query ConversationFromId($conversationId: String!) {
+  conversationFromId(conversationId: $conversationId) {
+    createdAt
+    id
+    discoveryId
+    messages {
+      messages {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      nextToken
+    }
+    latestMessage {
+      author {
+        userId
+        registered
+        firstName
+        lastName
+      }
+      content
+      conversationId
+      createdAt
+      id
+      isSent
+      recipient {
+        userId
+        registered
+        firstName
+        lastName
+      }
+      sender
+    }
+    discovery {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        registered
+        firstName
+        lastName
+      }
+    }
+  }
+}
+query AllAssociated($conversationId: String!) {
+  allAssociated(conversationId: $conversationId) {
+    associated {
+      associated {
+        conversationId
+        userId
+      }
+      conversation {
+        createdAt
+        id
+        discoveryId
+      }
+      conversationId
+      user {
+        userId
+        registered
+        firstName
+        lastName
+      }
+      userId
+    }
+    conversation {
+      createdAt
+      id
+      discoveryId
+      messages {
+        nextToken
+      }
+      latestMessage {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      discovery {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+      }
+    }
+    conversationId
+    user {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      registered
+      firstName
+      lastName
+    }
+    userId
+  }
+}
+query Discovery($discoveryId: String!) {
+  discovery(discoveryId: $discoveryId) {
+    discoveryId
+    active
+    cognitoUserName
+    description
+    price
+    request_or_offer
+    time
+    title
+    image_0
+    image_1
+    image_2
+    image_3
+    image_4
+    image_5
+    author {
+      userId
+      conversations {
+        nextToken
+      }
+      messages {
+        nextToken
+      }
+      registered
+      firstName
+      lastName
+    }
   }
 }

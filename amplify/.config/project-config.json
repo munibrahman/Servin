@@ -1,6 +1,6 @@
 {
     "projectName": "ServinV2",
-    "projectPath": "/Users/developer/Developer/ServinV2",
+    "projectPath": "/Users/munib/Developer/ServinV2",
     "defaultEditor": "none",
     "frontendHandler": {
         "ios": "/usr/local/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-ios"

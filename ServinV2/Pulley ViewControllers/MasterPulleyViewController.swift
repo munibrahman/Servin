@@ -13,6 +13,7 @@ import Pulley
 import GoogleMaps
 import SideMenu
 import Alamofire
+import AWSPinpoint
 
 class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDelegate {
     
@@ -37,6 +38,35 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         setupSideMenu()
         setupNavigationBar()
         
+        if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
+            print("Asking to register for push notifications")
+            myDelegate.registerForPushNotifications()
+            
+            
+            if let targetingClient = myDelegate.pinpoint?.targetingClient {
+                let endpoint = targetingClient.currentEndpointProfile()
+                
+                // Create a user and set its userId property
+                let user = AWSPinpointEndpointProfileUser()
+                user.userId = "Munib"
+                // Assign the user to the endpoint
+                endpoint.user = user
+                print("Channel type: \(endpoint.channelType)")
+                // Update the endpoint with the targeting client
+                targetingClient.update(endpoint).continueWith { (task) -> Any? in
+                    if let err = task.error {
+                        print("Error \(err)");
+                    } else {
+                        print("Success \(task.result)")
+                    }
+                    
+                    return nil
+                }
+                
+                
+                print("Assigned user ID \(user.userId ?? "nil") to endpoint \(endpoint.endpointId)")
+            }
+        }
         // Do any additional setup after loading the view.
         
         

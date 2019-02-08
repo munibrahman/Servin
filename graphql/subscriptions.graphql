@@ -9,8 +9,9 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     content
     conversationId
@@ -25,8 +26,9 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     sender
   }
@@ -46,8 +48,9 @@ subscription SubscribeToNewUCs($userId: ID!) {
       conversationId
       user {
         userId
-        username
         registered
+        firstName
+        lastName
       }
       userId
     }
@@ -57,6 +60,30 @@ subscription SubscribeToNewUCs($userId: ID!) {
       discoveryId
       messages {
         nextToken
+      }
+      latestMessage {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      discovery {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
       }
     }
     conversationId
@@ -68,8 +95,9 @@ subscription SubscribeToNewUCs($userId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     userId
   }

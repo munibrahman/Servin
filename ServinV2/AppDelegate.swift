@@ -13,16 +13,24 @@ import PinpointKit
 import AWSCognitoIdentityProvider
 import Stripe
 import AWSAppSync
+import AWSCore
+import AWSPinpoint
+import UserNotifications
+import AWSMobileClient
+import AWSCognito
 
 
 let userPoolID = "SampleUserPool"
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     let AppSyncRegion: AWSRegionType = AWSRegionType.USEast1
     let AppSyncEndpointURL: URL = URL(string: "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql")!
     let database_name: String = "local-appsync-db"
+    let pinpointAppId: String = "128f6b300d75446f9c2ca0ffb248e4f7"
+    
+    var pinpoint: AWSPinpoint?
     
     class func defaultUserPool() -> AWSCognitoIdentityUserPool {
         return AWSCognitoIdentityUserPool(forKey: userPoolID)
@@ -83,11 +91,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // setup app sync
         initializeAppSync()
         
-        let data = ServinData.init()
+        
+        
+        let _ = ServinData.init()
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
         showFirstViewController()
 
         performReachabilityTest()
+        
+        
+        // Initialize Pinpoint
+        /** start code copy **/
+
+        let pp = AWSPinpointConfiguration.init(appId: pinpointAppId, launchOptions: launchOptions)
+        pinpoint = AWSPinpoint(configuration: pp)
+        
+        
+        
+        // Create AWSMobileClient to connect with AWS
+//        return AWSMobileClient.sharedInstance().interceptApplication(application, didFinishLaunchingWithOptions: launchOptions)
+        /** end code copy **/
         
         return true
     }
@@ -105,6 +128,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let serviceConfiguration:AWSServiceConfiguration = AWSServiceConfiguration(region: region, credentialsProvider: nil)
         let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: clientId, clientSecret: clientSecret, poolId: poolId)
+        
+//        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration.init(clientId: clientId, clientSecret: clientSecret, poolId: poolId, shouldProvideCognitoValidationData: true, pinpointAppId: pinpointAppId)
+        
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: cognitoConfiguration, forKey: userPoolID)
         let pool:AWSCognitoIdentityUserPool = AppDelegate.defaultUserPool()
         pool.delegate = self
@@ -144,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = storyboard?.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-//        let initialViewController = UINavigationController.init(rootViewController: PayoutAddressViewController())
+//        let initialViewController = UINavigationController.init(rootViewController: MessageViewController())
         
 //        let initialViewController = CheckoutViewController.init(product: "Thing", price: 1000)
         self.window?.rootViewController = initialViewController
@@ -214,8 +240,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: Notifications
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        pinpoint!.notificationManager.interceptDidRegisterForRemoteNotifications(
+            withDeviceToken: deviceToken)
+        print("Channel Type: \(pinpoint?.targetingClient.currentEndpointProfile())")
+        print("Did register for remote notifs with device token \(deviceToken.base64EncodedString())")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register for remote notifcations \(error.localizedDescription)")
+    }
+    
+    // Request user to grant permissions for the app to use notifications
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            if let error = error {
+                print("Error asking for permission: \(error)")
+                return
+            }
+            print("Permission granted: \(granted)")
+            // 1. Check if permission granted
+            guard granted else { return }
+            // 2. Attempt registration for remote notifications on the main thread
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("Got notification")
+        pinpoint!.notificationManager.interceptDidReceiveRemoteNotification(
+            userInfo, fetchCompletionHandler: completionHandler)
+        
+        if (application.applicationState == .active) {
+            let alert = UIAlertController(title: "Notification Received",
+                                          message: userInfo.description,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            UIApplication.shared.keyWindow?.rootViewController?.present(
+                alert, animated: true, completion:nil)
+        }
+        
         Deeplinker.handleRemoteNotification(userInfo)
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("recieved notification in foreground")
     }
 
 }

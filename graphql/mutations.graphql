@@ -15,6 +15,48 @@ mutation CreateConversation($discoveryId: String!) {
       }
       nextToken
     }
+    latestMessage {
+      author {
+        userId
+        registered
+        firstName
+        lastName
+      }
+      content
+      conversationId
+      createdAt
+      id
+      isSent
+      recipient {
+        userId
+        registered
+        firstName
+        lastName
+      }
+      sender
+    }
+    discovery {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        registered
+        firstName
+        lastName
+      }
+    }
   }
 }
 mutation CreateMessage($content: String, $conversationId: ID!) {
@@ -27,8 +69,9 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     content
     conversationId
@@ -43,8 +86,9 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     sender
   }
@@ -64,8 +108,9 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       conversationId
       user {
         userId
-        username
         registered
+        firstName
+        lastName
       }
       userId
     }
@@ -75,6 +120,30 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       discoveryId
       messages {
         nextToken
+      }
+      latestMessage {
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        sender
+      }
+      discovery {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
       }
     }
     conversationId
@@ -86,8 +155,9 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       messages {
         nextToken
       }
-      username
       registered
+      firstName
+      lastName
     }
     userId
   }

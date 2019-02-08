@@ -40,6 +40,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     let cellId = "cellId"
     
+    var conversation: ConversationFromIdQuery.Data.ConversationFromId?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,9 +82,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         
         setupNavigationController()
-
-        fetchMessages()
-        observeMessages()
+        
+        fetchConversation()
         
         setupViews()
         setupInputComponents()
@@ -105,8 +106,13 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                 
                 UIView.animate(withDuration: keyboardDuration, animations: {
                     self.view.layoutIfNeeded()
-                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
-                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    
+                    if let messages = self.messages {
+                        let indexPath = IndexPath.init(item: messages.count - 1, section: 0)
+                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    }
+                    
+                    
                 }) { (completion) in
 //                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
 //                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
@@ -359,25 +365,113 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     @objc func handleSend() {
         
-        let conversationId = "test"
         
         guard let textFieldContent = inputTextField.text, !textFieldContent.isEmpty else {
             return
         }
         
-        let messageMutation = CreateMessageMutation.init(content: textFieldContent, conversationId: conversationId)
         
-        appSyncClient?.perform(mutation: messageMutation, resultHandler: { (result, err) in
-            if let result = result {
-                print("Successful response for sending message: \(result)")
-                self.inputTextField.text = nil
-            } else if let error = err {
-                print("Error response for sending message: \(error)")
+        if let conversation = conversation {
+            let messageMutation = CreateMessageMutation.init(content: textFieldContent, conversationId: conversation.id)
+            
+            appSyncClient?.perform(mutation: messageMutation, resultHandler: { (result, err) in
+                if let result = result {
+                    print("Successful response for sending message: \(result)")
+                    self.inputTextField.text = nil
+                } else if let error = err {
+                    print("Error response for sending message: \(error)")
+                }
+            })
+            
+            
+            print(textFieldContent)
+        } else {
+            print("Start new conversation")
+            
+            if let discovery = aDiscovery {
+                
+                
+                guard let discoveryId = discovery._id else {
+                    print("Discovery doesn't have an id...")
+                    return
+                }
+                
+                guard let userName = DefaultsWrapper.getString(Key.userName) else {
+                    print("No username stored for this user...")
+                    return
+                }
+                
+                let startConvo = CreateConversationMutation.init(discoveryId: discoveryId)
+                
+                appSyncClient?.perform(mutation: startConvo, resultHandler: { (result, error) in
+                    if let error = error {
+                        print("Error creating a new conversation \(error.localizedDescription)")
+                    } else {
+                        print("Created conversation: \(result?.data)")
+                        
+                        if let id = result?.data?.createConversation?.id {
+                            print("Conversation id is \(id)")
+                            
+                            
+                            self.appSyncClient?.perform(mutation: CreateUserConversationsMutation.init(conversationId: id, userId: userName), resultHandler: { (result, error) in
+                                if let error = error {
+                                    print("Error creating a new user conversation \(error.localizedDescription)")
+                                } else {
+                                    print("Created a user conversation \(result?.data)")
+                                }
+                            })
+                        
+                            guard let userId = result?.data?.createConversation?.discovery?.cognitoUserName else {
+                                print("Can't get other person's user name, abandon")
+                                return
+                            }
+                            
+                            self.appSyncClient?.perform(mutation: CreateUserConversationsMutation.init(conversationId: id, userId: userId), resultHandler: { (result, error) in
+                                if let error = error {
+                                    print("Error creating a new user conversation \(error.localizedDescription)")
+                                } else {
+                                    print("Created a user conversation \(result?.data)")
+                                }
+                            })
+                            
+                            let messageMutation = CreateMessageMutation.init(content: textFieldContent, conversationId: id)
+                            
+                            self.appSyncClient?.perform(mutation: messageMutation, resultHandler: { (result, err) in
+                                if let result = result {
+                                    print("Successful response for sending message: \(result)")
+                                    self.inputTextField.text = nil
+                                    self.fetchMessages()
+                                } else if let error = err {
+                                    print("Error response for sending message: \(error)")
+                                }
+                            })
+                        
+                            if let snapshot = result?.data?.createConversation?.snapshot {
+                                print("Made a conversation object from the snapshot, update the tableview to message being sent")
+                                self.conversation = ConversationFromIdQuery.Data.ConversationFromId.init(snapshot: snapshot)
+                                self.observeMessages()
+                            } else {
+                                print("no snapshot to be extracted... made a new convo but nothing to show for it.")
+                            }
+                            
+                            
+                            
+                        } else {
+                            print("no conversation id... wtf")
+                        }
+                    }
+                })
+            } else {
+                print("No discovery passed")
             }
-        })
+            
+            
+            
+            
+        }
         
         
-        print(textFieldContent)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -390,11 +484,69 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         self.navigationController?.pushViewController(userDiscoveryVC, animated: true)
     }
     
+    func fetchConversation() {
+        
+        
+        
+        var checkConvo = ConversationFromIdQuery(conversationId: "")
+        
+        // If you open the inbox, you will only need the id, otherwise you will need to check if the conversation exists by actually putting your id on the discovery id.
+        if let conversation = conversation {
+            checkConvo = ConversationFromIdQuery.init(conversationId: "\(String(describing: conversation.id))")
+        } else {
+            
+            
+            if let discovery = aDiscovery {
+                
+                guard let discoveryId = discovery._id else {
+                    print("Discovery doesn't have an id...")
+                    return
+                }
+                
+                guard let userName = DefaultsWrapper.getString(Key.userName) else {
+                    print("No username stored for this user...")
+                    return
+                }
+                
+                checkConvo = ConversationFromIdQuery.init(conversationId: discoveryId + "-" + userName)
+            } else {
+                print("No discovery passed in...")
+                return
+            }
+  
+        }
+        
+        print("Check convo id is \(checkConvo.conversationId)")
+        
+        appSyncClient?.fetch(query: checkConvo, cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
+            if let error = error {
+                // TODO: SHOW error to user
+                print("Error fetching data... \(error.localizedDescription)")
+            } else {
+                
+                if let convo = result?.data?.conversationFromId {
+                    print("Conversation exists, fetch messages")
+                    self.conversation = convo
+                    self.fetchMessages()
+                } else {
+                    print("Conversation doesn't exist")
+                }
+                
+                
+            }
+        })
+        
+        
+    }
+    
     func fetchMessages() {
         
-        let conversationId = "test"
+        guard let conversation = conversation else {
+            print("Error retriveing convo id")
+            return
+        }
         
-        let messagesQuery = AllMessageConnectionQuery.init(conversationId: conversationId)
+        let messagesQuery = AllMessageConnectionQuery.init(conversationId: conversation.id)
         
         appSyncClient?.fetch(query: messagesQuery, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
             if let error = error {
@@ -417,6 +569,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
                 }
+                
+                self.observeMessages()
             }
         })
         
@@ -424,9 +578,13 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     func observeMessages() {
         
-        let conversationId = "test"
+        guard let conversation = conversation else {
+            print("Error getting id")
+            return
+        }
         
-        let subscribeToMessages = SubscribeToNewMessageSubscription.init(conversationId: conversationId)
+        
+        let subscribeToMessages = SubscribeToNewMessageSubscription.init(conversationId: conversation.id)
         
         do {
         
@@ -439,25 +597,20 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                 
                 print(content)
                 print(sender)
-//
-//                let messageData = SubscribeToNewMessageSubscription.Data.SubscribeToNewMessage.init(author: res?.data?.subscribeToNewMessage?.author,
-//                                                                                                    content: (res?.data?.subscribeToNewMessage?.content)!,
-//                                                                                                    conversationId: (res?.data?.subscribeToNewMessage?.conversationId)!,
-//                                                                                                    createdAt: res?.data?.subscribeToNewMessage?.createdAt,
-//                                                                                                    id: (res?.data?.subscribeToNewMessage?.id)!,
-//                                                                                                    isSent: res?.data?.subscribeToNewMessage?.isSent,
-//                                                                                                    recipient: res?.data?.subscribeToNewMessage?.recipient,
-//                                                                                                    sender: res?.data?.subscribeToNewMessage?.sender)
-//
-//                let messageObject = AllMessageConnectionQuery.Data.AllMessageConnection.Message.init(snapshot: messageData.snapshot)
-//
-//                self.messages?.append(messageObject)
-//
-//                DispatchQueue.main.async {
-//                    self.collectionView?.reloadData()
-//                }
-//
                 
+                
+                if let snapshot = res?.data?.subscribeToNewMessage?.snapshot {
+                    print("Snap shot exists")
+                    let messageObject = AllMessageConnectionQuery.Data.AllMessageConnection.Message.init(snapshot: snapshot)
+                    
+                    self.messages?.append(messageObject)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                        let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    }
+                }
             })
             
             

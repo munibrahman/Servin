@@ -18,5 +18,16 @@
             "Region": "us-east-1",
             "AuthMode": "AMAZON_COGNITO_USER_POOLS"
         }
+    },
+    "PinpointAnalytics": {
+        "Default": {
+            "AppId": "128f6b300d75446f9c2ca0ffb248e4f7",
+            "Region": "us-east-1"
+        }
+    },
+    "PinpointTargeting": {
+        "Default": {
+            "Region": "us-east-1"
+        }
     }
 }
