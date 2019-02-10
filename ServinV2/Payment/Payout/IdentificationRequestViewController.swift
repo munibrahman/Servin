@@ -137,10 +137,9 @@ class IdentificationRequestViewController: UIViewController {
 
 extension IdentificationRequestViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        picker.dismiss(animated: true)
-        
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             print("No image found")
             return
         }
@@ -148,6 +147,7 @@ extension IdentificationRequestViewController: UINavigationControllerDelegate, U
         // print out the image size as a test
         print(image.size)
     }
+    
     
 }
 

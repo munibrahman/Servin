@@ -15,7 +15,7 @@ class HomeMapSearchBar: UISearchBar {
         
         self.frame = frame
         
-        searchBarStyle = UISearchBarStyle.minimal
+        searchBarStyle = UISearchBar.Style.minimal
         isTranslucent = false
         
         self.setImage(UIImage(), for: .search, state: .normal)

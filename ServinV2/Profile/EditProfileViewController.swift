@@ -93,7 +93,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
                 self.imagePicker.allowsEditing = false
-                self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+                self.imagePicker.sourceType = UIImagePickerController.SourceType.camera
                 self.imagePicker.cameraCaptureMode = .photo
                 self.imagePicker.modalPresentationStyle = .fullScreen
                 self.present(self.imagePicker,animated: true,completion: nil)
@@ -137,17 +137,17 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     //MARK: - Delegates
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         print("Image picked")
         
-        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let chosenImage = info[.originalImage] as? UIImage {
             profileImageView.image = chosenImage //4
             
             didPickImage = true
         }
         
         dismiss(animated:true, completion: nil)
-        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -266,7 +266,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     "Authorization": idToken
                 ]
                 
-                guard let imageData = UIImageJPEGRepresentation(self.profileImageView.image!, 0.4) else {
+                guard let imageData = self.profileImageView.image?.jpegData(compressionQuality: 0.4)  else {
                     self.navigationItem.rightBarButtonItem = self.saveButtonItem
                     
                     return

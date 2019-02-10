@@ -161,7 +161,7 @@ class SlavePostAdViewController: UIViewController {
         var extraPadding: CGFloat = 10.0
         
         if let mySuperview = self.parent as? MasterPulleyViewController {
-            extraPadding = extraPadding + mySuperview.topInset
+            extraPadding = extraPadding + mySuperview.drawerTopInset
         } else {
             extraPadding = 60.0
         }
@@ -404,7 +404,7 @@ class UIPlaceHolderTextView: UITextView {
             self.placeholderColor = UIColor.placeHolderColor
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textChanged(_:)), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textChanged(_:)), name: UITextView.textDidChangeNotification, object: nil)
         
     }
     
@@ -450,7 +450,7 @@ class UIPlaceHolderTextView: UITextView {
             
             placeholderLabel?.text = self.placeholder
             placeholderLabel?.sizeToFit()
-            self.sendSubview(toBack: self.placeholderLabel!)
+            self.sendSubviewToBack(self.placeholderLabel!)
         }
         
         if self.text.count == 0 && (self.placeholder?.count ?? 0) > 0 {

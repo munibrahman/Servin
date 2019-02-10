@@ -48,23 +48,28 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 
                 // Create a user and set its userId property
                 let user = AWSPinpointEndpointProfileUser()
-                user.userId = "Munib"
+                user.userId = DefaultsWrapper.getString(Key.userName)
                 // Assign the user to the endpoint
                 endpoint.user = user
+                endpoint.optOut = "NONE"
                 print("Channel type: \(endpoint.channelType)")
                 // Update the endpoint with the targeting client
+                
                 targetingClient.update(endpoint).continueWith { (task) -> Any? in
                     if let err = task.error {
-                        print("Error \(err)");
+                        print("Error no \(err)");
                     } else {
-                        print("Success \(task.result)")
+                        print("Success yes \(task.result)")
+                        print("Assigned user ID \(user.userId ?? "nil") to endpoint \(endpoint.endpointId)")
                     }
+                    
+                    print("Ran something")
                     
                     return nil
                 }
                 
                 
-                print("Assigned user ID \(user.userId ?? "nil") to endpoint \(endpoint.endpointId)")
+                
             }
         }
         // Do any additional setup after loading the view.
@@ -234,7 +239,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         
         
         // The small shrug when you pull the drawer all the way to the top is 20.0 points, so 15 allows u to keep it just below the
-        self.topInset = topPadding + searchBar.frame.size.height - 15.0
+        self.drawerTopInset = topPadding + searchBar.frame.size.height - 15.0
         
         self.backgroundDimmingColor = UIColor.white
         self.backgroundDimmingOpacity = 1.0

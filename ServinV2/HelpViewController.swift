@@ -60,7 +60,7 @@ class HelpViewController: UIViewController {
         helpCollectionView.register(QuestionsCollectionViewCell.self, forCellWithReuseIdentifier: "questionsCell")
         
         
-        helpCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerID)
+        helpCollectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID)
         // if you don't do something about header size...
         // ...you won't see any headers
         
@@ -149,8 +149,8 @@ extension HelpViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         var v : UICollectionReusableView! = nil
-        if kind == UICollectionElementKindSectionHeader {
-            v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath)
+        if kind == UICollectionView.elementKindSectionHeader {
+            v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID, for: indexPath)
             if v.subviews.count == 0 {
                 v.addSubview(UILabel(frame:CGRect.init(x: 0, y: 20, width: collectionView.frame.size.width, height: 30)))
             }

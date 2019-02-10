@@ -75,7 +75,7 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         return NSAttributedString.init(string: "You currently don't have any pins on the map.")
     }
     
-    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControlState) -> NSAttributedString! {
+    func buttonTitle(forEmptyDataSet scrollView: UIScrollView!, for state: UIControl.State) -> NSAttributedString! {
         return NSAttributedString.init(string: "Drop a pin")
     }
     

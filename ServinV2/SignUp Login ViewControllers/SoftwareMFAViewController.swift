@@ -77,7 +77,7 @@ class SoftwareMFAViewController: UIViewController, AWSCognitoIdentitySoftwareMfa
         codeTextField.textColor = UIColor.white
         codeTextField.borderStyle = .none
         codeTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        codeTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        codeTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         codeTextField.keyboardType = .numberPad
         codeTextField.keyboardAppearance = .dark
     }

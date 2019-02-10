@@ -203,7 +203,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         view.backgroundColor = .white
         
         collectionView?.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView?.register(Header.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerID)
+        collectionView?.register(Header.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID)
         collectionView?.delegate = self
         
         collectionView?.backgroundColor = .white

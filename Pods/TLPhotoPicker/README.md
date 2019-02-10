@@ -3,9 +3,9 @@
 [![Version](https://img.shields.io/cocoapods/v/TLPhotoPicker.svg?style=flat)](http://cocoapods.org/pods/TLPhotoPicker)
 [![License](https://img.shields.io/cocoapods/l/TLPhotoPicker.svg?style=flat)](http://cocoapods.org/pods/TLPhotoPicker)
 [![Platform](https://img.shields.io/cocoapods/p/TLPhotoPicker.svg?style=flat)](http://cocoapods.org/pods/TLPhotoPicker)
-![Swift](https://img.shields.io/badge/%20in-swift%204.0-orange.svg)
+![Swift](https://img.shields.io/badge/%20in-swift%204.2-orange.svg)
 
-## Written in Swift 4
+## Written in Swift 4.2
 
 TLPhotoPicker enables application to pick images and videos from multiple smart album in iOS, similar to the current facebook app.
 
@@ -44,8 +44,8 @@ Custom Camera Cell
 
 ### Requirements 
 
-- Swift 4.0 ( Swift 3.0 -> use 'version 1.2.7' )
-- iOS 9.1 (live photos)
+- Swift 4.2 ( Swift 3.0 -> use 'version 1.2.7' , Swift 4.0 -> use 'version 1.7.2' )
+- iOS 9.1 (for use live photos)
 
 ### Cocoapods
 
@@ -273,6 +273,7 @@ public struct TLPhotosPickerConfigure {
     public var usedPrefetch = false
     public var allowedLivePhotos = true
     public var allowedVideo = true
+    public var allowedAlbumCloudShared = false
     public var allowedVideoRecording = true //for camera : allow this option when you want to recording video.
     public var recordingVideoQuality: UIImagePickerControllerQualityType = .typeMedium //for camera : recording video quality
     public var maxVideoDuration:TimeInterval? = nil //for camera : max video recording duration
@@ -291,8 +292,23 @@ public struct TLPhotosPickerConfigure {
     public var placeholderIcon = TLBundle.podBundleImage(named: "insertPhotoMaterial")
     public var nibSet: (nibName: String, bundle:Bundle)? = nil // custom cell
     public var cameraCellNibSet: (nibName: String, bundle:Bundle)? = nil // custom camera cell
+    public var fetchCollectionTypes: [(PHAssetCollectionType,PHAssetCollectionSubtype)]? = nil
+    public var groupByFetch: PHFetchedResultGroupedBy? = nil // cannot be used prefetch options
     public init() {
     }
+}
+
+// PHFetchedResultGroupedBy
+//
+// CGrouped by date, cannot be used prefetch options
+// take about few seconds ( 5000 image iPhoneX: 1 ~ 1.5 sec ) 
+public enum PHFetchedResultGroupedBy {
+    case year
+    case month
+    case week
+    case day
+    case hour
+    case custom(dateFormat: String)
 }
 
 //customizable photos picker viewcontroller
@@ -312,6 +328,18 @@ public protocol TLPhotosPickerLogDelegate: class {
     func deselectedPhoto(picker: TLPhotosPickerViewController, at: Int)
     func selectedPhoto(picker: TLPhotosPickerViewController, at: Int)
     func selectedAlbum(picker: TLPhotosPickerViewController, title: String, at: Int)
+}
+
+//for collection supplement view 
+let viewController = TLPhotosPickerViewController()
+viewController.customDataSouces = CustomDataSources() // inherit TLPhotopickerDataSourcesProtocol
+
+public protocol TLPhotopickerDataSourcesProtocol {
+    func headerReferenceSize() -> CGSize
+    func footerReferenceSize() -> CGSize
+    func registerSupplementView(collectionView: UICollectionView)
+    func supplementIdentifier(kind: String) -> String
+    func configure(supplement view: UICollectionReusableView, section: (title: String, assets: [TLPHAsset]))
 }
 
 ```

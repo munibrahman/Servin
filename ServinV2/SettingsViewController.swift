@@ -279,10 +279,10 @@ class SettingsViewController: FormViewController {
                 }).onCellSelection({ (cell, row) in
                     
                     
-                    let actionController = UIAlertController.init(title: "Are you sure?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    let actionController = UIAlertController.init(title: "Are you sure?", message: nil, preferredStyle: UIAlertController.Style.alert)
                     
-                    let cancel = UIAlertAction.init(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-                    let logout = UIAlertAction.init(title: "Logout", style: UIAlertActionStyle.destructive, handler: { (action) in
+                    let cancel = UIAlertAction.init(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+                    let logout = UIAlertAction.init(title: "Logout", style: UIAlertAction.Style.destructive, handler: { (action) in
                         print("Sign out")
                         
                         if let user = AppDelegate.defaultUserPool().currentUser() {
@@ -333,7 +333,7 @@ class SettingsViewController: FormViewController {
 
 class LogOutTableViewCell: UITableViewCell {
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         let logoutLabel = UILabel.init()

@@ -230,7 +230,7 @@ class PaymentViewController: UITableViewController {
         var paymentLabel: UILabel!
         
         
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
             
@@ -275,7 +275,7 @@ class PaymentViewController: UITableViewController {
         
         var addPaymentLabel: UILabel!
         
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
             
@@ -301,7 +301,7 @@ class PaymentViewController: UITableViewController {
     private class StripeConnectTableViewCell: UITableViewCell {
         var infoLabel: UILabel!
         
-        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
             
             

@@ -247,7 +247,7 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         var extraPadding: CGFloat = 10.0
         
         if let mySuperview = self.parent as? MasterPulleyViewController {
-            extraPadding = extraPadding + mySuperview.topInset
+            extraPadding = extraPadding + mySuperview.drawerTopInset
         } else {
             extraPadding = 60.0
         }

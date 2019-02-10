@@ -133,7 +133,7 @@ class SearchView: UIView {
         
         searchTextField = UITextField.init(frame: searchBar.frame.insetBy(dx: 10.0, dy: 0.0))
         //searchView.placeholder = "Try house cleaning..."
-        searchTextField.attributedPlaceholder = NSAttributedString(string: "Try: House Cleaning...", attributes:[NSAttributedStringKey.foregroundColor: UIColor.init(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0)])
+        searchTextField.attributedPlaceholder = NSAttributedString(string: "Try: House Cleaning...", attributes:[NSAttributedString.Key.foregroundColor: UIColor.init(red: 174.0/255.0, green: 174.0/255.0, blue: 174.0/255.0, alpha: 1.0)])
         searchTextField.adjustsFontSizeToFitWidth = true
         searchTextField.font = UIFont(name: "HelveticaNeue", size: 21.0)!
         searchTextField.textColor = UIColor.black

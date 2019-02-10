@@ -97,7 +97,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         confirmationCode.textColor = UIColor.white
         confirmationCode.borderStyle = .none
         confirmationCode.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         confirmationCode.keyboardAppearance = .dark
         confirmationCode.keyboardType = .default
         confirmationCode.delegate = self
@@ -106,7 +106,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         proposedPassword.textColor = UIColor.white
         proposedPassword.borderStyle = .none
         proposedPassword.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        proposedPassword.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        proposedPassword.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         proposedPassword.keyboardAppearance = .dark
         proposedPassword.keyboardType = .default
         proposedPassword.isSecureTextEntry = true
@@ -116,7 +116,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         confirmProposedPassword.textColor = UIColor.white
         confirmProposedPassword.borderStyle = .none
         confirmProposedPassword.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        confirmProposedPassword.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        confirmProposedPassword.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         confirmProposedPassword.keyboardAppearance = .dark
         confirmProposedPassword.keyboardType = .default
         confirmProposedPassword.isSecureTextEntry = true

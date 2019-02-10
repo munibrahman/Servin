@@ -10,14 +10,17 @@ import UIKit
 import GoogleMaps
 import IQKeyboardManagerSwift
 import PinpointKit
+
+
 import AWSCognitoIdentityProvider
 import Stripe
 import AWSAppSync
 import AWSCore
 import AWSPinpoint
 import UserNotifications
+
 import AWSMobileClient
-import AWSCognito
+
 
 
 let userPoolID = "SampleUserPool"
@@ -57,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var appSyncClient: AWSAppSyncClient?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         ShortcutParser.shared.registerShortcuts()
@@ -94,23 +97,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         let _ = ServinData.init()
-        // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
-        showFirstViewController()
+
 
         performReachabilityTest()
         
         
-        // Initialize Pinpoint
-        /** start code copy **/
 
-        let pp = AWSPinpointConfiguration.init(appId: pinpointAppId, launchOptions: launchOptions)
-        pinpoint = AWSPinpoint(configuration: pp)
+        // Start of setting up an identity pool for aws pinpoint
+        
+        let cognitoCredentialsProvider: AWSCognitoCredentialsProvider = AWSCognitoCredentialsProvider.init(regionType: AWSRegionType.USEast1, identityPoolId: "us-east-1:b0beefa4-2b4d-4e19-a1a7-8e01600d6e41"); //Override Your Region Here
+        
+        let serviceConfig: AWSServiceConfiguration = AWSServiceConfiguration.init(region: AWSRegionType.USEast1, credentialsProvider: cognitoCredentialsProvider)
+        
+        let config: AWSPinpointConfiguration = AWSPinpointConfiguration.init(appId: "128f6b300d75446f9c2ca0ffb248e4f7", launchOptions: launchOptions);
         
         
         
-        // Create AWSMobileClient to connect with AWS
-//        return AWSMobileClient.sharedInstance().interceptApplication(application, didFinishLaunchingWithOptions: launchOptions)
-        /** end code copy **/
+        config.serviceConfiguration = serviceConfig;
+        config.targetingServiceConfiguration = serviceConfig;
+        
+        pinpoint = AWSPinpoint.init(configuration:config)
+        
+        
+        
+        
+        // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
+        showFirstViewController()
         
         return true
     }
@@ -127,9 +139,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         let serviceConfiguration:AWSServiceConfiguration = AWSServiceConfiguration(region: region, credentialsProvider: nil)
-        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: clientId, clientSecret: clientSecret, poolId: poolId)
+//        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: clientId, clientSecret: clientSecret, poolId: poolId)
         
-//        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration.init(clientId: clientId, clientSecret: clientSecret, poolId: poolId, shouldProvideCognitoValidationData: true, pinpointAppId: pinpointAppId)
+        let cognitoConfiguration:AWSCognitoIdentityUserPoolConfiguration = AWSCognitoIdentityUserPoolConfiguration.init(clientId: clientId, clientSecret: clientSecret, poolId: poolId, shouldProvideCognitoValidationData: true, pinpointAppId: pinpointAppId)
         
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration, userPoolConfiguration: cognitoConfiguration, forKey: userPoolID)
         let pool:AWSCognitoIdentityUserPool = AppDelegate.defaultUserPool()
@@ -225,7 +237,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     // MARK: Deep link
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return Deeplinker.handleDeeplink(url: url)
     }
     

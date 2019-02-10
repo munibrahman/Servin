@@ -102,7 +102,7 @@ class SignUp2ViewController: UIViewController {
         emailAddressTextField.textColor = UIColor.white
         emailAddressTextField.borderStyle = .none
         emailAddressTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        emailAddressTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        emailAddressTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         emailAddressTextField.keyboardAppearance = .dark
         emailAddressTextField.keyboardType = .emailAddress
     }
@@ -118,7 +118,7 @@ class SignUp2ViewController: UIViewController {
         let underlineAttriString = NSMutableAttributedString(string: text)
         let clickRange = (text as NSString).range(of: "Click here")
         
-        underlineAttriString.addAttribute(NSAttributedStringKey.font, value: UIFont.boldSystemFont(ofSize: 14.0), range: clickRange)
+        underlineAttriString.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 14.0), range: clickRange)
         
         
         askForNotifLabel.attributedText = underlineAttriString

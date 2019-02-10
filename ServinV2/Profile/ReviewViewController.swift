@@ -72,7 +72,7 @@ class ReviewViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         
         collectionView.register(ReviewCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerID)
+        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerID)
         
         
         self.view.addSubview(collectionView)
@@ -116,7 +116,7 @@ extension ReviewViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         
         
-        let estimatedTitleFrame = NSString.init(string: reviewArray[indexPath.row].review).boundingRect(with: size, options: options, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 17, weight: .regular)], context: nil)
+        let estimatedTitleFrame = NSString.init(string: reviewArray[indexPath.row].review).boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17, weight: .regular)], context: nil)
         
         return CGSize.init(width: collectionView.frame.size.width, height: estimatedTitleFrame.size.height + 100)
         
@@ -125,8 +125,8 @@ extension ReviewViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if indexPath.row == 0 {
             var v : UICollectionReusableView! = nil
-            if kind == UICollectionElementKindSectionHeader {
-                v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerID, for: indexPath)
+            if kind == UICollectionView.elementKindSectionHeader {
+                v = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID, for: indexPath)
                 if v.subviews.count == 0 {
                     v.addSubview(UILabel(frame:CGRect.init(x: 0, y: 0, width: collectionView.frame.size.width, height: v.frame.size.height)))
                 }

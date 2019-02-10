@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
         emailTextField.textColor = UIColor.white
         emailTextField.borderStyle = .none
         emailTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
 
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
         passwordTextField.textColor = UIColor.white
         passwordTextField.borderStyle = .none
         passwordTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         passwordTextField.isSecureTextEntry = true
         passwordTextField.keyboardAppearance = .dark
         

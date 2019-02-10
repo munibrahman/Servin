@@ -107,7 +107,7 @@ class ResetPasswordViewController: UIViewController {
         emailTextField.textColor = UIColor.white
         emailTextField.borderStyle = .none
         emailTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         emailTextField.keyboardAppearance = .dark
         emailTextField.keyboardType = .emailAddress
         

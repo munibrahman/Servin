@@ -1,65 +1,66 @@
 PODS:
-  - Alamofire (4.7.2)
-  - AlamofireImage (3.3.1):
-    - Alamofire (~> 4.5)
-  - AWSAPIGateway (2.6.22):
-    - AWSCore (= 2.6.22)
-  - AWSAppSync (2.6.22):
-    - AWSCore (~> 2.6.6)
-    - ReachabilitySwift (~> 4.0.0)
-    - SQLite.swift (= 0.11.4)
-  - AWSAuthCore (2.6.22):
-    - AWSCore (= 2.6.22)
-  - AWSCognitoIdentityProvider (2.6.22):
+  - Alamofire (4.8.1)
+  - AlamofireImage (3.5.0):
+    - Alamofire (~> 4.8)
+  - AWSAPIGateway (2.8.4):
+    - AWSCore (= 2.8.4)
+  - AWSAppSync (2.9.2):
+    - AWSCore (~> 2.8.0)
+    - ReachabilitySwift (~> 4.3.0)
+    - SQLite.swift (= 0.11.5)
+  - AWSAuthCore (2.8.4):
+    - AWSCore (= 2.8.4)
+  - AWSCognitoIdentityProvider (2.8.4):
     - AWSCognitoIdentityProviderASF (= 1.0.1)
-    - AWSCore (= 2.6.22)
+    - AWSCore (= 2.8.4)
   - AWSCognitoIdentityProviderASF (1.0.1)
-  - AWSCore (2.6.22)
-  - AWSMobileClient (2.6.22):
-    - AWSAuthCore (= 2.6.22)
-  - AWSPinpoint (2.6.22):
-    - AWSCore (= 2.6.22)
+  - AWSCore (2.8.4)
+  - AWSMobileClient (2.8.4):
+    - AWSAuthCore (= 2.8.4)
+    - AWSCognitoIdentityProvider (= 2.8.4)
+  - AWSPinpoint (2.8.4):
+    - AWSCore (= 2.8.4)
   - CardIO (5.4.1)
   - DZNEmptyDataSet (1.8.1)
-  - Eureka (4.2.0)
-  - GoogleMaps (2.7.0):
-    - GoogleMaps/Maps (= 2.7.0)
-  - GoogleMaps/Base (2.7.0)
-  - GoogleMaps/Maps (2.7.0):
+  - Eureka (4.3.1)
+  - GoogleMaps (3.0.2):
+    - GoogleMaps/Maps (= 3.0.2)
+  - GoogleMaps/Base (3.0.2)
+  - GoogleMaps/Maps (3.0.2):
     - GoogleMaps/Base
-  - GooglePlaces (2.7.0):
-    - GoogleMaps/Base (= 2.7.0)
-  - ImageSlideshow (1.6.1):
-    - ImageSlideshow/Core (= 1.6.1)
-  - ImageSlideshow/Core (1.6.1)
-  - IQKeyboardManagerSwift (6.0.4)
-  - JWTDecode (2.1.1)
+  - GooglePlaces (3.0.2):
+    - GoogleMaps/Base (= 3.0.2)
+  - ImageSlideshow (1.7.0):
+    - ImageSlideshow/Core (= 1.7.0)
+  - ImageSlideshow/Core (1.7.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - JWTDecode (2.2.0)
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
     - SWXMLHash
-  - PinpointKit (1.2.0):
-    - PinpointKit/Core (= 1.2.0)
-  - PinpointKit/Core (1.2.0)
-  - Pulley (2.4.2)
-  - ReachabilitySwift (4.0.0)
-  - SideMenu (4.0.0)
-  - SQLite.swift (0.11.4):
-    - SQLite.swift/standard (= 0.11.4)
-  - SQLite.swift/standard (0.11.4)
-  - Stripe (13.0.3)
-  - SwiftyJSON (4.1.0)
-  - SWXMLHash (4.7.0)
-  - TLPhotoPicker (1.7.0)
+  - PinpointKit (1.3.0):
+    - PinpointKit/Core (= 1.3.0)
+  - PinpointKit/Core (1.3.0)
+  - Pulley (2.6.2)
+  - ReachabilitySwift (4.3.0)
+  - SideMenu (5.0.3)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - Stripe (14.0.0)
+  - SwiftyJSON (4.2.0)
+  - SWXMLHash (4.7.6)
+  - TLPhotoPicker (1.8.3)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - AlamofireImage (~> 3.3)
-  - AWSAPIGateway
-  - AWSAppSync (~> 2.6.22)
-  - AWSCognitoIdentityProvider (~> 2.6.0)
-  - AWSCore (~> 2.6.0)
-  - AWSMobileClient
-  - AWSPinpoint
+  - AWSAPIGateway (~> 2.8.4)
+  - AWSAppSync (~> 2.9.0)
+  - AWSCognitoIdentityProvider (~> 2.8.0)
+  - AWSCore (~> 2.8.0)
+  - AWSMobileClient (~> 2.8.0)
+  - AWSPinpoint (~> 2.8.0)
   - CardIO
   - DZNEmptyDataSet
   - Eureka
@@ -110,36 +111,36 @@ SPEC REPOS:
     - TLPhotoPicker
 
 SPEC CHECKSUMS:
-  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  AWSAPIGateway: 7dad85e97b4431a78639bc8d47c8aba2bc4f3dd0
-  AWSAppSync: 5694ffc209ce6726b58a9cfd3bc49086d7120bd1
-  AWSAuthCore: cbe932da2bd77b94e0efa73c81428b3646796427
-  AWSCognitoIdentityProvider: f7d15744ca3d70270de05a212e501f29a4a06307
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  AlamofireImage: 1aea346f4dda2f6c67622fa5a89fcbb80d79cc16
+  AWSAPIGateway: 76133eea525abb2fa38613bd35c1a176e68a1831
+  AWSAppSync: 8abeeedb432c6354699e7f55abab805e411dfd8c
+  AWSAuthCore: ac2536f54f73a2914c236e266cbec02a49f57d69
+  AWSCognitoIdentityProvider: ba1858e7524b29254172ae333e1f96ddc93507dc
   AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
-  AWSCore: faae134779f0f6e46a8d426c0ccc02e34466b785
-  AWSMobileClient: 091482a8bf8d9a92bc290fb2137892e2055e9b61
-  AWSPinpoint: c74b4afd125b045b9e442d19afddcfc7ad8d1b42
+  AWSCore: 734b0d67c2c77f6edae9e5520431a37310ea4193
+  AWSMobileClient: 59072ca49e82706c6d958f7a08e4a285d7197af1
+  AWSPinpoint: 289a3f2e6cd25a387283ee47467c57654b9f4182
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
-  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
-  GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
-  ImageSlideshow: f0f33e1a20668e83d77f5fb7729e4ae4437c0759
-  IQKeyboardManagerSwift: 36dbe324b4f9793f5f41ba5227f3e7c76dfefd50
-  JWTDecode: 83e8b381aafe27158d9f692cbdca2b12d61d460c
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  GoogleMaps: 941cd655e009b4d8e42df19a3d749bc3fccec973
+  GooglePlaces: c086e0055dc5f0177d7c9d65fc77a1734f9a4825
+  ImageSlideshow: f8eec5e37a980f60923b585ff23b0e140fd24018
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  JWTDecode: 85a405ab16d5473e99bd89ded1d535090ebd6a0e
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
-  PinpointKit: d1196cba6acc77fb76af50155f816228f03eaa9c
-  Pulley: d3d144a0323b65b8aa1dd601d515d08481103034
-  ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
-  SideMenu: 70ee5657df63ec3382660ec4ef470bf1cf5db07d
-  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
-  Stripe: 76c203e21555089b708e6cbe972a3e3baf1ab4d8
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  SWXMLHash: f4522438189f72b41e39676d19469a8969d60dd1
-  TLPhotoPicker: 603cfc5f58ecc898b8afbe7497cd5de66af6754e
+  PinpointKit: 8ef42ed810a95aaced0462b532e0224a67afb72d
+  Pulley: 2679a2b5a9714c5eb760b1fbb535d15c60e50fb4
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SWXMLHash: f6e0933ce74f2626669dc544851bc9fc1941670d
+  TLPhotoPicker: 9955e20e4d59cf4a3accc2d3b320e1bf08f453bf
 
-PODFILE CHECKSUM: 85eb8367ea7996892e599ea71ace5373c4eda675
+PODFILE CHECKSUM: cbdbb971913355cd302d61e4c8b937f05051b977
 
 COCOAPODS: 1.5.3

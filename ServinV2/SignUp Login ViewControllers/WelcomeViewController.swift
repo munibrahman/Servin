@@ -113,13 +113,13 @@ class WelcomeViewController: UIViewController {
         let underlineAttriString = NSMutableAttributedString(string: text)
         
         let tosRange = (text as NSString).range(of: "Terms of Service")
-        underlineAttriString.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: tosRange)
+        underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: tosRange)
         
         let ptsRange = (text as NSString).range(of: "Payments Terms of Service")
-        underlineAttriString.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: ptsRange)
+        underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: ptsRange)
         
         let ppRange = (text as NSString).range(of: "Privacy Policy")
-        underlineAttriString.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: ppRange)
+        underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: ppRange)
         
         termsOfServiceLabel.attributedText = underlineAttriString
         

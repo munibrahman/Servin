@@ -32,7 +32,7 @@ class NotificationsAroundYouViewController: UICollectionViewController, UICollec
         view.backgroundColor = .white
         
         collectionView?.register(NotificationCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView?.register(Header.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: self.headerID)
+        collectionView?.register(Header.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.headerID)
         collectionView?.delegate = self
         
         collectionView?.backgroundColor = .white
@@ -49,7 +49,7 @@ class NotificationsAroundYouViewController: UICollectionViewController, UICollec
         closeButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         closeButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
         
-        closeButton.addTarget(self, action: #selector(userDidTapX), for: UIControlEvents.allTouchEvents)
+        closeButton.addTarget(self, action: #selector(userDidTapX), for: UIControl.Event.allTouchEvents)
         
     }
     

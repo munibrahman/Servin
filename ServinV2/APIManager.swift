@@ -53,7 +53,7 @@ class APIManager: NSObject {
     
     func putImage(url: String, image: UIImage, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
         
-        guard let imageData = UIImageJPEGRepresentation(image, 0.5) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
             return
         }
         

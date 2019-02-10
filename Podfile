@@ -24,12 +24,12 @@ pod 'Eureka'
 pod 'JWTDecode', '~> 2.1'
 
 #AWS Pods
-pod 'AWSCore', '~> 2.6.0'
-pod 'AWSCognitoIdentityProvider', '~> 2.6.0'
-pod 'AWSAppSync', '~> 2.6.22'
-pod 'AWSAPIGateway'
-pod 'AWSPinpoint'
-pod 'AWSMobileClient'
+pod 'AWSCore', '~> 2.9.0'
+pod 'AWSCognitoIdentityProvider', '~> 2.8.0'
+pod 'AWSAppSync', ' ~> 2.9.0'
+pod 'AWSAPIGateway', ' ~> 2.8.4'
+pod 'AWSPinpoint', '~> 2.9.0'
+pod 'AWSMobileClient', '~> 2.8.0'      # Required dependency
 
 #Stripe
 pod 'Stripe'

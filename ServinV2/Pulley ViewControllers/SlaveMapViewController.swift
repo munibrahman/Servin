@@ -402,7 +402,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             alertController.addAction(cancelAction)
             
             let openAction = UIAlertAction(title: "Open Settings", style: .default) { (action) in
-                if let url = NSURL(string:UIApplicationOpenSettingsURLString) {
+                if let url = NSURL(string:UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
                 }
             }

@@ -170,12 +170,12 @@ class FlowLayout: UICollectionViewFlowLayout {
                     updatedAttributes.append(attributes)
                 }
                 
-                let headerKind = UICollectionElementKindSectionHeader
+                let headerKind = UICollectionView.elementKindSectionHeader
                 if let headerAttributes = layoutAttributesForSupplementaryView(ofKind: headerKind, at: indexPath) {
                     updatedAttributes.append(headerAttributes)
                 }
                 
-                let footerKind = UICollectionElementKindSectionFooter
+                let footerKind = UICollectionView.elementKindSectionFooter
                 if let footerAttributes = layoutAttributesForSupplementaryView(ofKind: footerKind, at: indexPath) {
                     updatedAttributes.append(footerAttributes)
                 }

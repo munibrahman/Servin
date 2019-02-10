@@ -38,7 +38,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
     let buyButton: BuyButton
     let rowHeight: CGFloat = 44
     let productImage = UILabel()
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
     let numberFormatter: NumberFormatter
     let shippingString: String
     var product = ""
@@ -147,7 +147,7 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
         self.view.backgroundColor = self.theme.primaryBackgroundColor
         var red: CGFloat = 0
         self.theme.primaryBackgroundColor.getRed(&red, green: nil, blue: nil, alpha: nil)
-        self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
+        self.activityIndicator.style = red < 0.5 ? .white : .gray
         self.navigationItem.title = "Emoji Apparel"
         
         self.productImage.font = UIFont.systemFont(ofSize: 70)
@@ -296,7 +296,7 @@ class CheckoutRowView: UIView {
     
     fileprivate let titleLabel = UILabel()
     fileprivate let detailLabel = UILabel()
-    fileprivate let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    fileprivate let activityIndicator = UIActivityIndicatorView(style: .gray)
     fileprivate let backgroundView = HighlightingButton()
     fileprivate let topSeparator = UIView()
     fileprivate let bottomSeparator = UIView()
@@ -332,7 +332,7 @@ class CheckoutRowView: UIView {
         self.addSubview(self.detailLabel)
         var red: CGFloat = 0
         theme.primaryBackgroundColor.getRed(&red, green: nil, blue: nil, alpha: nil)
-        self.activityIndicator.activityIndicatorViewStyle = red < 0.5 ? .white : .gray
+        self.activityIndicator.style = red < 0.5 ? .white : .gray
         self.addSubview(self.activityIndicator)
     }
     
@@ -380,7 +380,7 @@ class BuyButton: HighlightingButton {
     override var isEnabled: Bool {
         didSet {
             let color = isEnabled ? enabledColor : disabledColor
-            self.setTitleColor(color, for: UIControlState())
+            self.setTitleColor(color, for: UIControl.State())
             self.layer.borderColor = color.cgColor
             self.highlightColor = color.withAlphaComponent(0.5)
         }
@@ -390,7 +390,7 @@ class BuyButton: HighlightingButton {
         self.init()
         self.layer.borderWidth = 2
         self.layer.cornerRadius = 10
-        self.setTitle("Buy", for: UIControlState())
+        self.setTitle("Buy", for: UIControl.State())
         self.disabledColor = theme.secondaryForegroundColor
         self.enabledColor = theme.accentColor
         self.isEnabled = enabled
@@ -400,7 +400,7 @@ class BuyButton: HighlightingButton {
 
 class PaymentContextFooterView: UIView {
     
-    var insetMargins: UIEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+    var insetMargins: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     
     var text: String = "" {
         didSet {
@@ -429,7 +429,7 @@ class PaymentContextFooterView: UIView {
     }
     
     override func layoutSubviews() {
-        textLabel.frame = UIEdgeInsetsInsetRect(self.bounds, insetMargins)
+        textLabel.frame = self.bounds.inset(by: insetMargins)
     }
     
     override func sizeThatFits(_ size: CGSize) -> CGSize {

@@ -63,7 +63,7 @@ class MFAViewController: UIViewController {
         confirmationCode.textColor = UIColor.white
         confirmationCode.borderStyle = .none
         confirmationCode.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         confirmationCode.keyboardType = .numberPad
         confirmationCode.keyboardAppearance = .dark
     }

@@ -100,7 +100,7 @@ class SignUp1ViewController: UIViewController {
         firstNameTextField.textColor = UIColor.white
         firstNameTextField.borderStyle = .none
         firstNameTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        firstNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         firstNameTextField.keyboardAppearance = .dark
         firstNameTextField.keyboardType = .default
         firstNameTextField.autocapitalizationType = .words
@@ -109,7 +109,7 @@ class SignUp1ViewController: UIViewController {
         lastNameTextField.textColor = UIColor.white
         lastNameTextField.borderStyle = .none
         lastNameTextField.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        lastNameTextField.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         lastNameTextField.keyboardAppearance = .dark
         lastNameTextField.keyboardType = .default
         lastNameTextField.autocapitalizationType = .words

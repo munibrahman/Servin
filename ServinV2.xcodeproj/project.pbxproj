@@ -109,6 +109,8 @@
 		8BF2AF1A212A543C0073B139 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF19212A543C0073B139 /* PaymentViewController.swift */; };
 		8BF2AF1C212B94DD0073B139 /* DefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */; };
 		8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */; };
+		AE17A478220EBF250065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
+		AE17A479220EBF260065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -773,6 +775,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE17A478220EBF250065CC9D /* awsconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,6 +783,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE17A479220EBF260065CC9D /* awsconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1193,7 +1197,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ApnsDistributionProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = ServinV2/Bridging_Header.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1214,7 +1218,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = ApnsDistributionProfile;
 				SWIFT_OBJC_BRIDGING_HEADER = ServinV2/Bridging_Header.h;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
