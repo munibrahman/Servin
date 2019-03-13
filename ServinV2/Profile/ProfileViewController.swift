@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AWSCognitoIdentityProvider
+import AWSAppSync
 
 class ProfileViewController: UIViewController {
     
@@ -39,19 +40,60 @@ class ProfileViewController: UIViewController {
     
     func setupViews() {
         
-        firstNameLabel.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
         
-        // TODO: Add about me label
-        aboutMeLabel.text = DefaultsWrapper.getString(key: Key.aboutMe, defaultValue: "")
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+                
+                if error != nil {
+                    print(error?.localizedDescription ?? "Can't unwrap error")
+                    return
+                }
+                
+                if let me = result?.data?.me {
+                    self.firstNameLabel?.text = me.givenName
+                    self.aboutMeLabel.text = me.about
+                    self.schoolLabel.text = me.school
+                    
+                    if var time = me.signUpDate {
+                        time = time / 1000.0
+                        print(time)
+                        let formatter = DateFormatter()
+                        // initially set the format based on your datepicker date / server String
+                        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        
+                        let myString = formatter.string(from: Date.init(timeIntervalSince1970: time)) // string purpose I add here
+                        // convert your string to date
+                        let yourDate = formatter.date(from: myString)
+                        //then again set the date format whhich type of output you need
+                        formatter.dateFormat = "MMM yyyy"
+                        // again convert your date to string
+                        let myStringafd = formatter.string(from: yourDate!)
+                        
+                        print(myStringafd)
+                        
+                        self.memberSinceLabel.text = myStringafd
+                        
+                    }
+                    
+                    
+                } else {
+                    print("Can't unwrap the me object, show error")
+                }
+                
+                
+                
+            })
+        }
+        
+        
         aboutMeLabel.numberOfLines = 0
         aboutMeLabel.sizeToFit()
         
         othersSayAboutMeLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation"
         othersSayAboutMeLabel.numberOfLines = 0
         othersSayAboutMeLabel.sizeToFit()
-        
-        // TODO: Add school
-//        schoolLabel.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
         
         
         self.profileImageView.image = BackendServer.shared.fetchProfileImage()

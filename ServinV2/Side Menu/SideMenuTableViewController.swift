@@ -9,7 +9,7 @@
 import UIKit
 import SideMenu
 import AWSCognitoIdentityProvider
-import Alamofire
+import AWSAppSync
 
 class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -83,7 +83,20 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.userNameLabel?.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+                
+                if error != nil {
+                    print(error?.localizedDescription ?? "Can't unwrap error")
+                    return
+                }
+                self.userNameLabel?.text = result?.data?.me?.givenName
+                
+            })
+        }
+        
         self.profileImageView?.image = BackendServer.shared.fetchProfileImage()
     }
     
@@ -239,7 +252,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                     case 0:
                         mainViewController.present(UINavigationController.init(rootViewController: MessageViewController()), animated: true, completion: nil)
                     case 1:
-                        print("Drop a pin silly")
+                        print("Drop a pin")
                         if let myVC = self.mainVC {
                             myVC.myMapViewController?.dropAPin()
                         }

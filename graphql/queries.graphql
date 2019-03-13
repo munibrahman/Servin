@@ -20,14 +20,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -73,14 +72,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -96,14 +94,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -119,28 +116,26 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     content
     conversationId
@@ -166,14 +161,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -219,14 +213,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -242,14 +235,13 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -265,28 +257,26 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     sender
   }
@@ -316,14 +306,13 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -333,14 +322,13 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -350,28 +338,26 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       content
       conversationId
@@ -396,14 +382,13 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -413,14 +398,13 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -430,28 +414,26 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       sender
     }
@@ -489,14 +471,13 @@ query AllMessageFrom(
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -542,14 +523,13 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -565,14 +545,13 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -588,28 +567,26 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     content
     conversationId
@@ -635,14 +612,13 @@ query AllMessageFrom(
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -688,14 +664,13 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -711,14 +686,13 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -734,28 +708,26 @@ query AllMessageFrom(
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     sender
   }
@@ -781,14 +753,13 @@ query AllUser($after: String, $first: Int) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -834,14 +805,13 @@ query AllUser($after: String, $first: Int) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -864,14 +834,13 @@ query AllUser($after: String, $first: Int) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -881,14 +850,13 @@ query AllUser($after: String, $first: Int) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -910,14 +878,13 @@ query AllUser($after: String, $first: Int) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
           }
         }
@@ -943,14 +910,13 @@ query AllUser($after: String, $first: Int) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         userId
       }
@@ -978,14 +944,13 @@ query AllUser($after: String, $first: Int) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -1013,28 +978,26 @@ query AllUser($after: String, $first: Int) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
       nextToken
     }
     registered
-    firstName
-    lastName
     about
     profilePic
     rating
     signUpDate
     family_name
     given_name
+    school
   }
 }
 query Me {
@@ -1058,14 +1021,13 @@ query Me {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1111,14 +1073,13 @@ query Me {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -1141,14 +1102,13 @@ query Me {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1158,14 +1118,13 @@ query Me {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -1187,14 +1146,13 @@ query Me {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
           }
         }
@@ -1220,14 +1178,13 @@ query Me {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         userId
       }
@@ -1255,14 +1212,13 @@ query Me {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -1290,28 +1246,26 @@ query Me {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
       nextToken
     }
     registered
-    firstName
-    lastName
     about
     profilePic
     rating
     signUpDate
     family_name
     given_name
+    school
   }
 }
 query ConversationFromId($conversationId: String!) {
@@ -1342,14 +1296,13 @@ query ConversationFromId($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -1377,14 +1330,13 @@ query ConversationFromId($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
@@ -1409,14 +1361,13 @@ query ConversationFromId($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1426,14 +1377,13 @@ query ConversationFromId($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1443,28 +1393,26 @@ query ConversationFromId($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       content
       conversationId
@@ -1489,14 +1437,13 @@ query ConversationFromId($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1506,14 +1453,13 @@ query ConversationFromId($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1523,28 +1469,26 @@ query ConversationFromId($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       sender
     }
@@ -1581,14 +1525,13 @@ query ConversationFromId($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1598,14 +1541,13 @@ query ConversationFromId($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1615,28 +1557,26 @@ query ConversationFromId($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
     }
   }
@@ -1660,14 +1600,13 @@ query AllAssociated($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1713,14 +1652,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -1743,14 +1681,13 @@ query AllAssociated($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1760,14 +1697,13 @@ query AllAssociated($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -1789,14 +1725,13 @@ query AllAssociated($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
           }
         }
@@ -1822,14 +1757,13 @@ query AllAssociated($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         userId
       }
@@ -1842,14 +1776,13 @@ query AllAssociated($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -1859,14 +1792,13 @@ query AllAssociated($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -1882,14 +1814,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -1905,14 +1836,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -1940,14 +1870,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
         }
       }
@@ -1970,14 +1899,13 @@ query AllAssociated($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1987,14 +1915,13 @@ query AllAssociated($conversationId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -2004,28 +1931,26 @@ query AllAssociated($conversationId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       userId
     }
@@ -2044,14 +1969,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -2067,14 +1991,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -2102,14 +2025,13 @@ query AllAssociated($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -2137,14 +2059,13 @@ query AllAssociated($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
@@ -2184,14 +2105,13 @@ query AllAssociated($conversationId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
       }
     }
@@ -2215,14 +2135,13 @@ query AllAssociated($conversationId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -2268,14 +2187,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -2291,14 +2209,13 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -2314,28 +2231,26 @@ query AllAssociated($conversationId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     userId
   }
@@ -2375,14 +2290,13 @@ query Discovery($discoveryId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -2428,14 +2342,13 @@ query Discovery($discoveryId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -2451,14 +2364,13 @@ query Discovery($discoveryId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -2474,28 +2386,26 @@ query Discovery($discoveryId: String!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
   }
 }

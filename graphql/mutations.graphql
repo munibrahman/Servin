@@ -27,14 +27,13 @@ mutation CreateConversation($discoveryId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -62,14 +61,13 @@ mutation CreateConversation($discoveryId: String!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
@@ -94,14 +92,13 @@ mutation CreateConversation($discoveryId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -111,14 +108,13 @@ mutation CreateConversation($discoveryId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -128,28 +124,26 @@ mutation CreateConversation($discoveryId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       content
       conversationId
@@ -174,14 +168,13 @@ mutation CreateConversation($discoveryId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -191,14 +184,13 @@ mutation CreateConversation($discoveryId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -208,28 +200,26 @@ mutation CreateConversation($discoveryId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       sender
     }
@@ -266,14 +256,13 @@ mutation CreateConversation($discoveryId: String!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -283,14 +272,13 @@ mutation CreateConversation($discoveryId: String!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -300,28 +288,26 @@ mutation CreateConversation($discoveryId: String!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
     }
   }
@@ -347,14 +333,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -400,14 +385,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -423,14 +407,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -446,28 +429,26 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     content
     conversationId
@@ -493,14 +474,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -546,14 +526,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -569,14 +548,13 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -592,28 +570,26 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     sender
   }
@@ -637,14 +613,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -690,14 +665,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -720,14 +694,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -737,14 +710,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -766,14 +738,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
           }
         }
@@ -799,14 +770,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         userId
       }
@@ -819,14 +789,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -836,14 +805,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -859,14 +827,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -882,14 +849,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -917,14 +883,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
         }
       }
@@ -947,14 +912,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -964,14 +928,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -981,28 +944,26 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       userId
     }
@@ -1021,14 +982,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -1044,14 +1004,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -1079,14 +1038,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -1114,14 +1072,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
@@ -1161,14 +1118,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
       }
     }
@@ -1192,14 +1148,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -1245,14 +1200,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -1268,14 +1222,13 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -1291,29 +1244,305 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     userId
+  }
+}
+mutation UpdateProfileInformation(
+  $given_name: String
+  $family_name: String
+  $about: String
+  $school: String
+) {
+  updateProfileInformation(
+    given_name: $given_name
+    family_name: $family_name
+    about: $about
+    school: $school
+  ) {
+    userId
+    conversations {
+      nextToken
+      userConversations {
+        associated {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+          }
+          userId
+        }
+        conversation {
+          createdAt
+          id
+          discoveryId
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          latestMessage {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+            }
+            sender
+          }
+          discovery {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+            }
+          }
+        }
+        conversationId
+        user {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+        }
+        userId
+      }
+    }
+    messages {
+      messages {
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+        }
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        recipient {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+        }
+        sender
+      }
+      nextToken
+    }
+    registered
+    about
+    profilePic
+    rating
+    signUpDate
+    family_name
+    given_name
+    school
   }
 }

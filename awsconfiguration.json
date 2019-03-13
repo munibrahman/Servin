@@ -4,30 +4,11 @@
     "IdentityManager": {
         "Default": {}
     },
-    "CognitoUserPool": {
-        "Default": {
-            "PoolId": "us-east-1_QBetcvHyz",
-            "AppClientId": "4p83og53ft3cavb3pd56sr4ls4",
-            "AppClientSecret": "v9r9p5esi83vbd3r1nri0b3a53snjeval4tempk0h7ncbe7075j",
-            "Region": "us-east-1"
-        }
-    },
     "AppSync": {
         "Default": {
             "ApiUrl": "https://56hximzn65hwvcy7mgoksjdqoa.appsync-api.us-east-1.amazonaws.com/graphql",
             "Region": "us-east-1",
             "AuthMode": "AMAZON_COGNITO_USER_POOLS"
-        }
-    },
-    "PinpointAnalytics": {
-        "Default": {
-            "AppId": "128f6b300d75446f9c2ca0ffb248e4f7",
-            "Region": "us-east-1"
-        }
-    },
-    "PinpointTargeting": {
-        "Default": {
-            "Region": "us-east-1"
         }
     }
 }

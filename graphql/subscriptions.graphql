@@ -20,14 +20,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -73,14 +72,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -96,14 +94,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -119,28 +116,26 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     content
     conversationId
@@ -166,14 +161,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -219,14 +213,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -242,14 +235,13 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -265,28 +257,26 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     sender
   }
@@ -310,14 +300,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -363,14 +352,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -393,14 +381,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -410,14 +397,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -439,14 +425,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
           }
         }
@@ -472,14 +457,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         userId
       }
@@ -492,14 +476,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -509,14 +492,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
@@ -532,14 +514,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -555,14 +536,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -590,14 +570,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
         }
       }
@@ -620,14 +599,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -637,14 +615,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             author {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             content
             conversationId
@@ -654,28 +631,26 @@ subscription SubscribeToNewUCs($userId: ID!) {
             recipient {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             sender
           }
           nextToken
         }
         registered
-        firstName
-        lastName
         about
         profilePic
         rating
         signUpDate
         family_name
         given_name
+        school
       }
       userId
     }
@@ -694,14 +669,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -717,14 +691,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
@@ -752,14 +725,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         content
         conversationId
@@ -787,14 +759,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
         sender
       }
@@ -834,14 +805,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             nextToken
           }
           registered
-          firstName
-          lastName
           about
           profilePic
           rating
           signUpDate
           family_name
           given_name
+          school
         }
       }
     }
@@ -865,14 +835,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
             user {
               userId
               registered
-              firstName
-              lastName
               about
               profilePic
               rating
               signUpDate
               family_name
               given_name
+              school
             }
             userId
           }
@@ -918,14 +887,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           userId
         }
@@ -941,14 +909,13 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           content
           conversationId
@@ -964,28 +931,26 @@ subscription SubscribeToNewUCs($userId: ID!) {
               nextToken
             }
             registered
-            firstName
-            lastName
             about
             profilePic
             rating
             signUpDate
             family_name
             given_name
+            school
           }
           sender
         }
         nextToken
       }
       registered
-      firstName
-      lastName
       about
       profilePic
       rating
       signUpDate
       family_name
       given_name
+      school
     }
     userId
   }

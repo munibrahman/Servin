@@ -365,7 +365,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             
             let date = NSDate(timeIntervalSince1970: TimeInterval(conversation.createdAt!))
             cell.userImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
-            cell.userNameLabel.text = conversation.discovery?.author?.firstName
+            cell.userNameLabel.text = conversation.discovery?.author?.givenName
             cell.dateLabel.text = ("\(date.timeIntervalSince1970)")
             cell.messageLabel.text = conversation.latestMessage?.content
             cell.titleLabel.text = conversation.discovery?.title

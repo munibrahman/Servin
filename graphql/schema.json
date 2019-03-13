@@ -484,30 +484,8 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "firstName",
-          "description" : "   First name of the user",
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
-          "name" : "lastName",
-          "description" : "   Last name of the user",
-          "args" : [ ],
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
-        }, {
           "name" : "about",
-          "description" : "   About section of a user",
+          "description" : "  About section of a user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -518,7 +496,7 @@
           "deprecationReason" : null
         }, {
           "name" : "profilePic",
-          "description" : "   Link to the profile image of the user",
+          "description" : "  Link to the profile image of the user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -529,7 +507,7 @@
           "deprecationReason" : null
         }, {
           "name" : "rating",
-          "description" : "   Rating of this user",
+          "description" : "  Rating of this user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -540,7 +518,7 @@
           "deprecationReason" : null
         }, {
           "name" : "signUpDate",
-          "description" : "   Date that a user signed up on, represented in epoch time",
+          "description" : "  Date that a user signed up on, represented in epoch time in milliseconds",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -551,7 +529,7 @@
           "deprecationReason" : null
         }, {
           "name" : "family_name",
-          "description" : "   The last name of a user",
+          "description" : "  The last name of a user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -562,7 +540,18 @@
           "deprecationReason" : null
         }, {
           "name" : "given_name",
-          "description" : "   The first name of a user",
+          "description" : "  The first name of a user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "school",
+          "description" : "  School the person attends",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -711,7 +700,7 @@
         "description" : null,
         "fields" : [ {
           "name" : "createdAt",
-          "description" : "   The Conversation's timestamp.",
+          "description" : "  The Conversation's timestamp.",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -722,7 +711,7 @@
           "deprecationReason" : null
         }, {
           "name" : "id",
-          "description" : "   A unique identifier for the Conversation.",
+          "description" : "  A unique identifier for the Conversation.",
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
@@ -737,7 +726,7 @@
           "deprecationReason" : null
         }, {
           "name" : "discoveryId",
-          "description" : "   The Conversation's discoveryId. (formerly known as name)",
+          "description" : "  The Conversation's discoveryId. (formerly known as name)",
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
@@ -752,7 +741,7 @@
           "deprecationReason" : null
         }, {
           "name" : "messages",
-          "description" : "   The Conversation's messages.",
+          "description" : "  The Conversation's messages.",
           "args" : [ {
             "name" : "after",
             "description" : null,
@@ -781,7 +770,7 @@
           "deprecationReason" : null
         }, {
           "name" : "latestMessage",
-          "description" : "   Latest message of a conversation",
+          "description" : "  Latest message of a conversation",
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
@@ -792,7 +781,7 @@
           "deprecationReason" : null
         }, {
           "name" : "discovery",
-          "description" : "   Discovery related to the conversation",
+          "description" : "  Discovery related to the conversation",
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
@@ -1056,7 +1045,7 @@
         "description" : null,
         "fields" : [ {
           "name" : "createConversation",
-          "description" : "   Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
+          "description" : "  Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
           "args" : [ {
             "name" : "discoveryId",
             "description" : null,
@@ -1080,7 +1069,7 @@
           "deprecationReason" : null
         }, {
           "name" : "createMessage",
-          "description" : "   Create a message in a Conversation.\n We only let the users pass in content and the conversation id, we take care of created at and message id.\n createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
+          "description" : "  Create a message in a Conversation.\n We only let the users pass in content and the conversation id, we take care of created at and message id.\n createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
           "args" : [ {
             "name" : "content",
             "description" : null,
@@ -1144,6 +1133,53 @@
           "type" : {
             "kind" : "OBJECT",
             "name" : "UserConversations",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "updateProfileInformation",
+          "description" : "  Allows a user to edit their information",
+          "args" : [ {
+            "name" : "given_name",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "family_name",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "about",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "school",
+            "description" : null,
+            "type" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            },
+            "defaultValue" : null
+          } ],
+          "type" : {
+            "kind" : "OBJECT",
+            "name" : "User",
             "ofType" : null
           },
           "isDeprecated" : false,

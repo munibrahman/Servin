@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AWSCognitoIdentityProvider
+import AWSAppSync
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -27,10 +28,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var textFieldChanged = false
     var didPickImage = false
     
+    var appSyncClient: AWSAppSyncClient?
+    
+    // This var keeps track of the about me text
+    var aboutMe: String?
+    
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appSyncClient = appDelegate.appSyncClient
+        }
 
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
@@ -69,17 +79,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         firstNameTextField.backgroundColor = .clear
         firstNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
         
-        firstNameTextField.text = DefaultsWrapper.getString(key: Key.givenName, defaultValue: "")
         
         lastNameTextField.backgroundColor = .clear
         lastNameTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
-        lastNameTextField.text = DefaultsWrapper.getString(key: Key.familyName, defaultValue: "")
         
         schoolTextField.backgroundColor = .clear
         schoolTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
-        
-        // TODO: Get school field here
-//        schoolTextField.text = DefaultsWrapper.getString(key: Key.school, defaultValue: "")
         
         
     }
@@ -159,6 +164,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         profileImageView.image = BackendServer.shared.fetchProfileImage()
         
+        appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+            
+            if error != nil {
+                print(error?.localizedDescription ?? "Can't unwrap error")
+                return
+            }
+            
+            if let me = result?.data?.me {
+                self.firstNameTextField?.text = me.givenName
+                self.lastNameTextField.text = me.familyName
+                self.schoolTextField.text = me.school
+                self.aboutMe = me.about
+            } else {
+                print("Can't unwrap the me object, show error")
+            }
+            
+            
+            
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -297,41 +321,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             }
         }
         
-        if textFieldChanged {
-            myGroup.enter()
-            print("started request for text field")
-            if let user = AppDelegate.defaultUserPool().currentUser() {
-                
-                var attributes = [AWSCognitoIdentityUserAttributeType]()
-                
-                if let firstName = self.firstNameTextField.text {
-                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.givenName.rawValue, value: firstName)
-                    DefaultsWrapper.setString(key: Key.givenName, value: firstName)
-                    attributes.append(attr)
-                }
-                
-                if let lastName = self.lastNameTextField.text {
-                    let attr = AWSCognitoIdentityUserAttributeType.init(name: Key.familyName.rawValue, value: lastName)
-                    DefaultsWrapper.setString(key: Key.familyName, value: lastName)
-                    attributes.append(attr)
-                }
-                
-                user.update(attributes).continueWith { (res) -> Any? in
-                    
-                    if let error = res.error as NSError? {
-                        print("Error: \(error)")
-                        return nil
-                    }
-                    
-                    print("finished request for updating attributes")
-                    myGroup.leave()
-                    return nil
-                    
-                }
-                
+        myGroup.enter()
+        print("started request for text field")
+        
+        let mutation = UpdateProfileInformationMutation.init(given_name: firstNameTextField.text, family_name: lastNameTextField.text, about: aboutMe, school: schoolTextField.text)
+        
+        print("About me for request is \(aboutMe ?? " Nothing ")")
+        
+        appSyncClient?.perform(mutation: mutation, resultHandler: { (result, error) in
+            if let error = error as? AWSAppSyncClientError {
+                print("Error occurred: \(error.localizedDescription )")
+                return
             }
             
-        }
+            
+            // Everything went smoothly
+            myGroup.leave()
+            
+        })
+            
         
         myGroup.notify(queue: .main) {
             self.navigationItem.rightBarButtonItem = self.saveButtonItem
@@ -346,8 +354,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         // TODO: Show edit about me section here
         print("edit about me")
-        
-        let navVC = UINavigationController.init(rootViewController: EditAboutMeViewController())
+        let vc = EditAboutMeViewController()
+        vc.aboutMeTextInput.text = aboutMe
+        vc.editingVC = self
+        let navVC = UINavigationController.init(rootViewController: vc)
         
         self.present(navVC, animated: true, completion: nil)
     }
@@ -365,7 +375,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
 }
 
-class EditAboutMeViewController: UIViewController, UITextViewDelegate {
+private class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     
     
     var aboutMeTextInput = UITextView()
@@ -374,6 +384,9 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     var progressBarButton: UIBarButtonItem!
     var saveButtonItem: UIBarButtonItem!
     
+    // This is the vc that is calling me
+    var editingVC: EditProfileViewController?
+    
     override func loadView() {
         
         view = UIView()
@@ -381,6 +394,36 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
 
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fetchInfo()
+    }
+    
+    func fetchInfo() {
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+                
+                if error != nil {
+                    print(error?.localizedDescription ?? "Can't unwrap error")
+                    return
+                }
+                
+                if let me = result?.data?.me {
+                    
+                    self.aboutMeTextInput.text = me.about
+                } else {
+                    print("Can't unwrap the me object, show error")
+                }
+                
+            })
+        }
+        
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -400,7 +443,6 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
         aboutMeTextInput.font = UIFont.systemFont(ofSize: 20.0, weight: .regular)
         aboutMeTextInput.textColor = UIColor.blackFontColor
         aboutMeTextInput.toolbarPlaceholder = "Say something nice about yourself!"
-        aboutMeTextInput.text = DefaultsWrapper.getString(key: Key.aboutMe, defaultValue: "")
         aboutMeTextInput.delegate = self
         aboutMeTextInput.textContainer.lineFragmentPadding = 0
         view.addSubview(aboutMeTextInput)
@@ -479,71 +521,13 @@ class EditAboutMeViewController: UIViewController, UITextViewDelegate {
     
     
     @objc func saveAboutMe() {
-        // TODO: Save changes here
-        print("Saving about me")
         
-        navigationItem.rightBarButtonItem = progressBarButton
+        // Pass the string back to the parent VC.
         
-        if let text = aboutMeTextInput.text, !text.isEmpty {
-            
-            let body = ["about" : text]
-            
-            APIManager.sharedInstance.putUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, body: body, onSuccess: { (json) in
-                print(json)
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-
-                }
-            }) { (err) in
-                print(err)
-                
-                DispatchQueue.main.async {
-                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
-
-                }
-            }
-            
-            
-            // TODO: Change about me.
-//            let attribute = AWSCognitoIdentityUserAttributeType.init(name: Key.aboutMe.rawValue, value: text)
-            
-            
-//            if let user = AppDelegate.defaultUserPool().currentUser() {
-//                user.update([attribute]).continueWith { (res) -> Any? in
-//
-//                    DispatchQueue.main.async {
-//                        self.navigationItem.rightBarButtonItem = self.saveButtonItem
-//                    }
-//
-//                    if let error = res.error as NSError? {
-//                        print("Error: \(error)")
-//                        return nil
-//                    }
-//
-//                    DispatchQueue.main.async {
-//                        self.dismiss(animated: true, completion: nil)
-//
-//                    }
-//
-//                    DefaultsWrapper.setString(key: Key.aboutMe, value: text)
-//
-//                    return nil
-//                }
-//            }
-            
-            
-            
-            
-        }
-        
-        
-        
+        editingVC?.aboutMe = aboutMeTextInput.text
+        self.dismiss(animated: true, completion: nil)
         
     }
-    
-    
-    
-    
     
 }
 
