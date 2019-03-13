@@ -1,25 +1,31 @@
 {
-    "providers": {
-        "awscloudformation": {
-            "AuthRoleName": "ervin2-20190106112938-authRole",
-            "UnauthRoleArn": "arn:aws:iam::810093522723:role/ervin2-20190106112938-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::810093522723:role/ervin2-20190106112938-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "ervin2-20190106112938-deployment",
-            "UnauthRoleName": "ervin2-20190106112938-unauthRole",
-            "StackName": "ervin2-20190106112938",
-            "StackId": "arn:aws:cloudformation:us-east-1:810093522723:stack/ervin2-20190106112938/06db4d20-11e1-11e9-b1bf-0ec11b444504"
-        }
-    },
-    "api": {
-        "ServinChatGraphQL": {
-            "service": "AppSync",
-            "output": {
-                "securityType": "AMAZON_COGNITO_USER_POOLS",
-                "GraphQLAPIIdOutput": "dbx5yvxssjdrxhaxd7xagyzvzq",
-                "GraphQLAPIEndpointOutput": "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql"
-            },
-            "lastPushTimeStamp": "2019-01-06T18:30:21.686Z"
-        }
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "servinv2-20190312221405-authRole",
+      "UnauthRoleArn": "arn:aws:iam::810093522723:role/servinv2-20190312221405-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::810093522723:role/servinv2-20190312221405-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "servinv2-20190312221405-deployment",
+      "UnauthRoleName": "servinv2-20190312221405-unauthRole",
+      "StackName": "servinv2-20190312221405",
+      "StackId": "arn:aws:cloudformation:us-east-1:810093522723:stack/servinv2-20190312221405/7126b460-4546-11e9-882e-0aa7a65c926c"
     }
+  },
+  "api": {
+    "ServinChatGraphQL": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS"
+      }
+    },
+    "ServinDevAPI": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS",
+        "GraphQLAPIIdOutput": "wi2wka3i7fdmzft3qgqxvhkmo4",
+        "GraphQLAPIEndpointOutput": "https://56hximzn65hwvcy7mgoksjdqoa.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2019-03-13T04:14:48.752Z"
+    }
+  }
 }

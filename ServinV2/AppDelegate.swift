@@ -29,7 +29,7 @@ let userPoolID = "SampleUserPool"
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     let AppSyncRegion: AWSRegionType = AWSRegionType.USEast1
-    let AppSyncEndpointURL: URL = URL(string: "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql")!
+    let AppSyncEndpointURL: URL = URL(string: "https://56hximzn65hwvcy7mgoksjdqoa.appsync-api.us-east-1.amazonaws.com/graphql")!
     let database_name: String = "local-appsync-db"
     let pinpointAppId: String = "128f6b300d75446f9c2ca0ffb248e4f7"
     

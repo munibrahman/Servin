@@ -14,7 +14,7 @@
     },
     "AppSync": {
         "Default": {
-            "ApiUrl": "https://pn2eszmr25f3bgg4hdypm7gijy.appsync-api.us-east-1.amazonaws.com/graphql",
+            "ApiUrl": "https://56hximzn65hwvcy7mgoksjdqoa.appsync-api.us-east-1.amazonaws.com/graphql",
             "Region": "us-east-1",
             "AuthMode": "AMAZON_COGNITO_USER_POOLS"
         }

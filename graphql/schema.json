@@ -196,7 +196,7 @@
           "deprecationReason" : null
         }, {
           "name" : "me",
-          "description" : "   Get my user.",
+          "description" : "   Get information about myself",
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
@@ -207,7 +207,7 @@
           "deprecationReason" : null
         }, {
           "name" : "conversationFromId",
-          "description" : null,
+          "description" : "  Given a conversation id, fetch the associated conversation",
           "args" : [ {
             "name" : "conversationId",
             "description" : null,
@@ -231,7 +231,7 @@
           "deprecationReason" : null
         }, {
           "name" : "allAssociated",
-          "description" : null,
+          "description" : "  Given a conversation id, fetch the associated user conversations",
           "args" : [ {
             "name" : "conversationId",
             "description" : null,
@@ -259,7 +259,7 @@
           "deprecationReason" : null
         }, {
           "name" : "discovery",
-          "description" : null,
+          "description" : "  Given a discovery id, fetch all of the info related to the discovery",
           "args" : [ {
             "name" : "discoveryId",
             "description" : null,
@@ -401,14 +401,14 @@
         "description" : null,
         "fields" : [ {
           "name" : "userId",
-          "description" : null,
+          "description" : "  A unique identifier for the user. (cognito id)",
           "args" : [ ],
           "type" : {
             "kind" : "NON_NULL",
             "name" : null,
             "ofType" : {
               "kind" : "SCALAR",
-              "name" : "String",
+              "name" : "ID",
               "ofType" : null
             }
           },
@@ -416,7 +416,7 @@
           "deprecationReason" : null
         }, {
           "name" : "conversations",
-          "description" : "   A user's enrolled Conversations. This is an interesting case. This is an interesting pagination case.",
+          "description" : "  A user's enrolled Conversations. This is an interesting case. This is an interesting pagination case.",
           "args" : [ {
             "name" : "after",
             "description" : null,
@@ -445,7 +445,7 @@
           "deprecationReason" : null
         }, {
           "name" : "messages",
-          "description" : "   Get a users messages by querying a GSI on the Messages table.",
+          "description" : "  Get a users messages by querying a GSI on the Messages table.",
           "args" : [ {
             "name" : "after",
             "description" : null,
@@ -474,7 +474,7 @@
           "deprecationReason" : null
         }, {
           "name" : "registered",
-          "description" : "  is the user registered?",
+          "description" : "  Is the user registered?",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -485,7 +485,7 @@
           "deprecationReason" : null
         }, {
           "name" : "firstName",
-          "description" : "  First name of the user",
+          "description" : "   First name of the user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -496,7 +496,73 @@
           "deprecationReason" : null
         }, {
           "name" : "lastName",
-          "description" : "  Last name of the user",
+          "description" : "   Last name of the user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "about",
+          "description" : "   About section of a user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "profilePic",
+          "description" : "   Link to the profile image of the user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "rating",
+          "description" : "   Rating of this user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "signUpDate",
+          "description" : "   Date that a user signed up on, represented in epoch time",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "family_name",
+          "description" : "   The last name of a user",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "given_name",
+          "description" : "   The first name of a user",
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
@@ -512,8 +578,8 @@
         "possibleTypes" : null
       }, {
         "kind" : "SCALAR",
-        "name" : "String",
-        "description" : "Built-in String",
+        "name" : "ID",
+        "description" : "Built-in ID",
         "fields" : null,
         "inputFields" : null,
         "interfaces" : null,
@@ -552,6 +618,15 @@
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "SCALAR",
+        "name" : "String",
+        "description" : "Built-in String",
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
       }, {
@@ -706,7 +781,7 @@
           "deprecationReason" : null
         }, {
           "name" : "latestMessage",
-          "description" : "  Latest message of a conversation",
+          "description" : "   Latest message of a conversation",
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
@@ -717,7 +792,7 @@
           "deprecationReason" : null
         }, {
           "name" : "discovery",
-          "description" : "  Discovery related to the conversation",
+          "description" : "   Discovery related to the conversation",
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
@@ -735,15 +810,6 @@
         "kind" : "SCALAR",
         "name" : "Int",
         "description" : "Built-in Int",
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "SCALAR",
-        "name" : "ID",
-        "description" : "Built-in ID",
         "fields" : null,
         "inputFields" : null,
         "interfaces" : null,
@@ -976,12 +1042,21 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
+        "kind" : "SCALAR",
+        "name" : "Float",
+        "description" : "Built-in Float",
+        "fields" : null,
+        "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
         "kind" : "OBJECT",
         "name" : "Mutation",
         "description" : null,
         "fields" : [ {
           "name" : "createConversation",
-          "description" : "   Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n# You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n# createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
+          "description" : "   Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
           "args" : [ {
             "name" : "discoveryId",
             "description" : null,
@@ -1005,7 +1080,7 @@
           "deprecationReason" : null
         }, {
           "name" : "createMessage",
-          "description" : "   Create a message in a Conversation.\n# We only let the users pass in content and the conversation id, we take care of created at and message id.\n# createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
+          "description" : "   Create a message in a Conversation.\n We only let the users pass in content and the conversation id, we take care of created at and message id.\n createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
           "args" : [ {
             "name" : "content",
             "description" : null,
@@ -1038,7 +1113,7 @@
           "deprecationReason" : null
         }, {
           "name" : "createUserConversations",
-          "description" : "   Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.\n# No need to create a new user\n# createUser(username: String!): User\n#  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.",
+          "description" : "   Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.\n No need to create a new user\n createUser(username: String!): User\n  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.",
           "args" : [ {
             "name" : "conversationId",
             "description" : null,
@@ -1957,12 +2032,12 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_subscribe",
-        "description" : "Tells the service which mutation triggers this subscription.",
+        "name" : "aws_auth",
+        "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "mutations",
-          "description" : "List of mutations which will trigger this subscription when they are called.",
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
           "type" : {
             "kind" : "LIST",
             "name" : null,
@@ -1978,12 +2053,12 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_auth",
-        "description" : "Directs the schema to enforce authorization on a field",
+        "name" : "aws_subscribe",
+        "description" : "Tells the service which mutation triggers this subscription.",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "cognito_groups",
-          "description" : "List of cognito user pool groups which have access on this field",
+          "name" : "mutations",
+          "description" : "List of mutations which will trigger this subscription when they are called.",
           "type" : {
             "kind" : "LIST",
             "name" : null,

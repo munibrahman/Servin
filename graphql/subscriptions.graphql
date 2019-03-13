@@ -5,13 +5,142 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       userId
       conversations {
         nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          userId
+        }
       }
       messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          sender
+        }
         nextToken
       }
       registered
       firstName
       lastName
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
     }
     content
     conversationId
@@ -22,13 +151,142 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       userId
       conversations {
         nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          userId
+        }
       }
       messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          sender
+        }
         nextToken
       }
       registered
       firstName
       lastName
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
     }
     sender
   }
@@ -37,20 +295,387 @@ subscription SubscribeToNewUCs($userId: ID!) {
   subscribeToNewUCs(userId: $userId) {
     associated {
       associated {
+        associated {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          userId
+        }
+        conversation {
+          createdAt
+          id
+          discoveryId
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          latestMessage {
+            author {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            sender
+          }
+          discovery {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+          }
+        }
         conversationId
+        user {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          firstName
+          lastName
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+        }
         userId
       }
       conversation {
         createdAt
         id
         discoveryId
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            sender
+          }
+          nextToken
+        }
+        latestMessage {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          sender
+        }
+        discovery {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+        }
       }
       conversationId
       user {
         userId
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            userId
+          }
+        }
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            sender
+          }
+          nextToken
+        }
         registered
         firstName
         lastName
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
       }
       userId
     }
@@ -59,14 +684,118 @@ subscription SubscribeToNewUCs($userId: ID!) {
       id
       discoveryId
       messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          sender
+        }
         nextToken
       }
       latestMessage {
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          firstName
+          lastName
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+        }
         content
         conversationId
         createdAt
         id
         isSent
+        recipient {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          firstName
+          lastName
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+        }
         sender
       }
       discovery {
@@ -84,6 +813,36 @@ subscription SubscribeToNewUCs($userId: ID!) {
         image_3
         image_4
         image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          firstName
+          lastName
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+        }
       }
     }
     conversationId
@@ -91,13 +850,142 @@ subscription SubscribeToNewUCs($userId: ID!) {
       userId
       conversations {
         nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              firstName
+              lastName
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          userId
+        }
       }
       messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            firstName
+            lastName
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+          }
+          sender
+        }
         nextToken
       }
       registered
       firstName
       lastName
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
     }
     userId
   }

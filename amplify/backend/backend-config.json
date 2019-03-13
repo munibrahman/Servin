@@ -1,0 +1,10 @@
+{
+    "api": {
+        "ServinChatGraphQL": {
+            "service": "AppSync",
+            "output": {
+                "securityType": "AMAZON_COGNITO_USER_POOLS"
+            }
+        }
+    }
+}

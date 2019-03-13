@@ -75,7 +75,6 @@
 		8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */; };
 		8BBFFC4220A0EED700BA5D06 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4120A0EED700BA5D06 /* Constants.swift */; };
 		8BBFFC4420A0EFA500BA5D06 /* MapSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */; };
-		8BC006C821E280E000B292B0 /* ChatAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC006C721E280E000B292B0 /* ChatAPI.swift */; };
 		8BC006CA21E28A8400B292B0 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		8BC0CE0720D092BF00C6E035 /* UserDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */; };
 		8BC7D0C621227B5900F2CD8F /* DeepLinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC7D0C121227B5700F2CD8F /* DeepLinkManager.swift */; };
@@ -111,6 +110,7 @@
 		8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */; };
 		AE17A478220EBF250065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		AE17A479220EBF260065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
+		AE18B6FA2238BCF300D68029 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18B6F92238BCF300D68029 /* API.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -210,7 +210,6 @@
 		8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapSearchBar.swift; sourceTree = "<group>"; };
 		8BBFFC4120A0EED700BA5D06 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BBFFC4320A0EFA500BA5D06 /* MapSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchViewController.swift; sourceTree = "<group>"; };
-		8BC006C721E280E000B292B0 /* ChatAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAPI.swift; sourceTree = "<group>"; };
 		8BC006C921E28A8400B292B0 /* awsconfiguration.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		8BC0CE0620D092BF00C6E035 /* UserDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ServinV2.entitlements; sourceTree = "<group>"; };
@@ -246,6 +245,7 @@
 		8BF2AF1B212B94DD0073B139 /* DefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsWrapper.swift; sourceTree = "<group>"; };
 		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE18B6F92238BCF300D68029 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D566F623AEBCAFFBB31DDC90 /* Pods_ServinV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -433,7 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				8BC006C921E28A8400B292B0 /* awsconfiguration.json */,
-				8BC006C721E280E000B292B0 /* ChatAPI.swift */,
+				AE18B6F92238BCF300D68029 /* API.swift */,
 				8BA6455820830D44006EEEC5 /* ServinV2 */,
 				8BA6456D20830D44006EEEC5 /* ServinV2Tests */,
 				8BA6457820830D44006EEEC5 /* ServinV2UITests */,
@@ -939,7 +939,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC006C821E280E000B292B0 /* ChatAPI.swift in Sources */,
 				8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */,
 				8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */,
 				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,
@@ -1009,6 +1008,7 @@
 				8BC7D0C821227B5900F2CD8F /* NotificationParser.swift in Sources */,
 				8B4D962C218A4D260031E616 /* StripeConnectWebViewController.swift in Sources */,
 				8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */,
+				AE18B6FA2238BCF300D68029 /* API.swift in Sources */,
 				8BA6455A20830D44006EEEC5 /* AppDelegate.swift in Sources */,
 				8B81592420B2A9B200EDA1FC /* SlaveDiscoveriesViewController.swift in Sources */,
 				8B43D38D20D0C929002B0615 /* DiscoveryDetailsCollectionViewCell.swift in Sources */,
