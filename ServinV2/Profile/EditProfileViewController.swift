@@ -258,33 +258,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if didPickImage {
             
             myGroup.enter()
-            print("started request for profile pic")
-            
-            let body = ["about" : DefaultsWrapper.getString(Key.aboutMe) ?? ""]
-            APIManager.sharedInstance.putUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, body: body, onSuccess: { (json) in
-                print(json)
-                if let url = json["updateImageURL"].string {
-                    
-                    myGroup.enter()
-                    APIManager.sharedInstance.putImage(url: url, image: self.profileImageView.image!, onSuccess: { (json) in
-                        print(json)
-                        
-                        myGroup.leave()
-                    }, onFailure: { (err) in
-                        print(err)
-                        myGroup.leave()
-                    })
-                    
-                }
-                
-                myGroup.leave()
-                    
-            }) { (err) in
-                print(err)
-                myGroup.leave()
-            }
-            
-            myGroup.enter()
             if let idToken = KeyChainStore.shared.fetchIdToken() {
                 let headers: HTTPHeaders = [
                     "Authorization": idToken

@@ -27,6 +27,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -79,6 +80,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -101,6 +103,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -123,6 +126,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -136,6 +140,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     content
     conversationId
@@ -168,6 +173,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -220,6 +226,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -242,6 +249,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -264,6 +272,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -277,6 +286,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     sender
   }
@@ -307,6 +317,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -359,6 +370,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -388,6 +400,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -404,6 +417,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -432,6 +446,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
           }
         }
@@ -464,6 +479,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         userId
       }
@@ -483,6 +499,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -499,6 +516,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -521,6 +539,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -543,6 +562,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -577,6 +597,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
         }
       }
@@ -606,6 +627,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -622,6 +644,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -638,6 +661,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -651,6 +675,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
         family_name
         given_name
         school
+        categories
       }
       userId
     }
@@ -676,6 +701,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -698,6 +724,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -732,6 +759,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         content
         conversationId
@@ -766,6 +794,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         sender
       }
@@ -812,6 +841,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
       }
     }
@@ -842,6 +872,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -894,6 +925,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -916,6 +948,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -938,6 +971,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -951,6 +985,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     userId
   }

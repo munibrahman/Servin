@@ -34,6 +34,7 @@ mutation CreateConversation($discoveryId: String!) {
           family_name
           given_name
           school
+          categories
         }
         content
         conversationId
@@ -68,6 +69,7 @@ mutation CreateConversation($discoveryId: String!) {
           family_name
           given_name
           school
+          categories
         }
         sender
       }
@@ -99,6 +101,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -115,6 +118,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -131,6 +135,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -144,6 +149,7 @@ mutation CreateConversation($discoveryId: String!) {
         family_name
         given_name
         school
+        categories
       }
       content
       conversationId
@@ -175,6 +181,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -191,6 +198,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -207,6 +215,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -220,6 +229,7 @@ mutation CreateConversation($discoveryId: String!) {
         family_name
         given_name
         school
+        categories
       }
       sender
     }
@@ -263,6 +273,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -279,6 +290,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -295,6 +307,7 @@ mutation CreateConversation($discoveryId: String!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -308,6 +321,7 @@ mutation CreateConversation($discoveryId: String!) {
         family_name
         given_name
         school
+        categories
       }
     }
   }
@@ -340,6 +354,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -392,6 +407,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -414,6 +430,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -436,6 +453,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -449,6 +467,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     content
     conversationId
@@ -481,6 +500,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -533,6 +553,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -555,6 +576,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -577,6 +599,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -590,6 +613,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     sender
   }
@@ -620,6 +644,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -672,6 +697,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -701,6 +727,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -717,6 +744,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -745,6 +773,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
           }
         }
@@ -777,6 +806,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         userId
       }
@@ -796,6 +826,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -812,6 +843,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -834,6 +866,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -856,6 +889,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -890,6 +924,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
         }
       }
@@ -919,6 +954,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -935,6 +971,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -951,6 +988,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -964,6 +1002,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
         family_name
         given_name
         school
+        categories
       }
       userId
     }
@@ -989,6 +1028,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -1011,6 +1051,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -1045,6 +1086,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         content
         conversationId
@@ -1079,6 +1121,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
         sender
       }
@@ -1125,6 +1168,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           family_name
           given_name
           school
+          categories
         }
       }
     }
@@ -1155,6 +1199,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -1207,6 +1252,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -1229,6 +1275,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           content
           conversationId
@@ -1251,6 +1298,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             family_name
             given_name
             school
+            categories
           }
           sender
         }
@@ -1264,6 +1312,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       family_name
       given_name
       school
+      categories
     }
     userId
   }
@@ -1306,6 +1355,7 @@ mutation UpdateProfileInformation(
               family_name
               given_name
               school
+              categories
             }
             userId
           }
@@ -1358,6 +1408,7 @@ mutation UpdateProfileInformation(
             family_name
             given_name
             school
+            categories
           }
           userId
         }
@@ -1387,6 +1438,7 @@ mutation UpdateProfileInformation(
               family_name
               given_name
               school
+              categories
             }
             content
             conversationId
@@ -1403,6 +1455,7 @@ mutation UpdateProfileInformation(
               family_name
               given_name
               school
+              categories
             }
             sender
           }
@@ -1431,6 +1484,7 @@ mutation UpdateProfileInformation(
               family_name
               given_name
               school
+              categories
             }
           }
         }
@@ -1463,6 +1517,7 @@ mutation UpdateProfileInformation(
           family_name
           given_name
           school
+          categories
         }
         userId
       }
@@ -1497,6 +1552,7 @@ mutation UpdateProfileInformation(
           family_name
           given_name
           school
+          categories
         }
         content
         conversationId
@@ -1531,6 +1587,7 @@ mutation UpdateProfileInformation(
           family_name
           given_name
           school
+          categories
         }
         sender
       }
@@ -1544,5 +1601,283 @@ mutation UpdateProfileInformation(
     family_name
     given_name
     school
+    categories
+  }
+}
+mutation UpdateCategories($list: [String]) {
+  updateCategories(list: $list) {
+    userId
+    conversations {
+      nextToken
+      userConversations {
+        associated {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+          }
+          userId
+        }
+        conversation {
+          createdAt
+          id
+          discoveryId
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          latestMessage {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+            }
+            sender
+          }
+          discovery {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+            }
+          }
+        }
+        conversationId
+        user {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+        }
+        userId
+      }
+    }
+    messages {
+      messages {
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+        }
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        recipient {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+        }
+        sender
+      }
+      nextToken
+    }
+    registered
+    about
+    profilePic
+    rating
+    signUpDate
+    family_name
+    given_name
+    school
+    categories
   }
 }

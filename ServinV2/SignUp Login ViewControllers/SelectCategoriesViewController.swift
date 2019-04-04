@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSAppSync
 
 class SelectCategoriesViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class SelectCategoriesViewController: UIViewController {
     private let minCellSpacing: CGFloat = 16.0
     private var maxCellWidth: CGFloat!
     
-    var data: [String] = ["Tech", "Design", "Humor", "Travel", "Music", "Writing", "Social Media", "Life", "Education", "Edtech", "Education Reform", "Photography", "Startup", "Poetry", "Women In Tech", "Female Founders", "Business", "Fiction", "Love", "Food", "Sports", "Autos", "Cleaning", "Technology", "Business", "Sports", "Childcare", "Airsoft", "Cycling", "Fitness", "Baseball", "Basketball", "Bird Watching", "Bodybuilding", "Camping", "Dowsing", "Driving", "Fishing", "Flying", "Flying Disc", "Foraging", "Freestyle Football", "Gardening", "Geocaching", "Ghost hunting", "Grafitti", "Handball", "High-power rocketry", "Hooping", "Horseback riding", "Hunting"]
+    var data: [String] = ["Tech", "Design", "Humor", "Travel", "Music", "Writing", "Social Media", "Life", "Education", "Edtech", "Education Reform", "Photography", "Startup", "Poetry", "Women In Tech", "Female Founders", "Business", "Fiction", "Love", "Food", "Autos", "Cleaning", "Technology", "Business", "Sports", "Childcare", "Airsoft", "Cycling", "Fitness", "Baseball", "Basketball", "Bird Watching", "Bodybuilding", "Camping", "Dowsing", "Driving", "Fishing", "Flying", "Flying Disc", "Foraging", "Freestyle Football", "Gardening", "Geocaching", "Ghost hunting", "Grafitti", "Handball", "High-power rocketry", "Hooping", "Horseback riding", "Hunting"]
     
     var highlightedArray: [Bool]!
     
@@ -101,6 +102,21 @@ class SelectCategoriesViewController: UIViewController {
         }
         
         print(finalArray)
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            let mutation = UpdateCategoriesMutation.init(list: finalArray)
+            
+            appSyncClient?.perform(mutation: mutation, resultHandler: { (result, err) in
+                if let result = result {
+                    print("Successful response for selecting categories: \(result)")
+                    
+                } else if let error = err {
+                    print("Error response for selecting categories: \(error)")
+                }
+            })
+        }
         
         let mainVC = Constants.getMainContentVC()
         
