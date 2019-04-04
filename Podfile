@@ -6,37 +6,36 @@ target 'ServinV2' do
   use_frameworks!
 
   # Pods for ServinV2
-pod 'GoogleMaps'
-pod 'GooglePlaces'
-pod 'KYNavigationProgress'
-pod 'IQKeyboardManagerSwift'
-pod 'SideMenu'
-pod 'DZNEmptyDataSet'
-pod "Macaw", "0.9.1"
-pod 'Pulley'
-pod 'PinpointKit'
-pod 'TLPhotoPicker'
-pod 'ImageSlideshow', '~> 1.6'
-pod 'Alamofire', '~> 4.7'
-pod 'SwiftyJSON', '~> 4.0'
-pod 'AlamofireImage', '~> 3.3'
-pod 'Eureka'
-pod 'JWTDecode', '~> 2.1'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'KYNavigationProgress'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SideMenu'
+  pod 'DZNEmptyDataSet'
+  pod "Macaw", "0.9.1"
+  pod 'Pulley'
+  pod 'PinpointKit'
+  pod 'TLPhotoPicker'
+  pod 'ImageSlideshow', '~> 1.6'
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.3'
+  pod 'Eureka'
+  pod 'JWTDecode', '~> 2.1'
 
-#AWS Pods
-pod 'AWSCore', '~> 2.9.0'
-pod 'AWSCognitoIdentityProvider', '~> 2.8.0'
-pod 'AWSAppSync', ' ~> 2.9.0'
-pod 'AWSAPIGateway', ' ~> 2.8.4'
-pod 'AWSPinpoint', '~> 2.9.0'
-pod 'AWSMobileClient', '~> 2.8.0'      # Required dependency
+  #AWS Pods
+  pod 'AWSCore'
+  pod 'AWSCognitoIdentityProvider'
+  pod 'AWSAppSync'
+  pod 'AWSAPIGateway'
+  pod 'AWSPinpoint'
+  pod 'AWSMobileClient'      # Required dependency
 
-#Stripe
-pod 'Stripe'
+  #Stripe
+  pod 'Stripe'
 
-#cardIO
-pod 'CardIO'
-
+  #cardIO
+  pod 'CardIO'
   target 'ServinV2Tests' do
     inherit! :search_paths
     # Pods for testing
@@ -47,14 +46,4 @@ pod 'CardIO'
     # Pods for testing
   end
 
-end
-
-post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    # add this line
-    target.new_shell_script_build_phase.shell_script = "mkdir -p $PODS_CONFIGURATION_BUILD_DIR/#{target.name}"
-    target.build_configurations.each do |config|
-      config.build_settings['CONFIGURATION_BUILD_DIR'] = '$PODS_CONFIGURATION_BUILD_DIR'
-    end
-  end
 end

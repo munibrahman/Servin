@@ -14,7 +14,7 @@ class PaymentViewController: UITableViewController {
     
     
     let paymentMethods = ["Apple Pay", "**** 2575", "**** 4323"]
-    let paymentMethodIcon = [STPApplePayPaymentMethod().image, STPPaymentCardTextField.brandImage(for: .visa), STPPaymentCardTextField.brandImage(for: STPCardBrand.masterCard)]
+    let paymentMethodIcon = [STPApplePayPaymentOption().image, STPPaymentCardTextField.brandImage(for: .visa), STPPaymentCardTextField.brandImage(for: STPCardBrand.masterCard)]
     let payoutInfo = "Add your stripe account to recieve payments automatically"
     
     let paymentReuseIdentifier = "PaymentCell"
@@ -183,7 +183,7 @@ class PaymentViewController: UITableViewController {
             if indexPath.row == paymentMethods.count {
                 
                 let config = STPPaymentConfiguration()
-                config.additionalPaymentMethods = .all
+                config.additionalPaymentOptions = .all
                 config.requiredBillingAddressFields = .none
                 config.appleMerchantIdentifier = "merchant.com.servin"
                 
@@ -193,12 +193,12 @@ class PaymentViewController: UITableViewController {
                 
                 let customerContext = STPCustomerContext(keyProvider: MyStripeAPIClient.sharedClient)
                 
-                let viewController = STPPaymentMethodsViewController(configuration: config,
+                let viewController = STPPaymentOptionsViewController(configuration: config,
                                                                      theme: theme,
                                                                      customerContext: customerContext,
                                                                      delegate: self)
                 
-                viewController.paymentMethodsViewControllerFooterView.backgroundColor = .red
+                viewController.paymentOptionsViewControllerFooterView.backgroundColor = .red
                 
                 let navigationController = UINavigationController(rootViewController: viewController)
                 navigationController.navigationBar.stp_theme = theme
@@ -325,20 +325,22 @@ class PaymentViewController: UITableViewController {
     
 }
 
-extension PaymentViewController: STPPaymentMethodsViewControllerDelegate {
+extension PaymentViewController: STPPaymentOptionsViewControllerDelegate {
     // MARK: STPPaymentMethodsViewControllerDelegate
-    
-    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+    func paymentOptionsViewController(_ paymentOptionsViewController: STPPaymentOptionsViewController, didFailToLoadWithError error: Error) {
         dismiss(animated: true, completion: nil)
     }
     
-    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
-        paymentMethodsViewController.navigationController?.popViewController(animated: true)
+    func paymentOptionsViewControllerDidFinish(_ paymentOptionsViewController: STPPaymentOptionsViewController) {
+        paymentOptionsViewController.navigationController?.popViewController(animated: true)
     }
     
-    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
+    func paymentOptionsViewControllerDidCancel(_ paymentOptionsViewController: STPPaymentOptionsViewController) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
+
 }
 
 

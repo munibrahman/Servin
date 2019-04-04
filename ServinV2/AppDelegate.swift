@@ -151,25 +151,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func initializeAppSync() {
+        
+        // Setup AWSMobileClient
+        AWSMobileClient.sharedInstance().initialize { (userState, error) in
+            if let userState = userState {
+                print("UserState: \(userState.rawValue)")
+                
+            } else if let error = error {
+                print("error: \(error.localizedDescription)")
+            }
+        }
+        
         // You can choose your database location, accessible by the SDK
         let databaseURL = URL(fileURLWithPath:NSTemporaryDirectory()).appendingPathComponent("todos_db")
         
+        // TODO: Change this to follow identity pools instead of userpools when actual identity pools are up.
+        // https://aws-amplify.github.io/docs/ios/api#iam
         do {
+            // You can choose the directory in which AppSync stores its persistent cache databases
+            let cacheConfiguration = try AWSAppSyncCacheConfiguration()
+            
             // Initialize the AWS AppSync configuration
-            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncClientInfo: AWSAppSyncClientInfo(),
+            let appSyncConfig = try AWSAppSyncClientConfiguration(appSyncServiceConfig: AWSAppSyncServiceConfig(),
                                                                   userPoolsAuthProvider: {
                                                                     class MyCognitoUserPoolsAuthProvider : AWSCognitoUserPoolsAuthProviderAsync {
                                                                         func getLatestAuthToken(_ callback: @escaping (String?, Error?) -> Void) {
-                                                                           
-                                                                            callback(KeyChainStore.shared.fetchIdToken() ?? "", nil)
+                                                                            AWSMobileClient.sharedInstance().getTokens { (tokens, error) in
+                                                                                if error != nil {
+                                                                                    callback(nil, error)
+                                                                                } else {
+                                                                                    callback(tokens?.idToken?.tokenString, nil)
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                     return MyCognitoUserPoolsAuthProvider()}(),
-                                                                  databaseURL:databaseURL)
+                                                                  cacheConfiguration: cacheConfiguration)
             
             // Initialize the AWS AppSync client
             appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
-            
         } catch {
             print("Error initializing appsync client. \(error)")
         }
