@@ -63,17 +63,18 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             leftOverSpace = UIScreen.main.bounds.size.height - totalSize - self.statusBarHeight
         }
         
-        let user = AppDelegate.defaultUserPool().currentUser()
-
-        if user != nil {
-            user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
-                task.result?.userAttributes?.forEach({ (attribute) in
-                    if attribute.name == "given_name" {
-                        print("User's first name is \(attribute.value!)")
-                    }
-                })
-            })
-        }
+        // TODO: Remove this once you get their first name from appsync
+//        let user = AppDelegate.defaultUserPool().currentUser()
+//
+//        if user != nil {
+//            user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
+//                task.result?.userAttributes?.forEach({ (attribute) in
+//                    if attribute.name == "given_name" {
+//                        print("User's first name is \(attribute.value!)")
+//                    }
+//                })
+//            })
+//        }
         
         optionsTableViewController.backgroundColor = .red
         

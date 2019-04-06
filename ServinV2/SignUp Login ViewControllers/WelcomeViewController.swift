@@ -8,7 +8,7 @@
 
 import UIKit
 import Macaw
-import AWSCognitoIdentityProvider
+//import AWSCognitoIdentityProvider
 import Alamofire
 import JWTDecode
 import SwiftyJSON
@@ -22,8 +22,8 @@ class WelcomeViewController: UIViewController {
     @IBOutlet var loginLabel: UILabel!
     
     
-    var response: AWSCognitoIdentityUserGetDetailsResponse?
-    var user: AWSCognitoIdentityUser?
+//    var response: AWSCognitoIdentityUserGetDetailsResponse?
+//    var user: AWSCognitoIdentityUser?
     
     @IBOutlet var termsOfServiceLabel: UILabel!
     
@@ -40,32 +40,33 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        var userAttributes: [AWSCognitoIdentityProviderAttributeType]?
-        var user = AppDelegate.defaultUserPool().currentUser()
+        // TODO: Move this to InitialVC
+//        var userAttributes: [AWSCognitoIdentityProviderAttributeType]?
+//        var user = AppDelegate.defaultUserPool().currentUser()
+//
+//        let pool = AppDelegate.defaultUserPool()
+//        if (user == nil) {
+//            user = pool.currentUser()
+//        }
         
-        let pool = AppDelegate.defaultUserPool()
-        if (user == nil) {
-            user = pool.currentUser()
-        }
-        
-        print(user)
-        if (user?.isSignedIn)! {
-            print("Current User is signed in")
-             print(user?.username)
-            
-            // On the first time, just refresh all tokens in the keychain.
-            KeyChainStore.shared.refreshTokens()
-            BackendServer.shared.downloadProfileImage()
-            BackendServer.shared.fetchAttributes()
-            
-
-            // Present an option to select categories, otherwise just show the app?
-            let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
-            self.present(navVC, animated: true, completion: nil)
-        } else {
-            // Do nothing...
-            print("Current User is not logged in...")
-        }
+//        print(user)
+//        if (user?.isSignedIn)! {
+//            print("Current User is signed in")
+//             print(user?.username)
+//
+//            // On the first time, just refresh all tokens in the keychain.
+//            KeyChainStore.shared.refreshTokens()
+//            BackendServer.shared.downloadProfileImage()
+//            BackendServer.shared.fetchAttributes()
+//
+//
+//            // Present an option to select categories, otherwise just show the app?
+//            let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
+//            self.present(navVC, animated: true, completion: nil)
+//        } else {
+//            // Do nothing...
+//            print("Current User is not logged in...")
+//        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,21 +90,17 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func showLogin () {
-        
         print("Show login")
-        
-        self.user = AppDelegate.defaultUserPool().getUser()
-        self.refresh()
-    }
-    
-    func refresh() {
-        self.user?.getDetails().continueOnSuccessWith { (task) -> AnyObject? in
-            DispatchQueue.main.async(execute: {
-                self.response = task.result
-            })
-            return nil
+        if let sb = storyboard {
+            let vc = sb.instantiateViewController(withIdentifier: String.init(describing: LoginViewController.self))
+            self.present(UINavigationController.init(rootViewController: vc), animated: true, completion: nil)
+        } else {
+            let sb = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: String.init(describing: LoginViewController.self))
+            self.present(UINavigationController.init(rootViewController: vc), animated: true, completion: nil)
         }
     }
+
     
     func setupNotificationLabel () {
         

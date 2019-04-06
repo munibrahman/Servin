@@ -96,8 +96,8 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.sizeToFit()
         
         
-        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
+//        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
+//        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
 
         self.view.layoutIfNeeded()
     }

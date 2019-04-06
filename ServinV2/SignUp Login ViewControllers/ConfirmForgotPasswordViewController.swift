@@ -7,25 +7,31 @@
 //
 
 import UIKit
-import AWSCognitoIdentityProvider
+//import AWSCognitoIdentityProvider
 import Macaw
+import AWSMobileClient
 
 class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate {
 
     // TODO: Spread out the verification code, password and confirm password into 3 different views.
     
-    var user: AWSCognitoIdentityUser?
+//    var user: AWSCognitoIdentityUser?
     
+    @IBOutlet weak var verificationSentLabel: UILabel!
     @IBOutlet weak var confirmationCode: UITextField!
     @IBOutlet weak var proposedPassword: UITextField!
     @IBOutlet var confirmProposedPassword: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
+    
+    var username: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupNextButton()
         setupTextField()
+        
+        verificationSentLabel.text = "We sent a verification code to: \(username ?? "your email.") Please enter it below."
     }
     
     func setupNextButton() {
@@ -60,36 +66,49 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         nextButtonSVGView.toggleProgress(showProgress: true)
         nextButtonSVGView.isUserInteractionEnabled = false
         
-        //confirm forgot password with input from ui.
-        self.user?.confirmForgotPassword(confirmationCodeValue, password: self.proposedPassword.text!).continueWith {[weak self] (task: AWSTask) -> AnyObject? in
-            guard let strongSelf = self else { return nil }
-            DispatchQueue.main.async(execute: {
-                
-                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
-                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
-                
-                if let error = task.error as NSError? {
-                    let alertController = UIAlertController(title: "Cannot Reset Password",
-                                                            message: error.userInfo["message"] as? String,
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    
-                    self?.present(alertController, animated: true, completion:  nil)
-                } else {
-                    
-                    let presentingController = strongSelf.presentingViewController
-                    strongSelf.presentingViewController?.dismiss(animated: true, completion: {
-                        let alert = UIAlertController(title: "Password Reset", message: "Password reset complete. Please log into the account with your email and new password.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        presentingController?.present(alert, animated: true, completion: nil)
-                        
-                    }
-                    )
+        AWSMobileClient.sharedInstance().confirmForgotPassword(username: username!, newPassword: confirmProposedPassword.text!, confirmationCode: confirmationCodeValue) { (forgotPasswordResult, error) in
+            if let forgotPasswordResult = forgotPasswordResult {
+                switch(forgotPasswordResult.forgotPasswordState) {
+                case .done:
+                    print("Password changed successfully")
+                default:
+                    print("Error: Could not change password.")
                 }
-            })
-            return nil
+            } else if let error = error {
+                print("Error occurred: \(error.localizedDescription)")
+            }
         }
+        
+        //confirm forgot password with input from ui.
+//        self.user?.confirmForgotPassword(confirmationCodeValue, password: self.proposedPassword.text!).continueWith {[weak self] (task: AWSTask) -> AnyObject? in
+//            guard let strongSelf = self else { return nil }
+//            DispatchQueue.main.async(execute: {
+//
+//                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
+//                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
+//
+//                if let error = task.error as NSError? {
+//                    let alertController = UIAlertController(title: "Cannot Reset Password",
+//                                                            message: error.userInfo["message"] as? String,
+//                                                            preferredStyle: .alert)
+//                    let okAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
+//                    alertController.addAction(okAction)
+//
+//                    self?.present(alertController, animated: true, completion:  nil)
+//                } else {
+//
+//                    let presentingController = strongSelf.presentingViewController
+//                    strongSelf.presentingViewController?.dismiss(animated: true, completion: {
+//                        let alert = UIAlertController(title: "Password Reset", message: "Password reset complete. Please log into the account with your email and new password.", preferredStyle: .alert)
+//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                        presentingController?.present(alert, animated: true, completion: nil)
+//
+//                    }
+//                    )
+//                }
+//            })
+//            return nil
+//        }
     }
     
     func setupTextField() {

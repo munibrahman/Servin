@@ -22,14 +22,14 @@ target 'ServinV2' do
   pod 'AlamofireImage', '~> 3.3'
   pod 'Eureka'
   pod 'JWTDecode', '~> 2.1'
-
+  pod 'NotificationBannerSwift' # To show notifications
   #AWS Pods
   pod 'AWSCore'
-  pod 'AWSCognitoIdentityProvider'
+#  pod 'AWSCognitoIdentityProvider' Removed in favour of AWSMobileClient
   pod 'AWSAppSync'
   pod 'AWSAPIGateway'
   pod 'AWSPinpoint'
-  pod 'AWSMobileClient'      # Required dependency
+  pod 'AWSMobileClient'      # Required dependency for signing up
 
   #Stripe
   pod 'Stripe'

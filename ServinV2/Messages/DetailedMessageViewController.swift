@@ -9,6 +9,7 @@
 import UIKit
 import AWSAppSync
 import IQKeyboardManagerSwift
+import AWSMobileClient
 
 // CHATLOG Controller
 class DetailedMessageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
@@ -153,7 +154,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let message = messages![indexPath.item]
         cell.textView.text = message?.content
         
-        if message?.sender == AppDelegate.defaultUserPool().currentUser()?.username! {
+        if message?.sender == AWSMobileClient.sharedInstance().username ?? " " {
             // This message was my own
             cell.bubbleView.backgroundColor = UIColor.white
             cell.bubbleViewRightAnchor?.isActive = true

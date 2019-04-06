@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Alamofire
 import AlamofireImage
+import AWSMobileClient
 
 
 class BackendServer: NSObject {
@@ -33,7 +34,7 @@ class BackendServer: NSObject {
         print("Image doesn't exist, need to download from server")
         
         // TODO Handle nil cases
-        APIManager.sharedInstance.getUser(username: (AppDelegate.defaultUserPool().currentUser()?.username!)!, onSuccess: { (json) in
+        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN" , onSuccess: { (json) in
             print(json)
             if let url = json["imageURL"].string {
                 Alamofire.request(url).responseImage { response in
@@ -70,7 +71,7 @@ class BackendServer: NSObject {
     
     func fetchAttributes() {
         
-        APIManager.sharedInstance.getUser(username: (AppDelegate.defaultUserPool().currentUser()?.username)!, onSuccess: { (json) in
+        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN", onSuccess: { (json) in
             print(json)
             if let about = json["about"].string {
                 DefaultsWrapper.setString(key: Key.aboutMe, value: about)
@@ -80,43 +81,76 @@ class BackendServer: NSObject {
             print(err)
         }
        
-        if let user = AppDelegate.defaultUserPool().currentUser() {
+        AWSMobileClient.sharedInstance().getUserAttributes { (response, error) in
+            if error != nil {
+                print("Error: \(error)")
+                print("Can't retrieve attributes for this user")
+                return
+            }
             
-            user.getDetails().continueOnSuccessWith { (response) -> Any? in
+            if let res = response {
                 
-                if let result = response.result {
-                    if let attributes = result.userAttributes {
-                        
-                        for attr in attributes {
-                            
-                            if let attrName = attr.name {
-                                
-                                switch attrName {
-                                case Key.sub.rawValue:
-                                    DefaultsWrapper.setString(key: Key.sub, value: attr.value)
-                                case Key.givenName.rawValue:
-                                    DefaultsWrapper.setString(key: Key.givenName, value: attr.value)
-                                case Key.familyName.rawValue:
-                                    DefaultsWrapper.setString(key: Key.familyName, value: attr.value)
-                                case Key.emailVerified.rawValue:
-                                    DefaultsWrapper.setBool(key: Key.emailVerified, value: Bool(attr.value ?? "0")!)
-                                case Key.email.rawValue:
-                                    DefaultsWrapper.setString(key: Key.email, value: attr.value)
-                                default:
-                                    print("Unable to find a specific key, make one.")
-                                    print(attrName)
-                                    print(attr.value)
-                                }
-                                
-                            }
-                            
-                        }
+                for attr in res {
+                    switch attr.key {
+                    case Key.sub.rawValue:
+                        DefaultsWrapper.setString(key: Key.sub, value: attr.value)
+                    case Key.givenName.rawValue:
+                        DefaultsWrapper.setString(key: Key.givenName, value: attr.value)
+                    case Key.familyName.rawValue:
+                        DefaultsWrapper.setString(key: Key.familyName, value: attr.value)
+                    case Key.emailVerified.rawValue:
+                        DefaultsWrapper.setBool(key: Key.emailVerified, value: Bool(attr.value ?? "0")!)
+                    case Key.email.rawValue:
+                        DefaultsWrapper.setString(key: Key.email, value: attr.value)
+                    default:
+                        print("Unable to find a specific key, make one.")
+                        print(attr.key)
+                        print(attr.value)
                     }
                 }
                 
-                return nil
             }
+            
+            
         }
+        
+//        if let user = AppDelegate.defaultUserPool().currentUser() {
+//
+//            user.getDetails().continueOnSuccessWith { (response) -> Any? in
+//
+//                if let result = response.result {
+//                    if let attributes = result.userAttributes {
+//
+//                        for attr in attributes {
+//
+//                            if let attrName = attr.name {
+//
+//                                switch attrName {
+//                                case Key.sub.rawValue:
+//                                    DefaultsWrapper.setString(key: Key.sub, value: attr.value)
+//                                case Key.givenName.rawValue:
+//                                    DefaultsWrapper.setString(key: Key.givenName, value: attr.value)
+//                                case Key.familyName.rawValue:
+//                                    DefaultsWrapper.setString(key: Key.familyName, value: attr.value)
+//                                case Key.emailVerified.rawValue:
+//                                    DefaultsWrapper.setBool(key: Key.emailVerified, value: Bool(attr.value ?? "0")!)
+//                                case Key.email.rawValue:
+//                                    DefaultsWrapper.setString(key: Key.email, value: attr.value)
+//                                default:
+//                                    print("Unable to find a specific key, make one.")
+//                                    print(attrName)
+//                                    print(attr.value)
+//                                }
+//
+//                            }
+//
+//                        }
+//                    }
+//                }
+//
+//                return nil
+//            }
+//        }
         
     }
     

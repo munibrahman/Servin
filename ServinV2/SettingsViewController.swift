@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import AWSCognitoIdentityProvider
+//import AWSCognitoIdentityProvider
 import Eureka
+import AWSMobileClient
 
 
 // TODO: Come in here and add views for all the settings...
@@ -284,14 +285,22 @@ class SettingsViewController: FormViewController {
                     let cancel = UIAlertAction.init(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
                     let logout = UIAlertAction.init(title: "Logout", style: UIAlertAction.Style.destructive, handler: { (action) in
                         print("Sign out")
+
+                        // TODO: Use AWSMobileClient, sign out, clear everything and show the very first screen.
+                        AWSMobileClient.sharedInstance().signOut()
                         
-                        if let user = AppDelegate.defaultUserPool().currentUser() {
-                            user.signOutAndClearLastKnownUser()
-                            DefaultsWrapper.removeEverything()
-                            KeyChainStore.shared.removeAllKeys()
-                            print("Signed out the user")
-                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                        }
+                        print("Signed out the person")
+                        DefaultsWrapper.removeEverything()
+                        KeyChainStore.shared.removeAllKeys()
+                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        
+//                        if let user = AppDelegate.defaultUserPool().currentUser() {
+//                            user.signOutAndClearLastKnownUser()
+//                            DefaultsWrapper.removeEverything()
+//                            KeyChainStore.shared.removeAllKeys()
+//                            print("Signed out the user")
+//                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//                        }
                     })
                     
                     actionController.addAction(cancel)
@@ -550,31 +559,32 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
         
         self.navigationItem.rightBarButtonItem = progressBarButton
         
-        
-        AppDelegate.defaultUserPool().currentUser()?.changePassword(currentPassword.text!, proposedPassword: newPassword.text!).continueWith(block: { [weak self] (task: AWSTask) -> Any? in
-            guard let strongSelf = self else {return nil}
-            DispatchQueue.main.async(execute: {
 
-                strongSelf.navigationItem.rightBarButtonItem = strongSelf.doneButton
-
-                if let error = task.error as NSError? {
-
-
-                    let alertController = UIAlertController(title: "Error",
-                                                            message: error.userInfo["message"] as? String,
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-
-                    strongSelf.present(alertController, animated: true, completion:  nil)
-                } else {
-
-                    strongSelf.navigationController?.popViewController(animated: true)
-
-                }
-            })
-            return nil
-        })
+        // TODO: AWSMobileClient to reset the password
+//        AppDelegate.defaultUserPool().currentUser()?.changePassword(currentPassword.text!, proposedPassword: newPassword.text!).continueWith(block: { [weak self] (task: AWSTask) -> Any? in
+//            guard let strongSelf = self else {return nil}
+//            DispatchQueue.main.async(execute: {
+//
+//                strongSelf.navigationItem.rightBarButtonItem = strongSelf.doneButton
+//
+//                if let error = task.error as NSError? {
+//
+//
+//                    let alertController = UIAlertController(title: "Error",
+//                                                            message: error.userInfo["message"] as? String,
+//                                                            preferredStyle: .alert)
+//                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+//                    alertController.addAction(okAction)
+//
+//                    strongSelf.present(alertController, animated: true, completion:  nil)
+//                } else {
+//
+//                    strongSelf.navigationController?.popViewController(animated: true)
+//
+//                }
+//            })
+//            return nil
+//        })
         
         
     }
@@ -585,9 +595,9 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
 private class MFASettingsViewController: UIViewController {
     
     var mfaSwitch: UISwitch!
-    var mfaSettings:[AWSCognitoIdentityProviderMFAOptionType]?
-    var userAttributes:[AWSCognitoIdentityProviderAttributeType]?
-    var user:AWSCognitoIdentityUser?
+//    var mfaSettings:[AWSCognitoIdentityProviderMFAOptionType]?
+//    var userAttributes:[AWSCognitoIdentityProviderAttributeType]?
+//    var user:AWSCognitoIdentityUser?
     
     override func loadView() {
         view = UIView()
@@ -605,13 +615,13 @@ private class MFASettingsViewController: UIViewController {
     
     func setupViews() {
         mfaSwitch = UISwitch.init()
-        
+//
         self.view.addSubview(mfaSwitch)
-        
+
         mfaSwitch.translatesAutoresizingMaskIntoConstraints = false
         mfaSwitch.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8.0).isActive = true
         mfaSwitch.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: 8.0).isActive = true
-        
+
         mfaSwitch.addTarget(self, action: #selector(switchValueDidChange(_:)), for: .valueChanged)
     }
     
@@ -619,30 +629,30 @@ private class MFASettingsViewController: UIViewController {
         
         print("switch value did change")
         
-        let settings = AWSCognitoIdentityUserSettings()
-        if mfaSwitch.isOn {
-            // Enable MFA
-            let mfaOptions = AWSCognitoIdentityUserMFAOption()
-            mfaOptions.attributeName = "phone_number"
-            mfaOptions.deliveryMedium = .sms
-            settings.mfaOptions = [mfaOptions]
-        } else {
-            // Disable MFA
-            settings.mfaOptions = []
-        }
-        
-         user?.setUserSettings(settings)
-            .continueWith(block: { (response) -> Any? in
-                if response.error != nil {
-                    let alert = UIAlertController(title: "Error", message: (response.error! as NSError).userInfo["message"] as? String, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion:nil)
-                    self.resetAttributeValues()
-                } else {
-                    self.fetchUserAttributes()
-                }
-                return nil
-            })
+//        let settings = AWSCognitoIdentityUserSettings()
+//        if mfaSwitch.isOn {
+//            // Enable MFA
+//            let mfaOptions = AWSCognitoIdentityUserMFAOption()
+//            mfaOptions.attributeName = "phone_number"
+//            mfaOptions.deliveryMedium = .sms
+//            settings.mfaOptions = [mfaOptions]
+//        } else {
+//            // Disable MFA
+//            settings.mfaOptions = []
+//        }
+//
+//         user?.setUserSettings(settings)
+//            .continueWith(block: { (response) -> Any? in
+//                if response.error != nil {
+//                    let alert = UIAlertController(title: "Error", message: (response.error! as NSError).userInfo["message"] as? String, preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                    self.present(alert, animated: true, completion:nil)
+//                    self.resetAttributeValues()
+//                } else {
+//                    self.fetchUserAttributes()
+//                }
+//                return nil
+//            })
     }
     
     func setupNavigationBar() {
@@ -659,28 +669,29 @@ private class MFASettingsViewController: UIViewController {
     
     func fetchUserAttributes() {
         self.resetAttributeValues()
-        user = AppDelegate.defaultUserPool().currentUser()
-        user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
-            guard task.result != nil else {
-                return nil
-            }
-            self.userAttributes = task.result?.userAttributes
-            self.mfaSettings = task.result?.mfaOptions
-            self.userAttributes?.forEach({ (attribute) in
-                print("Name: " + attribute.name!)
-            })
-            DispatchQueue.main.async {
-                self.setAttributeValues()
-            }
-            return nil
-        })
+        // TODO: AWSMobileClient to setup mfa
+//        user = AppDelegate.defaultUserPool().currentUser()
+//        user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
+//            guard task.result != nil else {
+//                return nil
+//            }
+//            self.userAttributes = task.result?.userAttributes
+//            self.mfaSettings = task.result?.mfaOptions
+//            self.userAttributes?.forEach({ (attribute) in
+//                print("Name: " + attribute.name!)
+//            })
+//            DispatchQueue.main.async {
+//                self.setAttributeValues()
+//            }
+//            return nil
+//        })
     }
     
     func isEmailMFAEnabled() -> Bool {
-        let values = self.mfaSettings?.filter { $0.deliveryMedium == AWSCognitoIdentityProviderDeliveryMediumType.sms }
-        if values?.first != nil {
-            return true
-        }
+//        let values = self.mfaSettings?.filter { $0.deliveryMedium == AWSCognitoIdentityProviderDeliveryMediumType.sms }
+//        if values?.first != nil {
+//            return true
+//        }
         return false
     }
     
@@ -692,11 +703,11 @@ private class MFASettingsViewController: UIViewController {
     
     func setAttributeValues() {
         DispatchQueue.main.async {
-            if self.mfaSettings == nil {
-                self.mfaSwitch.setOn(false, animated: false)
-            } else {
-                self.mfaSwitch.setOn(self.isEmailMFAEnabled(), animated: false)
-            }
+//            if self.mfaSettings == nil {
+//                self.mfaSwitch.setOn(false, animated: false)
+//            } else {
+//                self.mfaSwitch.setOn(self.isEmailMFAEnabled(), animated: false)
+//            }
         }
     }
     

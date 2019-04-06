@@ -8,15 +8,16 @@
 
 import UIKit
 import Macaw
+import AWSMobileClient
 
-import AWSCognitoIdentityProvider
+//import AWSCognitoIdentityProvider
 
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
-    var pool: AWSCognitoIdentityUserPool?
+//    var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
     
     
@@ -29,7 +30,7 @@ class SignUp3ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.pool = AppDelegate.defaultUserPool()
+//        self.pool = AppDelegate.defaultUserPool()
 
         // Do any additional setup after loading the view.
         
@@ -75,70 +76,99 @@ class SignUp3ViewController: UIViewController {
                     return
             }
             
-            var attributes = [AWSCognitoIdentityUserAttributeType]()
-            
-            
+            var attributes = [String: String]()
+
+
             if let emailValue = self.emailAddress, !emailValue.isEmpty {
-                let email = AWSCognitoIdentityUserAttributeType()
-                email?.name = "email"
-                email?.value = emailValue
-                attributes.append(email!)
+
+                attributes["email"] = emailValue
             }
-            
+
             if let lastName = self.lastName {
-                let family_name = AWSCognitoIdentityUserAttributeType.init(name: "family_name", value: lastName)
-                attributes.append(family_name)
+                attributes["family_name"] = lastName
             }
-            
+
             if let firstName = self.firstName {
-                let given_name = AWSCognitoIdentityUserAttributeType.init(name: "given_name", value: firstName)
-                attributes.append(given_name)
+                attributes["given_name"] = firstName
             }
             
             nextButtonSVGView.toggleProgress(showProgress: true)
             nextButtonSVGView.isUserInteractionEnabled = false
             
-            //sign up the user
-            self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
-                guard let strongSelf = self else { return nil }
-                DispatchQueue.main.async(execute: {
-                    
-                    strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
-                    strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
-                    
-                    if let error = task.error as NSError? {
-                        let alertController = UIAlertController(title: "Error",
-                                                                message: error.userInfo["message"] as? String,
-                                                                preferredStyle: .alert)
-                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-                        alertController.addAction(retryAction)
-                        
-                        self?.present(alertController, animated: true, completion:  nil)
-                    } else if let result = task.result  {
-                        // handle the case where user has to confirm his identity via email / SMS
-                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-                            strongSelf.sentTo = result.codeDeliveryDetails?.destination
-                            
-                            if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
-                                
-                                signUpConfirmationViewController.sentTo = strongSelf.sentTo
-                                signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
-                                
-                                strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
-                            }
-                            
-                        } else {
-                            
-                            // If no confirmation required then just show the app.
-                            strongSelf.navigationController?.finishProgress()
-//                            let constant = Constants()
-                            strongSelf.present(Constants.getMainContentVC(), animated: true, completion: nil)
-                        }
-                    }
-                    
-                })
-                return nil
+            AWSMobileClient.sharedInstance().signUp(username: userNameValue,
+                                                    password: passwordValue,
+                                                    userAttributes: attributes) { (signUpResult, error) in
+                                                        if let signUpResult = signUpResult {
+                                                            switch(signUpResult.signUpConfirmationState) {
+                                                            case .confirmed:
+                                                                print("User is signed up and confirmed.")
+                                                            case .unconfirmed:
+                                                                print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
+                                                                
+                                                                if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
+                                    
+                                                                    signUpConfirmationViewController.sentTo = strongSelf.sentTo
+                                                                    signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
+                                    
+                                                                    strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
+                                                                }
+                                                            case .unknown:
+                                                                print("Unexpected case")
+                                                            }
+                                                        } else if let error = error {
+                                                            if let error = error as? AWSMobileClientError {
+                                                                switch(error) {
+                                                                case .usernameExists(let message):
+                                                                    print(message)
+                                                                default:
+                                                                    break
+                                                                }
+                                                            }
+                                                            print("\(error.localizedDescription)")
+                                                        }
             }
+            
+            //sign up the user
+//            self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
+//                guard let strongSelf = self else { return nil }
+//                DispatchQueue.main.async(execute: {
+//                    
+//                    strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
+//                    strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
+//                    
+//                    if let error = task.error as NSError? {
+//                        let alertController = UIAlertController(title: "Error",
+//                                                                message: error.userInfo["message"] as? String,
+//                                                                 preferredStyle: .alert)
+//                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
+//                        alertController.addAction(retryAction)
+//                        
+//                        self?.present(alertController, animated: true, completion:  nil)
+//                    } else if let result = task.result  {
+//                        // handle the case where user has to confirm his identity via email / SMS
+//                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
+//                            strongSelf.sentTo = result.codeDeliveryDetails?.destination
+//                            
+//                            if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
+//                                
+//                                signUpConfirmationViewController.sentTo = strongSelf.sentTo
+//                                signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
+//                                
+//                                strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
+//                            }
+//                            
+//                        } else {
+//                            
+//                            // If no confirmation required then just show the app.
+//                            strongSelf.navigationController?.finishProgress()
+////                            let constant = Constants()
+//                            strongSelf.present(Constants.getMainContentVC(), animated: true, completion: nil)
+//                        }
+//                    }
+//                    
+//                })
+//                return nil
+//            }
         }
         
         

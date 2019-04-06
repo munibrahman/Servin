@@ -111,6 +111,7 @@
 		AE17A478220EBF250065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		AE17A479220EBF260065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		AE18B6FA2238BCF300D68029 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18B6F92238BCF300D68029 /* API.swift */; };
+		AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED827242256B2F3006164C6 /* InitialViewController.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE18B6F92238BCF300D68029 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		AED827242256B2F3006164C6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D566F623AEBCAFFBB31DDC90 /* Pods_ServinV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,6 +496,7 @@
 				8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */,
 				8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */,
 				8B4D5723218A954D00A28CEA /* APIManager.swift */,
+				AED827242256B2F3006164C6 /* InitialViewController.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -954,6 +957,7 @@
 				8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */,
 				8B53487D21350D08009E4C3E /* BackendServer.swift in Sources */,
 				8B53487F213779AC009E4C3E /* Reachability.swift in Sources */,
+				AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
 				8B24113421B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift in Sources */,
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
