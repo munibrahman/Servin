@@ -38,12 +38,17 @@ PODS:
   - KYNavigationProgress (2.0.2)
   - Macaw (0.9.1):
     - SWXMLHash
+  - MarqueeLabel/Swift (3.2.1)
+  - NotificationBannerSwift (2.0.1):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.2.0)
   - PinpointKit (1.3.0):
     - PinpointKit/Core (= 1.3.0)
   - PinpointKit/Core (1.3.0)
   - Pulley (2.7.0)
   - ReachabilitySwift (4.3.1)
   - SideMenu (5.0.3)
+  - SnapKit (4.2.0)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
   - SQLite.swift/standard (0.11.5)
@@ -57,7 +62,6 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.3)
   - AWSAPIGateway
   - AWSAppSync
-  - AWSCognitoIdentityProvider
   - AWSCore
   - AWSMobileClient
   - AWSPinpoint
@@ -71,6 +75,7 @@ DEPENDENCIES:
   - JWTDecode (~> 2.1)
   - KYNavigationProgress
   - Macaw (= 0.9.1)
+  - NotificationBannerSwift
   - PinpointKit
   - Pulley
   - SideMenu
@@ -100,10 +105,13 @@ SPEC REPOS:
     - JWTDecode
     - KYNavigationProgress
     - Macaw
+    - MarqueeLabel
+    - NotificationBannerSwift
     - PinpointKit
     - Pulley
     - ReachabilitySwift
     - SideMenu
+    - SnapKit
     - SQLite.swift
     - Stripe
     - SwiftyJSON
@@ -131,16 +139,19 @@ SPEC CHECKSUMS:
   JWTDecode: 85a405ab16d5473e99bd89ded1d535090ebd6a0e
   KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
+  MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
+  NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
   PinpointKit: 8ef42ed810a95aaced0462b532e0224a67afb72d
   Pulley: 028ddcc7d2dcbc078d71b61b7eee8e786d72c14a
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   Stripe: 312b22a67af9fa55c246d26148b3f3a9636a0ff2
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
   TLPhotoPicker: 4274455aacc5b75b53aafa2de95bd1f53e7c79f8
 
-PODFILE CHECKSUM: 3d8e274707a386d7b4f295f1b1275711a94ce33d
+PODFILE CHECKSUM: f409f82e394c8d8a7da252a3217c9cba0d119066
 
 COCOAPODS: 1.5.3

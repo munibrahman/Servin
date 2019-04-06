@@ -9,8 +9,7 @@
 import UIKit
 import Pulley
 import AWSMobileClient
-
-//import AWSCognitoIdentityProvider
+import NotificationBannerSwift
 
 class LoginViewController: UIViewController {
 
@@ -20,7 +19,6 @@ class LoginViewController: UIViewController {
     @IBOutlet var forgotPasswordLabel: UILabel!
     
     var emailText: String?
-//    var passwordAuthenticationCompletion: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,11 +145,22 @@ class LoginViewController: UIViewController {
                                                 password: password) { (signInResult, error) in
             if let error = error  {
                 print("\(error.localizedDescription)")
+                
+                DispatchQueue.main.async {
+                    self.nextButtonSVGView.toggleProgress(showProgress: false)
+                    self.nextButtonSVGView.isUserInteractionEnabled = true
+                    
+                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error)", leftView: nil, rightView: nil, style: BannerStyle.danger, colors: nil)
+                    banner.show()
+                    
+                }
+                
             } else if let signInResult = signInResult {
                 switch (signInResult.signInState) {
                 case .signedIn:
                     print("User is signed in.")
                     
+                    self.hasUserCheckedCategories()
                     DispatchQueue.main.async {
                         self.nextButtonSVGView.toggleProgress(showProgress: false)
                         self.nextButtonSVGView.isUserInteractionEnabled = true
@@ -163,48 +172,36 @@ class LoginViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.nextButtonSVGView.toggleProgress(showProgress: false)
                         self.nextButtonSVGView.isUserInteractionEnabled = true
+                        
+                        if let mfaVC = UIViewController.init(nibName: String.init(describing: MFAViewController.self), bundle: nil) as? MFAViewController {
+                            mfaVC.destination = signInResult.codeDetails!.destination!
+                            self.navigationController?.pushViewController(mfaVC, animated: true)
+                        } else {
+                            self.showErrorNotification(title: "Hmmm", subtitle: "Something doesn't seem right here, can you please try again?")
+                        }
+                        
                     }
                     
                     print("SMS message sent to \(signInResult.codeDetails!.destination!)")
+                    
                 default:
                     DispatchQueue.main.async {
                         self.nextButtonSVGView.toggleProgress(showProgress: false)
                         self.nextButtonSVGView.isUserInteractionEnabled = true
+                        
+                        let banner = NotificationBanner.init(title: "Error", subtitle: "Sign In needs info which is not yet supported.", leftView: nil, rightView: nil, style: BannerStyle.danger, colors: nil)
+                        banner.show()
+                        
                     }
                     print("Sign In needs info which is not yet supported.")
                 }
             }
         }
-        
-//        AWSMobileClient.sharedInstance().signIn(username: "your_username", password: "Abc@123!") { (signInResult, error) in
-//            if let error = error  {
-//                print("\(error.localizedDescription)")
-//            } else if let signInResult = signInResult {
-//                switch (signInResult.signInState) {
-//                case .signedIn:
-//                    print("User is signed in.")
-//                case .smsMFA:
-//                    print("SMS message sent to \(signInResult.codeDetails!.destination!)")
-//                default:
-//                    print("Sign In needs info which is not et supported.")
-//                }
-//            }
-//        }
-        
-//        if (self.emailTextField?.text != nil && self.passwordTextField?.text != nil) {
-//            let authDetails = AWSCognitoIdentityPasswordAuthenticationDetails(username: self.emailTextField!.text!, password: self.passwordTextField!.text! )
-//            self.passwordAuthenticationCompletion?.set(result: authDetails)
-//        } else {
-//            let alertController = UIAlertController(title: "Missing information",
-//                                                    message: "Please enter a valid user name and password",
-//                                                    preferredStyle: .alert)
-//            let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-//            alertController.addAction(retryAction)
-//
-//            self.present(alertController, animated: true, completion: nil)
-//        }
     }
     
+    func hasUserCheckedCategories()  {
+        
+    }
 
 
 }
@@ -222,41 +219,3 @@ extension LoginViewController: UITextFieldDelegate {
         return true
     }
 }
-
-
-//extension LoginViewController: AWSCognitoIdentityPasswordAuthentication {
-//
-//    public func getDetails(_ authenticationInput: AWSCognitoIdentityPasswordAuthenticationInput, passwordAuthenticationCompletionSource: AWSTaskCompletionSource<AWSCognitoIdentityPasswordAuthenticationDetails>) {
-//
-//        self.passwordAuthenticationCompletion = passwordAuthenticationCompletionSource
-//        DispatchQueue.main.async {
-//            if (self.emailTextField?.text == nil) {
-//                self.emailTextField?.text = authenticationInput.lastKnownUsername
-//            }
-//        }
-//
-//    }
-//
-//    public func didCompleteStepWithError(_ error: Error?) {
-//
-//        DispatchQueue.main.async {
-//
-//            self.nextButtonSVGView.toggleProgress(showProgress: false)
-//            self.nextButtonSVGView.isUserInteractionEnabled = true
-//
-//            if let error = error as NSError? {
-//                let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-//                                                        message: error.userInfo["message"] as? String,
-//                                                        preferredStyle: .alert)
-//                let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-//                alertController.addAction(retryAction)
-//
-//                self.present(alertController, animated: true, completion:  nil)
-//            } else {
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
-//
-//    }
-//}
-

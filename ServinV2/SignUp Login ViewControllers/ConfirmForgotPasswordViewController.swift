@@ -7,15 +7,13 @@
 //
 
 import UIKit
-//import AWSCognitoIdentityProvider
 import Macaw
 import AWSMobileClient
+import NotificationBannerSwift
 
 class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate {
 
     // TODO: Spread out the verification code, password and confirm password into 3 different views.
-    
-//    var user: AWSCognitoIdentityUser?
     
     @IBOutlet weak var verificationSentLabel: UILabel!
     @IBOutlet weak var confirmationCode: UITextField!
@@ -67,48 +65,82 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         nextButtonSVGView.isUserInteractionEnabled = false
         
         AWSMobileClient.sharedInstance().confirmForgotPassword(username: username!, newPassword: confirmProposedPassword.text!, confirmationCode: confirmationCodeValue) { (forgotPasswordResult, error) in
+            
+            DispatchQueue.main.async {
+                self.nextButtonSVGView.toggleProgress(showProgress: false)
+                self.nextButtonSVGView.isUserInteractionEnabled = true
+            }
+            
             if let forgotPasswordResult = forgotPasswordResult {
                 switch(forgotPasswordResult.forgotPasswordState) {
                 case .done:
                     print("Password changed successfully")
+                    DispatchQueue.main.async {
+                        let banner = NotificationBanner.init(title: "Success!", subtitle: "Password changed successfully!", leftView: nil, rightView: nil, style: BannerStyle.success, colors: nil)
+                        banner.show()
+                    }
+                    
+                // TODO: Show the main screen here.
+                    print("Is user signed in")
+                    print(AWSMobileClient.sharedInstance().isSignedIn)
+                    self.signInUser()
                 default:
                     print("Error: Could not change password.")
                 }
             } else if let error = error {
-                print("Error occurred: \(error.localizedDescription)")
+                print("Error occurred: \(error)")
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error)", leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
+                    banner.show()
+                }
             }
         }
         
-        //confirm forgot password with input from ui.
-//        self.user?.confirmForgotPassword(confirmationCodeValue, password: self.proposedPassword.text!).continueWith {[weak self] (task: AWSTask) -> AnyObject? in
-//            guard let strongSelf = self else { return nil }
-//            DispatchQueue.main.async(execute: {
-//
-//                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
-//                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
-//
-//                if let error = task.error as NSError? {
-//                    let alertController = UIAlertController(title: "Cannot Reset Password",
-//                                                            message: error.userInfo["message"] as? String,
-//                                                            preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "Try Again", style: .default, handler: nil)
-//                    alertController.addAction(okAction)
-//
-//                    self?.present(alertController, animated: true, completion:  nil)
-//                } else {
-//
-//                    let presentingController = strongSelf.presentingViewController
-//                    strongSelf.presentingViewController?.dismiss(animated: true, completion: {
-//                        let alert = UIAlertController(title: "Password Reset", message: "Password reset complete. Please log into the account with your email and new password.", preferredStyle: .alert)
-//                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//                        presentingController?.present(alert, animated: true, completion: nil)
-//
-//                    }
-//                    )
-//                }
-//            })
-//            return nil
-//        }
+    }
+    
+    // After a password has been reset, we will simply try to sign the user in, makes it easier in terms of UX.
+    func signInUser() {
+        AWSMobileClient.sharedInstance().signIn(username: username!,
+                                                password: confirmProposedPassword.text!) { (signInResult, error) in
+                                                    if let error = error  {
+                                                        print("\(error.localizedDescription)")
+                                                    } else if let signInResult = signInResult {
+                                                        switch (signInResult.signInState) {
+                                                        case .signedIn:
+                                                            print("User is signed in.")
+                                                            
+                                                            DispatchQueue.main.async {
+                                                                self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                let mainVC = Constants.getMainContentVC()
+                                                                self.present(mainVC, animated: true, completion: nil)
+                                                            }
+                                                            
+                                                        case .smsMFA:
+                                                            DispatchQueue.main.async {
+                                                                self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                
+                                                                if let mfaVC = UIViewController.init(nibName: String.init(describing: MFAViewController.self), bundle: nil) as? MFAViewController {
+                                                                    mfaVC.destination = signInResult.codeDetails!.destination!
+                                                                    self.navigationController?.pushViewController(mfaVC, animated: true)
+                                                                } else {
+                                                                    self.showErrorNotification(title: "Hmmm", subtitle: "Something doesn't seem right here, can you please try again?")
+                                                                }
+                                                                
+                                                            }
+                                                            
+                                                            print("SMS message sent to \(signInResult.codeDetails!.destination!)")
+                                                        default:
+                                                            DispatchQueue.main.async {
+                                                                self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                self.showErrorNotification(title: "Error", subtitle: "Unable to reset your password, please try again.")
+                                                            }
+                                                            print("Sign In needs info which is not yet supported.")
+                                                        }
+                                                    }
+        }
     }
     
     func setupTextField() {

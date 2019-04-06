@@ -9,15 +9,13 @@
 import UIKit
 import Macaw
 import AWSMobileClient
-
-//import AWSCognitoIdentityProvider
+import NotificationBannerSwift
 
 class SignUp3ViewController: UIViewController {
 
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
-//    var pool: AWSCognitoIdentityUserPool?
     var sentTo: String?
     
     
@@ -29,8 +27,6 @@ class SignUp3ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.pool = AppDelegate.defaultUserPool()
 
         // Do any additional setup after loading the view.
         
@@ -102,73 +98,51 @@ class SignUp3ViewController: UIViewController {
                                                             switch(signUpResult.signUpConfirmationState) {
                                                             case .confirmed:
                                                                 print("User is signed up and confirmed.")
+                                                                // If a user has signed up and is already confirmed, no need to show the confirmation screen. Just log them in and show the Main VC.
+                                                                self.signUserIn()
                                                             case .unconfirmed:
                                                                 print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
                                                                 
-                                                                if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
-                                    
-                                                                    signUpConfirmationViewController.sentTo = strongSelf.sentTo
-                                                                    signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
-                                    
-                                                                    strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
+                                                                DispatchQueue.main.async {
+                                                                    if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
+                                                                        
+                                                                        signUpConfirmationViewController.username = userNameValue
+                                                                        self.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
+                                                                    }
                                                                 }
                                                             case .unknown:
                                                                 print("Unexpected case")
+                                                                DispatchQueue.main.async {
+                                                                    self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                                    self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                    self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                }
                                                             }
                                                         } else if let error = error {
                                                             if let error = error as? AWSMobileClientError {
                                                                 switch(error) {
                                                                 case .usernameExists(let message):
                                                                     print(message)
+
+                                                                    DispatchQueue.main.async {
+                                                                        self.showErrorNotification(title: "Error", subtitle: message)
+                                                                        self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                        self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                    }
                                                                 default:
+                                                                    DispatchQueue.main.async {
+                                                                        self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                                        self.nextButtonSVGView.toggleProgress(showProgress: false)
+                                                                        self.nextButtonSVGView.isUserInteractionEnabled = true
+                                                                    }
                                                                     break
                                                                 }
-                                                            }
+                                                            } else {
                                                             print("\(error.localizedDescription)")
+                                                                self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                            }
                                                         }
             }
-            
-            //sign up the user
-//            self.pool?.signUp(userNameValue, password: passwordValue, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task) -> Any? in
-//                guard let strongSelf = self else { return nil }
-//                DispatchQueue.main.async(execute: {
-//                    
-//                    strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
-//                    strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
-//                    
-//                    if let error = task.error as NSError? {
-//                        let alertController = UIAlertController(title: "Error",
-//                                                                message: error.userInfo["message"] as? String,
-//                                                                 preferredStyle: .alert)
-//                        let retryAction = UIAlertAction(title: "Retry", style: .default, handler: nil)
-//                        alertController.addAction(retryAction)
-//                        
-//                        self?.present(alertController, animated: true, completion:  nil)
-//                    } else if let result = task.result  {
-//                        // handle the case where user has to confirm his identity via email / SMS
-//                        if (result.user.confirmedStatus != AWSCognitoIdentityUserStatus.confirmed) {
-//                            strongSelf.sentTo = result.codeDeliveryDetails?.destination
-//                            
-//                            if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
-//                                
-//                                signUpConfirmationViewController.sentTo = strongSelf.sentTo
-//                                signUpConfirmationViewController.user = strongSelf.pool?.getUser(strongSelf.emailAddress!)
-//                                
-//                                strongSelf.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
-//                            }
-//                            
-//                        } else {
-//                            
-//                            // If no confirmation required then just show the app.
-//                            strongSelf.navigationController?.finishProgress()
-////                            let constant = Constants()
-//                            strongSelf.present(Constants.getMainContentVC(), animated: true, completion: nil)
-//                        }
-//                    }
-//                    
-//                })
-//                return nil
-//            }
         }
         
         
@@ -204,6 +178,50 @@ class SignUp3ViewController: UIViewController {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+    
+    func signUserIn() {
+        
+        guard let email = self.emailAddress else {
+            self.showErrorNotification(title: "Error", subtitle: "Is your email address correct?")
+            return
+        }
+        
+        guard let password = self.passwordTextField.text, !password.isEmpty else {
+            self.showErrorNotification(title: "Error", subtitle: "Is your password correct?")
+            return
+        }
+        
+        AWSMobileClient.sharedInstance().signIn(username: email, password: self.passwordTextField.text!) { (result, error) in
+            
+            DispatchQueue.main.async {
+                self.nextButtonSVGView.toggleProgress(showProgress: false)
+                self.nextButtonSVGView.isUserInteractionEnabled = true
+            }
+            
+            if let error = error {
+                self.showErrorNotification(title: "Error", subtitle: "\(error)")
+                print("Error: \(error.localizedDescription)")
+            } else if let result = result {
+                switch (result.signInState) {
+                case .signedIn:
+                    print("User is signed in.")
+                    DispatchQueue.main.async {
+                        self.nextButtonSVGView.toggleProgress(showProgress: false)
+                        self.nextButtonSVGView.isUserInteractionEnabled = true
+                        let mainVC = Constants.getMainContentVC()
+                        self.present(mainVC, animated: true, completion: nil)
+                    }
+                default:
+                    self.showErrorNotification(title: "Error", subtitle: "Unable to sign in, please try again.")
+                    print("\(result.signInState.rawValue)")
+                }
+            } else {
+                self.showErrorNotification(title: "Error", subtitle: "Unable to talk to the server, please try again")
+            }
+            
+        }
+    }
+    
     func setupTextField() {
         
         passwordTextField.delegate = self
@@ -217,16 +235,6 @@ class SignUp3ViewController: UIViewController {
         passwordTextField.keyboardAppearance = .dark
     }
 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

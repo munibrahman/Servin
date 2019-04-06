@@ -37,17 +37,12 @@ class InitialViewController: UIViewController {
             self.present(welcomeVC, animated: true, completion: nil)
             print("user is in guest mode.")
         case .signedOut:
+            // Present the welcome view controller.
             self.present(welcomeVC, animated: true, completion: nil)
             print("user signed out")
         case .signedIn:
             print("user is signed in.")
-            // On the first time, just refresh all tokens in the keychain.
-            KeyChainStore.shared.refreshTokens()
-            BackendServer.shared.downloadProfileImage()
-            BackendServer.shared.fetchAttributes()
-//            let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
-//            self.present(navVC, animated: true, completion: nil) R
-            
+            // Present the actual app.
             let mainVC = Constants.getMainContentVC()
             self.present(mainVC, animated: true, completion: nil)
             
@@ -58,6 +53,8 @@ class InitialViewController: UIViewController {
             
             print("user logged in via federation, but currently needs new tokens")
         default:
+            // If everything fails, present the welcome vc.
+            self.present(welcomeVC, animated: true, completion: nil)
             print("unsupported")
         }
     }

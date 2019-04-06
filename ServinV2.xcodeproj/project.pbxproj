@@ -28,8 +28,6 @@
 		8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */; };
 		8B4D5724218A954D00A28CEA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D5723218A954D00A28CEA /* APIManager.swift */; };
 		8B4D962C218A4D260031E616 /* StripeConnectWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */; };
-		8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */; };
-		8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */; };
 		8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798A20D9800900774BDE /* UserProfileViewController.swift */; };
 		8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */; };
 		8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */; };
@@ -65,7 +63,6 @@
 		8BBFFC2A209D064600BA5D06 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */; };
 		8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */; };
 		8BBFFC2E209D663800BA5D06 /* SideMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */; };
-		8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */; };
 		8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */; };
 		8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */; };
 		8BBFFC36209D970000BA5D06 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */; };
@@ -158,8 +155,6 @@
 		8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		8B4D5723218A954D00A28CEA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConnectWebViewController.swift; sourceTree = "<group>"; };
-		8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwareMFAViewController.swift; sourceTree = "<group>"; };
-		8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SoftwareMFAViewController.xib; sourceTree = "<group>"; };
 		8B51798A20D9800900774BDE /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		8B51798C20D99C8900774BDE /* EditDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDiscoveryViewController.swift; sourceTree = "<group>"; };
 		8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoriesViewController.swift; sourceTree = "<group>"; };
@@ -201,7 +196,6 @@
 		8BBFFC29209D064600BA5D06 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		8BBFFC2B209D663800BA5D06 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		8BBFFC2C209D663800BA5D06 /* SideMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuTableViewCell.xib; sourceTree = "<group>"; };
-		8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinsTableViewController.swift; sourceTree = "<group>"; };
 		8BBFFC35209D970000BA5D06 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -470,7 +464,6 @@
 				8BA1F0F620B2AF21000EA3AC /* Pulley ViewControllers */,
 				8BA1F0F720B2AF50000EA3AC /* SVG Files */,
 				8BBFFC3F20A0E85200BA5D06 /* HomeMapSearchBar.swift */,
-				8BBFFC2F209D8EA000BA5D06 /* TestViewController.swift */,
 				8BBFFC27209D032000BA5D06 /* SignUp Login ViewControllers */,
 				8BBFFC28209D034500BA5D06 /* Google Map Json */,
 				8B78416D20B86EC1005C87DA /* Side Menu */,
@@ -534,8 +527,6 @@
 				8BEE79BF20F56A0600DB768C /* MFAViewController.xib */,
 				8BEE79C420F66FED00DB768C /* EmailActionSheetPresenter.swift */,
 				8BEE79C620F6966200DB768C /* GoForwardMacawView.swift */,
-				8B50DA2820FD4912004C59EB /* SoftwareMFAViewController.swift */,
-				8B50DA2920FD4912004C59EB /* SoftwareMFAViewController.xib */,
 				8B51FD2C210235F200E6563E /* SelectCategoriesViewController.swift */,
 			);
 			path = "SignUp Login ViewControllers";
@@ -758,7 +749,6 @@
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
 				8BC006CA21E28A8400B292B0 /* awsconfiguration.json in Resources */,
 				8BEE79C120F56A0600DB768C /* MFAViewController.xib in Resources */,
-				8B50DA2B20FD4912004C59EB /* SoftwareMFAViewController.xib in Resources */,
 				8B52724920F81F0300425717 /* CognitoConfig.plist in Resources */,
 				8B81592020AF746C00EDA1FC /* >_clear.svg in Resources */,
 				8BA6456420830D44006EEEC5 /* LaunchScreen.storyboard in Resources */,
@@ -853,12 +843,15 @@
 				"${BUILT_PRODUCTS_DIR}/JWTDecode/JWTDecode.framework",
 				"${BUILT_PRODUCTS_DIR}/KYNavigationProgress/KYNavigationProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Macaw/Macaw.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PinpointKit/PinpointKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Pulley/Pulley.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
 				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Stripe/Stripe.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/TLPhotoPicker/TLPhotoPicker.framework",
@@ -882,12 +875,15 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWTDecode.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KYNavigationProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Macaw.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PinpointKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pulley.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stripe.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TLPhotoPicker.framework",
@@ -944,7 +940,6 @@
 			files = (
 				8BDE4DCA20C4672800967153 /* EditProfileViewController.swift in Sources */,
 				8BEE79C520F66FED00DB768C /* EmailActionSheetPresenter.swift in Sources */,
-				8BBFFC30209D8EA000BA5D06 /* TestViewController.swift in Sources */,
 				8BD3834920CBCE7700B4B653 /* CustomPhotoPickerViewController.swift in Sources */,
 				8BD3834620CB7EB000B4B653 /* PostAdImageCollectionViewCell.swift in Sources */,
 				8B53487B2134FF20009E4C3E /* KeyChainStore.swift in Sources */,
@@ -970,7 +965,6 @@
 				8BD2E5892124C47C00DFCFC6 /* PayoutSetupViewController.swift in Sources */,
 				8BEE79C720F6966200DB768C /* GoForwardMacawView.swift in Sources */,
 				8BC7D0C921227B5900F2CD8F /* DeeplinkParser.swift in Sources */,
-				8B50DA2A20FD4912004C59EB /* SoftwareMFAViewController.swift in Sources */,
 				8B45C20020D7173C009FF0F9 /* DiscoveryFullScreenMapViewController.swift in Sources */,
 				8BA6455C20830D44006EEEC5 /* SlaveMapViewController.swift in Sources */,
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,

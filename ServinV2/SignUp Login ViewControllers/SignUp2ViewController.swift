@@ -43,7 +43,7 @@ class SignUp2ViewController: UIViewController {
         
         let mainSB = UIStoryboard.init(name: "Main", bundle: nil)
     
-        if emailAddressTextField.text?.isEmpty ?? true {
+        guard let emailText = emailAddressTextField.text, !emailText.isEmpty else {
             
             let alertController = UIAlertController.init(title: nil, message: "Are you sure that's correct?", preferredStyle: .alert)
             
@@ -52,19 +52,25 @@ class SignUp2ViewController: UIViewController {
             
             self.present(alertController, animated: true, completion: nil)
             
-           
-        } else {
+            return
+        }
+        
+        
+        if !self.isValidEmail(emailID: emailText) {
             
-            if let thirdSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController") as? SignUp3ViewController {
-                
-                self.emailAddressTextField.text = self.emailAddressTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-                
-                thirdSignUpVC.emailAddress = self.emailAddressTextField.text
-                thirdSignUpVC.firstName = self.firstName
-                thirdSignUpVC.lastName = self.lastName
-                
-                self.navigationController?.pushViewController(thirdSignUpVC, animated: true)
-            }
+            self.showWarningNotification(title: "Email format incorrect", subtitle: "Are you sure that looks right?")
+            return
+        }
+        
+        if let thirdSignUpVC = mainSB.instantiateViewController(withIdentifier: "SignUp3ViewController") as? SignUp3ViewController {
+            
+            self.emailAddressTextField.text = self.emailAddressTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            thirdSignUpVC.emailAddress = self.emailAddressTextField.text
+            thirdSignUpVC.firstName = self.firstName
+            thirdSignUpVC.lastName = self.lastName
+            
+            self.navigationController?.pushViewController(thirdSignUpVC, animated: true)
         }
         
         

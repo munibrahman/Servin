@@ -988,23 +988,6 @@
             </objects>
             <point key="canvasLocation" x="838" y="6919"/>
         </scene>
-        <!--Test View Controller-->
-        <scene sceneID="uml-AA-n17">
-            <objects>
-                <viewController id="xIh-JM-DL5" customClass="TestViewController" customModule="ServinV2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jV2-an-Dwz"/>
-                        <viewControllerLayoutGuide type="bottom" id="uW2-16-2iM"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UyS-6r-MJX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Y4K-83-VBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1208.8" y="1755.4722638680662"/>
-        </scene>
         <!--Hello-->
         <scene sceneID="8AZ-on-pko">
             <objects>
@@ -1664,51 +1647,23 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hate Verifications?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T23-CI-MZ4">
-                                <rect key="frame" x="16" y="450" width="343" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can still use the app without verifying your email, but you will need to verify it later on." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bz5-eU-c2t">
-                                <rect key="frame" x="16" y="494" width="343" height="79"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXV-2b-X7i">
-                                <rect key="frame" x="16" y="581" width="343" height="36"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Skip Verification">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.22352941179999999" green="0.2156862745" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="uUG-VB-qvz" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="2nh-pm-ned"/>
-                            <constraint firstAttribute="trailing" secondItem="bz5-eU-c2t" secondAttribute="trailing" constant="16" id="6I2-Mr-Zm9"/>
-                            <constraint firstItem="PXV-2b-X7i" firstAttribute="top" secondItem="bz5-eU-c2t" secondAttribute="bottom" constant="8" id="8nb-9x-W6v"/>
                             <constraint firstItem="TJF-bL-jIc" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="88" id="C1n-lY-rYs"/>
                             <constraint firstAttribute="trailing" secondItem="uUG-VB-qvz" secondAttribute="trailing" constant="16" id="DzU-NV-72e"/>
                             <constraint firstItem="a0N-CN-Frb" firstAttribute="top" secondItem="TJF-bL-jIc" secondAttribute="bottom" constant="39" id="KTA-96-NaK"/>
-                            <constraint firstAttribute="trailing" secondItem="T23-CI-MZ4" secondAttribute="trailing" constant="16" id="LUo-Xg-9Ae"/>
-                            <constraint firstItem="PXV-2b-X7i" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="NgJ-UG-j09"/>
                             <constraint firstAttribute="trailing" secondItem="LqJ-5p-eqx" secondAttribute="trailing" constant="16" id="PwA-LS-xgD"/>
                             <constraint firstAttribute="trailing" secondItem="TJF-bL-jIc" secondAttribute="trailing" constant="87" id="Qlp-wr-n6B"/>
                             <constraint firstItem="TJF-bL-jIc" firstAttribute="top" secondItem="LqJ-5p-eqx" secondAttribute="bottom" constant="25" id="R10-jN-JZM"/>
-                            <constraint firstItem="vqO-ah-sZv" firstAttribute="top" secondItem="PXV-2b-X7i" secondAttribute="bottom" constant="50" id="Wdu-Zw-plp"/>
                             <constraint firstItem="uUG-VB-qvz" firstAttribute="top" secondItem="pcX-37-scL" secondAttribute="bottom" constant="40" id="Wpo-Nr-xjh"/>
                             <constraint firstItem="lcL-ah-0iw" firstAttribute="top" secondItem="a0N-CN-Frb" secondAttribute="bottom" constant="8" id="bJE-Zb-csX"/>
                             <constraint firstItem="LqJ-5p-eqx" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="cXu-ty-ylh"/>
                             <constraint firstItem="LqJ-5p-eqx" firstAttribute="top" secondItem="uUG-VB-qvz" secondAttribute="bottom" constant="8" id="fUY-BD-etm"/>
-                            <constraint firstItem="bz5-eU-c2t" firstAttribute="top" secondItem="T23-CI-MZ4" secondAttribute="bottom" constant="8" id="iw5-FR-9aN"/>
                             <constraint firstAttribute="trailing" secondItem="lcL-ah-0iw" secondAttribute="trailing" constant="16" id="l6Z-Ic-6A5"/>
-                            <constraint firstItem="T23-CI-MZ4" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="mqB-iN-5f8"/>
                             <constraint firstItem="lcL-ah-0iw" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="rCn-UG-zZ7"/>
-                            <constraint firstAttribute="trailing" secondItem="PXV-2b-X7i" secondAttribute="trailing" constant="16" id="tHo-PM-L7y"/>
                             <constraint firstAttribute="trailing" secondItem="a0N-CN-Frb" secondAttribute="trailing" constant="16" id="tTG-bV-JpF"/>
-                            <constraint firstItem="bz5-eU-c2t" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="ufy-oT-c1W"/>
                             <constraint firstItem="a0N-CN-Frb" firstAttribute="leading" secondItem="JJk-ge-HLS" secondAttribute="leading" constant="16" id="yKq-LN-BqA"/>
                         </constraints>
                     </view>

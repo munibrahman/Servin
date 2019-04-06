@@ -9,7 +9,7 @@
 import UIKit
 import Macaw
 import AWSMobileClient
-//import AWSCognitoIdentityProvider
+import NotificationBannerSwift
 
 
 // TODO: User awsmobileclient
@@ -17,8 +17,7 @@ class ResetPasswordViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
-    
-//    var user: AWSCognitoIdentityUser?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +66,8 @@ class ResetPasswordViewController: UIViewController {
                     print("Confirmation code sent via \(forgotPasswordResult.codeDeliveryDetails!.deliveryMedium) to: \(forgotPasswordResult.codeDeliveryDetails!.destination!)")
                     
                     DispatchQueue.main.async {
+                        self.nextButtonSVGView.toggleProgress(showProgress: false)
+                        self.nextButtonSVGView.isUserInteractionEnabled = true
                         if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmForgotPasswordViewController") as? ConfirmForgotPasswordViewController {
                             vc.username = username
                             self.navigationController?.pushViewController(vc, animated: true)
@@ -75,48 +76,19 @@ class ResetPasswordViewController: UIViewController {
                     
                 default:
                     print("Error: Invalid case.")
+                    
                 }
             } else if let error = error {
                 print("Error occurred: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error)", leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
+                    banner.show()
+                    self.nextButtonSVGView.toggleProgress(showProgress: false)
+                    self.nextButtonSVGView.isUserInteractionEnabled = true
+                }
             }
         }
         
-        
-//        self.user = AppDelegate.defaultUserPool().getUser(self.emailTextField.text!)
-//        self.user?.forgotPassword().continueWith{[weak self] (task: AWSTask) -> AnyObject? in
-//            guard let strongSelf = self else {return nil}
-//            DispatchQueue.main.async(execute: {
-//
-//                strongSelf.nextButtonSVGView.toggleProgress(showProgress: false)
-//                strongSelf.nextButtonSVGView.isUserInteractionEnabled = true
-//
-//                if let error = task.error as NSError? {
-//
-//                    // Error in resetting the passoword
-//                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-//                                                            message: error.userInfo["message"] as? String,
-//                                                            preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-//                    alertController.addAction(okAction)
-//
-//                    self?.present(alertController, animated: true, completion:  nil)
-//                } else {
-//
-//                    // Password reset is sent, open a new confirm forgot pass VC
-//
-//                    if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmForgotPasswordViewController") as? ConfirmForgotPasswordViewController {
-//
-//                        vc.user = self?.user
-//
-//                        strongSelf.navigationController?.pushViewController(vc, animated: true)
-//                    }
-//
-//
-//
-//                }
-//            })
-//            return nil
-//        }
     }
     
     func setupNextButton() {

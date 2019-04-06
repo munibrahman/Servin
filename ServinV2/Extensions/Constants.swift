@@ -26,6 +26,10 @@ class Constants {
     
     static func getMainContentVC() -> UINavigationController {
         
+        // Refresh all the tokens right when this view is being displayed.
+        KeyChainStore.shared.refreshTokens()
+        BackendServer.shared.downloadProfileImage()
+        BackendServer.shared.fetchAttributes()
         
         if let pulleyVC = pulleyMasterController {
             return pulleyVC

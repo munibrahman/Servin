@@ -8,12 +8,29 @@
 
 import Foundation
 import UIKit
+import NotificationBannerSwift
 
 extension Double
 {
     func truncate(places : Int)-> Double
     {
         return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+    }
+}
+
+
+extension UIViewController  {
+    func showErrorNotification(title: String?, subtitle: String?) {
+        DispatchQueue.main.async {
+            let banner = NotificationBanner.init(title: title, subtitle: subtitle, leftView: nil, rightView: nil, style: BannerStyle.danger, colors: nil)
+            banner.show()
+        }
+    }
+    func showWarningNotification(title: String?, subtitle: String?) {
+        DispatchQueue.main.async {
+            let banner = NotificationBanner.init(title: title, subtitle: subtitle, leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
+            banner.show()
+        }
     }
 }
 
@@ -277,7 +294,19 @@ extension UIViewController {
 }
 
 
-
+extension UIViewController {
+    /// Validate email string
+    ///
+    /// - parameter email: A String that rappresent an email address
+    ///
+    /// - returns: A Boolean value indicating whether an email is valid.
+    // https://www.iostutorialjunction.com/2018/01/email-address-validation-in-swift-beginners-tutorial-for-swift-learners.html
+    func isValidEmail(emailID:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: emailID)
+    }
+}
 
 
 

@@ -15,14 +15,17 @@
 // limitations under the License.
 //
 
+// Description: This view controller is to be presented after a user has been signed up, and they still require the need to verify their email address.
+// It allows them to open an email provider of their choice, so that they can click on the link and be taken to a verification place.
+
 import Foundation
-import AWSCognitoIdentityProvider
 import Macaw
+import AWSMobileClient
+import NotificationBannerSwift
 
 class ConfirmSignUpViewController : UIViewController, ChooseEmailActionSheetPresenter {
     
-    var sentTo: String?
-    var user: AWSCognitoIdentityUser?
+    var username: String?
     
     @IBOutlet weak var sentToLabel: UILabel!
     @IBOutlet var openEmailButton: UIButton!
@@ -33,7 +36,7 @@ class ConfirmSignUpViewController : UIViewController, ChooseEmailActionSheetPres
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.sentToLabel.text = "Code sent to: \(self.sentTo!)"
+        self.sentToLabel.text = "Code sent to: \(self.username!)"
         
         // Instantiates the chosse email action sheet
         chooseEmailActionSheet = setupChooseEmailActionSheet()
@@ -83,28 +86,22 @@ class ConfirmSignUpViewController : UIViewController, ChooseEmailActionSheetPres
     
     // handle code resend action
     @IBAction func resend(_ sender: AnyObject) {
-        self.user?.resendConfirmationCode().continueWith {[weak self] (task: AWSTask) -> AnyObject? in
-            guard let _ = self else { return nil }
-            DispatchQueue.main.async(execute: {
-                if let error = task.error as NSError? {
-                    let alertController = UIAlertController(title: error.userInfo["__type"] as? String,
-                                                            message: error.userInfo["message"] as? String,
-                                                            preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    
-                    self?.present(alertController, animated: true, completion:  nil)
-                } else if let result = task.result {
-                    let alertController = UIAlertController(title: "Code Resent",
-                                                            message: "Code resent to \(result.codeDeliveryDetails?.destination! ?? "no message")",
-                        preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                    alertController.addAction(okAction)
-                    self?.present(alertController, animated: true, completion: nil)
+        AWSMobileClient.sharedInstance().resendSignUpCode(username: username!, completionHandler: { (result, error) in
+            if let signUpResult = result {
+                // Show a success banner that the code was resent to the email provided
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner.init(title: "Success", subtitle: "A verification code has been sent via \(signUpResult.codeDeliveryDetails!.deliveryMedium) to \(signUpResult.codeDeliveryDetails!.destination!)", leftView: nil, rightView: nil, style: BannerStyle.success, colors: nil)
+                    banner.show()
                 }
-            })
-            return nil
-        }
+            } else if let error = error {
+                print("\(error.localizedDescription)")
+                // Show an error banner to the user
+                DispatchQueue.main.async {
+                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error)", leftView: nil, rightView: nil, style: BannerStyle.danger, colors: nil)
+                    banner.show()
+                }
+            }
+        })
     }
     
 }
