@@ -45,9 +45,9 @@ class SignUp2ViewController: UIViewController {
     
         guard let emailText = emailAddressTextField.text, !emailText.isEmpty else {
             
-            let alertController = UIAlertController.init(title: nil, message: "Are you sure that's correct?", preferredStyle: .alert)
+            let alertController = UIAlertController.init(title: nil, message: "Email field is empty", preferredStyle: .alert)
             
-            let okAction = UIAlertAction.init(title: "Let me double check", style: .default, handler: nil)
+            let okAction = UIAlertAction.init(title: "Ok", style: .default, handler: nil)
             alertController.addAction(okAction)
             
             self.present(alertController, animated: true, completion: nil)
@@ -58,7 +58,7 @@ class SignUp2ViewController: UIViewController {
         
         if !self.isValidEmail(emailID: emailText) {
             
-            self.showWarningNotification(title: "Email format incorrect", subtitle: "Are you sure that looks right?")
+            self.showWarningNotification(title: "Incorrect email format", subtitle: "Are you sure that looks right?")
             return
         }
         
@@ -119,7 +119,7 @@ class SignUp2ViewController: UIViewController {
     
     // This label shows the text for users to click upon and sign up for finding out when servin will be launched globally.
     func setupNotificationLabel () {
-        askForNotifLabel.text = "Click here to be notified when we will be open to the world!"
+        askForNotifLabel.text = "Click here to be notified when we come to your city!"
         let text = (askForNotifLabel.text)!
         let underlineAttriString = NSMutableAttributedString(string: text)
         let clickRange = (text as NSString).range(of: "Click here")

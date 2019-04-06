@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import AWSCognitoIdentityProvider
 import AWSAppSync
 
 class ProfileViewController: UIViewController {
@@ -95,7 +94,7 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.numberOfLines = 0
         othersSayAboutMeLabel.sizeToFit()
         
-        
+        // TODO: Fetch image from your own s3 bucket
 //        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
 //        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
 

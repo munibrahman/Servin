@@ -19,6 +19,7 @@ extension Double
 }
 
 
+// Allows for any view controller to show error, warning or success messages when something happens
 extension UIViewController  {
     func showErrorNotification(title: String?, subtitle: String?) {
         DispatchQueue.main.async {
@@ -29,6 +30,12 @@ extension UIViewController  {
     func showWarningNotification(title: String?, subtitle: String?) {
         DispatchQueue.main.async {
             let banner = NotificationBanner.init(title: title, subtitle: subtitle, leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
+            banner.show()
+        }
+    }
+    func showSuccessNotification(title: String?, subtitle: String?) {
+        DispatchQueue.main.async {
+            let banner = NotificationBanner.init(title: title, subtitle: subtitle, leftView: nil, rightView: nil, style: BannerStyle.success, colors: nil)
             banner.show()
         }
     }

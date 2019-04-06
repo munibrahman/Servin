@@ -113,7 +113,7 @@ class SignUp3ViewController: UIViewController {
                                                             case .unknown:
                                                                 print("Unexpected case")
                                                                 DispatchQueue.main.async {
-                                                                    self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                                    self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again.")
                                                                     self.nextButtonSVGView.toggleProgress(showProgress: false)
                                                                     self.nextButtonSVGView.isUserInteractionEnabled = true
                                                                 }
@@ -131,7 +131,7 @@ class SignUp3ViewController: UIViewController {
                                                                     }
                                                                 default:
                                                                     DispatchQueue.main.async {
-                                                                        self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                                        self.showWarningNotification(title: "Error", subtitle: "Please check your email and password.")
                                                                         self.nextButtonSVGView.toggleProgress(showProgress: false)
                                                                         self.nextButtonSVGView.isUserInteractionEnabled = true
                                                                     }
@@ -139,7 +139,7 @@ class SignUp3ViewController: UIViewController {
                                                                 }
                                                             } else {
                                                             print("\(error.localizedDescription)")
-                                                                self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again or contact us.")
+                                                                self.showWarningNotification(title: "Error", subtitle: "Unable sign up at this time, please try again.")
                                                             }
                                                         }
             }

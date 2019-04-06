@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import AWSCognitoIdentityProvider
 import Eureka
 import AWSMobileClient
 
@@ -286,21 +285,12 @@ class SettingsViewController: FormViewController {
                     let logout = UIAlertAction.init(title: "Logout", style: UIAlertAction.Style.destructive, handler: { (action) in
                         print("Sign out")
 
-                        // TODO: Use AWSMobileClient, sign out, clear everything and show the very first screen.
+                        // Sign out, clear everything and show the very first screen.
                         AWSMobileClient.sharedInstance().signOut()
-                        
                         print("Signed out the person")
                         DefaultsWrapper.removeEverything()
                         KeyChainStore.shared.removeAllKeys()
                         self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                        
-//                        if let user = AppDelegate.defaultUserPool().currentUser() {
-//                            user.signOutAndClearLastKnownUser()
-//                            DefaultsWrapper.removeEverything()
-//                            KeyChainStore.shared.removeAllKeys()
-//                            print("Signed out the user")
-//                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//                        }
                     })
                     
                     actionController.addAction(cancel)
@@ -559,39 +549,31 @@ class ChangePasswordViewController : UIViewController, UITextFieldDelegate {
         
         self.navigationItem.rightBarButtonItem = progressBarButton
         
-
-        // TODO: AWSMobileClient to reset the password
-//        AppDelegate.defaultUserPool().currentUser()?.changePassword(currentPassword.text!, proposedPassword: newPassword.text!).continueWith(block: { [weak self] (task: AWSTask) -> Any? in
-//            guard let strongSelf = self else {return nil}
-//            DispatchQueue.main.async(execute: {
-//
-//                strongSelf.navigationItem.rightBarButtonItem = strongSelf.doneButton
-//
-//                if let error = task.error as NSError? {
-//
-//
-//                    let alertController = UIAlertController(title: "Error",
-//                                                            message: error.userInfo["message"] as? String,
-//                                                            preferredStyle: .alert)
-//                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-//                    alertController.addAction(okAction)
-//
-//                    strongSelf.present(alertController, animated: true, completion:  nil)
-//                } else {
-//
-//                    strongSelf.navigationController?.popViewController(animated: true)
-//
-//                }
-//            })
-//            return nil
-//        })
+        AWSMobileClient.sharedInstance().changePassword(currentPassword: currentText, proposedPassword: newText) { (error) in
+            
+            DispatchQueue.main.async {
+                self.navigationItem.rightBarButtonItem = self.doneButton
+            }
+            
+            if let error = error as? AWSMobileClientError {
+                print(error)
+                self.showErrorNotification(title: "Error", subtitle: "Please ensure that your old password is correct")
+            } else {
+                print("Must have changed password successfully, even though I can't access the results....")
+            DispatchQueue.main.async {
+                    self.showSuccessNotification(title: "Success!", subtitle: "Successfully changed password!")
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
+            }
+        }
         
         
     }
     
 }
 
-
+// TODO: Fix mfa via awsmobileclient, right now its not a priority.
 private class MFASettingsViewController: UIViewController {
     
     var mfaSwitch: UISwitch!

@@ -8,7 +8,6 @@
 
 import UIKit
 import SideMenu
-import AWSCognitoIdentityProvider
 import AWSAppSync
 
 class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -62,19 +61,6 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
         } else {
             leftOverSpace = UIScreen.main.bounds.size.height - totalSize - self.statusBarHeight
         }
-        
-        // TODO: Remove this once you get their first name from appsync
-//        let user = AppDelegate.defaultUserPool().currentUser()
-//
-//        if user != nil {
-//            user?.getDetails().continueOnSuccessWith(block: { (task) -> Any? in
-//                task.result?.userAttributes?.forEach({ (attribute) in
-//                    if attribute.name == "given_name" {
-//                        print("User's first name is \(attribute.value!)")
-//                    }
-//                })
-//            })
-//        }
         
         optionsTableViewController.backgroundColor = .red
         

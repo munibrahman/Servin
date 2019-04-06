@@ -81,7 +81,7 @@ class ResetPasswordViewController: UIViewController {
             } else if let error = error {
                 print("Error occurred: \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error)", leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
+                    let banner = NotificationBanner.init(title: "Error", subtitle: "\(error.localizedDescription)", leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
                     banner.show()
                     self.nextButtonSVGView.toggleProgress(showProgress: false)
                     self.nextButtonSVGView.isUserInteractionEnabled = true

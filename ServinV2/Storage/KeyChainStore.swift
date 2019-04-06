@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AWSCognitoIdentityProvider
 import JWTDecode
 import AWSMobileClient
 
