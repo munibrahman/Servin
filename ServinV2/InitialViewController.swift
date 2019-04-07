@@ -14,13 +14,28 @@ import AWSMobileClient
 
 class InitialViewController: UIViewController {
 
+    var servinLogo: UIImageView = {
+        
+        let imageView = UIImageView.init()
+        imageView.image = UIImage.init(named: "login_logo_servin")
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = UIColor.greyBackgroundColor
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(servinLogo)
+        servinLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        servinLogo.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        servinLogo.widthAnchor.constraint(equalToConstant: 116).isActive = true
+        servinLogo.heightAnchor.constraint(equalToConstant: 210).isActive = true
 
         // Do any additional setup after loading the view.
     }

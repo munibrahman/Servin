@@ -18,20 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_logo_servin" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-k1-e4L">
-                                <rect key="frame" x="129.5" y="238.5" width="116" height="210"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="116" id="M2C-fg-aeo"/>
-                                    <constraint firstAttribute="height" constant="210" id="idg-EZ-Y9M"/>
-                                    <constraint firstAttribute="width" secondItem="A1z-k1-e4L" secondAttribute="height" multiplier="58:105" id="z6k-BA-PGl"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_logo_servin" translatesAutoresizingMaskIntoConstraints="NO" id="A1z-k1-e4L">
+                                <rect key="frame" x="130" y="228" width="115" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.22352941176470587" green="0.21568627450980393" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="A1z-k1-e4L" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="0Be-dP-iik"/>
-                            <constraint firstItem="A1z-k1-e4L" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="meO-xK-CyU"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
