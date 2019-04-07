@@ -4,7 +4,7 @@ import AWSAppSync
 
 public final class CreateConversationMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateConversation($discoveryId: String!) {\n  createConversation(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n    }\n  }\n}"
+    "mutation CreateConversation($discoveryId: String!) {\n  createConversation(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n    }\n  }\n}"
 
   public var discoveryId: String
 
@@ -34,8 +34,8 @@ public final class CreateConversationMutation: GraphQLMutation {
     }
 
     /// Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.
-    /// # You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)
-    /// # createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation
+    /// You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)
+    /// createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation
     public var createConversation: CreateConversation? {
       get {
         return (snapshot["createConversation"] as? Snapshot).flatMap { CreateConversation(snapshot: $0) }
@@ -312,6 +312,7 @@ public final class CreateConversationMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -320,8 +321,8 @@ public final class CreateConversationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -443,13 +444,23 @@ public final class CreateConversationMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -704,6 +715,7 @@ public final class CreateConversationMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -712,8 +724,8 @@ public final class CreateConversationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -835,13 +847,23 @@ public final class CreateConversationMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -1210,6 +1232,7 @@ public final class CreateConversationMutation: GraphQLMutation {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -1218,8 +1241,8 @@ public final class CreateConversationMutation: GraphQLMutation {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -1341,13 +1364,23 @@ public final class CreateConversationMutation: GraphQLMutation {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -1595,6 +1628,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -1603,8 +1637,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -1706,13 +1740,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -1892,6 +1936,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -1900,8 +1945,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -2003,13 +2048,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -2029,6 +2084,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -2037,8 +2093,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -2140,13 +2196,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -2171,6 +2237,7 @@ public final class CreateConversationMutation: GraphQLMutation {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -2179,8 +2246,8 @@ public final class CreateConversationMutation: GraphQLMutation {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -2302,13 +2369,23 @@ public final class CreateConversationMutation: GraphQLMutation {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -2556,6 +2633,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -2564,8 +2642,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -2667,13 +2745,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -2853,6 +2941,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -2861,8 +2950,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -2964,13 +3053,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -2990,6 +3089,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -2998,8 +3098,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -3101,13 +3201,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -3324,6 +3434,7 @@ public final class CreateConversationMutation: GraphQLMutation {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -3332,8 +3443,8 @@ public final class CreateConversationMutation: GraphQLMutation {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -3455,13 +3566,23 @@ public final class CreateConversationMutation: GraphQLMutation {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -3709,6 +3830,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -3717,8 +3839,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -3820,13 +3942,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -4006,6 +4138,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -4014,8 +4147,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -4117,13 +4250,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -4143,6 +4286,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -4151,8 +4295,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -4254,13 +4398,23 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -4274,7 +4428,7 @@ public final class CreateConversationMutation: GraphQLMutation {
 
 public final class CreateMessageMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateMessage($content: String, $conversationId: ID!) {\n  createMessage(content: $content, conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    sender\n  }\n}"
+    "mutation CreateMessage($content: String, $conversationId: ID!) {\n  createMessage(content: $content, conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var content: String?
   public var conversationId: GraphQLID
@@ -4306,8 +4460,8 @@ public final class CreateMessageMutation: GraphQLMutation {
     }
 
     /// Create a message in a Conversation.
-    /// # We only let the users pass in content and the conversation id, we take care of created at and message id.
-    /// # createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message
+    /// We only let the users pass in content and the conversation id, we take care of created at and message id.
+    /// createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message
     public var createMessage: CreateMessage? {
       get {
         return (snapshot["createMessage"] as? Snapshot).flatMap { CreateMessage(snapshot: $0) }
@@ -4446,6 +4600,7 @@ public final class CreateMessageMutation: GraphQLMutation {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -4454,8 +4609,8 @@ public final class CreateMessageMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -4577,13 +4732,23 @@ public final class CreateMessageMutation: GraphQLMutation {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -4907,6 +5072,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -4915,8 +5081,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -5018,13 +5184,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -5450,6 +5626,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -5458,8 +5635,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -5581,13 +5758,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -5843,6 +6030,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -5851,8 +6039,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -5974,13 +6162,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -6076,6 +6274,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -6084,8 +6283,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -6207,13 +6406,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -6312,6 +6521,7 @@ public final class CreateMessageMutation: GraphQLMutation {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -6320,8 +6530,8 @@ public final class CreateMessageMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -6443,13 +6653,23 @@ public final class CreateMessageMutation: GraphQLMutation {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -6773,6 +6993,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -6781,8 +7002,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -6884,13 +7105,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -7316,6 +7547,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -7324,8 +7556,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -7447,13 +7679,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -7709,6 +7951,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -7717,8 +7960,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -7840,13 +8083,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -7942,6 +8195,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -7950,8 +8204,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -8073,13 +8327,23 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -8166,7 +8430,7 @@ public final class CreateMessageMutation: GraphQLMutation {
 
 public final class CreateUserConversationsMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {\n  createUserConversations(conversationId: $conversationId, userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    userId\n  }\n}"
+    "mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {\n  createUserConversations(conversationId: $conversationId, userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var conversationId: GraphQLID
   public var userId: GraphQLID
@@ -8198,9 +8462,9 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
     }
 
     /// Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
-    /// # No need to create a new user
-    /// # createUser(username: String!): User
-    /// #  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
+    /// No need to create a new user
+    /// createUser(username: String!): User
+    /// Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
     public var createUserConversations: CreateUserConversation? {
       get {
         return (snapshot["createUserConversations"] as? Snapshot).flatMap { CreateUserConversation(snapshot: $0) }
@@ -8712,6 +8976,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -8720,8 +8985,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -8823,13 +9088,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -9255,6 +9530,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -9263,8 +9539,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -9386,13 +9662,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -9830,6 +10116,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -9838,8 +10125,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -9941,13 +10228,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -9967,6 +10264,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -9975,8 +10273,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -10078,13 +10376,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -10296,6 +10604,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -10304,8 +10613,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -10407,13 +10716,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -10437,6 +10756,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -10445,8 +10765,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -10568,13 +10888,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -11078,6 +11408,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -11086,8 +11417,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -11189,13 +11520,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -11215,6 +11556,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -11223,8 +11565,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -11326,13 +11668,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -11468,6 +11820,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -11476,8 +11829,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -11599,13 +11952,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -11701,6 +12064,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -11709,8 +12073,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -11832,13 +12196,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -12126,6 +12500,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -12134,8 +12509,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -12257,13 +12632,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -12361,6 +12746,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -12369,8 +12755,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -12492,13 +12878,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -12746,6 +13142,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -12754,8 +13151,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -12857,13 +13254,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -13043,6 +13450,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -13051,8 +13459,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -13154,13 +13562,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -13180,6 +13598,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -13188,8 +13607,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -13291,13 +13710,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -13573,6 +14002,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -13581,8 +14011,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -13704,13 +14134,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -13806,6 +14246,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -13814,8 +14255,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -13937,13 +14378,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -14153,6 +14604,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -14161,8 +14613,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -14284,13 +14736,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -14545,6 +15007,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -14553,8 +15016,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -14676,13 +15139,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -15129,6 +15602,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -15137,8 +15611,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -15260,13 +15734,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -15523,6 +16007,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -15531,8 +16016,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -15654,13 +16139,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -15984,6 +16479,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -15992,8 +16488,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -16095,13 +16591,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -16527,6 +17033,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -16535,8 +17042,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -16658,13 +17165,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -16920,6 +17437,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -16928,8 +17446,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -17051,13 +17569,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -17153,6 +17681,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -17161,8 +17690,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -17284,13 +17813,23 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -17377,7 +17916,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
 
 public final class UpdateProfileInformationMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateProfileInformation($given_name: String, $family_name: String, $about: String, $school: String) {\n  updateProfileInformation(given_name: $given_name, family_name: $family_name, about: $about, school: $school) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n  }\n}"
+    "mutation UpdateProfileInformation($given_name: String, $family_name: String, $about: String, $school: String) {\n  updateProfileInformation(given_name: $given_name, family_name: $family_name, about: $about, school: $school) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var given_name: String?
   public var family_name: String?
@@ -17439,6 +17978,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
         GraphQLField("given_name", type: .scalar(String.self)),
         GraphQLField("school", type: .scalar(String.self)),
         GraphQLField("categories", type: .list(.scalar(String.self))),
+        GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
       ]
 
       public var snapshot: Snapshot
@@ -17447,8 +17987,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
       }
 
       public var __typename: String {
@@ -17570,13 +18110,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
         }
       }
 
-      /// catetgories
+      /// categories
       public var categories: [String?]? {
         get {
           return snapshot["categories"] as? [String?]
         }
         set {
           snapshot.updateValue(newValue, forKey: "categories")
+        }
+      }
+
+      /// Determines whether a person has already selected categories for the first time or not.
+      public var hasChosenCategories: Bool? {
+        get {
+          return snapshot["hasChosenCategories"] as? Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "hasChosenCategories")
         }
       }
 
@@ -17976,6 +18526,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -17984,8 +18535,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -18087,13 +18638,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -18519,6 +19080,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -18527,8 +19089,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -18650,13 +19212,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -19094,6 +19666,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -19102,8 +19675,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -19205,13 +19778,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -19231,6 +19814,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -19239,8 +19823,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -19342,13 +19926,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -19560,6 +20154,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -19568,8 +20163,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -19671,13 +20266,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -19701,6 +20306,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -19709,8 +20315,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -19832,13 +20438,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -20253,6 +20869,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -20261,8 +20878,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -20384,13 +21001,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -20645,6 +21272,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -20653,8 +21281,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -20776,13 +21404,23 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -21027,7 +21665,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
 
 public final class UpdateCategoriesMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateCategories($list: [String]) {\n  updateCategories(list: $list) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n  }\n}"
+    "mutation UpdateCategories($list: [String]) {\n  updateCategories(list: $list) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var list: [String?]?
 
@@ -21083,6 +21721,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
         GraphQLField("given_name", type: .scalar(String.self)),
         GraphQLField("school", type: .scalar(String.self)),
         GraphQLField("categories", type: .list(.scalar(String.self))),
+        GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
       ]
 
       public var snapshot: Snapshot
@@ -21091,8 +21730,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
       }
 
       public var __typename: String {
@@ -21214,13 +21853,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
         }
       }
 
-      /// catetgories
+      /// categories
       public var categories: [String?]? {
         get {
           return snapshot["categories"] as? [String?]
         }
         set {
           snapshot.updateValue(newValue, forKey: "categories")
+        }
+      }
+
+      /// Determines whether a person has already selected categories for the first time or not.
+      public var hasChosenCategories: Bool? {
+        get {
+          return snapshot["hasChosenCategories"] as? Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "hasChosenCategories")
         }
       }
 
@@ -21620,6 +22269,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -21628,8 +22278,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -21731,13 +22381,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -22163,6 +22823,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -22171,8 +22832,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -22294,13 +22955,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -22738,6 +23409,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -22746,8 +23418,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -22849,13 +23521,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -22875,6 +23557,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -22883,8 +23566,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -22986,13 +23669,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -23204,6 +23897,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -23212,8 +23906,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -23315,13 +24009,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -23345,6 +24049,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -23353,8 +24058,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -23476,13 +24181,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -23897,6 +24612,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -23905,8 +24621,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -24028,13 +24744,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -24289,6 +25015,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -24297,8 +25024,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -24420,13 +25147,23 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -24671,7 +25408,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
 
 public final class AllMessageQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessage($after: String, $conversationId: ID!, $first: Int) {\n  allMessage(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    sender\n  }\n}"
+    "query AllMessage($after: String, $conversationId: ID!, $first: Int) {\n  allMessage(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -24843,6 +25580,7 @@ public final class AllMessageQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -24851,8 +25589,8 @@ public final class AllMessageQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -24974,13 +25712,23 @@ public final class AllMessageQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -25304,6 +26052,7 @@ public final class AllMessageQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -25312,8 +26061,8 @@ public final class AllMessageQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -25415,13 +26164,23 @@ public final class AllMessageQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -25847,6 +26606,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -25855,8 +26615,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -25978,13 +26738,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -26240,6 +27010,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -26248,8 +27019,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -26371,13 +27142,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -26473,6 +27254,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -26481,8 +27263,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -26604,13 +27386,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -26709,6 +27501,7 @@ public final class AllMessageQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -26717,8 +27510,8 @@ public final class AllMessageQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -26840,13 +27633,23 @@ public final class AllMessageQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -27170,6 +27973,7 @@ public final class AllMessageQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -27178,8 +27982,8 @@ public final class AllMessageQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -27281,13 +28085,23 @@ public final class AllMessageQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -27713,6 +28527,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -27721,8 +28536,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -27844,13 +28659,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -28106,6 +28931,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -28114,8 +28940,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -28237,13 +29063,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -28339,6 +29175,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -28347,8 +29184,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -28470,13 +29307,23 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -28563,7 +29410,7 @@ public final class AllMessageQuery: GraphQLQuery {
 
 public final class AllMessageConnectionQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {\n  allMessageConnection(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    messages {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      sender\n    }\n    nextToken\n  }\n}"
+    "query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {\n  allMessageConnection(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    messages {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    nextToken\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -28781,6 +29628,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -28789,8 +29637,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -28912,13 +29760,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -29166,6 +30024,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -29174,8 +30033,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -29277,13 +30136,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -29463,6 +30332,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -29471,8 +30341,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -29574,13 +30444,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -29600,6 +30480,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -29608,8 +30489,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -29711,13 +30592,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -29742,6 +30633,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -29750,8 +30642,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -29873,13 +30765,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -30127,6 +31029,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -30135,8 +31038,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -30238,13 +31141,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -30424,6 +31337,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -30432,8 +31346,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -30535,13 +31449,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -30561,6 +31485,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -30569,8 +31494,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -30672,13 +31597,23 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -30692,7 +31627,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
 
 public final class AllMessageFromQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessageFrom($after: String, $conversationId: ID!, $first: Int, $sender: String!) {\n  allMessageFrom(after: $after, conversationId: $conversationId, first: $first, sender: $sender) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    sender\n  }\n}"
+    "query AllMessageFrom($after: String, $conversationId: ID!, $first: Int, $sender: String!) {\n  allMessageFrom(after: $after, conversationId: $conversationId, first: $first, sender: $sender) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -30865,6 +31800,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -30873,8 +31809,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -30996,13 +31932,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -31326,6 +32272,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -31334,8 +32281,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -31437,13 +32384,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -31869,6 +32826,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -31877,8 +32835,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -32000,13 +32958,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -32262,6 +33230,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -32270,8 +33239,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -32393,13 +33362,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -32495,6 +33474,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -32503,8 +33483,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -32626,13 +33606,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -32731,6 +33721,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -32739,8 +33730,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -32862,13 +33853,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -33192,6 +34193,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -33200,8 +34202,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -33303,13 +34305,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -33735,6 +34747,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -33743,8 +34756,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -33866,13 +34879,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -34128,6 +35151,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -34136,8 +35160,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -34259,13 +35283,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -34361,6 +35395,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -34369,8 +35404,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -34492,13 +35527,23 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -34585,7 +35630,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
 
 public final class AllUserQuery: GraphQLQuery {
   public static let operationString =
-    "query AllUser($after: String, $first: Int) {\n  allUser(after: $after, first: $first) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n  }\n}"
+    "query AllUser($after: String, $first: Int) {\n  allUser(after: $after, first: $first) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var after: String?
   public var first: Int?
@@ -34643,6 +35688,7 @@ public final class AllUserQuery: GraphQLQuery {
         GraphQLField("given_name", type: .scalar(String.self)),
         GraphQLField("school", type: .scalar(String.self)),
         GraphQLField("categories", type: .list(.scalar(String.self))),
+        GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
       ]
 
       public var snapshot: Snapshot
@@ -34651,8 +35697,8 @@ public final class AllUserQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
       }
 
       public var __typename: String {
@@ -34774,13 +35820,23 @@ public final class AllUserQuery: GraphQLQuery {
         }
       }
 
-      /// catetgories
+      /// categories
       public var categories: [String?]? {
         get {
           return snapshot["categories"] as? [String?]
         }
         set {
           snapshot.updateValue(newValue, forKey: "categories")
+        }
+      }
+
+      /// Determines whether a person has already selected categories for the first time or not.
+      public var hasChosenCategories: Bool? {
+        get {
+          return snapshot["hasChosenCategories"] as? Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "hasChosenCategories")
         }
       }
 
@@ -35180,6 +36236,7 @@ public final class AllUserQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -35188,8 +36245,8 @@ public final class AllUserQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -35291,13 +36348,23 @@ public final class AllUserQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -35723,6 +36790,7 @@ public final class AllUserQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -35731,8 +36799,8 @@ public final class AllUserQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -35854,13 +36922,23 @@ public final class AllUserQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -36298,6 +37376,7 @@ public final class AllUserQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -36306,8 +37385,8 @@ public final class AllUserQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -36409,13 +37488,23 @@ public final class AllUserQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -36435,6 +37524,7 @@ public final class AllUserQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -36443,8 +37533,8 @@ public final class AllUserQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -36546,13 +37636,23 @@ public final class AllUserQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -36764,6 +37864,7 @@ public final class AllUserQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -36772,8 +37873,8 @@ public final class AllUserQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -36875,13 +37976,23 @@ public final class AllUserQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -36905,6 +38016,7 @@ public final class AllUserQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -36913,8 +38025,8 @@ public final class AllUserQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -37036,13 +38148,23 @@ public final class AllUserQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -37457,6 +38579,7 @@ public final class AllUserQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -37465,8 +38588,8 @@ public final class AllUserQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -37588,13 +38711,23 @@ public final class AllUserQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -37849,6 +38982,7 @@ public final class AllUserQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -37857,8 +38991,8 @@ public final class AllUserQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -37980,13 +39114,23 @@ public final class AllUserQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -38231,7 +39375,7 @@ public final class AllUserQuery: GraphQLQuery {
 
 public final class MeQuery: GraphQLQuery {
   public static let operationString =
-    "query Me {\n  me {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n  }\n}"
+    "query Me {\n  me {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public init() {
   }
@@ -38280,6 +39424,7 @@ public final class MeQuery: GraphQLQuery {
         GraphQLField("given_name", type: .scalar(String.self)),
         GraphQLField("school", type: .scalar(String.self)),
         GraphQLField("categories", type: .list(.scalar(String.self))),
+        GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
       ]
 
       public var snapshot: Snapshot
@@ -38288,8 +39433,8 @@ public final class MeQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+      public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+        self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
       }
 
       public var __typename: String {
@@ -38411,13 +39556,23 @@ public final class MeQuery: GraphQLQuery {
         }
       }
 
-      /// catetgories
+      /// categories
       public var categories: [String?]? {
         get {
           return snapshot["categories"] as? [String?]
         }
         set {
           snapshot.updateValue(newValue, forKey: "categories")
+        }
+      }
+
+      /// Determines whether a person has already selected categories for the first time or not.
+      public var hasChosenCategories: Bool? {
+        get {
+          return snapshot["hasChosenCategories"] as? Bool
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "hasChosenCategories")
         }
       }
 
@@ -38817,6 +39972,7 @@ public final class MeQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -38825,8 +39981,8 @@ public final class MeQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -38928,13 +40084,23 @@ public final class MeQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -39360,6 +40526,7 @@ public final class MeQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -39368,8 +40535,8 @@ public final class MeQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -39491,13 +40658,23 @@ public final class MeQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -39935,6 +41112,7 @@ public final class MeQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -39943,8 +41121,8 @@ public final class MeQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -40046,13 +41224,23 @@ public final class MeQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -40072,6 +41260,7 @@ public final class MeQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -40080,8 +41269,8 @@ public final class MeQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -40183,13 +41372,23 @@ public final class MeQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -40401,6 +41600,7 @@ public final class MeQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -40409,8 +41609,8 @@ public final class MeQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -40512,13 +41712,23 @@ public final class MeQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -40542,6 +41752,7 @@ public final class MeQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -40550,8 +41761,8 @@ public final class MeQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -40673,13 +41884,23 @@ public final class MeQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -41094,6 +42315,7 @@ public final class MeQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -41102,8 +42324,8 @@ public final class MeQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -41225,13 +42447,23 @@ public final class MeQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -41486,6 +42718,7 @@ public final class MeQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -41494,8 +42727,8 @@ public final class MeQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -41617,13 +42850,23 @@ public final class MeQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -41868,7 +43111,7 @@ public final class MeQuery: GraphQLQuery {
 
 public final class ConversationFromIdQuery: GraphQLQuery {
   public static let operationString =
-    "query ConversationFromId($conversationId: String!) {\n  conversationFromId(conversationId: $conversationId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n    }\n  }\n}"
+    "query ConversationFromId($conversationId: String!) {\n  conversationFromId(conversationId: $conversationId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n    }\n  }\n}"
 
   public var conversationId: String
 
@@ -42174,6 +43417,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -42182,8 +43426,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -42305,13 +43549,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -42566,6 +43820,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -42574,8 +43829,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -42697,13 +43952,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -43072,6 +44337,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -43080,8 +44346,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -43203,13 +44469,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -43457,6 +44733,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -43465,8 +44742,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -43568,13 +44845,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -43754,6 +45041,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -43762,8 +45050,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -43865,13 +45153,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -43891,6 +45189,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -43899,8 +45198,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -44002,13 +45301,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -44033,6 +45342,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -44041,8 +45351,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -44164,13 +45474,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -44418,6 +45738,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -44426,8 +45747,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -44529,13 +45850,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -44715,6 +46046,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -44723,8 +46055,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -44826,13 +46158,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -44852,6 +46194,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -44860,8 +46203,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -44963,13 +46306,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -45186,6 +46539,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -45194,8 +46548,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -45317,13 +46671,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -45571,6 +46935,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -45579,8 +46944,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -45682,13 +47047,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -45868,6 +47243,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -45876,8 +47252,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -45979,13 +47355,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -46005,6 +47391,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -46013,8 +47400,8 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -46116,13 +47503,23 @@ public final class ConversationFromIdQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -46136,7 +47533,7 @@ public final class ConversationFromIdQuery: GraphQLQuery {
 
 public final class AllAssociatedQuery: GraphQLQuery {
   public static let operationString =
-    "query AllAssociated($conversationId: String!) {\n  allAssociated(conversationId: $conversationId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    userId\n  }\n}"
+    "query AllAssociated($conversationId: String!) {\n  allAssociated(conversationId: $conversationId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var conversationId: String
 
@@ -46677,6 +48074,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -46685,8 +48083,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -46788,13 +48186,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -47220,6 +48628,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -47228,8 +48637,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -47351,13 +48760,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -47795,6 +49214,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -47803,8 +49223,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -47906,13 +49326,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -47932,6 +49362,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -47940,8 +49371,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -48043,13 +49474,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -48261,6 +49702,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -48269,8 +49711,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -48372,13 +49814,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -48402,6 +49854,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -48410,8 +49863,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -48533,13 +49986,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -49043,6 +50506,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -49051,8 +50515,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -49154,13 +50618,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -49180,6 +50654,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -49188,8 +50663,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -49291,13 +50766,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -49433,6 +50918,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -49441,8 +50927,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -49564,13 +51050,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -49666,6 +51162,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -49674,8 +51171,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -49797,13 +51294,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -50091,6 +51598,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -50099,8 +51607,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -50222,13 +51730,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -50326,6 +51844,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -50334,8 +51853,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -50457,13 +51976,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -50711,6 +52240,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -50719,8 +52249,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -50822,13 +52352,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -51008,6 +52548,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -51016,8 +52557,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -51119,13 +52660,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -51145,6 +52696,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -51153,8 +52705,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -51256,13 +52808,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -51538,6 +53100,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -51546,8 +53109,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -51669,13 +53232,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -51771,6 +53344,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -51779,8 +53353,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -51902,13 +53476,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -52118,6 +53702,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -52126,8 +53711,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -52249,13 +53834,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -52510,6 +54105,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -52518,8 +54114,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -52641,13 +54237,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -53094,6 +54700,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -53102,8 +54709,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -53225,13 +54832,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -53488,6 +55105,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -53496,8 +55114,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -53619,13 +55237,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -53949,6 +55577,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -53957,8 +55586,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -54060,13 +55689,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -54492,6 +56131,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -54500,8 +56140,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -54623,13 +56263,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -54885,6 +56535,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -54893,8 +56544,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -55016,13 +56667,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -55118,6 +56779,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -55126,8 +56788,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -55249,13 +56911,23 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -55342,7 +57014,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
 
 public final class DiscoveryQuery: GraphQLQuery {
   public static let operationString =
-    "query Discovery($discoveryId: String!) {\n  discovery(discoveryId: $discoveryId) {\n    __typename\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n  }\n}"
+    "query Discovery($discoveryId: String!) {\n  discovery(discoveryId: $discoveryId) {\n    __typename\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n  }\n}"
 
   public var discoveryId: String
 
@@ -55589,6 +57261,7 @@ public final class DiscoveryQuery: GraphQLQuery {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -55597,8 +57270,8 @@ public final class DiscoveryQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -55720,13 +57393,23 @@ public final class DiscoveryQuery: GraphQLQuery {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -56050,6 +57733,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -56058,8 +57742,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -56161,13 +57845,23 @@ public final class DiscoveryQuery: GraphQLQuery {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -56593,6 +58287,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -56601,8 +58296,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -56724,13 +58419,23 @@ public final class DiscoveryQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -56986,6 +58691,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -56994,8 +58700,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -57117,13 +58823,23 @@ public final class DiscoveryQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -57219,6 +58935,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -57227,8 +58944,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -57350,13 +59067,23 @@ public final class DiscoveryQuery: GraphQLQuery {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -57443,7 +59170,7 @@ public final class DiscoveryQuery: GraphQLQuery {
 
 public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription SubscribeToNewMessage($conversationId: ID!) {\n  subscribeToNewMessage(conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    sender\n  }\n}"
+    "subscription SubscribeToNewMessage($conversationId: ID!) {\n  subscribeToNewMessage(conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var conversationId: GraphQLID
 
@@ -57611,6 +59338,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -57619,8 +59347,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -57742,13 +59470,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -58072,6 +59810,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -58080,8 +59819,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -58183,13 +59922,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -58615,6 +60364,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -58623,8 +60373,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -58746,13 +60496,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -59008,6 +60768,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -59016,8 +60777,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -59139,13 +60900,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -59241,6 +61012,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -59249,8 +61021,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -59372,13 +61144,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -59477,6 +61259,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -59485,8 +61268,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -59608,13 +61391,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -59938,6 +61731,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -59946,8 +61740,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -60049,13 +61843,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -60481,6 +62285,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -60489,8 +62294,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -60612,13 +62417,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -60874,6 +62689,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -60882,8 +62698,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -61005,13 +62821,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -61107,6 +62933,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -61115,8 +62942,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -61238,13 +63065,23 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -61331,7 +63168,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
 
 public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription SubscribeToNewUCs($userId: ID!) {\n  subscribeToNewUCs(userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n    }\n    userId\n  }\n}"
+    "subscription SubscribeToNewUCs($userId: ID!) {\n  subscribeToNewUCs(userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var userId: GraphQLID
 
@@ -61872,6 +63709,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -61880,8 +63718,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -61983,13 +63821,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -62415,6 +64263,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -62423,8 +64272,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -62546,13 +64395,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -62990,6 +64849,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -62998,8 +64858,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -63101,13 +64961,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -63127,6 +64997,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -63135,8 +65006,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -63238,13 +65109,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -63456,6 +65337,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -63464,8 +65346,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -63567,13 +65449,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -63597,6 +65489,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -63605,8 +65498,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -63728,13 +65621,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -64238,6 +66141,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -64246,8 +66150,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -64349,13 +66253,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -64375,6 +66289,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -64383,8 +66298,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -64486,13 +66401,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -64628,6 +66553,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -64636,8 +66562,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -64759,13 +66685,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -64861,6 +66797,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -64869,8 +66806,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -64992,13 +66929,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -65286,6 +67233,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -65294,8 +67242,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -65417,13 +67365,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -65521,6 +67479,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             GraphQLField("given_name", type: .scalar(String.self)),
             GraphQLField("school", type: .scalar(String.self)),
             GraphQLField("categories", type: .list(.scalar(String.self))),
+            GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
           ]
 
           public var snapshot: Snapshot
@@ -65529,8 +67488,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             self.snapshot = snapshot
           }
 
-          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+          public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+            self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
           }
 
           public var __typename: String {
@@ -65652,13 +67611,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             }
           }
 
-          /// catetgories
+          /// categories
           public var categories: [String?]? {
             get {
               return snapshot["categories"] as? [String?]
             }
             set {
               snapshot.updateValue(newValue, forKey: "categories")
+            }
+          }
+
+          /// Determines whether a person has already selected categories for the first time or not.
+          public var hasChosenCategories: Bool? {
+            get {
+              return snapshot["hasChosenCategories"] as? Bool
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "hasChosenCategories")
             }
           }
 
@@ -65906,6 +67875,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -65914,8 +67884,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -66017,13 +67987,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -66203,6 +68183,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -66211,8 +68192,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -66314,13 +68295,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -66340,6 +68331,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -66348,8 +68340,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -66451,13 +68443,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -66733,6 +68735,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -66741,8 +68744,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -66864,13 +68867,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -66966,6 +68979,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -66974,8 +68988,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -67097,13 +69111,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -67313,6 +69337,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -67321,8 +69346,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -67444,13 +69469,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -67705,6 +69740,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -67713,8 +69749,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -67836,13 +69872,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -68289,6 +70335,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               GraphQLField("given_name", type: .scalar(String.self)),
               GraphQLField("school", type: .scalar(String.self)),
               GraphQLField("categories", type: .list(.scalar(String.self))),
+              GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
             ]
 
             public var snapshot: Snapshot
@@ -68297,8 +70344,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               self.snapshot = snapshot
             }
 
-            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+            public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+              self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
             }
 
             public var __typename: String {
@@ -68420,13 +70467,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               }
             }
 
-            /// catetgories
+            /// categories
             public var categories: [String?]? {
               get {
                 return snapshot["categories"] as? [String?]
               }
               set {
                 snapshot.updateValue(newValue, forKey: "categories")
+              }
+            }
+
+            /// Determines whether a person has already selected categories for the first time or not.
+            public var hasChosenCategories: Bool? {
+              get {
+                return snapshot["hasChosenCategories"] as? Bool
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "hasChosenCategories")
               }
             }
 
@@ -68683,6 +70740,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           GraphQLField("given_name", type: .scalar(String.self)),
           GraphQLField("school", type: .scalar(String.self)),
           GraphQLField("categories", type: .list(.scalar(String.self))),
+          GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
         ]
 
         public var snapshot: Snapshot
@@ -68691,8 +70749,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+        public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+          self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
         }
 
         public var __typename: String {
@@ -68814,13 +70872,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           }
         }
 
-        /// catetgories
+        /// categories
         public var categories: [String?]? {
           get {
             return snapshot["categories"] as? [String?]
           }
           set {
             snapshot.updateValue(newValue, forKey: "categories")
+          }
+        }
+
+        /// Determines whether a person has already selected categories for the first time or not.
+        public var hasChosenCategories: Bool? {
+          get {
+            return snapshot["hasChosenCategories"] as? Bool
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "hasChosenCategories")
           }
         }
 
@@ -69144,6 +71212,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("given_name", type: .scalar(String.self)),
                   GraphQLField("school", type: .scalar(String.self)),
                   GraphQLField("categories", type: .list(.scalar(String.self))),
+                  GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -69152,8 +71221,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+                public init(userId: GraphQLID, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                  self.init(snapshot: ["__typename": "User", "userId": userId, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
                 }
 
                 public var __typename: String {
@@ -69255,13 +71324,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                 }
 
-                /// catetgories
+                /// categories
                 public var categories: [String?]? {
                   get {
                     return snapshot["categories"] as? [String?]
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "categories")
+                  }
+                }
+
+                /// Determines whether a person has already selected categories for the first time or not.
+                public var hasChosenCategories: Bool? {
+                  get {
+                    return snapshot["hasChosenCategories"] as? Bool
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                   }
                 }
               }
@@ -69687,6 +71766,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -69695,8 +71775,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -69818,13 +71898,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -70080,6 +72170,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -70088,8 +72179,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -70211,13 +72302,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 
@@ -70313,6 +72414,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("given_name", type: .scalar(String.self)),
                 GraphQLField("school", type: .scalar(String.self)),
                 GraphQLField("categories", type: .list(.scalar(String.self))),
+                GraphQLField("hasChosenCategories", type: .scalar(Bool.self)),
               ]
 
               public var snapshot: Snapshot
@@ -70321,8 +72423,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil) {
-                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories])
+              public init(userId: GraphQLID, conversations: Conversation? = nil, messages: Message? = nil, registered: Bool? = nil, about: String? = nil, profilePic: String? = nil, rating: Double? = nil, signUpDate: Double? = nil, familyName: String? = nil, givenName: String? = nil, school: String? = nil, categories: [String?]? = nil, hasChosenCategories: Bool? = nil) {
+                self.init(snapshot: ["__typename": "User", "userId": userId, "conversations": conversations.flatMap { $0.snapshot }, "messages": messages.flatMap { $0.snapshot }, "registered": registered, "about": about, "profilePic": profilePic, "rating": rating, "signUpDate": signUpDate, "family_name": familyName, "given_name": givenName, "school": school, "categories": categories, "hasChosenCategories": hasChosenCategories])
               }
 
               public var __typename: String {
@@ -70444,13 +72546,23 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
               }
 
-              /// catetgories
+              /// categories
               public var categories: [String?]? {
                 get {
                   return snapshot["categories"] as? [String?]
                 }
                 set {
                   snapshot.updateValue(newValue, forKey: "categories")
+                }
+              }
+
+              /// Determines whether a person has already selected categories for the first time or not.
+              public var hasChosenCategories: Bool? {
+                get {
+                  return snapshot["hasChosenCategories"] as? Bool
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "hasChosenCategories")
                 }
               }
 

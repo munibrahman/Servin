@@ -562,7 +562,7 @@
           "deprecationReason" : null
         }, {
           "name" : "categories",
-          "description" : " catetgories",
+          "description" : "  categories",
           "args" : [ ],
           "type" : {
             "kind" : "LIST",
@@ -572,6 +572,17 @@
               "name" : "String",
               "ofType" : null
             }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "hasChosenCategories",
+          "description" : "  Determines whether a person has already selected categories for the first time or not.",
+          "args" : [ ],
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -1060,7 +1071,7 @@
         "description" : null,
         "fields" : [ {
           "name" : "createConversation",
-          "description" : "  Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n# You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n# createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
+          "description" : "  Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.\n You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)\n createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation",
           "args" : [ {
             "name" : "discoveryId",
             "description" : null,
@@ -1084,7 +1095,7 @@
           "deprecationReason" : null
         }, {
           "name" : "createMessage",
-          "description" : "  Create a message in a Conversation.\n# We only let the users pass in content and the conversation id, we take care of created at and message id.\n# createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
+          "description" : "  Create a message in a Conversation.\n We only let the users pass in content and the conversation id, we take care of created at and message id.\n createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message",
           "args" : [ {
             "name" : "content",
             "description" : null,
@@ -1117,7 +1128,7 @@
           "deprecationReason" : null
         }, {
           "name" : "createUserConversations",
-          "description" : "   Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.\n# No need to create a new user\n# createUser(username: String!): User\n#  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.",
+          "description" : "   Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.\n No need to create a new user\n createUser(username: String!): User\n  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.",
           "args" : [ {
             "name" : "conversationId",
             "description" : null,
@@ -2069,12 +2080,12 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "aws_publish",
-        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+        "name" : "aws_auth",
+        "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "subscriptions",
-          "description" : "List of subscriptions which will be published to when this mutation is called.",
+          "name" : "cognito_groups",
+          "description" : "List of cognito user pool groups which have access on this field",
           "type" : {
             "kind" : "LIST",
             "name" : null,
@@ -2107,12 +2118,12 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_auth",
-        "description" : "Directs the schema to enforce authorization on a field",
+        "name" : "aws_publish",
+        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
         "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "cognito_groups",
-          "description" : "List of cognito user pool groups which have access on this field",
+          "name" : "subscriptions",
+          "description" : "List of subscriptions which will be published to when this mutation is called.",
           "type" : {
             "kind" : "LIST",
             "name" : null,

@@ -35,6 +35,7 @@ mutation CreateConversation($discoveryId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -70,6 +71,7 @@ mutation CreateConversation($discoveryId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -102,6 +104,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -119,6 +122,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -136,6 +140,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -150,6 +155,7 @@ mutation CreateConversation($discoveryId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       content
       conversationId
@@ -182,6 +188,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -199,6 +206,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -216,6 +224,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -230,6 +239,7 @@ mutation CreateConversation($discoveryId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       sender
     }
@@ -274,6 +284,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -291,6 +302,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -308,6 +320,7 @@ mutation CreateConversation($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -322,6 +335,7 @@ mutation CreateConversation($discoveryId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
     }
   }
@@ -355,6 +369,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -408,6 +423,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -431,6 +447,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -454,6 +471,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -468,6 +486,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     content
     conversationId
@@ -501,6 +520,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -554,6 +574,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -577,6 +598,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -600,6 +622,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -614,6 +637,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     sender
   }
@@ -645,6 +669,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -698,6 +723,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -728,6 +754,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -745,6 +772,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -774,6 +802,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -807,6 +836,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -827,6 +857,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -844,6 +875,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -867,6 +899,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -890,6 +923,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -925,6 +959,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
         }
       }
@@ -955,6 +990,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -972,6 +1008,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -989,6 +1026,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1003,6 +1041,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       userId
     }
@@ -1029,6 +1068,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -1052,6 +1092,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -1087,6 +1128,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1122,6 +1164,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1169,6 +1212,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
       }
     }
@@ -1200,6 +1244,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1253,6 +1298,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -1276,6 +1322,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -1299,6 +1346,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -1313,6 +1361,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     userId
   }
@@ -1356,6 +1405,7 @@ mutation UpdateProfileInformation(
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1409,6 +1459,7 @@ mutation UpdateProfileInformation(
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -1439,6 +1490,7 @@ mutation UpdateProfileInformation(
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1456,6 +1508,7 @@ mutation UpdateProfileInformation(
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1485,6 +1538,7 @@ mutation UpdateProfileInformation(
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -1518,6 +1572,7 @@ mutation UpdateProfileInformation(
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -1553,6 +1608,7 @@ mutation UpdateProfileInformation(
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1588,6 +1644,7 @@ mutation UpdateProfileInformation(
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1602,6 +1659,7 @@ mutation UpdateProfileInformation(
     given_name
     school
     categories
+    hasChosenCategories
   }
 }
 mutation UpdateCategories($list: [String]) {
@@ -1633,6 +1691,7 @@ mutation UpdateCategories($list: [String]) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1686,6 +1745,7 @@ mutation UpdateCategories($list: [String]) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -1716,6 +1776,7 @@ mutation UpdateCategories($list: [String]) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1733,6 +1794,7 @@ mutation UpdateCategories($list: [String]) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1762,6 +1824,7 @@ mutation UpdateCategories($list: [String]) {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -1795,6 +1858,7 @@ mutation UpdateCategories($list: [String]) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -1830,6 +1894,7 @@ mutation UpdateCategories($list: [String]) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1865,6 +1930,7 @@ mutation UpdateCategories($list: [String]) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1879,5 +1945,6 @@ mutation UpdateCategories($list: [String]) {
     given_name
     school
     categories
+    hasChosenCategories
   }
 }

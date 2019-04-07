@@ -11,6 +11,7 @@
 
 import UIKit
 import AWSMobileClient
+import AWSAppSync
 
 class InitialViewController: UIViewController {
 
@@ -57,10 +58,7 @@ class InitialViewController: UIViewController {
             print("user signed out")
         case .signedIn:
             print("user is signed in.")
-            // Present the actual app.
-            let mainVC = Constants.getMainContentVC()
-            self.present(mainVC, animated: true, completion: nil)
-            
+            checkIfselectedCategories()
         case .signedOutUserPoolsTokenInvalid:
             self.present(welcomeVC, animated: true, completion: nil)
             print("need to login again.")
@@ -74,6 +72,62 @@ class InitialViewController: UIViewController {
         }
     }
     
+    // This is a very critical part of this application. If all the checks don't go right, nothing opens. So ensure that all else cases are taken care of.
+    func checkIfselectedCategories() {
+        
+        print("Checking to see if categories have been selected")
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
+                
+                if error != nil {
+                    print("Error fetching my own query")
+                    print(error?.localizedDescription ?? "Can't unwrap error")
+                    // Present the actual app.
+                    DispatchQueue.main.async {
+                        self.present(Constants.getMainContentVC(), animated: true, completion: nil)
+                    }
+                    return
+                } else if let result = result {
+                    if let chosen = result.data?.me?.hasChosenCategories {
+                        if chosen {
+                            // Present the actual app.
+                            DispatchQueue.main.async {
+                                self.present(Constants.getMainContentVC(), animated: true, completion: nil)
+                            }
+                        } else {
+                            // Present the categories.
+                            DispatchQueue.main.async {
+                                let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
+                                self.present(navVC, animated: true, completion: nil)
+                            }
+                        }
+                    } else {
+                        // Can't unwrap the chosen boolean, maybe first time, just show the categories.
+                        DispatchQueue.main.async {
+                            let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
+                            self.present(navVC, animated: true, completion: nil)
+                        }
+                    }
+                } else {
+                    // Can't unwrap anything, just show the app
+                    DispatchQueue.main.async {
+                        self.present(Constants.getMainContentVC(), animated: true, completion: nil)
+                    }
+                }
+                
+            })
+        } else {
+            // Present the actual app.
+            DispatchQueue.main.async {
+                self.present(Constants.getMainContentVC(), animated: true, completion: nil)
+            }
+            
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

@@ -28,6 +28,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -81,6 +82,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -104,6 +106,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -127,6 +130,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -141,6 +145,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     content
     conversationId
@@ -174,6 +179,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -227,6 +233,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -250,6 +257,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -273,6 +281,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -287,6 +296,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     sender
   }
@@ -324,6 +334,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -341,6 +352,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -358,6 +370,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -372,6 +385,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       content
       conversationId
@@ -404,6 +418,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -421,6 +436,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -438,6 +454,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -452,6 +469,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       sender
     }
@@ -497,6 +515,7 @@ query AllMessageFrom(
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -550,6 +569,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -573,6 +593,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -596,6 +617,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -610,6 +632,7 @@ query AllMessageFrom(
       given_name
       school
       categories
+      hasChosenCategories
     }
     content
     conversationId
@@ -643,6 +666,7 @@ query AllMessageFrom(
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -696,6 +720,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -719,6 +744,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -742,6 +768,7 @@ query AllMessageFrom(
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -756,6 +783,7 @@ query AllMessageFrom(
       given_name
       school
       categories
+      hasChosenCategories
     }
     sender
   }
@@ -789,6 +817,7 @@ query AllUser($after: String, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -842,6 +871,7 @@ query AllUser($after: String, $first: Int) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -872,6 +902,7 @@ query AllUser($after: String, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -889,6 +920,7 @@ query AllUser($after: String, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -918,6 +950,7 @@ query AllUser($after: String, $first: Int) {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -951,6 +984,7 @@ query AllUser($after: String, $first: Int) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -986,6 +1020,7 @@ query AllUser($after: String, $first: Int) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1021,6 +1056,7 @@ query AllUser($after: String, $first: Int) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1035,6 +1071,7 @@ query AllUser($after: String, $first: Int) {
     given_name
     school
     categories
+    hasChosenCategories
   }
 }
 query Me {
@@ -1066,6 +1103,7 @@ query Me {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1119,6 +1157,7 @@ query Me {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -1149,6 +1188,7 @@ query Me {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1166,6 +1206,7 @@ query Me {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1195,6 +1236,7 @@ query Me {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -1228,6 +1270,7 @@ query Me {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -1263,6 +1306,7 @@ query Me {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1298,6 +1342,7 @@ query Me {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1312,6 +1357,7 @@ query Me {
     given_name
     school
     categories
+    hasChosenCategories
   }
 }
 query ConversationFromId($conversationId: String!) {
@@ -1350,6 +1396,7 @@ query ConversationFromId($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -1385,6 +1432,7 @@ query ConversationFromId($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -1417,6 +1465,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1434,6 +1483,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1451,6 +1501,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1465,6 +1516,7 @@ query ConversationFromId($conversationId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       content
       conversationId
@@ -1497,6 +1549,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1514,6 +1567,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1531,6 +1585,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1545,6 +1600,7 @@ query ConversationFromId($conversationId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       sender
     }
@@ -1589,6 +1645,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1606,6 +1663,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1623,6 +1681,7 @@ query ConversationFromId($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1637,6 +1696,7 @@ query ConversationFromId($conversationId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
     }
   }
@@ -1668,6 +1728,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1721,6 +1782,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -1751,6 +1813,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1768,6 +1831,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1797,6 +1861,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -1830,6 +1895,7 @@ query AllAssociated($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -1850,6 +1916,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -1867,6 +1934,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -1890,6 +1958,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -1913,6 +1982,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -1948,6 +2018,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
         }
       }
@@ -1978,6 +2049,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -1995,6 +2067,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -2012,6 +2085,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -2026,6 +2100,7 @@ query AllAssociated($conversationId: String!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       userId
     }
@@ -2052,6 +2127,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -2075,6 +2151,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -2110,6 +2187,7 @@ query AllAssociated($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -2145,6 +2223,7 @@ query AllAssociated($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -2192,6 +2271,7 @@ query AllAssociated($conversationId: String!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
       }
     }
@@ -2223,6 +2303,7 @@ query AllAssociated($conversationId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -2276,6 +2357,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -2299,6 +2381,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -2322,6 +2405,7 @@ query AllAssociated($conversationId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -2336,6 +2420,7 @@ query AllAssociated($conversationId: String!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     userId
   }
@@ -2383,6 +2468,7 @@ query Discovery($discoveryId: String!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -2436,6 +2522,7 @@ query Discovery($discoveryId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -2459,6 +2546,7 @@ query Discovery($discoveryId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -2482,6 +2570,7 @@ query Discovery($discoveryId: String!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -2496,6 +2585,7 @@ query Discovery($discoveryId: String!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
   }
 }

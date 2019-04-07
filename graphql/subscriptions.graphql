@@ -28,6 +28,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -81,6 +82,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -104,6 +106,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -127,6 +130,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -141,6 +145,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     content
     conversationId
@@ -174,6 +179,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -227,6 +233,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -250,6 +257,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -273,6 +281,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -287,6 +296,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     sender
   }
@@ -318,6 +328,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -371,6 +382,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -401,6 +413,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -418,6 +431,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -447,6 +461,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
           }
         }
@@ -480,6 +495,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         userId
       }
@@ -500,6 +516,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -517,6 +534,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -540,6 +558,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -563,6 +582,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -598,6 +618,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
         }
       }
@@ -628,6 +649,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -645,6 +667,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             content
             conversationId
@@ -662,6 +685,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             sender
           }
@@ -676,6 +700,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
         given_name
         school
         categories
+        hasChosenCategories
       }
       userId
     }
@@ -702,6 +727,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -725,6 +751,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -760,6 +787,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         content
         conversationId
@@ -795,6 +823,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
         sender
       }
@@ -842,6 +871,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           given_name
           school
           categories
+          hasChosenCategories
         }
       }
     }
@@ -873,6 +903,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               given_name
               school
               categories
+              hasChosenCategories
             }
             userId
           }
@@ -926,6 +957,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           userId
         }
@@ -949,6 +981,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           content
           conversationId
@@ -972,6 +1005,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             given_name
             school
             categories
+            hasChosenCategories
           }
           sender
         }
@@ -986,6 +1020,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
       given_name
       school
       categories
+      hasChosenCategories
     }
     userId
   }

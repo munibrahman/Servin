@@ -110,10 +110,11 @@ class SelectCategoriesViewController: UIViewController {
             
             appSyncClient?.perform(mutation: mutation, resultHandler: { (result, err) in
                 if let result = result {
-                    print("Successful response for selecting categories: \(result)")
+                    print("Successful response for selecting categories.")
                     
                 } else if let error = err {
                     print("Error response for selecting categories: \(error)")
+                    self.showErrorNotification(title: "Error", subtitle: "Can't select categories, please try again later")
                 }
             })
         }
