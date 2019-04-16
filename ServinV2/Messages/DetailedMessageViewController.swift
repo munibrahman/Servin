@@ -12,6 +12,8 @@ import IQKeyboardManagerSwift
 import AWSMobileClient
 
 // CHATLOG Controller
+
+//TODO: Divide this view controller between new messages being sent and messages that go through the inbox.
 class DetailedMessageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
 
     var aDiscovery: Discovery? {
@@ -41,7 +43,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     let cellId = "cellId"
     
-    var conversation: ConversationFromIdQuery.Data.ConversationFromId?
+    var conversation: MeQuery.Data.Me.Conversation.UserConversation.Conversation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -397,7 +399,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                     return
                 }
                 
-                guard let userName = DefaultsWrapper.getString(Key.userName) else {
+                guard let userName = AWSMobileClient.sharedInstance().username else {
                     print("No username stored for this user...")
                     return
                 }
@@ -449,7 +451,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                         
                             if let snapshot = result?.data?.createConversation?.snapshot {
                                 print("Made a conversation object from the snapshot, update the tableview to message being sent")
-                                self.conversation = ConversationFromIdQuery.Data.ConversationFromId.init(snapshot: snapshot)
+                                self.conversation = MeQuery.Data.Me.Conversation.UserConversation.Conversation.init(snapshot: snapshot)
                                 self.observeMessages()
                             } else {
                                 print("no snapshot to be extracted... made a new convo but nothing to show for it.")
@@ -527,7 +529,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                 
                 if let convo = result?.data?.conversationFromId {
                     print("Conversation exists, fetch messages")
-                    self.conversation = convo
+                    self.conversation = MeQuery.Data.Me.Conversation.UserConversation.Conversation.init(snapshot: convo.snapshot)
                     self.fetchMessages()
                 } else {
                     print("Conversation doesn't exist")

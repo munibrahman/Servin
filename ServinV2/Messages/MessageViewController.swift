@@ -231,7 +231,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
     }
     
-    var userConversations = [ConversationFromIdQuery.Data.ConversationFromId?]()
+    var userConversations = [MeQuery.Data.Me.Conversation.UserConversation.Conversation?]()
     
     func fetchConversations() {
         
@@ -240,80 +240,35 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         print("request \(meQuery)")
         // Start the queue here
         
-        let group = DispatchGroup.init()
-        group.enter()
 
-        appSyncClient?.fetch(query: meQuery, cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
+        appSyncClient?.fetch(query: meQuery, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
             
             if let error = error {
                 print("Error fetching conversations: \(error)")
+                self.showErrorNotification(title: "Error", subtitle: "Can't fetch messages, please try again")
             } else {
                 
                 print("Fetched all the userConversations \(result?.data)")
                 
                 if let userConversations = result?.data?.me?.conversations?.userConversations {
                     
+                    self.userConversations.removeAll()
                     for eachUserConvo in userConversations {
                         
-                        print("Made a new convo object")
+                        self.userConversations.append(eachUserConvo?.conversation)
                         
-                        print("")
-                        print("Each user conversation")
-                        print("Type name: \(eachUserConvo?.__typename)")
-                        print("Conversation ID: \(eachUserConvo?.conversationId)")
-                        print("User ID: \(eachUserConvo?.userId)")
-                        
-                        
-                        if let conversationId = eachUserConvo?.conversationId {
-                            
-                            let conversationQuery = ConversationFromIdQuery.init(conversationId: conversationId)
-                            
-                            group.enter()
-                            self.appSyncClient?.fetch(query: conversationQuery, cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (res, error) in
-                                
-                                if let error = error {
-                                    print("Error fetching conversation from the convo ID: \(error)")
-                                    
-                                } else {
-                                    self.userConversations.append(res?.data?.conversationFromId)
-                                    print("")
-                                    print("Fetched the individual convo")
-                                    print("conversationId: \(conversationId)")
-                                    print("Type name: \(res?.data?.conversationFromId?.__typename)")
-                                    print("Created at: \(res?.data?.conversationFromId?.createdAt)")
-                                    print("Discovery id: \(res?.data?.conversationFromId?.discovery?.discoveryId)")
-                                    
-                                    print("Latest message TypeName: \(res?.data?.conversationFromId?.latestMessage?.__typename)")
-                                    print("Latest message author: \(res?.data?.conversationFromId?.latestMessage?.sender)")
-                                    print("Latest message created at: \(res?.data?.conversationFromId?.latestMessage?.createdAt)")
-                                    print("Latest message content : \(res?.data?.conversationFromId?.latestMessage?.content)")
-                                    print("Latest message sender : \(res?.data?.conversationFromId?.latestMessage?.sender)")
-                                
-                                    print("")
-                                    
-                                    
-                                    
-                                }
-                                
-                                group.leave()
-                            })
-                            
-                            
-                        }
                     }
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                    
                     
                 }
             }
             
-            group.leave()
-            
         })
         
-        group.notify(queue: DispatchQueue.main) {
-            print("Fnished serializing object")
-            self.collectionView?.reloadData()
-            print("Number of convos \(self.userConversations.count)")
-        }
         
     }
     
@@ -352,7 +307,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("number of pine \(ServinData.allPins.count)")
+        print("number of convos \(ServinData.allPins.count)")
         
         return userConversations.count
 
@@ -363,10 +318,11 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
         if let conversation = userConversations[indexPath.item] {
             
+            print("Conversation created at: \(conversation.createdAt)")
             let date = NSDate(timeIntervalSince1970: TimeInterval(conversation.createdAt!))
             cell.userImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
-            cell.userNameLabel.text = conversation.discovery?.author?.givenName
-            cell.dateLabel.text = ("\(date.timeIntervalSince1970)")
+            cell.nameLabel.text = conversation.discovery?.author?.givenName
+            cell.dateLabel.text = ("\(Extensions.getReadableDate(timeStamp: TimeInterval(conversation.createdAt!)) ?? "")")
             cell.messageLabel.text = conversation.latestMessage?.content
             cell.titleLabel.text = conversation.discovery?.title
             cell.priceLabel.text = "$ " + "\(conversation.discovery?.price ?? 0)"
@@ -391,10 +347,10 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     private class MessageCell: UICollectionViewCell {
         
         var userImageView: UIImageView!
-        var userNameLabel: UILabel!
+        var titleLabel: UILabel!
         var dateLabel: UILabel!
         var messageLabel: UILabel!
-        var titleLabel: UILabel!
+        var nameLabel: UILabel!
         var priceLabel: UILabel!
         
         override init(frame: CGRect) {
@@ -414,16 +370,16 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             userImageView.clipsToBounds = true
             userImageView.contentMode = .scaleAspectFill
             
-            userNameLabel = UILabel()
-            self.contentView.addSubview(userNameLabel)
+            titleLabel = UILabel()
+            self.contentView.addSubview(titleLabel)
             
-            userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-            userNameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
-            userNameLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15).isActive = true
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
+            titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15).isActive = true
             
-            userNameLabel.numberOfLines = 1
-            userNameLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
-            userNameLabel.textColor = UIColor.blackFontColor
+            titleLabel.numberOfLines = 1
+            titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .medium)
+            titleLabel.textColor = UIColor.blackFontColor
             
             
             dateLabel = UILabel()
@@ -443,7 +399,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             messageLabel.translatesAutoresizingMaskIntoConstraints = false
             
             messageLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
-            messageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 6).isActive = true
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6).isActive = true
             messageLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12).isActive = true
             
             messageLabel.numberOfLines = 1
@@ -452,18 +408,18 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             messageLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
             
             
-            titleLabel = UILabel()
-            self.contentView.addSubview(titleLabel)
+            nameLabel = UILabel()
+            self.contentView.addSubview(nameLabel)
             
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-            titleLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
+            nameLabel.translatesAutoresizingMaskIntoConstraints = false
+            nameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
             
-            titleLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 3).isActive = true
-            titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12).isActive = true
+            nameLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 3).isActive = true
+            nameLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12).isActive = true
             
-            titleLabel.numberOfLines = 1
-            titleLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
-            titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            nameLabel.numberOfLines = 1
+            nameLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
+            nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
             
             
             priceLabel = UILabel()
@@ -472,7 +428,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             priceLabel.translatesAutoresizingMaskIntoConstraints = false
             
             priceLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
-            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 3).isActive = true
+            priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3).isActive = true
             
             priceLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
             priceLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
