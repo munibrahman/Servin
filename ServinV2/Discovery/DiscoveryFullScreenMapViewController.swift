@@ -49,26 +49,9 @@ class DiscoveryFullScreenMapViewController: UIViewController {
             let camera = GMSCameraPosition.camera(withLatitude: pos.latitude, longitude: pos.longitude, zoom: 15.0)
             gmsMap.animate(to: camera)
         }
-            
-            
         
-//        destination = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
-        
-//        if let dest = destination {
-//
-//            let marker = GMSMarker(position: dest)
-//            marker.map = gmsMap
-//
-//            let camera = GMSCameraPosition.camera(withLatitude: dest.latitude, longitude: dest.longitude, zoom: 15)
-//
-//
-//            gmsMap.animate(to: camera)
-//
-//            source = CLLocationCoordinate2D.init(latitude: 51.043992, longitude: -114.097551)
-//            if let actualLoc = source {
-//                drawPath(currentLocation: actualLoc, destinationLoc: dest)
-//            }
-//        }
+        // Show the user's current location as well.
+        gmsMap.isMyLocationEnabled = true
         
         
         self.view.addSubview(gmsMap)

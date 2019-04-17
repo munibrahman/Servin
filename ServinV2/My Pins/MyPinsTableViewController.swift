@@ -9,15 +9,17 @@ import UIKit
 import DZNEmptyDataSet
 import AlamofireImage
 import Alamofire
+import AWSAppSync
 
 class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     
     
     @IBOutlet var myPinsTableView: UITableView!
     
-    let reuseIdentifier = "cell"
+    var discoveries: [GetMyDiscoveriesQuery.Data.GetMyDiscovery?]?
     
-    var myPins: [Discovery?]!
+    let reuseIdentifier = "cell"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +35,40 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         myPinsTableView.rowHeight = 104.0
         self.view.backgroundColor = UIColor.emptyStateBackgroundColor
         
-        ServinData.init()
+        fetchDataFromAPI()
         
-        myPins = ServinData.me._pinsOnMap
+    }
+    
+    func fetchDataFromAPI() {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let appSyncClient = appDelegate.appSyncClient
+            
+            let myDiscoveriesQuery = GetMyDiscoveriesQuery.init()
+            
+            appSyncClient?.fetch(query: myDiscoveriesQuery, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+                if let error = error, let errors = result?.errors {
+                    print(errors)
+                    print(error)
+                    self.showErrorNotification(title: "Error", subtitle: "Can't get discoveries, please try again")
+                    
+                    
+                }
+                
+                if let discoveries = result?.data?.getMyDiscoveries {
+                    self.discoveries = discoveries
+                    
+                    DispatchQueue.main.async {
+                        self.myPinsTableView.reloadData()
+                    }
+                    
+                    
+                }
+            })
+            
+            
+         
+            
+        }
     }
     
     func setupNavigationController() {
@@ -84,32 +117,36 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     // MARK:- Tableview protocols
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPins.count
+        return discoveries?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // TODO: Add proper cells
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as! MyPinTableViewCell
         
-        
+        // TODO: Get actual image of the discovery, not random images from internet.
         Alamofire.request("https://picsum.photos/500/300/?random").responseImage { response in
-            debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
+//            debugPrint(response)
+//
+//            print(response.request)
+//            print(response.response)
+//            debugPrint(response.result)
             
             if let image = response.result.value {
-                print("image downloaded: \(image)")
+//                print("image downloaded: \(image)")
                 
                 cell.pinImageView.image = image
             }
         }
         
+        if let discoveries = discoveries, let discovery = discoveries[indexPath.item] {
+            cell.titleLabel.text = discovery.title
+            cell.priceLabel.text = "$ \(discovery.price ?? 0) "
+            // TODO: Get the number of views
+            cell.viewsLabel.text = "\(0)"
+        }
         
-        cell.titleLabel.text = myPins[indexPath.row]?._title
-        cell.priceLabel.text = "$ \(myPins[indexPath.row]?._price ?? 0) "
-        cell.viewsLabel.text = "\(myPins[indexPath.row]?._views ?? 0)"
+        
         
         return cell
     }
@@ -124,7 +161,19 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(MyDiscoveryViewController(), animated: true)
+        // TODO: Pass this discovery into the next screen
+        
+        
+        
+        if let discoveries = discoveries, let discovery = discoveries[indexPath.item] {
+            
+            let myDiscoveryVC = MyDiscoveryViewController()
+            myDiscoveryVC.discovery = discovery
+            self.navigationController?.pushViewController(myDiscoveryVC, animated: true)
+        }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

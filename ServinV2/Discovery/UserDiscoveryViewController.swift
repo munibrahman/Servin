@@ -371,7 +371,7 @@ class UserDiscoveryViewController: UIViewController {
         
         latestScrollOffset = offset
         
-        print(offset)
+//        print(offset)
         if offset > 1 {
             offset = 1
             latestScrollOffset = offset
