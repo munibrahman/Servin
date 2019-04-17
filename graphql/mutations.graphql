@@ -36,6 +36,35 @@ mutation CreateConversation($discoveryId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -72,6 +101,35 @@ mutation CreateConversation($discoveryId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -156,6 +214,57 @@ mutation CreateConversation($discoveryId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       content
       conversationId
@@ -240,6 +349,57 @@ mutation CreateConversation($discoveryId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       sender
     }
@@ -336,6 +496,57 @@ mutation CreateConversation($discoveryId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
     }
   }
@@ -424,6 +635,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -448,6 +675,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -472,6 +715,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -487,6 +746,82 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     content
     conversationId
@@ -575,6 +910,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -599,6 +950,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -623,6 +990,22 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -638,6 +1021,82 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     sender
   }
@@ -724,6 +1183,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -837,6 +1312,35 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -900,6 +1404,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -924,6 +1444,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -960,6 +1496,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
         }
       }
@@ -1042,6 +1594,57 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       userId
     }
@@ -1069,6 +1672,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -1093,6 +1712,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -1129,6 +1764,35 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1165,6 +1829,35 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1213,6 +1906,35 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
       }
     }
@@ -1299,6 +2021,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -1323,6 +2061,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -1347,6 +2101,22 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -1362,6 +2132,82 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     userId
   }
@@ -1460,6 +2306,22 @@ mutation UpdateProfileInformation(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -1573,6 +2435,35 @@ mutation UpdateProfileInformation(
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -1609,6 +2500,35 @@ mutation UpdateProfileInformation(
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1645,6 +2565,35 @@ mutation UpdateProfileInformation(
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1660,6 +2609,152 @@ mutation UpdateProfileInformation(
     school
     categories
     hasChosenCategories
+    discoveries {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+        }
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        registered
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
+        school
+        categories
+        hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
+      }
+    }
   }
 }
 mutation UpdateCategories($list: [String]) {
@@ -1746,6 +2841,22 @@ mutation UpdateCategories($list: [String]) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -1859,6 +2970,35 @@ mutation UpdateCategories($list: [String]) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -1895,6 +3035,35 @@ mutation UpdateCategories($list: [String]) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1931,6 +3100,35 @@ mutation UpdateCategories($list: [String]) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1946,5 +3144,151 @@ mutation UpdateCategories($list: [String]) {
     school
     categories
     hasChosenCategories
+    discoveries {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+        }
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        registered
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
+        school
+        categories
+        hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
+      }
+    }
   }
 }

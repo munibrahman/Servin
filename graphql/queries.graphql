@@ -83,6 +83,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -107,6 +123,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -131,6 +163,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -146,6 +194,82 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     content
     conversationId
@@ -234,6 +358,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -258,6 +398,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -282,6 +438,22 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -297,6 +469,82 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     sender
   }
@@ -386,6 +634,57 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       content
       conversationId
@@ -470,6 +769,57 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       sender
     }
@@ -570,6 +920,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -594,6 +960,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -618,6 +1000,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -633,6 +1031,82 @@ query AllMessageFrom(
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     content
     conversationId
@@ -721,6 +1195,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -745,6 +1235,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -769,6 +1275,22 @@ query AllMessageFrom(
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -784,6 +1306,82 @@ query AllMessageFrom(
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     sender
   }
@@ -872,6 +1470,22 @@ query AllUser($after: String, $first: Int) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -985,6 +1599,35 @@ query AllUser($after: String, $first: Int) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -1021,6 +1664,35 @@ query AllUser($after: String, $first: Int) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1057,6 +1729,35 @@ query AllUser($after: String, $first: Int) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1072,6 +1773,152 @@ query AllUser($after: String, $first: Int) {
     school
     categories
     hasChosenCategories
+    discoveries {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+        }
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        registered
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
+        school
+        categories
+        hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
+      }
+    }
   }
 }
 query Me {
@@ -1158,6 +2005,22 @@ query Me {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -1271,6 +2134,35 @@ query Me {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -1307,6 +2199,35 @@ query Me {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1343,6 +2264,35 @@ query Me {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1358,6 +2308,152 @@ query Me {
     school
     categories
     hasChosenCategories
+    discoveries {
+      discoveryId
+      active
+      cognitoUserName
+      description
+      price
+      request_or_offer
+      time
+      title
+      image_0
+      image_1
+      image_2
+      image_3
+      image_4
+      image_5
+      author {
+        userId
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+        }
+        messages {
+          messages {
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        registered
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
+        school
+        categories
+        hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
+      }
+    }
   }
 }
 query ConversationFromId($conversationId: String!) {
@@ -1397,6 +2493,35 @@ query ConversationFromId($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -1433,6 +2558,35 @@ query ConversationFromId($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -1517,6 +2671,57 @@ query ConversationFromId($conversationId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       content
       conversationId
@@ -1601,6 +2806,57 @@ query ConversationFromId($conversationId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       sender
     }
@@ -1697,6 +2953,57 @@ query ConversationFromId($conversationId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
     }
   }
@@ -1783,6 +3090,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -1896,6 +3219,35 @@ query AllAssociated($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -1959,6 +3311,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -1983,6 +3351,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -2019,6 +3403,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
         }
       }
@@ -2101,6 +3501,57 @@ query AllAssociated($conversationId: String!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       userId
     }
@@ -2128,6 +3579,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -2152,6 +3619,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -2188,6 +3671,35 @@ query AllAssociated($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -2224,6 +3736,35 @@ query AllAssociated($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -2272,6 +3813,35 @@ query AllAssociated($conversationId: String!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
       }
     }
@@ -2358,6 +3928,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -2382,6 +3968,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -2406,6 +4008,22 @@ query AllAssociated($conversationId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -2421,6 +4039,82 @@ query AllAssociated($conversationId: String!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     userId
   }
@@ -2523,6 +4217,22 @@ query Discovery($discoveryId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -2547,6 +4257,22 @@ query Discovery($discoveryId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -2571,6 +4297,22 @@ query Discovery($discoveryId: String!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -2586,6 +4328,82 @@ query Discovery($discoveryId: String!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
   }
 }

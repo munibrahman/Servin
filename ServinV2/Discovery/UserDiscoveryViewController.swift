@@ -306,7 +306,8 @@ class UserDiscoveryViewController: UIViewController {
     func userDidTapProfile() {
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: UserProfileViewController.self)) as! UserProfileViewController
         
-        vc.discovery = pin
+        // TODO: Pass the information of the person in here
+//        vc.person = pin
         
         self.navigationController?.pushViewController(vc, animated: true)
     }

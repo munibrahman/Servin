@@ -180,6 +180,7 @@ import Foundation
 import UIKit
 import DZNEmptyDataSet
 import AWSAppSync
+import AWSMobileClient
 
 class MessageViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -277,6 +278,14 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
 //        SubscribeToNewUCsSubscription
 //
 //        appSyncClient?.subscribe(subscription: <#T##GraphQLSubscription#>, resultHandler: <#T##(GraphQLResult<GraphQLSelectionSet>?, ApolloStore.ReadWriteTransaction?, Error?) -> Void#>)
+        
+//        guard let username = AWSMobileClient.sharedInstance().username else {
+//            return
+//        }
+//
+//        appSyncClient?.subscribe(subscription: SubscribeToNewUCsSubscription.init(userId: username ), resultHandler: { (result, transaction, error) in
+//            <#code#>
+//        })
     }
     
     @objc func userDidTapX() {
@@ -307,7 +316,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("number of convos \(ServinData.allPins.count)")
         
         return userConversations.count
 
@@ -318,8 +326,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
         if let conversation = userConversations[indexPath.item] {
             
-            print("Conversation created at: \(conversation.createdAt)")
-            let date = NSDate(timeIntervalSince1970: TimeInterval(conversation.createdAt!))
             cell.userImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
             cell.nameLabel.text = conversation.discovery?.author?.givenName
             cell.dateLabel.text = ("\(Extensions.getReadableDate(timeStamp: TimeInterval(conversation.createdAt!)) ?? "")")
@@ -327,10 +333,9 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             cell.titleLabel.text = conversation.discovery?.title
             cell.priceLabel.text = "$ " + "\(conversation.discovery?.price ?? 0)"
             
+            
         }
         
-        
-        //        cell.backgroundColor = .blue
         
         return cell
     }

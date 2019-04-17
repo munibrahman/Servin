@@ -83,6 +83,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -107,6 +123,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -131,6 +163,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -146,6 +194,82 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     content
     conversationId
@@ -234,6 +358,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -258,6 +398,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -282,6 +438,22 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -297,6 +469,82 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     sender
   }
@@ -383,6 +631,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -496,6 +760,35 @@ subscription SubscribeToNewUCs($userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         userId
       }
@@ -559,6 +852,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -583,6 +892,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -619,6 +944,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
         }
       }
@@ -701,6 +1042,57 @@ subscription SubscribeToNewUCs($userId: ID!) {
         school
         categories
         hasChosenCategories
+        discoveries {
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
+          }
+        }
       }
       userId
     }
@@ -728,6 +1120,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -752,6 +1160,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -788,6 +1212,35 @@ subscription SubscribeToNewUCs($userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         content
         conversationId
@@ -824,6 +1277,35 @@ subscription SubscribeToNewUCs($userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
         sender
       }
@@ -872,6 +1354,35 @@ subscription SubscribeToNewUCs($userId: ID!) {
           school
           categories
           hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
         }
       }
     }
@@ -958,6 +1469,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           userId
         }
@@ -982,6 +1509,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           content
           conversationId
@@ -1006,6 +1549,22 @@ subscription SubscribeToNewUCs($userId: ID!) {
             school
             categories
             hasChosenCategories
+            discoveries {
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+            }
           }
           sender
         }
@@ -1021,6 +1580,82 @@ subscription SubscribeToNewUCs($userId: ID!) {
       school
       categories
       hasChosenCategories
+      discoveries {
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          userId
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              userId
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+          discoveries {
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+          }
+        }
+      }
     }
     userId
   }

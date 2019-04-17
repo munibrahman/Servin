@@ -43,7 +43,11 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     let cellId = "cellId"
     
-    var conversation: MeQuery.Data.Me.Conversation.UserConversation.Conversation?
+    var conversation: MeQuery.Data.Me.Conversation.UserConversation.Conversation? {
+        didSet {
+            navigationItem.title = conversation?.discovery?.author?.givenName
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +94,6 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         setupViews()
         setupInputComponents()
-        
         setupKeyboardObservers()
     }
     
@@ -209,9 +212,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(barButtonPressed))
         navigationItem.leftBarButtonItem = barButtonItem
         
-        // TODO: Retrieve actual name of user instead of a hardcoded string
         
-        self.navigationItem.title = aDiscovery?.user?._firstName ?? ""
     }
     
     @objc func barButtonPressed() {
@@ -248,8 +249,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let titleLabel = UILabel.init(frame: CGRect.init(x: 0.0, y: 10.0, width: 200.0, height: 50.0))
         titleLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
         titleLabel.textColor = UIColor.blackFontColor
-        titleLabel.text = "Soccer Coach for hire!"
-        titleLabel.text = aDiscovery?._title ?? " "
+//        titleLabel.text = "Soccer Coach for hire!"
+        titleLabel.text = aDiscovery?._title ?? conversation?.discovery?.title ?? " "
         
         topPinView.addSubview(titleLabel)
         
@@ -264,7 +265,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         timeLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         timeLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
         
-        timeLabel.text = "5 mins away"
+//        timeLabel.text = "5 mins away"
         
         topPinView.addSubview(timeLabel)
         
@@ -277,8 +278,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let priceLabel = UILabel.init()
         priceLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         priceLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
-        priceLabel.text = "$ 200"
-        priceLabel.text = "\(aDiscovery?._price ?? 0)"
+        priceLabel.text = "$ \(aDiscovery?._price ?? conversation?.discovery?.price ?? 0)"
         
         topPinView.addSubview(priceLabel)
         
@@ -484,6 +484,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     @objc func showDetailPin() {
         let userDiscoveryVC = MessageUserPinViewController()
+        userDiscoveryVC.discovery = conversation?.discovery
         self.navigationController?.pushViewController(userDiscoveryVC, animated: true)
     }
     
@@ -521,7 +522,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         print("Check convo id is \(checkConvo.conversationId)")
         
-        appSyncClient?.fetch(query: checkConvo, cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
+        appSyncClient?.fetch(query: checkConvo, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
             if let error = error {
                 // TODO: SHOW error to user
                 print("Error fetching data... \(error.localizedDescription)")

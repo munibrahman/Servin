@@ -8,6 +8,8 @@
 
 import UIKit
 
+// This view controller is used to display another person on the network.
+// To view your own profile use ProfileViewController instead
 class UserProfileViewController: UIViewController {
 
     
@@ -27,7 +29,7 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet var memberSinceLabel: UILabel!
     
-    var discovery: Discovery?
+    var person: MeQuery.Data.Me.Conversation.UserConversation.Conversation.Discovery.Author?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,20 +65,30 @@ class UserProfileViewController: UIViewController {
     
     func populateUserInfo() {
         
-        if let discovery = discovery {
-            self.profileImageView.af_setImage(withURL: URL.init(string: (discovery.user?._profilePictureUrl)!)!)
-            self.firstNameLabel.text = discovery.user?._firstName
-            self.universityLabel.text = "University Of Calgary"
-            self.aboutLabel.text = "About \(discovery.user?._firstName ?? "")"
-            self.aboutDescriptionLabel.text = discovery.user?._about
+        
+        if let person = person {
+            // TODO: Get this person's profile image
+//            self.profileImageView.af_setImage(withURL: URL.init(string: (discovery.user?._profilePictureUrl)!)!)
+            self.firstNameLabel.text = person.givenName
+            self.universityLabel.text = person.school
+            self.aboutLabel.text = "About \(person.givenName ?? "")"
+            self.aboutDescriptionLabel.text = person.about
             self.aboutDescriptionLabel.sizeToFit()
             
-            self.whatOthersSayLabel.text = "What others say about \(discovery.user?._firstName ?? "")"
+            self.whatOthersSayLabel.text = "What others say about \(person.givenName ?? "")"
             self.whatOthersSayDescriptionLabel.text = ""
             
-            self.memberSinceLabel.text = "2018"
+            if let timeInEpochMS = person.signUpDate {
+                let date = Date.init(timeIntervalSince1970: timeInEpochMS * 1000)
+                self.memberSinceLabel.text = date.yearAsString()
+            }
+            
             self.view.layoutIfNeeded()
-        } else {
+        }
+        
+            
+            // TODO: Don't show dummy data, that looks weird. Instead try and retrive the person from the backend.
+         else {
             self.profileImageView.image = #imageLiteral(resourceName: "adriana")
             self.firstNameLabel.text = "Adriana"
             self.universityLabel.text = "University Of Calgary"
