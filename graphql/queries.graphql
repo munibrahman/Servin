@@ -48,6 +48,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -200,6 +201,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -537,6 +539,7 @@ query AllMessageFrom(
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -689,6 +692,7 @@ query AllMessageFrom(
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -841,6 +845,7 @@ query AllUser($after: String, $first: Int) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -930,6 +935,7 @@ query AllUser($after: String, $first: Int) {
             sender
           }
           discovery {
+            geohashPrefix
             discoveryId
             active
             cognitoUserName
@@ -1129,6 +1135,7 @@ query Me {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -1218,6 +1225,7 @@ query Me {
             sender
           }
           discovery {
+            geohashPrefix
             discoveryId
             active
             cognitoUserName
@@ -1613,6 +1621,7 @@ query ConversationFromId($conversationId: String!) {
       sender
     }
     discovery {
+      geohashPrefix
       discoveryId
       active
       cognitoUserName
@@ -1757,6 +1766,7 @@ query AllAssociated($conversationId: String!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -1846,6 +1856,7 @@ query AllAssociated($conversationId: String!) {
             sender
           }
           discovery {
+            geohashPrefix
             discoveryId
             active
             cognitoUserName
@@ -1998,6 +2009,7 @@ query AllAssociated($conversationId: String!) {
           sender
         }
         discovery {
+          geohashPrefix
           discoveryId
           active
           cognitoUserName
@@ -2240,6 +2252,7 @@ query AllAssociated($conversationId: String!) {
         sender
       }
       discovery {
+        geohashPrefix
         discoveryId
         active
         cognitoUserName
@@ -2336,6 +2349,7 @@ query AllAssociated($conversationId: String!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -2441,6 +2455,7 @@ query AllAssociated($conversationId: String!) {
 }
 query Discovery($discoveryId: String!) {
   discovery(discoveryId: $discoveryId) {
+    geohashPrefix
     discoveryId
     active
     cognitoUserName
@@ -2503,6 +2518,7 @@ query Discovery($discoveryId: String!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -2607,6 +2623,7 @@ query Discovery($discoveryId: String!) {
 }
 query GetMyDiscoveries {
   getMyDiscoveries {
+    geohashPrefix
     discoveryId
     active
     cognitoUserName
@@ -2669,6 +2686,7 @@ query GetMyDiscoveries {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName

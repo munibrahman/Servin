@@ -48,6 +48,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -200,6 +201,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -350,6 +352,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName
@@ -439,6 +442,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             sender
           }
           discovery {
+            geohashPrefix
             discoveryId
             active
             cognitoUserName
@@ -591,6 +595,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           sender
         }
         discovery {
+          geohashPrefix
           discoveryId
           active
           cognitoUserName
@@ -833,6 +838,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
         sender
       }
       discovery {
+        geohashPrefix
         discoveryId
         active
         cognitoUserName
@@ -929,6 +935,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               sender
             }
             discovery {
+              geohashPrefix
               discoveryId
               active
               cognitoUserName

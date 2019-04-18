@@ -44,7 +44,7 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
     
     let gmsMapViewHeight: CGFloat = 250.0
     
-    
+    var discovery:  GetMyDiscoveriesQuery.Data.GetMyDiscovery?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         priceTextField.delegate = self
         descriptionTextField.delegate = self
         
-        
+        populateInfo()
     }
     
     func setupSegmantationControl() {
@@ -116,7 +116,52 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
     @objc func userDidTapSave() {
         print("Save it here")
         // TODO: Save user's stuff here
-        self.navigationController?.popViewController(animated: true)
+        
+        if textInputChanged {
+            discovery?.title = titleTextField.text
+            discovery?.price = Int.init(string: priceTextField.text ?? "0")
+            discovery?.description = descriptionTextField.text
+            
+            
+            let changeDiscoveryMutation = EditDiscoveryMutation.init(geohashPrefix: discovery?.geohashPrefix, discoveryId: discovery?.discoveryId, title: titleTextField.text, price: Int.init(string: priceTextField.text ?? "0"), request_or_offer: discovery?.requestOrOffer, description: descriptionTextField.text)
+            
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                let appSyncClient = appDelegate.appSyncClient
+             
+                appSyncClient?.perform(mutation: changeDiscoveryMutation, resultHandler: { (result, error) in
+                    
+                    
+                    if let err = error, let errors = result?.errors {
+                        print(err)
+                        print(errors)
+                        self.showErrorNotification(title: "Error", subtitle: "Can't edit this discovery, please try again")
+                        return
+                    }
+                
+                    
+                    DispatchQueue.main.async {
+                        self.showSuccessNotification(title: "Success!", subtitle: "Successfully updated discovery!")
+                        
+                        if let parentVC = self.parent as? MyDiscoveryViewController {
+                            
+                            if let snapshot = result?.data?.editDiscovery?.snapshot {
+                                parentVC.discovery = GetMyDiscoveriesQuery.Data.GetMyDiscovery.init(snapshot: snapshot)
+                                parentVC.discoveryCollectionView.reloadData()
+                            }
+                            
+                            
+                        }
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                })
+            }
+            
+            
+        }
+        
+        
     }
     
     @objc func segmentValueChanged(sender: Any?) {
@@ -128,10 +173,10 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         switch offerRequestSegmentedControl.selectedIndex {
         case 0:
             print("Offer")
-            
+            discovery?.requestOrOffer = "offer"
         default:
             print("Requests")
-            
+            discovery?.requestOrOffer = "request"
         }
         
     }
@@ -256,6 +301,21 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         self.view.layoutIfNeeded()
 
         
+    }
+    
+    func populateInfo() {
+        if let discovery = discovery {
+            titleTextField.text = discovery.title
+            priceTextField.text = "\(discovery.price ?? 0 )"
+            descriptionTextField.text = discovery.description
+            if discovery.requestOrOffer == "request" {
+                print("this is a request")
+                offerRequestSegmentedControl.selectedIndex = 1
+            } else {
+                print("This is an offer")
+                offerRequestSegmentedControl.selectedIndex = 0
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
