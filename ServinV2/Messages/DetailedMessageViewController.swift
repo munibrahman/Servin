@@ -16,9 +16,9 @@ import AWSMobileClient
 //TODO: Divide this view controller between new messages being sent and messages that go through the inbox.
 class DetailedMessageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
 
-    var aDiscovery: Discovery? {
+    var aDiscovery: GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery? {
         didSet {
-            navigationItem.title = aDiscovery?.user?._firstName
+            navigationItem.title = aDiscovery?.author?.givenName
         }
     }
     var disableTopPinView: Bool = false
@@ -239,9 +239,9 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         topPinImageView.contentMode = .scaleAspectFill
         topPinImageView.clipsToBounds = true
         
-        // TODO: Add actual image of the pin here
-        topPinImageView.image = #imageLiteral(resourceName: "soccer")
-        topPinImageView.image = aDiscovery?._images.first ?? UIImage.init(named: "default_image_icon")
+        // TODO: Get the image of the discovery in here
+//        topPinImageView.image = #imageLiteral(resourceName: "soccer")
+//        topPinImageView.image = aDiscovery?._images.first ?? UIImage.init(named: "default_image_icon")
         
         topPinView.addSubview(topPinImageView)
         
@@ -250,7 +250,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         titleLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
         titleLabel.textColor = UIColor.blackFontColor
 //        titleLabel.text = "Soccer Coach for hire!"
-        titleLabel.text = aDiscovery?._title ?? conversation?.discovery?.title ?? " "
+        titleLabel.text = aDiscovery?.title ?? conversation?.discovery?.title ?? " "
         
         topPinView.addSubview(titleLabel)
         
@@ -278,7 +278,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let priceLabel = UILabel.init()
         priceLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         priceLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
-        priceLabel.text = "$ \(aDiscovery?._price ?? conversation?.discovery?.price ?? 0)"
+        priceLabel.text = "$ \(aDiscovery?.price ?? conversation?.discovery?.price ?? 0)"
         
         topPinView.addSubview(priceLabel)
         
@@ -394,10 +394,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
             if let discovery = aDiscovery {
                 
                 
-                guard let discoveryId = discovery._id else {
-                    print("Discovery doesn't have an id...")
-                    return
-                }
+                let discoveryId = discovery.discoveryId
                 
                 guard let userName = AWSMobileClient.sharedInstance().username else {
                     print("No username stored for this user...")
@@ -502,10 +499,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
             
             if let discovery = aDiscovery {
                 
-                guard let discoveryId = discovery._id else {
-                    print("Discovery doesn't have an id...")
-                    return
-                }
+                let discoveryId = discovery.discoveryId
                 
                 guard let userName = DefaultsWrapper.getString(Key.userName) else {
                     print("No username stored for this user...")

@@ -21,7 +21,7 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     var pulleyTapGestureRecognizer: UITapGestureRecognizer!
     var drawerTapView: UIView!
     
-    var pinsNearby = [Discovery]()
+    var discoveriesAroundMe = [GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery?]()
     
     var pinsNearbyCollectionView: UICollectionView!
     var recommendedPinsCollectionView: UICollectionView!
@@ -183,7 +183,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == pinsNearbyCollectionView {
-            return pinsNearby.count
+            return discoveriesAroundMe.count
         } else {
             return recommendedCellCount
         }
@@ -196,30 +196,36 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
             
             DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
             
-            if let url = pinsNearby[indexPath.row].imagesUrl.first {
-                
-                Alamofire.request(url).responseImage { response in
-                    debugPrint(response)
-                    
-                    print(response.request)
-                    print(response.response)
-                    debugPrint(response.result)
-                    
-                    if let image = response.result.value {
-                        print("image downloaded: \(image)")
-                        myCell.imageView.image = image
-                    }
-                    else {
-                        print("unable to download image")
-                        myCell.imageView.image =  #imageLiteral(resourceName: "default_image_icon")
-                    }
-                }
+            
+            if let discovery = discoveriesAroundMe[indexPath.item] {
+                myCell.titleLabel.text = discovery.title
+                myCell.priceLabel.text = "$ \(discovery.price ?? 0)"
+                myCell.distanceLabel.text = "4 mins away"
             }
+
+            // TODO: Fetch image of actual discovery in here.
+//            if let url = discoveriesAroundMe[indexPath.row].imagesUrl.first {
+//
+//                Alamofire.request(url).responseImage { response in
+//                    debugPrint(response)
+//
+//                    print(response.request)
+//                    print(response.response)
+//                    debugPrint(response.result)
+//
+//                    if let image = response.result.value {
+//                        print("image downloaded: \(image)")
+//                        myCell.imageView.image = image
+//                    }
+//                    else {
+//                        print("unable to download image")
+//                        myCell.imageView.image =  #imageLiteral(resourceName: "default_image_icon")
+//                    }
+//                }
+//            }
             
 
-            myCell.titleLabel.text = pinsNearby[indexPath.row]._title ?? " "
-            myCell.priceLabel.text = "$ \(pinsNearby[indexPath.row]._price ?? 0)"
-            myCell.distanceLabel.text = "4 mins away"
+            
             
             return myCell
         } else {
@@ -238,9 +244,9 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == pinsNearbyCollectionView {
-            if let parentVC = self.parent {
+            if let parentVC = self.parent, let discovery = discoveriesAroundMe[indexPath.item] {
                 let discoveryVC = UserDiscoveryViewController()
-                discoveryVC.pin = pinsNearby[indexPath.row]
+                discoveryVC.pin = discovery
                 parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
             }
         }

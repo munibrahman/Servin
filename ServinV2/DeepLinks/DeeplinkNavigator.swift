@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AWSMobileClient
 
 class DeeplinkNavigator {
     
@@ -30,7 +31,10 @@ class DeeplinkNavigator {
             displayAlert(title: "Saved pins")
         case .verification:
             displayAlert(title: "Check verification")
-   
+        
+        case .confirm(let username, let code):
+            print("confirm called in here")
+            confirmSignUp(email: username, code: code)
         }
     }
     
@@ -47,4 +51,50 @@ class DeeplinkNavigator {
         
         UIApplication.topViewController()?.present(navController, animated: true, completion: nil)
     }
+    
+    private func confirmSignUp(email: String, code: String) {
+        AWSMobileClient.sharedInstance().confirmSignUp(username: email, confirmationCode: code) { (signUpResult, error) in
+            if let signUpResult = signUpResult {
+                switch(signUpResult.signUpConfirmationState) {
+                case .confirmed:
+                    print("User is signed up and confirmed.")
+                    print(AWSMobileClient.sharedInstance().username)
+                    
+                    if let savedEmail = KeyChainStore.shared.fetchSignUpEmail(), let savedPass = KeyChainStore.shared.fetchSignUpPassword() {
+                        if savedEmail == email {
+                            print("User that signed up also confirmed their email")
+                            AWSMobileClient.sharedInstance().signIn(username: savedEmail, password: savedPass, completionHandler: { (result, error) in
+                                if let error = error {
+                                    // SHow error
+                                    print(error)
+                                }
+                                
+                                if let result = result {
+                                    KeyChainStore.shared.refreshTokens()
+                                    print("Successfully signed user in")
+                                    print(result)
+                                    // Show the initial controller to sign the person in.
+                                    DispatchQueue.main.async {
+                                        UIApplication.topViewController()?.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                                    }
+                                }
+                            })
+                        }
+                    } else {
+                        // Show that email is confirmed and they can login now.
+                    }
+                    
+                case .unconfirmed:
+                    print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
+                case .unknown:
+                    print("Unexpected case")
+                }
+            } else if let error = error {
+                print("Error confirming user")
+                print(error)
+                print("\(error.localizedDescription)")
+            }
+        }
+    }
+
 }

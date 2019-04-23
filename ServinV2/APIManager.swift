@@ -78,9 +78,19 @@ class APIManager: NSObject {
     func getDiscoveries(params: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
         let url : String = baseURL + APIManager.getDiscoveriesEndpoint
         print(url)
+        
+        
+        guard let idToken = KeyChainStore.shared.fetchIdToken() else {
+            print("ERROR, Can't get id token!")
+            return
+        }
+        
         let headers = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
+            "Authorization": idToken
         ]
+        
+        print("URL is \(url)")
+        print("Fetching discovery with the id token \(idToken)")
         
         print(params)
         

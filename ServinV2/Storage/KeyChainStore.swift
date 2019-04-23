@@ -17,6 +17,8 @@ class KeyChainStore: NSObject {
         case refreshToken = "refresh_token"
         case accessToken = "access_token"
         case idToken = "id_token"
+        case latestSignUpEmail = "latest_signup_email"
+        case latestSignUpPass = "latest_signup_password"
     }
     
     static let shared = KeyChainStore()
@@ -87,6 +89,22 @@ class KeyChainStore: NSObject {
             
         }
         
+    }
+    
+    func storeSignUp(email: String) -> Bool {
+        return self.keychain.setString(email, forKey: KeyChainStore.Keys.latestSignUpEmail.rawValue)
+    }
+    
+    func storeSignUp(password: String) -> Bool {
+        return self.keychain.setString(password, forKey: KeyChainStore.Keys.latestSignUpPass.rawValue)
+    }
+    
+    func fetchSignUpEmail() -> String? {
+        return keychain.string(forKey: KeyChainStore.Keys.latestSignUpEmail.rawValue)
+    }
+    
+    func fetchSignUpPassword() -> String? {
+        return keychain.string(forKey: KeyChainStore.Keys.latestSignUpPass.rawValue)
     }
     
     func fetchRefreshToken() -> String? {

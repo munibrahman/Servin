@@ -31,7 +31,7 @@ class UserDiscoveryViewController: UIViewController {
     var statusBarView = UIView()
     var navigationBarShadow = UIView()
     
-    var pin: Discovery?
+    var pin: GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery?
     
     // TODO: Retrieve if this discovery has been saved by the user or not
     var discoverySaved = false
@@ -190,8 +190,8 @@ class UserDiscoveryViewController: UIViewController {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
         
-        if let pos = pin?._location {
-            let position = CLLocationCoordinate2D(latitude: pos.latitude, longitude:  pos.longitude)
+        if let lat = pin?.latitude, let long = pin?.longitude {
+            let position = CLLocationCoordinate2D(latitude: lat, longitude:  long)
             let marker = GMSMarker(position: position)
             marker.title = "Hello World"
             marker.map = gmsMap
@@ -299,7 +299,12 @@ class UserDiscoveryViewController: UIViewController {
     
     func userDidTapMap() {
         let vc = DiscoveryFullScreenMapViewController()
-        vc.position = pin?._location
+        
+        if let lat = pin?.latitude, let long = pin?.longitude {
+            vc.position  = CLLocationCoordinate2D.init(latitude: lat, longitude: long)
+        }
+        
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -421,10 +426,10 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             cell.descriptionLabel.text = "I’m looking for someone to come and clean my dorm room, its dirty and messy! Willing to pay $90."
             cell.descriptionLabel.sizeToFit()
             
-            if pin != nil {
-                cell.priceLabel.text = "$ \(pin?._price ?? 0)"
-                cell.titleLabel.text = pin?._title
-                cell.descriptionLabel.text = pin?._desctiption
+            if let pin = pin {
+                cell.priceLabel.text = "$ \(pin.price ?? 0)"
+                cell.titleLabel.text = pin.title
+                cell.descriptionLabel.text = pin.description
             }
             
             cell.priceLabel.sizeToFit()
@@ -435,23 +440,31 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
-            cell.imageInputs = pin?.imagesUrl ?? []
-            cell.setupInputs()
+            // TODO: Fetch images of the discovery
+//            cell.imageInputs = pin?.imagesUrl ?? []
+//            cell.setupInputs()
             
             return cell
             
         } else if indexPath.row == 3 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: profileCellIdentifier, for: indexPath) as! DiscoveryUserProfileCollectionViewCell
             
-            if let firstName = pin?.user?._firstName {
-                cell.userFirstNameLabel.text = firstName
-            } else {
-                cell.userFirstNameLabel.text = "Servin User"
+            
+            if let author = pin?.author {
+                cell.userFirstNameLabel.text = author.givenName
+                cell.userUniversityLabel.text = author.school
             }
             
-            if let userImageUrl = pin?.user?._profilePictureUrl {
-                cell.userImageView.af_setImage(withURL: URL.init(string: userImageUrl)!)
-            }
+//            if let firstName = pin?.user?._firstName {
+//
+//            } else {
+//                cell.userFirstNameLabel.text = "Servin User"
+//            }
+
+            // TODO: Fetch the profile image of the user.
+//            if let userImageUrl = pin?.user?._profilePictureUrl {
+//                cell.userImageView.af_setImage(withURL: URL.init(string: userImageUrl)!)
+//            }
             
             cell.userUniversityLabel.text = "University Of Calgary"
             
@@ -480,13 +493,13 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             let size = CGSize.init(width: collectionView.frame.size.width - 16.0, height: 1000)
             let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
             
-            let estimatedTitleFrame = NSString.init(string: pin?._title ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .semibold)], context: nil)
+            let estimatedTitleFrame = NSString.init(string: pin?.title ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .semibold)], context: nil)
             
-            let estimatedPriceFrame = NSString.init(string: "$ \(pin?._price ?? 0)").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .medium)], context: nil)
+            let estimatedPriceFrame = NSString.init(string: "$ \(pin?.price ?? 0)").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .medium)], context: nil)
             
             let estimatedTimeFrame = NSString.init(string: "10 mins away").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13, weight: .light)], context: nil)
             
-            let estimatedDescriptionFrame = NSString.init(string: pin?._desctiption ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .medium)], context: nil)
+            let estimatedDescriptionFrame = NSString.init(string: pin?.description ?? "").boundingRect(with: size, options: options, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .medium)], context: nil)
             
             
             return CGSize.init(width: collectionView.frame.size.width, height: estimatedTitleFrame.height + estimatedPriceFrame.height + estimatedTimeFrame.height + estimatedDescriptionFrame.height + 60.0)

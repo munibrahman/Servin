@@ -216,8 +216,8 @@ class MyDiscoveryViewController: UserDiscoveryViewController {
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
             // TODO: Fetch actual images of the discovery, instead of fake ones.
-            cell.imageInputs = pin?.imagesUrl ?? []
-            cell.setupInputs()
+//            cell.imageInputs = pin?.imagesUrl ?? []
+//            cell.setupInputs()
             
             return cell
             

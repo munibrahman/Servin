@@ -20,6 +20,7 @@ enum DeeplinkType {
     case myPins
     case savedPins
     case verification
+    case confirm(username: String, code: String)
 }
 
 let Deeplinker = DeepLinkManager()

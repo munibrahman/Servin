@@ -64,6 +64,8 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -217,6 +219,8 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -555,6 +559,8 @@ query AllMessageFrom(
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -708,6 +714,8 @@ query AllMessageFrom(
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -861,6 +869,8 @@ query AllUser($after: String, $first: Int) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -964,6 +974,8 @@ query AllUser($after: String, $first: Int) {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -1151,6 +1163,8 @@ query Me {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -1254,6 +1268,8 @@ query Me {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -1716,6 +1732,8 @@ query ConversationFromId($conversationId: String!) {
         categories
         hasChosenCategories
       }
+      latitude
+      longitude
     }
   }
 }
@@ -1782,6 +1800,8 @@ query AllAssociated($conversationId: String!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -1885,6 +1905,8 @@ query AllAssociated($conversationId: String!) {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -2044,6 +2066,8 @@ query AllAssociated($conversationId: String!) {
             categories
             hasChosenCategories
           }
+          latitude
+          longitude
         }
       }
       conversationId
@@ -2299,6 +2323,8 @@ query AllAssociated($conversationId: String!) {
           categories
           hasChosenCategories
         }
+        latitude
+        longitude
       }
     }
     conversationId
@@ -2365,6 +2391,8 @@ query AllAssociated($conversationId: String!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -2534,6 +2562,8 @@ query Discovery($discoveryId: String!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -2619,6 +2649,8 @@ query Discovery($discoveryId: String!) {
       categories
       hasChosenCategories
     }
+    latitude
+    longitude
   }
 }
 query GetMyDiscoveries {
@@ -2702,6 +2734,8 @@ query GetMyDiscoveries {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -2787,5 +2821,189 @@ query GetMyDiscoveries {
       categories
       hasChosenCategories
     }
+    latitude
+    longitude
+  }
+}
+query GetSurroundingDiscoveries(
+  $latMin: Float
+  $latMax: Float
+  $longMin: Float
+  $longMax: Float
+) {
+  getSurroundingDiscoveries(
+    latMin: $latMin
+    latMax: $latMax
+    longMin: $longMin
+    longMax: $longMax
+  ) {
+    geohashPrefix
+    discoveryId
+    active
+    cognitoUserName
+    description
+    price
+    request_or_offer
+    time
+    title
+    geoJson
+    image_0
+    image_1
+    image_2
+    image_3
+    image_4
+    image_5
+    author {
+      userId
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          userId
+        }
+      }
+      messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    latitude
+    longitude
   }
 }

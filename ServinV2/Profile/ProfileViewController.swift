@@ -45,7 +45,8 @@ class ProfileViewController: UIViewController {
             
             appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
                 
-                if error != nil {
+                if error != nil || result?.errors != nil {
+                    print(result?.errors)
                     print(error?.localizedDescription ?? "Can't unwrap error")
                     return
                 }

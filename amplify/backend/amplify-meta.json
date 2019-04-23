@@ -26,6 +26,15 @@
         "GraphQLAPIEndpointOutput": "https://56hximzn65hwvcy7mgoksjdqoa.appsync-api.us-east-1.amazonaws.com/graphql"
       },
       "lastPushTimeStamp": "2019-03-13T04:14:48.752Z"
+    },
+    "VolticRootStackAPI-test": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS",
+        "GraphQLAPIIdOutput": "ndb5oyhatbailavp2hkreqsuhq",
+        "GraphQLAPIEndpointOutput": "https://nvjgohm4hvdbphexj7alurtnpu.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2019-04-22T20:41:21.734Z"
     }
   }
 }

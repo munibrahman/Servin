@@ -12,6 +12,7 @@ import Pulley
 import Alamofire
 import SwiftyJSON
 import AlamofireImage
+import AWSAppSync
 
 protocol SlaveMapViewControllerDelegate {
     func didLongPressOnMap(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D)
@@ -157,128 +158,41 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                 "longMax" : topRightCorner.longitude
             ]
             
-            APIManager.sharedInstance.getDiscoveries(params: params, onSuccess: { (json) in
-                print("successful")
+            print("Parameters are \(params)")
+            
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                let appSyncClient = appDelegate.appSyncClient
                 
-                print(json)
+                let discoveriesAroundMe = GetSurroundingDiscoveriesQuery.init(latMin: bottomLeftCorner.latitude,
+                                                                              latMax: topRightCorner.latitude,
+                                                                              longMin: bottomLeftCorner.longitude,
+                                                                              longMax: topRightCorner.longitude)
                 
-                var discoveres = [Discovery]()
                 
-                for item in json["discoveries"].arrayValue {
-                    print(item)
-                    
-                    
-                    guard let lat = item["lat"].float else {
-                        return
+                appSyncClient?.fetch(query: discoveriesAroundMe, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+                    if let error = error, let errors = result?.errors {
+                        print(error)
+                        print(errors)
+                        self.showErrorNotification(title: "Error", subtitle: "Can't pull discoveries right now, retrying.")
                     }
                     
-                    guard let long = item["long"].float else {
-                        return
-                    }
-                    
-                    let marker = GMSMarker.init(position: CLLocationCoordinate2D.init(latitude: CLLocationDegrees.init(lat),
-                                                                                      longitude: CLLocationDegrees.init(long)))
-                    
-                    
-                    
-                    print(marker.position)
-                    marker.map = self.homeMapView
-                    
-                    var images = [UIImage]()
-                    var imagesUrls = [String]()
-                    
-                    if let url = item["image_0"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
-
-                    }
-                    
-                    if let url = item["image_1"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
+                    if let result = result {
+                        print("Successfully pulled discoveries")
                         
-                    }
-                    if let url = item["image_2"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
+                        if let discoveries = result.data?.getSurroundingDiscoveries, let parentVC = self.parent as? MasterPulleyViewController {
+                            
+                            print("Super is master pulley view controller")
+                            parentVC.myDiscoveriesViewController?.discoveriesAroundMe = discoveries
+                            parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
+                            // parentVC is someViewController
+                        }
                         
-                    }
-                    if let url = item["image_3"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
                         
-                    }
-                    if let url = item["image_4"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
-                        
-                    }
-                    if let url = item["image_5"].string {
-                        print("url")
-                        print(url)
-                        imagesUrls.append(url)
                         
                     }
                     
-                    
-                    let discovery = Discovery.init(id: item["discoveryId"].string, title: item["title"].string, description: item["description"].string, price: Int.init(string: item["price"].string ?? "0") , views: 0, location: marker.position, images: images, typeOfRequest: typeOfRequest.offer, isSaved: false)
-                    discovery.imagesUrl = imagesUrls
-                    
-                    
-                    if let userName = item["username"].string {
-                        APIManager.sharedInstance.getUser(username: userName, onSuccess: { (jsonUser) in
-                            print("Successfully retrieved username")
-                            print(jsonUser)
-                            
-                            let family_name = jsonUser["family_name"].string
-                            let given_name = jsonUser["given_name"].string
-                            let about = jsonUser["about"].string
-                            let imageUrl = jsonUser["imageURL"].string
-                            
-                            print(family_name)
-                            print(given_name)
-                            print(about)
-                            print(imageUrl)
-                            
-                            let user = ServinUser.init(firstName: given_name, lastName: family_name, profilePicture: nil, institution: "University Of Calgary", about: about, cognitoId: userName)
-                            user._profilePictureUrl = imageUrl
-                            
-                            discovery.user = user
-                            
-                        }, onFailure: { (err) in
-                            
-                            print("error occured")
-                            print(err)
-                        })
-                    }
-                    
-                    
-                    
-                    discoveres.append(discovery)
-                    
-                }
+                })
                 
-                
-                if let parentVC = self.parent {
-                    if let parentVC = parentVC as? MasterPulleyViewController {
-                        print("Super is master pulley view controller")
-                        parentVC.myDiscoveriesViewController?.pinsNearby = discoveres
-                        parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
-                        // parentVC is someViewController
-                    }
-                }
-                
-                
-                
-                
-            }) { (err) in
-                print("error")
-                print(err)
             }
             
         }

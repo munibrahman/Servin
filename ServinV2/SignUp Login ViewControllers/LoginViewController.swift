@@ -90,6 +90,9 @@ class LoginViewController: UIViewController {
         forgotPasswordLabel.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(forgotPasswordTapped)))
         
         nextButtonSVGView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(goForward)))
+        
+        emailTextField.text = "munibrhmn@gmail.com"
+        passwordTextField.text = "123456"
     }
     
     @objc func forgotPasswordTapped() {
@@ -125,7 +128,7 @@ class LoginViewController: UIViewController {
         self.nextButtonSVGView.toggleProgress(showProgress: true)
         self.nextButtonSVGView.isUserInteractionEnabled = false
         
-        
+        print("gets here")
         
         guard let username = emailTextField.text, !username.isEmpty else {
             self.nextButtonSVGView.toggleProgress(showProgress: false)
@@ -134,15 +137,22 @@ class LoginViewController: UIViewController {
             return
         }
 
+        print("gets here")
+        
         guard let password = passwordTextField.text, !password.isEmpty else {
             self.nextButtonSVGView.toggleProgress(showProgress: false)
             self.nextButtonSVGView.isUserInteractionEnabled = true
             // Show error about password
             return
         }
+        
+        print("gets here")
 
         AWSMobileClient.sharedInstance().signIn(username: username,
                                                 password: password) { (signInResult, error) in
+                                                    
+            
+                                                    print("gets here 1")
             if let error = error  {
                 print("\(error.localizedDescription)")
                 

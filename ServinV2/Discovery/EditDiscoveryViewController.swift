@@ -46,6 +46,9 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
     
     var discovery:  GetMyDiscoveriesQuery.Data.GetMyDiscovery?
     
+    var progressBarButton: UIBarButtonItem!
+    var saveButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -74,11 +77,19 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         let backButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(userDidTapBack))
         backButton.tintColor = .black
         
-        let saveButton = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(userDidTapSave))
+        saveButton = UIBarButtonItem.init(title: "Save", style: .plain, target: self, action: #selector(userDidTapSave))
         saveButton.tintColor = .black
         
         navigationItem.leftBarButtonItem = backButton
         navigationItem.rightBarButtonItem = saveButton
+        
+        
+        let progressSpinner = UIActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        progressSpinner.color = UIColor.black
+        progressSpinner.startAnimating()
+        
+        progressBarButton = UIBarButtonItem.init(customView: progressSpinner)
+        progressBarButton.tintColor = .white
     }
     
     @objc func userDidTapBack() {
@@ -118,6 +129,10 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
         // TODO: Save user's stuff here
         
         if textInputChanged {
+            
+            navigationItem.rightBarButtonItem = progressBarButton
+            
+            
             discovery?.title = titleTextField.text
             discovery?.price = Int.init(string: priceTextField.text ?? "0")
             discovery?.description = descriptionTextField.text
@@ -132,6 +147,9 @@ class EditDiscoveryViewController: UIViewController, UIScrollViewDelegate, UITex
                 appSyncClient?.perform(mutation: changeDiscoveryMutation, resultHandler: { (result, error) in
                     
                     
+                    DispatchQueue.main.async {
+                        self.navigationItem.rightBarButtonItem = self.saveButton
+                    }
                     if let err = error, let errors = result?.errors {
                         print(err)
                         print(errors)

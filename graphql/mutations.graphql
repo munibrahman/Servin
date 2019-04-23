@@ -339,6 +339,8 @@ mutation CreateConversation($discoveryId: String!) {
         categories
         hasChosenCategories
       }
+      latitude
+      longitude
     }
   }
 }
@@ -407,6 +409,8 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -560,6 +564,8 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -711,6 +717,8 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -814,6 +822,8 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -973,6 +983,8 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             categories
             hasChosenCategories
           }
+          latitude
+          longitude
         }
       }
       conversationId
@@ -1228,6 +1240,8 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           categories
           hasChosenCategories
         }
+        latitude
+        longitude
       }
     }
     conversationId
@@ -1294,6 +1308,8 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -1457,6 +1473,8 @@ mutation UpdateProfileInformation(
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -1560,6 +1578,8 @@ mutation UpdateProfileInformation(
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -1747,6 +1767,8 @@ mutation UpdateCategories($list: [String]) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -1850,6 +1872,8 @@ mutation UpdateCategories($list: [String]) {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -2067,6 +2091,8 @@ mutation EditDiscovery(
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -2152,5 +2178,193 @@ mutation EditDiscovery(
       categories
       hasChosenCategories
     }
+    latitude
+    longitude
+  }
+}
+mutation PostDiscovery(
+  $title: String!
+  $price: Int!
+  $request_or_offer: String!
+  $description: String!
+  $lat: Float!
+  $long: Float!
+) {
+  postDiscovery(
+    title: $title
+    price: $price
+    request_or_offer: $request_or_offer
+    description: $description
+    lat: $lat
+    long: $long
+  ) {
+    geohashPrefix
+    discoveryId
+    active
+    cognitoUserName
+    description
+    price
+    request_or_offer
+    time
+    title
+    geoJson
+    image_0
+    image_1
+    image_2
+    image_3
+    image_4
+    image_5
+    author {
+      userId
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          userId
+        }
+      }
+      messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    latitude
+    longitude
   }
 }

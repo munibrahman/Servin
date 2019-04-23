@@ -45,6 +45,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         lastNameTextField.delegate = self
         schoolTextField.delegate = self
         
+        schoolTextField.isUserInteractionEnabled = false
+        
         imagePicker.delegate = self
         setupNavigationController()
         populateInfo()
@@ -296,7 +298,9 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         myGroup.enter()
         print("started request for text field")
         
-        let mutation = UpdateProfileInformationMutation.init(given_name: firstNameTextField.text, family_name: lastNameTextField.text, about: aboutMe, school: schoolTextField.text)
+        
+        
+        let mutation = UpdateProfileInformationMutation.init(given_name: firstNameTextField.text, family_name: lastNameTextField.text, about: aboutMe, school: "University Of Calgary")
         
         print("About me for request is \(aboutMe ?? " Nothing ")")
         
@@ -304,6 +308,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             if let error = error as? AWSAppSyncClientError {
                 print("Error occurred: \(error.localizedDescription )")
                 return
+            }
+            
+            if let errors = result?.errors {
+                print(errors)
+                
             }
             
             

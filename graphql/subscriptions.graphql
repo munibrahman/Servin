@@ -64,6 +64,8 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -217,6 +219,8 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -368,6 +372,8 @@ subscription SubscribeToNewUCs($userId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId
@@ -471,6 +477,8 @@ subscription SubscribeToNewUCs($userId: ID!) {
               categories
               hasChosenCategories
             }
+            latitude
+            longitude
           }
         }
         conversationId
@@ -630,6 +638,8 @@ subscription SubscribeToNewUCs($userId: ID!) {
             categories
             hasChosenCategories
           }
+          latitude
+          longitude
         }
       }
       conversationId
@@ -885,6 +895,8 @@ subscription SubscribeToNewUCs($userId: ID!) {
           categories
           hasChosenCategories
         }
+        latitude
+        longitude
       }
     }
     conversationId
@@ -951,6 +963,8 @@ subscription SubscribeToNewUCs($userId: ID!) {
               image_3
               image_4
               image_5
+              latitude
+              longitude
             }
           }
           conversationId

@@ -60,7 +60,7 @@ class SignUp3ViewController: UIViewController {
             
             
             
-            guard let userNameValue = self.emailAddress, !userNameValue.isEmpty,
+            guard let emailValue = self.emailAddress, !emailValue.isEmpty,
                 let passwordValue = self.passwordTextField.text, !passwordValue.isEmpty else {
                     let alertController = UIAlertController(title: "Missing Required Fields",
                                                             message: "Username / Password are required for registration.",
@@ -91,7 +91,15 @@ class SignUp3ViewController: UIViewController {
             nextButtonSVGView.toggleProgress(showProgress: true)
             nextButtonSVGView.isUserInteractionEnabled = false
             
-            AWSMobileClient.sharedInstance().signUp(username: userNameValue,
+            if (KeyChainStore.shared.storeSignUp(email: emailValue)) {
+                print("Stored email for future confirmation")
+            }
+            
+            if (KeyChainStore.shared.storeSignUp(password: passwordValue)) {
+                print("Stored password for future confirmation")
+            }
+            
+            AWSMobileClient.sharedInstance().signUp(username: emailValue,
                                                     password: passwordValue,
                                                     userAttributes: attributes) { (signUpResult, error) in
                                                         if let signUpResult = signUpResult {
@@ -106,7 +114,7 @@ class SignUp3ViewController: UIViewController {
                                                                 DispatchQueue.main.async {
                                                                     if let signUpConfirmationViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmSignUpViewController") as? ConfirmSignUpViewController {
                                                                         
-                                                                        signUpConfirmationViewController.username = userNameValue
+                                                                        signUpConfirmationViewController.username = emailValue
                                                                         self.navigationController?.pushViewController(signUpConfirmationViewController, animated: true)
                                                                     }
                                                                 }
