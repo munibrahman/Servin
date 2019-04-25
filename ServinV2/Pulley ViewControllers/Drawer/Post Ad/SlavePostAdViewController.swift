@@ -9,6 +9,7 @@
 import UIKit
 import Pulley
 import TLPhotoPicker
+import AWSS3
 
 class SlavePostAdViewController: UIViewController {
     

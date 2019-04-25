@@ -20,6 +20,8 @@ PODS:
     - AWSCognitoIdentityProvider (= 2.9.4)
   - AWSPinpoint (2.9.4):
     - AWSCore (= 2.9.4)
+  - AWSS3 (2.9.4):
+    - AWSCore (= 2.9.4)
   - CardIO (5.4.1)
   - DZNEmptyDataSet (1.8.1)
   - Eureka (5.0.0)
@@ -65,6 +67,7 @@ DEPENDENCIES:
   - AWSCore
   - AWSMobileClient
   - AWSPinpoint
+  - AWSS3
   - CardIO
   - DZNEmptyDataSet
   - Eureka
@@ -95,6 +98,7 @@ SPEC REPOS:
     - AWSCore
     - AWSMobileClient
     - AWSPinpoint
+    - AWSS3
     - CardIO
     - DZNEmptyDataSet
     - Eureka
@@ -129,6 +133,7 @@ SPEC CHECKSUMS:
   AWSCore: 8539eaa1d687d50b6b127db5cb600e4c6b37cd4e
   AWSMobileClient: 689440f96995ab33b9dabd2a72ecf3c8059259a9
   AWSPinpoint: e898d49503b9e80689e5d3e34e258f4fa5c55137
+  AWSS3: fe1b6c1880dde60c33e6c1afcf23c3a805c99a49
   CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
@@ -152,6 +157,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
   TLPhotoPicker: 4274455aacc5b75b53aafa2de95bd1f53e7c79f8
 
-PODFILE CHECKSUM: f409f82e394c8d8a7da252a3217c9cba0d119066
+PODFILE CHECKSUM: 80f47497e53a37a48102feaa157b039079ac1839
 
 COCOAPODS: 1.5.3

@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import AWSMobileClient
+import AWSS3
 
 
 class BackendServer: NSObject {
@@ -28,32 +29,47 @@ class BackendServer: NSObject {
     // This function downloads the image and saves it at a location on the phone.
     
     func downloadProfileImage() {
+        let expression = AWSS3TransferUtilityDownloadExpression()
+        expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
+            // Do something e.g. Update a progress bar.
+        })
+        }
         
+        var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
+        completionHandler = { (task, URL, data, error) -> Void in
+            DispatchQueue.main.async(execute: {
+                if let error = error {
+                    print("Failed to download profile Image")
+                    print(error)
+                }
+                
+                if let data = data, let image = UIImage.init(data: data) {
+                    print("Downloaded Image")
+                    DefaultsWrapper.set(image: image, named: Key.imagePath)
+                }
+                // Do something e.g. Alert a user for transfer completion.
+                // On failed downloads, `error` contains the error object.
+            })
+        }
         
-        // Image doesn't exist download from server
-        print("Image doesn't exist, need to download from server")
+        let transferUtility = AWSS3TransferUtility.default()
         
-        // TODO Handle nil cases
-        // TODO: Download my profile image using s3 transfer utility
-//        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN" , onSuccess: { (json) in
-//            print(json)
-//            if let url = json["imageURL"].string {
-//                Alamofire.request(url).responseImage { response in
-//                    if let image = response.result.value {
-//                        debugPrint(response)
-//
-//                        print(response.request)
-//                        print(response.response)
-//                        debugPrint(response.result)
-//                        _ = DefaultsWrapper.set(image: image, named: Key.imagePath)
-//                    }
-//                }
-//            }
-//        }) { (err) in
-//            print(err)
-//        }
-        
-
+        transferUtility.downloadData(forKey: S3ProfileImageKeyName,
+                                     expression: expression,
+                                     completionHandler: completionHandler)
+            .continueWith { (task) -> Any? in
+                if let error = task.error {
+                    print("Error Downloading profile image")
+                    print(error)
+                }
+                
+                if let _ = task.result {
+                    
+                }
+                
+                return nil
+                
+        }
         
     }
     

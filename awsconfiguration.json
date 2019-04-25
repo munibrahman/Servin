@@ -29,7 +29,7 @@
     },
     "S3TransferUtility": {
         "Default": {
-            "Bucket": "servin-user-bucket",
+            "Bucket": "servin-users-bucket-test",
             "Region": "us-east-1"
         }
     }

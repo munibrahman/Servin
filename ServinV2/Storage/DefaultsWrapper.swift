@@ -218,6 +218,7 @@ class DefaultsWrapper {
                                                                        includingPropertiesForKeys: nil,
                                                                        options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
             for fileURL in fileURLs {
+                print("File urls are \(fileURL)")
                 if fileURL.pathExtension == "mp3" {
                     try FileManager.default.removeItem(at: fileURL)
                 }

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AWSAppSync
+import AWSS3
 
 class ProfileViewController: UIViewController {
     
@@ -96,12 +97,13 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.sizeToFit()
         
         // TODO: Fetch image from your own s3 bucket
-//        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
-//        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
+        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
+        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
 
         self.view.layoutIfNeeded()
     }
     
+
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

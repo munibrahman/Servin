@@ -15,6 +15,7 @@ import SideMenu
 import Alamofire
 import AWSPinpoint
 import AWSAppSync
+import AWSS3
 
 class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDelegate {
     
@@ -75,6 +76,33 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         }
         // Do any additional setup after loading the view.
         
+        
+        self.progressView.progress = 0.0;
+        self.statusLabel.text = "Ready"
+        
+        self.progressBlock = {(task, progress) in
+            DispatchQueue.main.async(execute: {
+                if (self.progressView.progress < Float(progress.fractionCompleted)) {
+                    self.progressView.progress = Float(progress.fractionCompleted)
+                }
+            })
+        }
+        
+        self.completionHandler = { (task, error) -> Void in
+            DispatchQueue.main.async(execute: {
+                if let error = error {
+                    print("Failed with error: \(error)")
+                    self.statusLabel.text = "Failed"
+                }
+                else if(self.progressView.progress != 1.0) {
+                    self.statusLabel.text = "Failed"
+                    NSLog("Error: Failed - Likely due to invalid region / filename")
+                }
+                else{
+                    self.statusLabel.text = "Success"
+                }
+            })
+        }
         
     }
     
@@ -181,11 +209,61 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                         
                         if let result = result {
                             print(result)
-                            DispatchQueue.main.async {
-                                self.navigationItem.rightBarButtonItem = self.postBarButton
-                                // everything is done, just close and show a success message?
-                                self.userDidTapX()
+//                            DispatchQueue.main.async {
+//                                self.navigationItem.rightBarButtonItem = self.postBarButton
+//                                // everything is done, just close and show a success message?
+//                                self.userDidTapX()
+//                            }
+                            
+//                            let dispatchGroup = DispatchGroup()
+                            
+                            let images = postAdVC.selectedAssets
+                            
+                            guard let discoveryId = result.data?.postDiscovery?.discoveryId else {
+                                print("Unable to upload image")
+                                return
                             }
+                            
+                            for (index, image) in images.enumerated() {
+                                
+//                                dispatchGroup.enter()
+                                
+                                if let imageData = image.fullResolutionImage?.pngData() {
+                                    
+                                    self.uploadImage(with: imageData, key: "public/\(discoveryId)/\(index).png")
+                                    
+                                }
+                                
+                                
+                                
+//                                if let url = json["image_\(index)"].string {
+//                                    print("image \(index) url")
+//                                    print(url)
+//
+//                                    APIManager.sharedInstance.putImage(url: url, image: image.fullResolutionImage!, onSuccess: { json in
+//                                        print("success uploading image")
+//                                        dispatchGroup.leave()
+//                                    }, onFailure: { (err) in
+//                                        print(err)
+//                                        print("error uploding image")
+//                                        dispatchGroup.leave()
+//                                    })
+//                                }
+                                
+//                                dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
+//
+////                                    DispatchQueue.main.async {
+////                                        self.navigationItem.rightBarButtonItem = self.postBarButton
+////                                        // everything is done, just close and show a success message?
+////                                        self.userDidTapX()
+////                                    }
+//                                    
+//                                }
+                                
+                                
+                            }
+                            
+                            
                         }
                     }
                 }
@@ -194,6 +272,56 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
             }
             
 
+        }
+    }
+    
+    var progressView: UIProgressView! = UIProgressView()
+    var statusLabel: UILabel = UILabel()
+    
+    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+    var progressBlock: AWSS3TransferUtilityProgressBlock?
+    
+    let imagePicker = UIImagePickerController()
+    let transferUtility = AWSS3TransferUtility.default()
+    
+    func uploadImage(with data: Data, key: String ) {
+        let expression = AWSS3TransferUtilityUploadExpression()
+        expression.progressBlock = progressBlock
+        
+        DispatchQueue.main.async(execute: {
+            self.statusLabel.text = ""
+            self.progressView.progress = 0
+        })
+        
+        print("KEY " + key)
+        
+        
+        
+        transferUtility.uploadData(
+            data,
+            key: key,
+            contentType: "image/png",
+            expression: expression,
+            completionHandler: completionHandler).continueWith { (task) -> AnyObject? in
+                if let error = task.error {
+                    print("Error: \(error.localizedDescription)")
+                    
+                    DispatchQueue.main.async {
+                        self.statusLabel.text = "Failed"
+                    }
+                }
+                
+                if let _ = task.result {
+                    
+                    DispatchQueue.main.async {
+                        self.statusLabel.text = "Uploading..."
+                        print("Upload Starting!")
+                    }
+                    
+                    // Do something with uploadTask.
+                }
+                
+                return nil;
         }
     }
     

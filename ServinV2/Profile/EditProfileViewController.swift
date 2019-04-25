@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import AWSAppSync
+import AWSS3
+import AWSMobileClient
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
@@ -33,6 +35,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     var aboutMe: String?
     
     var imagePicker = UIImagePickerController()
+    
+    let progressView: UIProgressView = {
+        let progressBar = UIProgressView.init(progressViewStyle: UIProgressView.Style.bar)
+        
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return progressBar
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +96,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         schoolTextField.backgroundColor = .clear
         schoolTextField.addBottomBorderWithColor(color: UIColor.contentDivider, width: 1.0)
+        
+        view.addSubview(progressView)
+        
+        progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        progressView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
         
         
     }
@@ -258,41 +275,118 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         if didPickImage {
             
-            myGroup.enter()
-            if let idToken = KeyChainStore.shared.fetchIdToken() {
-                let headers: HTTPHeaders = [
-                    "Authorization": idToken
-                ]
-                
-                guard let imageData = self.profileImageView.image?.jpegData(compressionQuality: 0.4)  else {
-                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
-                    
-                    return
-                }
-                
-                var url = "\(BackendServer.shared.baseUrl)/dev/user/picture"
-                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-                
-                Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
-                    if let JSON = response.result.value as? NSDictionary {
-                        
-                        // saved the image
-                        _ = DefaultsWrapper.set(image: self.profileImageView.image!, named: Key.imagePath)
-                        print(JSON)
-                    } else {
-                        
-                        // show error
-                        let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
-                        print(message)
-                        
-                       
-                        
+            // This is the S3 key used to store this person's current image.
+            let key = S3ProfileImageKeyName
+            
+            DispatchQueue.main.async(execute: {
+                self.progressView.progress = 0
+            })
+            
+            guard let image = self.profileImageView.image, let data = image.pngData() else {
+                print("Can't extract image, so won't even try to upload it")
+                return
+            } // Data to be uploaded
+            
+            let expression = AWSS3TransferUtilityMultiPartUploadExpression()
+            expression.progressBlock = {(task, progress) in
+                DispatchQueue.main.async(execute: {
+                    // Do something e.g. Update a progress bar.
+                    if (self.progressView.progress < Float(progress.fractionCompleted)) {
+                        self.progressView.progress = Float(progress.fractionCompleted)
                     }
-                    
-                    print("finished request for profile pic")
-                    myGroup.leave()
-                }
+                })
             }
+            
+            var completionHandler: AWSS3TransferUtilityMultiPartUploadCompletionHandlerBlock
+            completionHandler = { (task, error) -> Void in
+                DispatchQueue.main.async(execute: {
+                    
+                    if let error = error {
+                        print("Failed to upload image, please try again!")
+                        print(error)
+                        self.showErrorNotification(title: "Error", subtitle: "Unable to upload your profile image, please try again")
+                        return
+                    }
+                    DefaultsWrapper.set(image: image, named: Key.imagePath)
+                    print("finished request for profile pic")
+                    
+                    self.appSyncClient?.perform(mutation: UpdateProfilePictureMutation.init(key: key), resultHandler: { (result, error) in
+                        myGroup.leave()
+                        if let error = error, let errors = result?.errors {
+                            print(error)
+                            print(errors)
+                            print("Error updating the profile information key")
+                            return
+                        }
+                        
+                        if let data = result?.data?.updateProfilePicture?.profilePic {
+                            print("Updated profile image, should be in the db now!")
+                        }
+                        
+                    })
+                    
+                    
+                    
+                    // Do something e.g. Alert a user for transfer completion.
+                    // On failed uploads, `error` contains the error object.
+                })
+            }
+            
+            let transferUtility = AWSS3TransferUtility.default()
+            
+            myGroup.enter()
+            
+            
+            
+            
+            print(key)
+            transferUtility.uploadUsingMultiPart(data: data, key: key, contentType: "image/png", expression: expression, completionHandler: completionHandler).continueWith { (task) -> Any? in
+                if let error = task.error {
+                    print(error)
+                    print("Error: \(error.localizedDescription)")
+                }
+                
+                if let _ = task.result {
+                    // Do something with uploadTask.
+                }
+                return nil;
+            }
+            
+            
+            
+//            if let idToken = KeyChainStore.shared.fetchIdToken() {
+//                let headers: HTTPHeaders = [
+//                    "Authorization": idToken
+//                ]
+//
+//                guard let imageData = self.profileImageView.image?.jpegData(compressionQuality: 0.4)  else {
+//                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
+//
+//                    return
+//                }
+//
+//                var url = "\(BackendServer.shared.baseUrl)/dev/user/picture"
+//                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+//
+//                Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
+//                    if let JSON = response.result.value as? NSDictionary {
+//
+//                        // saved the image
+//                        _ = DefaultsWrapper.set(image: self.profileImageView.image!, named: Key.imagePath)
+//                        print(JSON)
+//                    } else {
+//
+//                        // show error
+//                        let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
+//                        print(message)
+//
+//
+//
+//                    }
+//
+//
+//                }
+//            }
         }
         
         myGroup.enter()
@@ -306,11 +400,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         appSyncClient?.perform(mutation: mutation, resultHandler: { (result, error) in
             if let error = error as? AWSAppSyncClientError {
+                
                 print("Error occurred: \(error.localizedDescription )")
+                print(error)
                 return
             }
             
             if let errors = result?.errors {
+                print("Error occured:")
                 print(errors)
                 
             }
