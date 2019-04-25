@@ -26,5 +26,11 @@
             "PoolId": "us-east-1_HLB3L7FFI",
             "Region": "us-east-1"
         }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "servin-user-bucket",
+            "Region": "us-east-1"
+        }
     }
 }

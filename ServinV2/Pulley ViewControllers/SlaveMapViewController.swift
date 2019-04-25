@@ -185,6 +185,23 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                             parentVC.myDiscoveriesViewController?.discoveriesAroundMe = discoveries
                             parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
                             // parentVC is someViewController
+                            
+                            
+                            
+                            for discovery in discoveries {
+                                print("discovery \(discovery)")
+                                if let latitude = discovery?.latitude, let longitude = discovery?.longitude {
+                                    let marker = GMSMarker(position: CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude))
+                    
+                                    print("got lat long")
+                                    print(latitude)
+                                    print(longitude)
+                                    DispatchQueue.main.async {
+                                        marker.map = self.homeMapView
+                                    }
+                                    
+                                }
+                            }
                         }
                         
                         

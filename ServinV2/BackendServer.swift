@@ -34,23 +34,24 @@ class BackendServer: NSObject {
         print("Image doesn't exist, need to download from server")
         
         // TODO Handle nil cases
-        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN" , onSuccess: { (json) in
-            print(json)
-            if let url = json["imageURL"].string {
-                Alamofire.request(url).responseImage { response in
-                    if let image = response.result.value {
-                        debugPrint(response)
-                        
-                        print(response.request)
-                        print(response.response)
-                        debugPrint(response.result)
-                        _ = DefaultsWrapper.set(image: image, named: Key.imagePath)
-                    }
-                }
-            }
-        }) { (err) in
-            print(err)
-        }
+        // TODO: Download my profile image using s3 transfer utility
+//        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN" , onSuccess: { (json) in
+//            print(json)
+//            if let url = json["imageURL"].string {
+//                Alamofire.request(url).responseImage { response in
+//                    if let image = response.result.value {
+//                        debugPrint(response)
+//
+//                        print(response.request)
+//                        print(response.response)
+//                        debugPrint(response.result)
+//                        _ = DefaultsWrapper.set(image: image, named: Key.imagePath)
+//                    }
+//                }
+//            }
+//        }) { (err) in
+//            print(err)
+//        }
         
 
         
@@ -71,15 +72,15 @@ class BackendServer: NSObject {
     
     func fetchAttributes() {
         
-        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN", onSuccess: { (json) in
-            print(json)
-            if let about = json["about"].string {
-                DefaultsWrapper.setString(key: Key.aboutMe, value: about)
-            }
-            
-        }) { (err) in
-            print(err)
-        }
+//        APIManager.sharedInstance.getUser(username: AWSMobileClient.sharedInstance().username ?? "NO TOKEN", onSuccess: { (json) in
+//            print(json)
+//            if let about = json["about"].string {
+//                DefaultsWrapper.setString(key: Key.aboutMe, value: about)
+//            }
+//
+//        }) { (err) in
+//            print(err)
+//        }
        
         AWSMobileClient.sharedInstance().getUserAttributes { (response, error) in
             if error != nil {

@@ -30,6 +30,7 @@ target 'ServinV2' do
   pod 'AWSAPIGateway'
   pod 'AWSPinpoint'
   pod 'AWSMobileClient'      # Required dependency for signing up
+  pod 'AWSS3'
 
   #Stripe
   pod 'Stripe'

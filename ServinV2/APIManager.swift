@@ -24,32 +24,32 @@ class APIManager: NSObject {
     static let getUserEndpoint = "/user"
     static let getAddConnectEndpoint = "/stripe/add_connect_account"
     
-    func postDiscovery(body: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
-        let url : String = baseURL + APIManager.getDiscoveriesEndpoint
-        
-        let headers = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
-        ]
-        
-        print(body)
-        
-        let request = Alamofire.request(url, method: .post, parameters: body, encoding: JSONEncoding.default , headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let val):
-                    print(val)
-                    onSuccess(JSON(val))
-                    
-                case .failure(let err):
-                    print(err)
-                    onFailure(err)
-                }
-                
-        }
-        
-        print(request)
-    }
+//    func postDiscovery(body: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+//        let url : String = baseURL + APIManager.getDiscoveriesEndpoint
+//
+//        let headers = [
+//            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
+//        ]
+//
+//        print(body)
+//
+//        let request = Alamofire.request(url, method: .post, parameters: body, encoding: JSONEncoding.default , headers: headers)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success(let val):
+//                    print(val)
+//                    onSuccess(JSON(val))
+//
+//                case .failure(let err):
+//                    print(err)
+//                    onFailure(err)
+//                }
+//
+//        }
+//
+//        print(request)
+//    }
     
     func putImage(url: String, image: UIImage, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
         
@@ -75,88 +75,88 @@ class APIManager: NSObject {
         
     }
     
-    func getDiscoveries(params: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
-        let url : String = baseURL + APIManager.getDiscoveriesEndpoint
-        print(url)
-        
-        
-        guard let idToken = KeyChainStore.shared.fetchIdToken() else {
-            print("ERROR, Can't get id token!")
-            return
-        }
-        
-        let headers = [
-            "Authorization": idToken
-        ]
-        
-        print("URL is \(url)")
-        print("Fetching discovery with the id token \(idToken)")
-        
-        print(params)
-        
-        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.queryString , headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let val):
-                    print(val)
-                    onSuccess(JSON.init(val))
-                case .failure(let err):
-                    print(err)
-                    onFailure(err)
-                }
-                
-        }
-        
-    }
+//    func getDiscoveries(params: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+//        let url : String = baseURL + APIManager.getDiscoveriesEndpoint
+//        print(url)
+//
+//
+//        guard let idToken = KeyChainStore.shared.fetchIdToken() else {
+//            print("ERROR, Can't get id token!")
+//            return
+//        }
+//
+//        let headers = [
+//            "Authorization": idToken
+//        ]
+//
+//        print("URL is \(url)")
+//        print("Fetching discovery with the id token \(idToken)")
+//
+//        print(params)
+//
+//        Alamofire.request(url, method: .get, parameters: params, encoding: URLEncoding.queryString , headers: headers)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success(let val):
+//                    print(val)
+//                    onSuccess(JSON.init(val))
+//                case .failure(let err):
+//                    print(err)
+//                    onFailure(err)
+//                }
+//
+//        }
+//
+//    }
     
-    func getUser(username: String, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
-        let url : String = baseURL + APIManager.getUserEndpoint + "/" + username
-        print(url)
-        let headers = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
-        ]
-        
-        
-        Alamofire.request(url, method: .get, encoding: JSONEncoding.default , headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let val):
-                    print(val)
-                    onSuccess(JSON.init(val))
-                case .failure(let err):
-                    print(err)
-                    onFailure(err)
-                }
-                
-        }
-        
-    }
+//    func getUser(username: String, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+//        let url : String = baseURL + APIManager.getUserEndpoint + "/" + username
+//        print(url)
+//        let headers = [
+//            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
+//        ]
+//
+//
+//        Alamofire.request(url, method: .get, encoding: JSONEncoding.default , headers: headers)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success(let val):
+//                    print(val)
+//                    onSuccess(JSON.init(val))
+//                case .failure(let err):
+//                    print(err)
+//                    onFailure(err)
+//                }
+//
+//        }
+//
+//    }
     
-    func putUser(username: String, body: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
-        let url : String = baseURL + APIManager.getUserEndpoint + "/" + username
-        print(url)
-        let headers = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
-        ]
-        
-        
-        Alamofire.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: headers)
-            .validate(statusCode: 200..<300)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let val):
-                    print(val)
-                    onSuccess(JSON.init(val))
-                case .failure(let err):
-                    print(err)
-                    onFailure(err)
-                }
-                
-        }
-        
-    }
+//    func putUser(username: String, body: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+//        let url : String = baseURL + APIManager.getUserEndpoint + "/" + username
+//        print(url)
+//        let headers = [
+//            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
+//        ]
+//        
+//        
+//        Alamofire.request(url, method: .put, parameters: body, encoding: JSONEncoding.default, headers: headers)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { response in
+//                switch response.result {
+//                case .success(let val):
+//                    print(val)
+//                    onSuccess(JSON.init(val))
+//                case .failure(let err):
+//                    print(err)
+//                    onFailure(err)
+//                }
+//                
+//        }
+//        
+//    }
     
 //    .responseJSON { response in
 //    print("request")

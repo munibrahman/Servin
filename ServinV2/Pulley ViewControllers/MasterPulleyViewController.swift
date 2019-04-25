@@ -14,6 +14,7 @@ import GoogleMaps
 import SideMenu
 import Alamofire
 import AWSPinpoint
+import AWSAppSync
 
 class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDelegate {
     
@@ -158,51 +159,37 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                     "price": Int(postAdVC.priceTextField.text ?? "0") ?? 0
                 ]
                 
-                APIManager.sharedInstance.postDiscovery(body: body, onSuccess: { (json) in
-                    print("Successfully dropped a pin")
-                    print(json)
+                print("Discovery: \(body)")
+                
+                if let appDelegate = UIApplication.shared.delegate as? AppDelegate  {
+                    let appSyncClient = appDelegate.appSyncClient
                     
-                    let dispatchGroup = DispatchGroup()
+                    let postDiscoveryMutation = PostDiscoveryMutation.init(title: postAdVC.titleTextField.text ?? "",
+                                                                           price: Int(postAdVC.priceTextField.text ?? "0") ?? 0,
+                                                                           request_or_offer: postAdVC.discoveryType == .offer ? "offer" : "request",
+                                                                           description: postAdVC.descriptionTextField.text ?? "",
+                                                                           lat: coordinate.latitude,
+                                                                           long: coordinate.longitude)
                     
-                    let images = postAdVC.selectedAssets
-                    
-                    for (index, image) in images.enumerated() {
-                        
-                        dispatchGroup.enter()
-                        
-                        if let url = json["image_\(index)"].string {
-                            print("image \(index) url")
-                            print(url)
-                            
-                            APIManager.sharedInstance.putImage(url: url, image: image.fullResolutionImage!, onSuccess: { json in
-                                print("success uploading image")
-                                dispatchGroup.leave()
-                            }, onFailure: { (err) in
-                                print(err)
-                                print("error uploding image")
-                                dispatchGroup.leave()
-                            })
+                    appSyncClient?.perform(mutation: postDiscoveryMutation) { (result, error) in
+                        if let error = error, let errors = result?.errors {
+                            print(error)
+                            print(errors)
+                            self.showErrorNotification(title: "Error", subtitle: "Can't drop a pin right now, please try again")
                         }
                         
-                        dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
-                            
+                        
+                        if let result = result {
+                            print(result)
                             DispatchQueue.main.async {
                                 self.navigationItem.rightBarButtonItem = self.postBarButton
                                 // everything is done, just close and show a success message?
                                 self.userDidTapX()
                             }
-                            
                         }
-                        
-                        
                     }
-                    
-                    
-                }) { (err) in
-                    print("Error")
-                    print(err)
-                    self.navigationItem.rightBarButtonItem = self.postBarButton
                 }
+                
                 
             }
             

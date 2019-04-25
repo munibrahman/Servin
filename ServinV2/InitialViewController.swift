@@ -47,7 +47,7 @@ class InitialViewController: UIViewController {
         let sb = UIStoryboard.init(name: "Main", bundle: nil)
         let welcomeVC = sb.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
         
-        AWSMobileClient.sharedInstance().signOut()
+//        AWSMobileClient.sharedInstance().signOut()
         
         let userState = AWSMobileClient.sharedInstance().currentUserState
         switch (userState) {
