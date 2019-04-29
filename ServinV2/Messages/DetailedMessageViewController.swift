@@ -10,6 +10,7 @@ import UIKit
 import AWSAppSync
 import IQKeyboardManagerSwift
 import AWSMobileClient
+import SwiftyJSON
 
 // CHATLOG Controller
 
@@ -241,7 +242,19 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         // TODO: Get the image of the discovery in here
 //        topPinImageView.image = #imageLiteral(resourceName: "soccer")
-//        topPinImageView.image = aDiscovery?._images.first ?? UIImage.init(named: "default_image_icon")
+//        topPinImageView.image = aDiscovery?.image_0
+        
+        if let image1 = aDiscovery?.image_0, let data = image1.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                print("JSON DATA \(json)")
+                print(json["ICON"].stringValue)
+                topPinImageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
+                
+            } catch {
+                print("Error \(error)")
+            }
+        }
         
         topPinView.addSubview(topPinImageView)
         
@@ -600,14 +613,14 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                 if let snapshot = res?.data?.subscribeToNewMessage?.snapshot {
                     print("Snap shot exists")
                     let messageObject = AllMessageConnectionQuery.Data.AllMessageConnection.Message.init(snapshot: snapshot)
+                    print("created snapshot")
+//                    self.messages?.append(messageObject)
                     
-                    self.messages?.append(messageObject)
-                    
-                    DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
-                        let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
-                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
-                    }
+//                    DispatchQueue.main.async {
+//                        self.collectionView?.reloadData()
+//                        let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+//                        self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+//                    }
                 }
             })
             

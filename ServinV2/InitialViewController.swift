@@ -44,33 +44,28 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let sb = UIStoryboard.init(name: "Main", bundle: nil)
-        let welcomeVC = sb.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
-        
-//        AWSMobileClient.sharedInstance().signOut()
-        
         let userState = AWSMobileClient.sharedInstance().currentUserState
         switch (userState) {
         case .guest:
-            self.present(welcomeVC, animated: true, completion: nil)
             print("user is in guest mode.")
+            signOutUser()
         case .signedOut:
             // Present the welcome view controller.
-            self.present(welcomeVC, animated: true, completion: nil)
             print("user signed out")
+            signOutUser()
         case .signedIn:
             print("user is signed in.")
             checkIfselectedCategories()
         case .signedOutUserPoolsTokenInvalid:
-            self.present(welcomeVC, animated: true, completion: nil)
             print("need to login again.")
+            signOutUser()
         case .signedOutFederatedTokensInvalid:
-            
             print("user logged in via federation, but currently needs new tokens")
+            signOutUser()
         default:
             // If everything fails, present the welcome vc.
-            self.present(welcomeVC, animated: true, completion: nil)
             print("unsupported")
+            signOutUser()
         }
     }
     
@@ -96,56 +91,70 @@ class InitialViewController: UIViewController {
             
         }
         
+        
+        
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let appSyncClient = appDelegate.appSyncClient
             
             appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.fetchIgnoringCacheData, resultHandler: { (result, error) in
                 
-                if error != nil {
+                if error != nil || result?.errors != nil {
                     print("Error fetching my own query")
                     print(error?.localizedDescription ?? "Can't unwrap error")
-                    // Present the actual app.
-                    DispatchQueue.main.async {
-                        self.present(Constants.getMainContentVC(), animated: true, completion: nil)
-                    }
+                    print(error)
+                    print(result?.errors)
+                    // No idea whats going on, sign them out, allow them to start again.
+                    self.signOutUser()
                     return
-                } else if let result = result {
-                    if let chosen = result.data?.me?.hasChosenCategories {
-                        if chosen {
-                            // Present the actual app.
-                            DispatchQueue.main.async {
-                                self.present(Constants.getMainContentVC(), animated: true, completion: nil)
-                            }
-                        } else {
-                            // Present the categories.
-                            DispatchQueue.main.async {
-                                let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
-                                self.present(navVC, animated: true, completion: nil)
-                            }
+                } else if let result = result,
+                    let data = result.data,
+                    let me = data.me,
+                    let chosen = me.hasChosenCategories {
+                    
+                    
+                    if chosen {
+                        // Present the actual app.
+                        print("has chosen categories")
+                        DispatchQueue.main.async {
+                            self.present(Constants.getMainContentVC(), animated: true, completion: nil)
                         }
                     } else {
-                        // Can't unwrap the chosen boolean, maybe first time, just show the categories.
+                        print("has NOT chosen categories")
+                        // Present the categories.
                         DispatchQueue.main.async {
                             let navVC = UINavigationController.init(rootViewController: SelectCategoriesViewController())
                             self.present(navVC, animated: true, completion: nil)
                         }
                     }
+                    
+                    
+                    
                 } else {
-                    // Can't unwrap anything, just show the app
-                    DispatchQueue.main.async {
-                        self.present(Constants.getMainContentVC(), animated: true, completion: nil)
-                    }
+                    // No errors and no results, somethings wrong
+                    print("No errors and no results, somethings wrong")
+                    self.signOutUser()
                 }
                 
             })
         } else {
-            // Present the actual app.
+            // Some kind of an error
+            print("Some kind of an error")
             DispatchQueue.main.async {
-                self.present(Constants.getMainContentVC(), animated: true, completion: nil)
+                self.signOutUser()
             }
             
         }
         
+    }
+    
+    func signOutUser() {
+        print("Edge case, signing user out")
+        DispatchQueue.main.async {
+            AWSMobileClient.sharedInstance().signOut()
+            let sb = UIStoryboard.init(name: "Main", bundle: nil)
+            let welcomeVC = sb.instantiateViewController(withIdentifier: String.init(describing: WelcomeViewController.self))
+            self.present(welcomeVC, animated: true, completion: nil)
+        }
     }
 
     /*

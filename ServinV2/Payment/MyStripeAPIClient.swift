@@ -67,7 +67,7 @@ class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
             ],
             ]
         let header = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? ""
+            "Authorization": "ERROR: CANT GET ID TOKEN"
         ]
         
         Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header )
@@ -89,7 +89,7 @@ class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
         print(url)
         
         let parameters = [
-            "Authorization": KeyChainStore.shared.fetchIdToken() ?? "",
+            "Authorization": "ERROR: CANT GET ID TOKEN",
             "api_version" : "2018-09-24"
         ]
         

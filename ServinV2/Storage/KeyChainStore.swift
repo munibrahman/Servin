@@ -107,17 +107,17 @@ class KeyChainStore: NSObject {
         return keychain.string(forKey: KeyChainStore.Keys.latestSignUpPass.rawValue)
     }
     
-    func fetchRefreshToken() -> String? {
-        return keychain.string(forKey: KeyChainStore.Keys.refreshToken.rawValue)
-    }
-    
-    func fetchIdToken() -> String? {
-        return keychain.string(forKey: KeyChainStore.Keys.idToken.rawValue)
-    }
-    
-    func fetchAccessToken() -> String? {
-        return keychain.string(forKey: KeyChainStore.Keys.accessToken.rawValue)
-    }
+//    func fetchRefreshToken() -> String? {
+//        return keychain.string(forKey: KeyChainStore.Keys.refreshToken.rawValue)
+//    }
+//    
+//    func fetchIdToken() -> String? {
+//        return keychain.string(forKey: KeyChainStore.Keys.idToken.rawValue)
+//    }
+//    
+//    func fetchAccessToken() -> String? {
+//        return keychain.string(forKey: KeyChainStore.Keys.accessToken.rawValue)
+//    }
     
     func removeAllKeys() {
         keychain.removeAllItems()

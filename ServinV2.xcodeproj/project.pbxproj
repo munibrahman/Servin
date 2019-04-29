@@ -241,7 +241,7 @@
 		8BF6F5AA213EF142006146E9 /* NotificationsAroundYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAroundYouViewController.swift; sourceTree = "<group>"; };
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE18B6F92238BCF300D68029 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
-		AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = S3BucketKeys.swift; path = ServinV2/S3BucketKeys.swift; sourceTree = "<group>"; };
+		AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3BucketKeys.swift; sourceTree = "<group>"; };
 		AE42A2102274731800F36BB2 /* S3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Manager.swift; sourceTree = "<group>"; };
 		AED827242256B2F3006164C6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -429,7 +429,6 @@
 		8BA6454D20830D44006EEEC5 = {
 			isa = PBXGroup;
 			children = (
-				AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */,
 				8BC006C921E28A8400B292B0 /* awsconfiguration.json */,
 				AE18B6F92238BCF300D68029 /* API.swift */,
 				8BA6455820830D44006EEEC5 /* ServinV2 */,
@@ -492,7 +491,7 @@
 				8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */,
 				8B4D5723218A954D00A28CEA /* APIManager.swift */,
 				AED827242256B2F3006164C6 /* InitialViewController.swift */,
-				AE42A2102274731800F36BB2 /* S3Manager.swift */,
+				AE42A9892276AC1D00D6D331 /* S3 */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -615,6 +614,15 @@
 				BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE42A9892276AC1D00D6D331 /* S3 */ = {
+			isa = PBXGroup;
+			children = (
+				AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */,
+				AE42A2102274731800F36BB2 /* S3Manager.swift */,
+			);
+			path = S3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
