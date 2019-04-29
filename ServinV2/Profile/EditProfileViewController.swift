@@ -288,6 +288,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             } // Data to be uploaded
             
             let expression = AWSS3TransferUtilityMultiPartUploadExpression()
+            expression.setValue(AWSMobileClient.sharedInstance().username ?? "", forRequestParameter: "x-amz-meta-cognito_id")
+//            expression.setValue("\(geoHashPrefix)", forRequestParameter: "x-amz-meta-geohash_prefix")
+//            expression.setValue("\(index)", forRequestParameter: "x-amz-meta-image_number")
+            
             expression.progressBlock = {(task, progress) in
                 DispatchQueue.main.async(execute: {
                     // Do something e.g. Update a progress bar.

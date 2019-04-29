@@ -74,25 +74,6 @@ class InitialViewController: UIViewController {
         
         print("Checking to see if categories have been selected")
         
-        AWSMobileClient.sharedInstance().getTokens { (tokens, error) in
-            
-            if let error = error {
-                print("Can't fetch tokens, error occured")
-                print(error)
-                
-            }
-            
-            if let tokens = tokens {
-                print("Tokens refreshed")
-                print(tokens.accessToken)
-                print(tokens.idToken)
-                print(tokens.refreshToken)
-            }
-            
-        }
-        
-        
-        
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let appSyncClient = appDelegate.appSyncClient
             
