@@ -2662,3 +2662,183 @@ mutation UpdateProfilePicture($key: String) {
     hasChosenCategories
   }
 }
+mutation UpdateImage(
+  $discoveryId: String
+  $imageName: String
+  $pathKey: String
+) {
+  updateImage(
+    discoveryId: $discoveryId
+    imageName: $imageName
+    pathKey: $pathKey
+  ) {
+    geohashPrefix
+    discoveryId
+    active
+    cognitoUserName
+    description
+    price
+    request_or_offer
+    time
+    title
+    geoJson
+    image_0
+    image_1
+    image_2
+    image_3
+    image_4
+    image_5
+    author {
+      userId
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              userId
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+            }
+            conversationId
+            user {
+              userId
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            userId
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+            }
+          }
+          conversationId
+          user {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          userId
+        }
+      }
+      messages {
+        messages {
+          author {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            userId
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    latitude
+    longitude
+  }
+}

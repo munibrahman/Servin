@@ -219,6 +219,11 @@ class MyDiscoveryViewController: UserDiscoveryViewController {
 //            cell.imageInputs = pin?.imagesUrl ?? []
 //            cell.setupInputs()
             
+            if let discovery = discovery {
+                cell.discovery = GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery.init(snapshot: discovery.snapshot)
+            }
+            
+            
             return cell
             
         }

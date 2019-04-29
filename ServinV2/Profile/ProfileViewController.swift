@@ -97,7 +97,7 @@ class ProfileViewController: UIViewController {
         othersSayAboutMeLabel.sizeToFit()
         
         // TODO: Fetch image from your own s3 bucket
-        self.profileImageView.image = BackendServer.shared.fetchProfileImage()
+        self.profileImageView.loadImageUsingS3Key(key: S3ProfileImageKeyName)
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.height / 2.0
 
         self.view.layoutIfNeeded()

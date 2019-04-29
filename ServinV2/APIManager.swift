@@ -51,29 +51,29 @@ class APIManager: NSObject {
 //        print(request)
 //    }
     
-    func putImage(url: String, image: UIImage, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
-        
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
-            return
-        }
-        
-        let header = ["Content-Type": "image/jpeg"]
-        
-        print(url)
-        
-        Alamofire.upload(imageData, to: url, method: .put, headers: header)
-            .validate(statusCode: 200..<300)
-            .responseString { (response) in
-                switch response.result {
-                    case .success(let val):
-                    onSuccess(JSON(val))
-                
-                    case .failure(let err):
-                    onFailure(err)
-                }
-        }
-        
-    }
+//    func putImage(url: String, image: UIImage, onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
+//
+//        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+//            return
+//        }
+//
+//        let header = ["Content-Type": "image/jpeg"]
+//
+//        print(url)
+//
+//        Alamofire.upload(imageData, to: url, method: .put, headers: header)
+//            .validate(statusCode: 200..<300)
+//            .responseString { (response) in
+//                switch response.result {
+//                    case .success(let val):
+//                    onSuccess(JSON(val))
+//
+//                    case .failure(let err):
+//                    onFailure(err)
+//                }
+//        }
+//
+//    }
     
 //    func getDiscoveries(params: [String: Any], onSuccess: @escaping(JSON) -> Void, onFailure: @escaping(Error) -> Void){
 //        let url : String = baseURL + APIManager.getDiscoveriesEndpoint

@@ -444,6 +444,9 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
 //            cell.imageInputs = pin?.imagesUrl ?? []
 //            cell.setupInputs()
             
+            // Just need to pass in the discovery, the cell will take care of the rest.
+            cell.discovery = pin
+            
             return cell
             
         } else if indexPath.row == 3 {

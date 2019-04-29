@@ -180,7 +180,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func populateInfo() {
         
-        profileImageView.image = BackendServer.shared.fetchProfileImage()
+        profileImageView.loadImageUsingS3Key(key: S3ProfileImageKeyName)
         
         appSyncClient?.fetch(query: MeQuery(), cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
             
@@ -282,7 +282,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 self.progressView.progress = 0
             })
             
-            guard let image = self.profileImageView.image, let data = image.pngData() else {
+            guard let image = self.profileImageView.image, let data = image.jpegData(compressionQuality: 0.5) else {
                 print("Can't extract image, so won't even try to upload it")
                 return
             } // Data to be uploaded
@@ -315,7 +315,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         if let error = error, let errors = result?.errors {
                             print(error)
                             print(errors)
-                            print("Error updating the profile information key")
+                            print("Error updating the profile image key")
                             return
                         }
                         
@@ -340,7 +340,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             
             print(key)
-            transferUtility.uploadUsingMultiPart(data: data, key: key, contentType: "image/png", expression: expression, completionHandler: completionHandler).continueWith { (task) -> Any? in
+            transferUtility.uploadUsingMultiPart(data: data, key: key, contentType: "image/jpeg", expression: expression, completionHandler: completionHandler).continueWith { (task) -> Any? in
                 if let error = task.error {
                     print(error)
                     print("Error: \(error.localizedDescription)")
@@ -352,41 +352,6 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 return nil;
             }
             
-            
-            
-//            if let idToken = KeyChainStore.shared.fetchIdToken() {
-//                let headers: HTTPHeaders = [
-//                    "Authorization": idToken
-//                ]
-//
-//                guard let imageData = self.profileImageView.image?.jpegData(compressionQuality: 0.4)  else {
-//                    self.navigationItem.rightBarButtonItem = self.saveButtonItem
-//
-//                    return
-//                }
-//
-//                var url = "\(BackendServer.shared.baseUrl)/dev/user/picture"
-//                url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-//
-//                Alamofire.upload(imageData, to: URL(string: url)!, method: .post, headers: headers).responseJSON { (response) in
-//                    if let JSON = response.result.value as? NSDictionary {
-//
-//                        // saved the image
-//                        _ = DefaultsWrapper.set(image: self.profileImageView.image!, named: Key.imagePath)
-//                        print(JSON)
-//                    } else {
-//
-//                        // show error
-//                        let message = response.result.error != nil ? response.result.error!.localizedDescription : "Unable to communicate."
-//                        print(message)
-//
-//
-//
-//                    }
-//
-//
-//                }
-//            }
         }
         
         myGroup.enter()

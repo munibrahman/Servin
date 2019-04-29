@@ -403,6 +403,37 @@ extension Collection {
     }
 }
 
+let imageCache = NSCache<AnyObject, AnyObject>.init()
+
+extension UIImageView {
+    func loadImageUsingS3Key(key: String) {
+        
+//        image = nil
+        
+        S3Manager.default().downloadImage(bucket: nil, key: key, expression: nil, onSuccess: { (image) in
+            
+            DispatchQueue.main.async {
+                
+                if let imageFromCache = imageCache.object(forKey: key as AnyObject) as? UIImage {
+                    print("Found image in cache")
+                    self.image = imageFromCache
+                    return
+                }
+                
+                let imageToCache = image
+                imageCache.setObject(imageToCache, forKey: key as AnyObject)
+                self.image = imageToCache
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
+                self.image = #imageLiteral(resourceName: "default_image_icon")
+                print("Error Fetching image for key: \(key)")
+                print(error)
+            }
+        }
+    }
+}
+
 
 
 

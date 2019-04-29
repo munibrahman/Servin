@@ -24,7 +24,6 @@
 		8B48C0E220D9DFA10068C8EF /* PinsNearbyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */; };
 		8B48C0E320D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */; };
 		8B48C0E820DA04CF0068C8EF /* MyPinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */; };
-		8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */; };
 		8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */; };
 		8B4D5724218A954D00A28CEA /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D5723218A954D00A28CEA /* APIManager.swift */; };
 		8B4D962C218A4D260031E616 /* StripeConnectWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */; };
@@ -109,6 +108,7 @@
 		AE17A479220EBF260065CC9D /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 8BC006C921E28A8400B292B0 /* awsconfiguration.json */; };
 		AE18B6FA2238BCF300D68029 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE18B6F92238BCF300D68029 /* API.swift */; };
 		AE42A20F2272150800F36BB2 /* S3BucketKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */; };
+		AE42A2112274731800F36BB2 /* S3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A2102274731800F36BB2 /* S3Manager.swift */; };
 		AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED827242256B2F3006164C6 /* InitialViewController.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
@@ -152,7 +152,6 @@
 		8B48C0E020D9DFA00068C8EF /* PinsNearbyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PinsNearbyCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B48C0E120D9DFA10068C8EF /* PinsNearbyCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinsNearbyCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPinTableViewCell.swift; sourceTree = "<group>"; };
-		8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPinTableViewCell.xib; sourceTree = "<group>"; };
 		8B4A26B4210FB8C100CE5FD6 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		8B4D5723218A954D00A28CEA /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		8B4D962B218A4D260031E616 /* StripeConnectWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeConnectWebViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +242,7 @@
 		9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE18B6F92238BCF300D68029 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = S3BucketKeys.swift; path = ServinV2/S3BucketKeys.swift; sourceTree = "<group>"; };
+		AE42A2102274731800F36BB2 /* S3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Manager.swift; sourceTree = "<group>"; };
 		AED827242256B2F3006164C6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,7 +334,6 @@
 			children = (
 				8BBFFC33209D96F000BA5D06 /* MyPinsTableViewController.swift */,
 				8B48C0E620DA04CF0068C8EF /* MyPinTableViewCell.swift */,
-				8B48C0E720DA04CF0068C8EF /* MyPinTableViewCell.xib */,
 			);
 			path = "My Pins";
 			sourceTree = "<group>";
@@ -493,6 +492,7 @@
 				8B743E28214967AA00322EF8 /* InviteOthersViewController.swift */,
 				8B4D5723218A954D00A28CEA /* APIManager.swift */,
 				AED827242256B2F3006164C6 /* InitialViewController.swift */,
+				AE42A2102274731800F36BB2 /* S3Manager.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -746,7 +746,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B48C0E920DA04CF0068C8EF /* MyPinTableViewCell.xib in Resources */,
 				8BD3834C20CBD03D00B4B653 /* CustomCell_Instagram.xib in Resources */,
 				8B3FEF7720CD18090056C22A /* SideMenuServinLogoTableViewCell.xib in Resources */,
 				8B6B7DFF20ADB56400867F18 /* logo_servin.svg in Resources */,
@@ -1002,6 +1001,7 @@
 				8BEE79BB20F42D3700DB768C /* ConfirmForgotPasswordViewController.swift in Sources */,
 				8B51798D20D99C8900774BDE /* EditDiscoveryViewController.swift in Sources */,
 				8BBFFC32209D96D300BA5D06 /* MessageViewController.swift in Sources */,
+				AE42A2112274731800F36BB2 /* S3Manager.swift in Sources */,
 				8BBFFC34209D96F000BA5D06 /* MyPinsTableViewController.swift in Sources */,
 				8BBFFC2D209D663800BA5D06 /* SideMenuTableViewCell.swift in Sources */,
 				8BBFFC3C209E1F4600BA5D06 /* SearchView.swift in Sources */,

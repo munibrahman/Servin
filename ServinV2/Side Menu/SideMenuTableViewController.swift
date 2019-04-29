@@ -84,7 +84,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             })
         }
         
-        self.profileImageView?.image = BackendServer.shared.fetchProfileImage()
+        self.profileImageView?.loadImageUsingS3Key(key: S3ProfileImageKeyName)
     }
     
     func setupConstraints() {
@@ -149,7 +149,7 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             self.userNameLabel = cell.userNameLabel
             
-            cell.profileImageView.image = BackendServer.shared.fetchProfileImage()
+            cell.profileImageView.loadImageUsingS3Key(key: S3ProfileImageKeyName)
             
             
             self.profileImageView = cell.profileImageView

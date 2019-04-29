@@ -33,6 +33,19 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         case posting
     }
     
+    let progressView: UIProgressView = {
+        let progressBar = UIProgressView.init(progressViewStyle: UIProgressView.Style.bar)
+        
+        progressBar.translatesAutoresizingMaskIntoConstraints = false
+        
+        return progressBar
+    }()
+    
+    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+    var progressBlock: AWSS3TransferUtilityProgressBlock?
+    
+    let transferUtility = AWSS3TransferUtility.default()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,6 +83,17 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                     return nil
                 }
                 
+//                https://stackoverflow.com/questions/51576333/send-push-notification-from-ios-using-aws-pinpoint?rq=1
+                
+//                let sendMessagesRequest = AWSPinpointTargetingSendMessagesRequest()!
+//                sendMessagesRequest.applicationId = appId
+//                sendMessagesRequest.messageRequest = messageRequest
+//
+//                AWSPinpointTargeting.default().sendMessages(sendMessagesRequest){ response, error in
+//                    ...
+//                }
+//                AWSPinpointTargeting.init().sendMessages(<#T##request: AWSPinpointTargetingSendMessagesRequest##AWSPinpointTargetingSendMessagesRequest#>)
+                
                 
                 
             }
@@ -77,32 +101,12 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         // Do any additional setup after loading the view.
         
         
-        self.progressView.progress = 0.0;
-        self.statusLabel.text = "Ready"
+        view.addSubview(progressView)
         
-        self.progressBlock = {(task, progress) in
-            DispatchQueue.main.async(execute: {
-                if (self.progressView.progress < Float(progress.fractionCompleted)) {
-                    self.progressView.progress = Float(progress.fractionCompleted)
-                }
-            })
-        }
-        
-        self.completionHandler = { (task, error) -> Void in
-            DispatchQueue.main.async(execute: {
-                if let error = error {
-                    print("Failed with error: \(error)")
-                    self.statusLabel.text = "Failed"
-                }
-                else if(self.progressView.progress != 1.0) {
-                    self.statusLabel.text = "Failed"
-                    NSLog("Error: Failed - Likely due to invalid region / filename")
-                }
-                else{
-                    self.statusLabel.text = "Success"
-                }
-            })
-        }
+        progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        progressView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
         
     }
     
@@ -200,10 +204,13 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                                                                            long: coordinate.longitude)
                     
                     appSyncClient?.perform(mutation: postDiscoveryMutation) { (result, error) in
-                        if let error = error, let errors = result?.errors {
+                        if error != nil || result?.errors != nil {
                             print(error)
-                            print(errors)
+                            print(result?.errors)
                             self.showErrorNotification(title: "Error", subtitle: "Can't drop a pin right now, please try again")
+                            DispatchQueue.main.async {
+                                self.navigationItem.rightBarButtonItem = self.postBarButton
+                            }
                         }
                         
                         
@@ -215,22 +222,41 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
 //                                self.userDidTapX()
 //                            }
                             
-//                            let dispatchGroup = DispatchGroup()
+                            let dispatchGroup = DispatchGroup()
                             
                             let images = postAdVC.selectedAssets
                             
-                            guard let discoveryId = result.data?.postDiscovery?.discoveryId else {
-                                print("Unable to upload image")
+                            guard let discoveryId = result.data?.postDiscovery?.discoveryId, let geoHashPrefix = result.data?.postDiscovery?.geohashPrefix else {
+                                print("Unable to post discovery")
+                                DispatchQueue.main.async {
+                                    self.navigationItem.rightBarButtonItem = self.postBarButton
+                                }
                                 return
                             }
                             
                             for (index, image) in images.enumerated() {
                                 
-//                                dispatchGroup.enter()
-                                
-                                if let imageData = image.fullResolutionImage?.pngData() {
+                                if let imageData = image.fullResolutionImage?.jpegData(compressionQuality: 0.5) {
                                     
-                                    self.uploadImage(with: imageData, key: "public/\(discoveryId)/\(index).png")
+                                    dispatchGroup.enter()
+                                    self.uploadImage(with: imageData,
+                                                     key: "public/\(discoveryId)/image_\(index).jpg",
+                                        discoveryId: discoveryId,
+                                        geoHashPrefix: geoHashPrefix,
+                                        index: index,
+                                    onSuccess: {
+                                        
+                                        print("Success")
+                                        dispatchGroup.leave()
+                                    }, onError: { error in
+                                        print(error)
+                                        print("Error uploading the image")
+                                        self.showErrorNotification(title: "Error", subtitle: "Unable to upload images, please try again")
+                                        DispatchQueue.main.async {
+                                            self.navigationItem.rightBarButtonItem = self.postBarButton
+                                        }
+                                        dispatchGroup.leave()
+                                    })
                                     
                                 }
                                 
@@ -250,15 +276,15 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
 //                                    })
 //                                }
                                 
-//                                dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
-//
-////                                    DispatchQueue.main.async {
-////                                        self.navigationItem.rightBarButtonItem = self.postBarButton
-////                                        // everything is done, just close and show a success message?
-////                                        self.userDidTapX()
-////                                    }
-//                                    
-//                                }
+                                dispatchGroup.notify(queue: DispatchQueue.global(qos: .background)) {
+
+                                    DispatchQueue.main.async {
+                                        self.navigationItem.rightBarButtonItem = self.postBarButton
+                                        // everything is done, just close and show a success message?
+                                        self.userDidTapX()
+                                    }
+                                    
+                                }
                                 
                                 
                             }
@@ -275,46 +301,71 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         }
     }
     
-    var progressView: UIProgressView! = UIProgressView()
-    var statusLabel: UILabel = UILabel()
+
     
-    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
-    var progressBlock: AWSS3TransferUtilityProgressBlock?
-    
-    let imagePicker = UIImagePickerController()
-    let transferUtility = AWSS3TransferUtility.default()
-    
-    func uploadImage(with data: Data, key: String ) {
+    func uploadImage(with data: Data, key: String,
+                     discoveryId: String,
+                     geoHashPrefix: Int,
+                     index: Int,
+                     onSuccess: @escaping () -> Void, onError: @escaping (Error?) -> Void ) {
+        
+        print("Image Key \(key)")
+        self.progressBlock = {(task, progress) in
+            DispatchQueue.main.async(execute: {
+                if (self.progressView.progress < Float(progress.fractionCompleted)) {
+                    self.progressView.progress = Float(progress.fractionCompleted)
+                }
+            })
+        }
+        
+        self.completionHandler = { (task, error) -> Void in
+            DispatchQueue.main.async(execute: {
+                self.progressView.progress = 0
+                if let error = error {
+                    print("Failed with error: \(error)")
+//                    self.statusLabel.text = "Failed"
+                    onError(error)
+                }
+                else{
+//                    self.statusLabel.text = "Success"
+                    print("Success! Make the call in here.")
+                    onSuccess()
+                }
+            })
+        }
+        
         let expression = AWSS3TransferUtilityUploadExpression()
         expression.progressBlock = progressBlock
+        expression.setValue(discoveryId, forRequestParameter: "x-amz-meta-discovery_id")
+        expression.setValue("\(geoHashPrefix)", forRequestParameter: "x-amz-meta-geohash_prefix")
+        expression.setValue("\(index)", forRequestParameter: "x-amz-meta-image_number")
         
         DispatchQueue.main.async(execute: {
-            self.statusLabel.text = ""
+//            self.statusLabel.text = ""
             self.progressView.progress = 0
         })
-        
-        print("KEY " + key)
-        
         
         
         transferUtility.uploadData(
             data,
             key: key,
-            contentType: "image/png",
+            contentType: "image/jpeg",
             expression: expression,
             completionHandler: completionHandler).continueWith { (task) -> AnyObject? in
                 if let error = task.error {
+                    print(error)
                     print("Error: \(error.localizedDescription)")
-                    
+                    onError(error)
                     DispatchQueue.main.async {
-                        self.statusLabel.text = "Failed"
+                        self.progressView.progress = 0
+//                        self.statusLabel.text = "Failed"
                     }
                 }
                 
                 if let _ = task.result {
                     
                     DispatchQueue.main.async {
-                        self.statusLabel.text = "Uploading..."
+//                        self.statusLabel.text = "Uploading..."
                         print("Upload Starting!")
                     }
                     
@@ -323,6 +374,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                 
                 return nil;
         }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -28,63 +28,63 @@ class BackendServer: NSObject {
     
     // This function downloads the image and saves it at a location on the phone.
     
-    func downloadProfileImage() {
-        let expression = AWSS3TransferUtilityDownloadExpression()
-        expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
-            // Do something e.g. Update a progress bar.
-        })
-        }
-        
-        var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
-        completionHandler = { (task, URL, data, error) -> Void in
-            DispatchQueue.main.async(execute: {
-                if let error = error {
-                    print("Failed to download profile Image")
-                    print(error)
-                }
-                
-                if let data = data, let image = UIImage.init(data: data) {
-                    print("Downloaded Image")
-                    DefaultsWrapper.set(image: image, named: Key.imagePath)
-                }
-                // Do something e.g. Alert a user for transfer completion.
-                // On failed downloads, `error` contains the error object.
-            })
-        }
-        
-        let transferUtility = AWSS3TransferUtility.default()
-        
-        transferUtility.downloadData(forKey: S3ProfileImageKeyName,
-                                     expression: expression,
-                                     completionHandler: completionHandler)
-            .continueWith { (task) -> Any? in
-                if let error = task.error {
-                    print("Error Downloading profile image")
-                    print(error)
-                }
-                
-                if let _ = task.result {
-                    
-                }
-                
-                return nil
-                
-        }
-        
-    }
+//    func downloadProfileImage() {
+//        let expression = AWSS3TransferUtilityDownloadExpression()
+//        expression.progressBlock = {(task, progress) in DispatchQueue.main.async(execute: {
+//            // Do something e.g. Update a progress bar.
+//        })
+//        }
+//        
+//        var completionHandler: AWSS3TransferUtilityDownloadCompletionHandlerBlock?
+//        completionHandler = { (task, URL, data, error) -> Void in
+//            DispatchQueue.main.async(execute: {
+//                if let error = error {
+//                    print("Failed to download profile Image")
+//                    print(error)
+//                }
+//                
+//                if let data = data, let image = UIImage.init(data: data) {
+//                    print("Downloaded Image")
+//                    DefaultsWrapper.set(image: image, named: Key.imagePath)
+//                }
+//                // Do something e.g. Alert a user for transfer completion.
+//                // On failed downloads, `error` contains the error object.
+//            })
+//        }
+//        
+//        let transferUtility = AWSS3TransferUtility.default()
+//        
+//        transferUtility.downloadData(forKey: S3ProfileImageKeyName,
+//                                     expression: expression,
+//                                     completionHandler: completionHandler)
+//            .continueWith { (task) -> Any? in
+//                if let error = task.error {
+//                    print("Error Downloading profile image")
+//                    print(error)
+//                }
+//                
+//                if let _ = task.result {
+//                    
+//                }
+//                
+//                return nil
+//                
+//        }
+//        
+//    }
     
     
-    func fetchProfileImage() -> UIImage? {
-        
-        if let img = DefaultsWrapper.getImage(named: Key.imagePath) {
-            print("Image exists, fetch it")
-            return img
-        } else {
-            self.downloadProfileImage()
-        }
-        
-        return nil
-    }
+//    func fetchProfileImage() -> UIImage? {
+//
+//        if let img = DefaultsWrapper.getImage(named: Key.imagePath) {
+//            print("Image exists, fetch it")
+//            return img
+//        } else {
+//            self.downloadProfileImage()
+//        }
+//
+//        return nil
+//    }
     
     func fetchAttributes() {
         

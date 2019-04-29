@@ -11,6 +11,8 @@ import Pulley
 import GoogleMaps
 import Alamofire
 import AlamofireImage
+import AWSS3
+import SwiftyJSON
 
 class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, PulleyDrawerViewControllerDelegate {
     
@@ -201,6 +203,20 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
                 myCell.titleLabel.text = discovery.title
                 myCell.priceLabel.text = "$ \(discovery.price ?? 0)"
                 myCell.distanceLabel.text = "4 mins away"
+                
+                if let image1 = discovery.image_0, let data = image1.data(using: .utf8, allowLossyConversion: false) {
+                    do {
+                        let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                        print("JSON DATA \(json)")
+                        print(json["ICON"].stringValue)
+                        myCell.imageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
+                        
+                    } catch {
+                        print("Error \(error)")
+                    }
+                }
+                
+//                AWSS3TransferUtility.default().downloadData(forKey: <#T##String#>, expression: <#T##AWSS3TransferUtilityDownloadExpression?#>, completionHandler: <#T##AWSS3TransferUtilityDownloadCompletionHandlerBlock?##AWSS3TransferUtilityDownloadCompletionHandlerBlock?##(AWSS3TransferUtilityDownloadTask, URL?, Data?, Error?) -> Void#>)
             }
 
             // TODO: Fetch image of actual discovery in here.

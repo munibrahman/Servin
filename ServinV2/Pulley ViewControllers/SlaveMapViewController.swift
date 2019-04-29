@@ -178,6 +178,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                     
                     if let result = result {
                         print("Successfully pulled discoveries")
+                        print(result)
                         
                         if let discoveries = result.data?.getSurroundingDiscoveries, let parentVC = self.parent as? MasterPulleyViewController {
                             
@@ -189,7 +190,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                             
                             
                             for discovery in discoveries {
-                                print("discovery \(discovery)")
+//                                print("discovery \(discovery)")
                                 if let latitude = discovery?.latitude, let longitude = discovery?.longitude {
                                     let marker = GMSMarker(position: CLLocationCoordinate2D.init(latitude: latitude, longitude: longitude))
                     
