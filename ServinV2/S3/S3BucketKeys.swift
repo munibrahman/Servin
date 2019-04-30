@@ -15,5 +15,13 @@ import AWSMobileClient
 
 //let S3DownloadKeyName: String = "public/test-image.png"    // Name of file to be downloaded
 //let S3UploadKeyName: String = "public/test-image.png"      // Name of file to be uploaded
-
+//
 let S3ProfileImageKeyName: String = "protected/\(AWSMobileClient.sharedInstance().identityId ?? "")/profile.jpg"
+
+//class S3BucketKeys: NSObject {
+//    func getProfileKey() -> String {
+//
+//        return "protected/\(AWSMobileClient.sharedInstance().identityId ?? "")/profile.jpg"
+//
+//    }
+//}

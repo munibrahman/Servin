@@ -123,10 +123,19 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
             
             cell.selectionStyle = .none
             
-            cell.menuOptionLabel.text = labels[indexPath.row]
-            cell.menuOptionImageView.image = icons[indexPath.row]
-            cell.menuOptionImageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
-            cell.imageView?.clipsToBounds = true
+            
+            switch indexPath.row {
+            case 4:
+                print("Tapped payments VC")
+                    // This is the payments vc, dont do anything for now, just let it stay empty
+                cell.menuOptionLabel.text = nil
+                cell.menuOptionImageView.image = nil
+            default:
+                cell.menuOptionLabel.text = labels[indexPath.row]
+                cell.menuOptionImageView.image = icons[indexPath.row]
+                cell.menuOptionImageView.frame.origin.y = cell.menuOptionLabel.frame.origin.y
+                cell.imageView?.clipsToBounds = true
+            }
             
             return cell
             
@@ -244,7 +253,8 @@ class SideMenuTableViewController: UIViewController, UITableViewDelegate, UITabl
                             myVC.myMapViewController?.dropAPin()
                         }
                     case 4:
-                        mainViewController.present(UINavigationController.init(rootViewController: PaymentViewController()), animated: true, completion: nil)
+                        print("Tapped Payments VC")
+//                        mainViewController.present(UINavigationController.init(rootViewController: PaymentViewController()), animated: true, completion: nil)
                     default:
                         print("Open the correct VC")
                         

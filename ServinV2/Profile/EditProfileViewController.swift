@@ -44,6 +44,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         return progressBar
     }()
     
+    var completionHandler: AWSS3TransferUtilityUploadCompletionHandlerBlock?
+    var progressBlock: AWSS3TransferUtilityProgressBlock?
+    
+    let transferUtility = AWSS3TransferUtility.default()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -276,7 +281,35 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if didPickImage {
             
             // This is the S3 key used to store this person's current image.
-            let key = S3ProfileImageKeyName
+            // NOTE: YOU MUST ALWAYS CALL AWSMOBILECLIENT EVERY TIME TO FETCH THE LATEST IDs.
+            // I learned this the hard way, and the documentaion for this is poopoo.
+            // In their sample ios apps, they use a singleton class to handle the ids.
+            // WELL, if 2 people use the app, or a person logs out and then another one comes in, guess what, the singleton never has a chance
+            // to refresh the IDs. Thus leaving the old ones embedded in every single request.
+            
+            guard let identityPoolId = AWSMobileClient.sharedInstance().identityId else {
+                
+                print("Can't get identity pool ID")
+                self.showErrorNotification(title: "Error", subtitle: "Your credentials have expired please logout and login again")
+                return
+            }
+            
+            guard let cognitoUserName = AWSMobileClient.sharedInstance().username else {
+                
+                print("Can't get cognito username")
+                self.showErrorNotification(title: "Error", subtitle: "Your credentials have expired please logout and login again")
+                return
+            }
+            
+            
+            print("Identity ID is \(identityPoolId)")
+            print("Cognito username is \(cognitoUserName)")
+            
+            // The way that our IAM permissions are setup, we have to use the identity pool id instead of the cognito pool id.
+            // Take a look at the cloudformation stack (Specifically the storage.yml)
+            let key = "protected/\(identityPoolId)/profile.jpg"
+            
+            print("Profile image key is \(key)")
             
             DispatchQueue.main.async(execute: {
                 self.progressView.progress = 0
@@ -284,77 +317,19 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             
             guard let image = self.profileImageView.image, let data = image.jpegData(compressionQuality: 0.5) else {
                 print("Can't extract image, so won't even try to upload it")
+                self.showWarningNotification(title: "Uh Oh", subtitle: "Can't upload this image, please choose another one.")
                 return
             } // Data to be uploaded
             
-            let expression = AWSS3TransferUtilityMultiPartUploadExpression()
-            expression.setValue(AWSMobileClient.sharedInstance().username ?? "", forRequestParameter: "x-amz-meta-cognito_id")
-//            expression.setValue("\(geoHashPrefix)", forRequestParameter: "x-amz-meta-geohash_prefix")
-//            expression.setValue("\(index)", forRequestParameter: "x-amz-meta-image_number")
-            
-            expression.progressBlock = {(task, progress) in
-                DispatchQueue.main.async(execute: {
-                    // Do something e.g. Update a progress bar.
-                    if (self.progressView.progress < Float(progress.fractionCompleted)) {
-                        self.progressView.progress = Float(progress.fractionCompleted)
-                    }
-                })
-            }
-            
-            var completionHandler: AWSS3TransferUtilityMultiPartUploadCompletionHandlerBlock
-            completionHandler = { (task, error) -> Void in
-                DispatchQueue.main.async(execute: {
-                    
-                    if let error = error {
-                        print("Failed to upload image, please try again!")
-                        print(error)
-                        self.showErrorNotification(title: "Error", subtitle: "Unable to upload your profile image, please try again")
-                        return
-                    }
-                    DefaultsWrapper.set(image: image, named: Key.imagePath)
-                    print("finished request for profile pic")
-                    
-                    self.appSyncClient?.perform(mutation: UpdateProfilePictureMutation.init(key: key), resultHandler: { (result, error) in
-                        myGroup.leave()
-                        if let error = error, let errors = result?.errors {
-                            print(error)
-                            print(errors)
-                            print("Error updating the profile image key")
-                            return
-                        }
-                        
-                        if let data = result?.data?.updateProfilePicture?.profilePic {
-                            print("Updated profile image, should be in the db now!")
-                        }
-                        
-                    })
-                    
-                    
-                    
-                    // Do something e.g. Alert a user for transfer completion.
-                    // On failed uploads, `error` contains the error object.
-                })
-            }
-            
-            let transferUtility = AWSS3TransferUtility.default()
-            
             myGroup.enter()
-            
-            
-            
-            
-            print(key)
-            transferUtility.uploadUsingMultiPart(data: data, key: key, contentType: "image/jpeg", expression: expression, completionHandler: completionHandler).continueWith { (task) -> Any? in
-                if let error = task.error {
-                    print(error)
-                    print("Error: \(error.localizedDescription)")
-                }
+            self.uploadProfileImage(with: data, key: key, cognitoId: cognitoUserName, onSuccess: {
+                print("Succefully uploaded image")
                 
-                if let _ = task.result {
-                    // Do something with uploadTask.
-                }
-                return nil;
+                myGroup.leave()
+            }) { (error) in
+                print("Error \(error)")
             }
+            
             
         }
         
@@ -392,6 +367,79 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
             self.navigationItem.rightBarButtonItem = self.saveButtonItem
             print("Finished all requests, exiting now")
             self.navigationController?.dismiss(animated: true, completion: nil)
+        }
+        
+    }
+    
+    
+    func uploadProfileImage(with data: Data,
+                     key: String,
+                     cognitoId: String,
+                     onSuccess: @escaping () -> Void,
+                     onError: @escaping (Error?) -> Void ) {
+        
+        print("Image Key is \(key)")
+        self.progressBlock = {(task, progress) in
+            DispatchQueue.main.async(execute: {
+                if (self.progressView.progress < Float(progress.fractionCompleted)) {
+                    self.progressView.progress = Float(progress.fractionCompleted)
+                }
+            })
+        }
+        
+        self.completionHandler = { (task, error) -> Void in
+            DispatchQueue.main.async(execute: {
+                self.progressView.progress = 0
+                if let error = error {
+                    print("Failed with error: \(error)")
+                    //                    self.statusLabel.text = "Failed"
+                    onError(error)
+                }
+                else{
+                    //                    self.statusLabel.text = "Success"
+                    print("Success! Make the call in here.")
+                    onSuccess()
+                }
+            })
+        }
+        
+        let expression = AWSS3TransferUtilityUploadExpression()
+        expression.progressBlock = progressBlock
+        expression.setValue(cognitoId, forRequestParameter: "x-amz-meta-cognito_id")
+        
+        DispatchQueue.main.async(execute: {
+            //            self.statusLabel.text = ""
+            self.progressView.progress = 0
+        })
+        
+        
+        transferUtility.uploadData(
+            data,
+            key: key,
+            contentType: "image/jpeg",
+            expression: expression,
+            completionHandler: completionHandler).continueWith { (task) -> AnyObject? in
+                if let error = task.error {
+                    print(error)
+                    print("Error: \(error.localizedDescription)")
+                    onError(error)
+                    DispatchQueue.main.async {
+                        self.progressView.progress = 0
+                        //                        self.statusLabel.text = "Failed"
+                    }
+                }
+                
+                if let _ = task.result {
+                    
+                    DispatchQueue.main.async {
+                        //                        self.statusLabel.text = "Uploading..."
+                        print("Upload Starting!")
+                    }
+                    
+                    // Do something with uploadTask.
+                }
+                
+                return nil;
         }
         
     }

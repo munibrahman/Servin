@@ -178,7 +178,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                     
                     if let result = result {
                         print("Successfully pulled discoveries")
-                        print(result)
+//                        print(result)
                         
                         if let discoveries = result.data?.getSurroundingDiscoveries, let parentVC = self.parent as? MasterPulleyViewController {
                             

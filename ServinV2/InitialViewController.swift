@@ -112,7 +112,7 @@ class InitialViewController: UIViewController {
                     
                 } else {
                     // No errors and no results, somethings wrong
-                    print("No errors and no results, somethings wrong")
+                    print("No errors and no results, somethings wrong OR Data isn't in the table yet, so make that read/write")
                     self.signOutUser()
                 }
                 
