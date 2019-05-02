@@ -40,6 +40,10 @@ class DefaultsWrapper {
         return UserDefaults.standard.bool(forKey: key.rawValue)
     }
     
+    class func getBool(_ key: String) -> Bool {
+        return UserDefaults.standard.bool(forKey: key)
+    }
+    
     class func getFloat(_ key: Key) -> Float {
         return UserDefaults.standard.float(forKey: key.rawValue)
     }
@@ -142,6 +146,11 @@ class DefaultsWrapper {
     
     class func setBool(key: Key, value: Bool) {
         UserDefaults.standard.set(value, forKey: key.rawValue)
+        syncUserDefaults()
+    }
+    
+    class func setBool(key: String, value: Bool) {
+        UserDefaults.standard.set(value, forKey: key)
         syncUserDefaults()
     }
     

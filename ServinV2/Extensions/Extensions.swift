@@ -434,22 +434,6 @@ extension UIImageView {
     }
 }
 
-//extension UIViewController {
-//    
-//     public override convenience init() {
-//        self.init()
-//    
-//        printName()
-//    }
-//    
-//    
-//    func printName()  {
-//        print(self)
-//    }
-//    
-//    
-//    
-//}
 
 
 

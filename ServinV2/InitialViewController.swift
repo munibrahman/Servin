@@ -44,6 +44,20 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        if let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            print(version)
+            if (DefaultsWrapper.getBool(version)) {
+                // App has been opened before hand. Continue with the normal flow.
+                print("App has been opened before hand. Continue with the normal flow.")
+            } else {
+                // First time opening the app, log the user out, set the version value to true so that it doesn't log out the next time.
+                print("First time opening the app, log the user out")
+                AWSMobileClient.sharedInstance().signOut()
+                DefaultsWrapper.setBool(key: version, value: true)
+            }
+        }
+        
+        
         let userState = AWSMobileClient.sharedInstance().currentUserState
         switch (userState) {
         case .guest:
