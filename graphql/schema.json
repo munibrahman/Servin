@@ -566,7 +566,7 @@
           "args" : [ ],
           "type" : {
             "kind" : "SCALAR",
-            "name" : "String",
+            "name" : "AWSJSON",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1527,44 +1527,6 @@
           },
           "isDeprecated" : false,
           "deprecationReason" : null
-        }, {
-          "name" : "updateImage",
-          "description" : "  Updates the image path (s3 bucket key) of a given image in the dynamodb table",
-          "args" : [ {
-            "name" : "discoveryId",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "imageName",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          }, {
-            "name" : "pathKey",
-            "description" : null,
-            "type" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            },
-            "defaultValue" : null
-          } ],
-          "type" : {
-            "kind" : "OBJECT",
-            "name" : "Discovery",
-            "ofType" : null
-          },
-          "isDeprecated" : false,
-          "deprecationReason" : null
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
@@ -2432,6 +2394,23 @@
         "onFragment" : false,
         "onField" : false
       }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_publish",
         "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -2469,23 +2448,6 @@
             }
           },
           "defaultValue" : null
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
         } ],
         "onOperation" : false,
         "onFragment" : false,

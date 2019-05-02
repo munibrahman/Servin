@@ -434,6 +434,61 @@ extension UIImageView {
     }
 }
 
+import SwiftyJSON
+
+extension String {
+    func ICONImageKeyS3() -> String? {
+        if let data = self.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                return json["ICON"].stringValue
+            } catch {
+                print("Error getting ICON Image value \(error)")
+            }
+        }
+        return nil
+    }
+    
+    func MEDImageKeyS3() -> String? {
+        if let data = self.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                return json["MED"].stringValue
+            } catch {
+                print("Error getting MED Image value \(error)")
+            }
+        }
+        
+        return nil
+    }
+    
+    func MAXImageKeyS3() -> String? {
+        if let data = self.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                return json["MAX"].stringValue
+            } catch {
+                print("Error getting MAX Image value \(error)")
+            }
+        }
+        
+        return nil
+    }
+    
+    func originalImageKeyS3() -> String? {
+        if let data = self.data(using: .utf8, allowLossyConversion: false) {
+            do {
+                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                return json["original"].stringValue
+            } catch {
+                print("Error getting original Image value \(error)")
+            }
+        }
+        
+        return nil
+    }
+}
+
 
 
 

@@ -204,45 +204,11 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
                 myCell.priceLabel.text = "$ \(discovery.price ?? 0)"
                 myCell.distanceLabel.text = "4 mins away"
                 
-                if let image1 = discovery.image_0, let data = image1.data(using: .utf8, allowLossyConversion: false) {
-                    do {
-                        let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                        print("JSON DATA \(json)")
-                        print(json["ICON"].stringValue)
-                        myCell.imageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
-                        
-                    } catch {
-                        print("Error \(error)")
-                    }
+                if let image_0 = discovery.image_0, let ICONUrl = image_0.ICONImageKeyS3() {
+                    myCell.imageView.loadImageUsingS3Key(key: ICONUrl)
                 }
-                
-//                AWSS3TransferUtility.default().downloadData(forKey: <#T##String#>, expression: <#T##AWSS3TransferUtilityDownloadExpression?#>, completionHandler: <#T##AWSS3TransferUtilityDownloadCompletionHandlerBlock?##AWSS3TransferUtilityDownloadCompletionHandlerBlock?##(AWSS3TransferUtilityDownloadTask, URL?, Data?, Error?) -> Void#>)
             }
 
-            // TODO: Fetch image of actual discovery in here.
-//            if let url = discoveriesAroundMe[indexPath.row].imagesUrl.first {
-//
-//                Alamofire.request(url).responseImage { response in
-//                    debugPrint(response)
-//
-//                    print(response.request)
-//                    print(response.response)
-//                    debugPrint(response.result)
-//
-//                    if let image = response.result.value {
-//                        print("image downloaded: \(image)")
-//                        myCell.imageView.image = image
-//                    }
-//                    else {
-//                        print("unable to download image")
-//                        myCell.imageView.image =  #imageLiteral(resourceName: "default_image_icon")
-//                    }
-//                }
-//            }
-            
-
-            
-            
             return myCell
         } else {
             let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedPinsCellIdentifier, for: indexPath) as! SavedPinsCollectionViewCell

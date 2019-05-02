@@ -18,6 +18,7 @@ class DiscoveryUserProfileCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        self.userImageView.contentMode = .scaleAspectFill
         self.userImageView.layer.cornerRadius = userImageView.frame.size.width / 2.0
         self.userImageView.clipsToBounds = true
         

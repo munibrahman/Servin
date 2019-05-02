@@ -244,16 +244,9 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
 //        topPinImageView.image = #imageLiteral(resourceName: "soccer")
 //        topPinImageView.image = aDiscovery?.image_0
         
-        if let image1 = aDiscovery?.image_0, let data = image1.data(using: .utf8, allowLossyConversion: false) {
-            do {
-                let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                print("JSON DATA \(json)")
-                print(json["ICON"].stringValue)
-                topPinImageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
-                
-            } catch {
-                print("Error \(error)")
-            }
+        
+        if let image_0 = aDiscovery?.image_0, let ICONLink = image_0.ICONImageKeyS3() {
+            topPinImageView.loadImageUsingS3Key(key: ICONLink)
         }
         
         topPinView.addSubview(topPinImageView)

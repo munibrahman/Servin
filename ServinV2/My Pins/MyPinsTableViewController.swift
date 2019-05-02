@@ -7,8 +7,6 @@
 //
 import UIKit
 import DZNEmptyDataSet
-import AlamofireImage
-import Alamofire
 import AWSAppSync
 import SwiftyJSON
 
@@ -128,39 +126,15 @@ class MyPinsTableViewController: UIViewController, UITableViewDelegate, UITableV
         // TODO: Add proper cells
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as! MyPinTableViewCell
         
-        // TODO: Get actual image of the discovery, not random images from internet.
-//        Alamofire.request("https://picsum.photos/500/300/?random").responseImage { response in
-////            debugPrint(response)
-////
-////            print(response.request)
-////            print(response.response)
-////            debugPrint(response.result)
-//
-//            if let image = response.result.value {
-////                print("image downloaded: \(image)")
-//
-//                cell.pinImageView.image = image
-//            }
-//        }
-        
         if let discoveries = discoveries, let discovery = discoveries[indexPath.item] {
             cell.titleLabel.text = discovery.title
             cell.priceLabel.text = "$ \(discovery.price ?? 0) "
             // TODO: Get the number of views
             cell.viewsLabel.text = "\(0)"
             
-            if let image_0 = discovery.image_0, let data = image_0.data(using: .utf8, allowLossyConversion: false) {
-                do {
-                    let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    print("JSON DATA \(json)")
-                                        print(json["ICON"].stringValue)
-                    cell.pinImageView.loadImageUsingS3Key(key: json["MED"].stringValue)
-                    
-                } catch {
-                    print("Error \(error)")
-                }
+            if let image_0 = discovery.image_0, let imageUrl = image_0.MEDImageKeyS3() {
+                cell.pinImageView.loadImageUsingS3Key(key: imageUrl)
             }
-            
             
         }
         

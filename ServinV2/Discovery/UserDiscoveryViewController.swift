@@ -8,8 +8,7 @@
 
 import UIKit
 import GoogleMaps
-import Alamofire
-import AlamofireImage
+import AWSMobileClient
 
 // The following view controller displays the pin (discovery) of another user on the network.
 // To display one's own pin, use MyDiscoveryViewController instead
@@ -311,7 +310,10 @@ class UserDiscoveryViewController: UIViewController {
     func userDidTapProfile() {
         let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: UserProfileViewController.self)) as! UserProfileViewController
         
-        // TODO: Pass the information of the person in here
+        if let discovery = pin, let author = discovery.author {
+            vc.person = MeQuery.Data.Me.Conversation.UserConversation.Conversation.Discovery.Author.init(snapshot: author.snapshot)
+        }
+//         TODO: Pass the information of the person in here
 //        vc.person = pin
         
         self.navigationController?.pushViewController(vc, animated: true)
@@ -409,6 +411,10 @@ class UserDiscoveryViewController: UIViewController {
 
 extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.pin?.author?.userId == AWSMobileClient.sharedInstance().username {
+            print("My own discovery")
+            return 4
+        }
         return 5
     }
     
@@ -440,10 +446,7 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
-            // TODO: Fetch images of the discovery
-//            cell.imageInputs = pin?.imagesUrl ?? []
-//            cell.setupInputs()
-            
+
             // Just need to pass in the discovery, the cell will take care of the rest.
             cell.discovery = pin
             
@@ -456,24 +459,17 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
             if let author = pin?.author {
                 cell.userFirstNameLabel.text = author.givenName
                 cell.userUniversityLabel.text = author.school
+                
+                print("Author picture, \(author.profilePic)")
+                
+                
+                
+                if let profileImage = author.profilePic, let iconURL = profileImage.ICONImageKeyS3() {
+                    cell.userImageView.loadImageUsingS3Key(key: iconURL)
+                }
+                
             }
-            
-//            if let firstName = pin?.user?._firstName {
-//
-//            } else {
-//                cell.userFirstNameLabel.text = "Servin User"
-//            }
 
-            // TODO: Fetch the profile image of the user.
-//            if let userImageUrl = pin?.user?._profilePictureUrl {
-//                cell.userImageView.af_setImage(withURL: URL.init(string: userImageUrl)!)
-//            }
-            
-            cell.userUniversityLabel.text = "University Of Calgary"
-            
-            
-            
-            
             return cell
         }
         

@@ -48,32 +48,31 @@ class DiscoveryImagesCollectionViewCell: UICollectionViewCell, UIScrollViewDeleg
         
         if let discovery = discovery {
             print("Discovery is existant")
-            if let image_0 = discovery.image_0, let data = image_0.data(using: .utf8, allowLossyConversion: false) {
-                do {
-                    let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    print("JSON DATA \(json)")
-                    //                    print(json["original"].stringValue)
-                    //                    myCell.imageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
-                    inputSources.append(S3Source.init(key: json["MAX"].stringValue))
-                    
-                } catch {
-                    print("Error \(error)")
-                }
+            if let image_0 = discovery.image_0, let MEDLink = image_0.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
             }
             
-            if let image_1 = discovery.image_1, let data = image_1.data(using: .utf8, allowLossyConversion: false) {
-                do {
-                    let json = try JSON.init(data: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    print("JSON DATA \(json)")
-                    //                    print(json["original"].stringValue)
-                    //                    myCell.imageView.loadImageUsingS3Key(key: json["ICON"].stringValue)
-                    inputSources.append(S3Source.init(key: json["MAX"].stringValue))
-                    
-                } catch {
-                    print("Error \(error)")
-                }
+            if let image_1 = discovery.image_1, let MEDLink = image_1.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
             }
             
+            if let image_2 = discovery.image_2, let MEDLink = image_2.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
+            }
+            
+            if let image_3 = discovery.image_3, let MEDLink = image_3.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
+            }
+            
+            if let image_4 = discovery.image_4, let MEDLink = image_4.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
+            }
+            
+            if let image_5 = discovery.image_5, let MEDLink = image_5.MEDImageKeyS3() {
+                inputSources.append(S3Source.init(key: MEDLink))
+            }
+            
+
             mySlideShow.setImageInputs(inputSources)
             
             
