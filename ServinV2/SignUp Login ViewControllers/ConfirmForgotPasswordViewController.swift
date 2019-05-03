@@ -16,12 +16,12 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
     // TODO: Spread out the verification code, password and confirm password into 3 different views.
     
     @IBOutlet weak var verificationSentLabel: UILabel!
-    @IBOutlet weak var confirmationCode: UITextField!
     @IBOutlet weak var proposedPassword: UITextField!
     @IBOutlet var confirmProposedPassword: UITextField!
     @IBOutlet var nextButtonSVGView: GoForwardMacawView!
     
     var username: String?
+    var code: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
         setupNextButton()
         setupTextField()
         
-        verificationSentLabel.text = "We sent a verification code to: \(username ?? "your email.") Please enter it below."
+        verificationSentLabel.text = "Reset the password for \(username ?? "your email.") \nPlease enter your new password below."
     }
     
     func setupNextButton() {
@@ -40,14 +40,8 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
     }
     
     @objc func goForward() {
-        guard let confirmationCodeValue = self.confirmationCode.text, !confirmationCodeValue.isEmpty else {
-            let alertController = UIAlertController(title: "Password Field Empty",
-                                                    message: "Please enter a password of your choice.",
-                                                    preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            
-            self.present(alertController, animated: true, completion:  nil)
+        guard let confirmationCodeValue = code else {
+            self.showErrorNotification(title: "Error", subtitle: "Confirmation code is incorrect or too old")
             return
         }
         
@@ -144,14 +138,6 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
     }
     
     func setupTextField() {
-        confirmationCode.backgroundColor = UIColor.clear
-        confirmationCode.textColor = UIColor.white
-        confirmationCode.borderStyle = .none
-        confirmationCode.addBottomBorderWithColor(color: UIColor.white, width: 1.0)
-        confirmationCode.attributedPlaceholder = NSAttributedString(string: "", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        confirmationCode.keyboardAppearance = .dark
-        confirmationCode.keyboardType = .default
-        confirmationCode.delegate = self
         
         proposedPassword.backgroundColor = UIColor.clear
         proposedPassword.textColor = UIColor.white
@@ -177,20 +163,35 @@ class ConfirmForgotPasswordViewController: UIViewController, UITextFieldDelegate
     }
     
     func setupNavigationBar() {
-        let barButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_white"), style: .plain, target: self, action: #selector(barButtonPressed))
-        navigationItem.leftBarButtonItem = barButtonItem
+        
+        if navigationController?.viewControllers[0] == self {
+            
+            let leftBarItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "x_white"), style: .plain, target: self, action: #selector(userDidPressX))
+            leftBarItem.tintColor = .white
+            
+            self.navigationItem.leftBarButtonItem = leftBarItem
+            
+        } else {
+            
+            let leftBarItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_white"), style: .plain, target: self, action: #selector(userDidPressBack))
+            leftBarItem.tintColor = .white
+            
+            self.navigationItem.leftBarButtonItem = leftBarItem
+        }
+        
+        self.navigationController?.navigationBar.transparentNavigationBar()
     }
     
+    @objc func userDidPressX() {
+        self.navigationController?.dismiss(animated: true, completion: nil)
+    }
     
-    @objc func barButtonPressed() {
-        _ = self.navigationController?.popViewController(animated: true)
+    @objc func userDidPressBack() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == confirmationCode {
-            proposedPassword.becomeFirstResponder()
-            return false
-        } else if textField == proposedPassword {
+        if textField == proposedPassword {
             confirmProposedPassword.becomeFirstResponder()
             return false
         } else if textField == confirmProposedPassword {

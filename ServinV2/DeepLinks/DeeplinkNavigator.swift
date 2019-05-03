@@ -35,6 +35,9 @@ class DeeplinkNavigator {
         case .confirm(let username, let code):
             print("confirm called in here")
             confirmSignUp(email: username, code: code)
+        case .forgot(let username, let code):
+            print("Forgot password called in here")
+            forgotPassword(username: username, code: code)
         }
     }
     
@@ -97,4 +100,15 @@ class DeeplinkNavigator {
         }
     }
 
+    private func forgotPassword(username: String, code: String) {
+        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: String.init(describing: ConfirmForgotPasswordViewController.self)) as? ConfirmForgotPasswordViewController {
+            vc.username = username
+            vc.code = code
+            
+            let navVC = UINavigationController.init(rootViewController: vc)
+            
+            UIApplication.topViewController()?.present(navVC, animated: true, completion: nil)
+        }
+        
+    }
 }

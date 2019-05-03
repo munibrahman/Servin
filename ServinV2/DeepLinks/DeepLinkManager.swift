@@ -21,6 +21,7 @@ enum DeeplinkType {
     case savedPins
     case verification
     case confirm(username: String, code: String)
+    case forgot(username: String, code: String)                     // For allowing to reset the password when forgotten
 }
 
 let Deeplinker = DeepLinkManager()

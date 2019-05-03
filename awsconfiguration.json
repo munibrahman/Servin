@@ -1,36 +1,36 @@
 {
-    "UserAgent": "aws-amplify/cli",
-    "Version": "0.1.0",
-    "IdentityManager": {
-        "Default": {}
-    },
     "AppSync": {
         "Default": {
-            "ApiUrl": "https://nvjgohm4hvdbphexj7alurtnpu.appsync-api.us-east-1.amazonaws.com/graphql",
-            "Region": "us-east-1",
-            "AuthMode": "AMAZON_COGNITO_USER_POOLS"
+            "ApiUrl": "https://lefwoq4q7vbh5hchtafgy4k4qe.appsync-api.us-east-1.amazonaws.com/graphql",
+            "AuthMode": "AMAZON_COGNITO_USER_POOLS",
+            "Region": "us-east-1"
+        }
+    },
+    "CognitoUserPool": {
+        "Default": {
+            "AppClientId": "3sif1hk31e7m7h5dqd6pcnqs7b",
+            "AppClientSecret": "10o9ehkvl8cmit5mlmpqq998s832trjhh788sotlm9j5ea2ckfr0",
+            "PoolId": "us-east-1_u9TDcIvfX",
+            "Region": "us-east-1"
         }
     },
     "CredentialsProvider": {
         "CognitoIdentity": {
             "Default": {
-                "PoolId": "us-east-1:a2d5b96f-ebf5-42dc-8e39-4e9ecec934ab",
+                "PoolId": "us-east-1:4d7138dc-0525-4882-a74b-c62966164f73",
                 "Region": "us-east-1"
             }
         }
     },
-    "CognitoUserPool": {
-        "Default": {
-            "AppClientSecret": "31smq42li6c6uuf70emlgl0n5mu7t1paf2d8d25d74t63s2ice8",
-            "AppClientId": "7ecu90o40lbrrnpl93mpbpttvh",
-            "PoolId": "us-east-1_HLB3L7FFI",
-            "Region": "us-east-1"
-        }
+    "IdentityManager": {
+        "Default": {}
     },
     "S3TransferUtility": {
         "Default": {
-            "Bucket": "servin-users-bucket-test",
+            "Bucket": "servin-users-bucket-prod",
             "Region": "us-east-1"
         }
-    }
+    },
+    "UserAgent": "aws-amplify/cli",
+    "Version": "0.1.0"
 }

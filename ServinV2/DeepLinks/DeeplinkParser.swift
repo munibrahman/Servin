@@ -29,34 +29,34 @@ class DeeplinkParser {
         pathComponents.removeFirst()
         
         switch host {
-        case "messages":
-            if let messageId = pathComponents.first {
-                return DeeplinkType.messages(.details(id: messageId))
-            }
-        case "confirm":
-            print(pathComponents)
-            if let username = pathComponents.first {
-                let code = "test"
-                
-                print("username \(username)")
-                print("code \(code)")
-                return DeeplinkType.confirm(username: username, code: code)
-            }
 //https://www.servin.io/confirm/6280ec02-2756-463a-ac60-c041cd2c52f2/495241
-        case "www.servin.io":
+        case "www.servin.io":                                                     // Request coming via website universal link
             print(pathComponents)
-            pathComponents.removeFirst() // removes "confirm"
-            if let username = pathComponents.first, let code = pathComponents[safe: 1] {
-                
-                print("username \(username)")
-                print("code \(code)")
-                return DeeplinkType.confirm(username: username, code: code)
+            
+            if let base = pathComponents.first {
+                switch base {
+                case "confirm":
+                    pathComponents.removeFirst() // removes "confirm"
+                    if let username = pathComponents.first, let code = pathComponents[safe: 1] {
+                        print("username \(username)")
+                        print("code \(code)")
+                        return DeeplinkType.confirm(username: username, code: code)
+                    }
+                case "forgot":
+                    pathComponents.removeFirst() // removes "forgot"
+                    if let username = pathComponents.first, let code = pathComponents[safe: 1] {
+                        print("username \(username)")
+                        print("code \(code)")
+                        return DeeplinkType.forgot(username: username, code: code)
+                    }
+                default:
+                    print("Edge case, not sure what to do...")
+                    break
+                }
             }
-//        case "request":
-//            if let requestId = pathComponents.first {
-//                return DeeplinkType.request(id: requestId)
-//            }
+            
         default:
+            print("Deeplink coming from somewhere else...")
             break
         }
         return nil

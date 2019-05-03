@@ -249,8 +249,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
                 self.showErrorNotification(title: "Error", subtitle: "Can't fetch messages, please try again")
             } else {
                 
-                print("Fetched all the userConversations \(result?.data)")
-                
                 if let userConversations = result?.data?.me?.conversations?.userConversations {
                     
                     self.userConversations.removeAll()
@@ -263,7 +261,6 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
                     }
-                    
                     
                 }
             }
@@ -326,10 +323,25 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
         if let conversation = userConversations[indexPath.item] {
             
-            cell.userImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
+            if let profileImage = conversation.discovery?.author?.profilePic, let icon = profileImage.ICONImageKeyS3() {
+                cell.userImageView.loadImageUsingS3Key(key: icon)
+            } else {
+                cell.userImageView.image = #imageLiteral(resourceName: "default_profile")
+            }
+            
             cell.nameLabel.text = conversation.discovery?.author?.givenName
             cell.dateLabel.text = ("\(Extensions.getReadableDate(timeStamp: TimeInterval(conversation.createdAt!)) ?? "")")
-            cell.messageLabel.text = conversation.latestMessage?.content
+            
+            if let latestMessage = conversation.latestMessage?.content {
+                print(conversation.latestMessage?.author)
+                if let cognitoUsername = conversation.latestMessage?.author?.userId {
+                    print(cognitoUsername)
+                    cell.messageLabel.text = cognitoUsername == AWSMobileClient.sharedInstance().username ? "You: \(latestMessage)" : "\(latestMessage)"
+                } else {
+                    cell.messageLabel.text = latestMessage
+                }
+            }
+            
             cell.titleLabel.text = conversation.discovery?.title
             cell.priceLabel.text = "$ " + "\(conversation.discovery?.price ?? 0)"
             

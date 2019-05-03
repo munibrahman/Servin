@@ -68,10 +68,10 @@ class ResetPasswordViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.nextButtonSVGView.toggleProgress(showProgress: false)
                         self.nextButtonSVGView.isUserInteractionEnabled = true
-                        if let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ConfirmForgotPasswordViewController") as? ConfirmForgotPasswordViewController {
-                            vc.username = username
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
+                        let vc = ResetCodeSentViewController()
+                        vc.userName = username
+                        self.navigationController?.pushViewController(vc, animated: true)
+                        
                     }
                     
                 default:
@@ -80,6 +80,7 @@ class ResetPasswordViewController: UIViewController {
                 }
             } else if let error = error {
                 print("Error occurred: \(error.localizedDescription)")
+                print(error)
                 DispatchQueue.main.async {
                     let banner = NotificationBanner.init(title: "Error", subtitle: "\(error.localizedDescription)", leftView: nil, rightView: nil, style: BannerStyle.warning, colors: nil)
                     banner.show()
