@@ -157,8 +157,11 @@ class UserDiscoveryViewController: UIViewController {
         self.navigationBarShadow.backgroundColor = .clear
         self.navigationController?.navigationBar.addSubview(self.navigationBarShadow)
         
-        self.view.insertSubview(imInterstedView, aboveSubview: discoveryCollectionView)
-        
+        if self.pin?.author?.userId == AWSMobileClient.sharedInstance().username {
+            print("My own discovery")
+        } else {
+            self.view.insertSubview(imInterstedView, aboveSubview: discoveryCollectionView)
+        }
         setupNavigationBar()
     }
     
@@ -413,7 +416,7 @@ extension UserDiscoveryViewController: UICollectionViewDataSource, UICollectionV
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if self.pin?.author?.userId == AWSMobileClient.sharedInstance().username {
             print("My own discovery")
-            return 4
+            return 3
         }
         return 5
     }

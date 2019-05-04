@@ -1,73 +1,6 @@
-//
-//  MessageUserPinViewController.swift
-//  ServinV2
-//
-//  Created by Developer on 2018-07-04.
-//  Copyright © 2018 Voltic Labs Inc. All rights reserved.
-//
-
-//import UIKit
-//
-//class MessageUserPinViewController: UserDiscoveryViewController {
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-//
-//    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 4
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        imInterstedView.removeFromSuperview()
-//    }
-//
-//    override func setupNavigationBar() {
-//        super.setupNavigationBar()
-//
-//        let leftButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "<_grey"), style: .plain, target: self, action: #selector(userDidTapBack))
-//
-//        self.navigationItem.leftBarButtonItem = leftButtonItem
-//    }
-//
-//    override func userDidTapBack() {
-//        self.navigationController?.popViewController(animated: true)
-//    }
-//
-//    /*
-//    // MARK: - Navigation
-//
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//    }
-//    */
-//
-//}
-//
-//
-////
-////  UserDiscoveryViewController
-////  ServinV2
-////
-////  Created by Developer on 2018-06-12.
-////  Copyright © 2018 Voltic Labs Inc. All rights reserved.
-////
-
 import UIKit
 import GoogleMaps
-import Alamofire
-import AlamofireImage
+import AWSMobileClient
 
 // The following view controller displays the pin (discovery) of another user on the network.
 // To display one's own pin, use MyDiscoveryViewController instead
@@ -180,23 +113,17 @@ class MessageUserPinViewController: UIViewController {
         }
         
         // TODO: Get location of the pin
-//        if let pos = pin?._location {
-//            let position = CLLocationCoordinate2D(latitude: pos.latitude, longitude:  pos.longitude)
-//            let marker = GMSMarker(position: position)
-//            marker.title = "Hello World"
-//            marker.map = gmsMap
-//
-//            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
-//            gmsMap.camera = camera
-//        } else {
-//            let position = CLLocationCoordinate2D(latitude: 51.075477, longitude:  -114.137113)
-//            let marker = GMSMarker(position: position)
-//            marker.title = "Hello World"
-//            marker.map = gmsMap
-//
-//            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
-//            gmsMap.camera = camera
-//        }
+        if let lat = discovery?.latitude, let long = discovery?.longitude {
+            let position = CLLocationCoordinate2D(latitude: lat, longitude:  long)
+            let marker = GMSMarker(position: position)
+            marker.title = "Hello World"
+            marker.map = gmsMap
+
+            let camera = GMSCameraPosition.camera(withLatitude: position.latitude, longitude: position.longitude, zoom: 15)
+            gmsMap.camera = camera
+            gmsMap.isMyLocationEnabled = true
+        }
+
         
         
         if #available(iOS 11.0, *) {
@@ -289,7 +216,10 @@ class MessageUserPinViewController: UIViewController {
     func userDidTapMap() {
         let vc = DiscoveryFullScreenMapViewController()
         // TODO: Get location of the discovery
-//        vc.position = pin?._location
+        if let lat = discovery?.latitude, let long = discovery?.longitude {
+            vc.position = CLLocationCoordinate2D(latitude: lat, longitude:  long)
+        }
+        
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -395,6 +325,10 @@ extension MessageUserPinViewController: UICollectionViewDataSource, UICollection
     
     // return 4 items since the very bottom cell doesn't need to be shown
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if self.discovery?.author?.userId == AWSMobileClient.sharedInstance().username {
+            print("My own discovery")
+            return 3
+        }
         return 4
     }
     
@@ -425,9 +359,10 @@ extension MessageUserPinViewController: UICollectionViewDataSource, UICollection
             return cell
         } else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: imagesCellIdentifier, for: indexPath) as! DiscoveryImagesCollectionViewCell
-            // TODOD: Setup images in here
-//            cell.imageInputs = pin?.imagesUrl ?? []
-//            cell.setupInputs()
+            // Pass in the discovery, cell will do the rest.
+            if let snapshot = self.discovery?.snapshot {
+                cell.discovery = GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery.init(snapshot: snapshot)
+            }
             
             return cell
             
@@ -440,16 +375,14 @@ extension MessageUserPinViewController: UICollectionViewDataSource, UICollection
                 cell.userFirstNameLabel.text = "Servin User"
             }
             
-            // TODO: Get the profile image of this user
-//            if let userImageUrl = pin?.user?._profilePictureUrl {
-//                cell.userImageView.af_setImage(withURL: URL.init(string: userImageUrl)!)
-//            }
+            if let author = discovery?.author, let profileImageUrl = author.profilePic, let key = profileImageUrl.ICONImageKeyS3() {
+                cell.userImageView.loadImageUsingS3Key(key: key )
+                
+            }
             
-            cell.userUniversityLabel.text = "University Of Calgary"
+            cell.userUniversityLabel.text = discovery?.author?.school
             
-            
-            
-            
+
             return cell
         }
         

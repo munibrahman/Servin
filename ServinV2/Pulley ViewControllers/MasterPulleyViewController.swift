@@ -35,7 +35,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
     
     let progressView: UIProgressView = {
         let progressBar = UIProgressView.init(progressViewStyle: UIProgressView.Style.bar)
-        
+        progressBar.progressTintColor = UIColor.white
         progressBar.translatesAutoresizingMaskIntoConstraints = false
         
         return progressBar
@@ -104,7 +104,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         view.addSubview(progressView)
         
         progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        progressView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        progressView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 2.0).isActive = true
         

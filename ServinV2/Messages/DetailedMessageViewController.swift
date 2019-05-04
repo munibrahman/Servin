@@ -57,14 +57,6 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appSyncClient = appDelegate.appSyncClient
-
-        // Do any additional setup after loading the view.
-        
-//        if #available(iOS 11.0, *) {
-//            let window = UIApplication.shared.keyWindow
-//            let topPadding = window?.safeAreaInsets.top
-//            let bottomPadding = window?.safeAreaInsets.bottom
-//        }
         
         view.backgroundColor = .white
         
@@ -246,6 +238,10 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         
         if let image_0 = aDiscovery?.image_0, let ICONLink = image_0.ICONImageKeyS3() {
+            topPinImageView.loadImageUsingS3Key(key: ICONLink)
+        }
+        
+        else if let image_0 = conversation?.discovery?.image_0, let ICONLink = image_0.ICONImageKeyS3() {
             topPinImageView.loadImageUsingS3Key(key: ICONLink)
         }
         
