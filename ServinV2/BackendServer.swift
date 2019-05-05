@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import Alamofire
-import AlamofireImage
 import AWSMobileClient
 import AWSS3
 

@@ -9,8 +9,6 @@
 import UIKit
 import Pulley
 import GoogleMaps
-import Alamofire
-import AlamofireImage
 import AWSS3
 import SwiftyJSON
 
@@ -194,10 +192,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == pinsNearbyCollectionView {
-            let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: pinsNearbyCellIdentifier, for: indexPath) as! PinsNearbyCollectionViewCell
-            
-            DataRequest.addAcceptableImageContentTypes(["binary/octet-stream"])
-            
+            let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: pinsNearbyCellIdentifier, for: indexPath) as! PinsNearbyCollectionViewCell            
             
             if let discovery = discoveriesAroundMe[indexPath.item] {
                 myCell.titleLabel.text = discovery.title

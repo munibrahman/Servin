@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import AlamofireImage
 
 class ReviewViewController: UIViewController {
     
@@ -98,14 +96,14 @@ extension ReviewViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.reviewDateLabel.text = reviewArray[indexPath.row].timeAgo
         cell.reviewTextView.text = reviewArray[indexPath.row].review
         
-        
-        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
-            
-            if let image = response.result.value {
-                cell.profileImageView.image = image
-            }
-            
-        }
+        // TODO: Get image from S3
+//        Alamofire.request("https://9z2epuh1wa.execute-api.us-east-1.amazonaws.com/dev/user/picture").responseImage { (response) in
+//
+//            if let image = response.result.value {
+//                cell.profileImageView.image = image
+//            }
+//
+//        }
         
         return cell
     }

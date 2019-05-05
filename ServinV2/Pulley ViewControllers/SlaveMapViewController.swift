@@ -9,9 +9,7 @@
 import UIKit
 import GoogleMaps
 import Pulley
-import Alamofire
 import SwiftyJSON
-import AlamofireImage
 import AWSAppSync
 
 protocol SlaveMapViewControllerDelegate {
@@ -148,17 +146,14 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
 //            marker.map = self.homeMapView
 //            marker2.map = self.homeMapView
             
-            print(topRightCorner)
-            print(bottomLeftCorner)
+//            print(topRightCorner)
+//            print(bottomLeftCorner)
             
-            let params: Parameters = [
-                "latMin" : bottomLeftCorner.latitude,
-                "latMax" : topRightCorner.latitude,
-                "longMin" : bottomLeftCorner.longitude,
-                "longMax" : topRightCorner.longitude
-            ]
-            
-            print("Parameters are \(params)")
+            print("Parameters are:")
+            print("latMin \(bottomLeftCorner.latitude)")
+            print("latMax \(topRightCorner.latitude)")
+            print("longMin \(bottomLeftCorner.longitude)")
+            print("longMax \(topRightCorner.longitude)")
             
             if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                 let appSyncClient = appDelegate.appSyncClient

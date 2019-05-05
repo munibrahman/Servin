@@ -8,7 +8,6 @@
 
 import UIKit
 import ImageSlideshow
-import AlamofireImage
 import SwiftyJSON
 
 class DiscoveryImagesCollectionViewCell: UICollectionViewCell, UIScrollViewDelegate {

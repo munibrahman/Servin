@@ -8,7 +8,6 @@
 
 import Foundation
 import Stripe
-import Alamofire
 
 class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
     
@@ -33,21 +32,21 @@ class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
             "email": email
         ]
         
-        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .validate(statusCode: 200..<300)
-            .responseJSON { responseJSON in
-                print("request")
-                print(responseJSON.request)
-                print(responseJSON.request?.httpBody!)
-                print("response")
-                print(responseJSON)
-                switch responseJSON.result {
-                case .success(let json):
-                    completion(json as? [String: AnyObject], nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-        }
+//        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { responseJSON in
+//                print("request")
+//                print(responseJSON.request)
+//                print(responseJSON.request?.httpBody!)
+//                print("response")
+//                print(responseJSON)
+//                switch responseJSON.result {
+//                case .success(let json):
+//                    completion(json as? [String: AnyObject], nil)
+//                case .failure(let error):
+//                    completion(nil, error)
+//                }
+//        }
     }
     
     func completeCharge(_ result: STPPaymentResult,
@@ -70,17 +69,17 @@ class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
             "Authorization": "ERROR: CANT GET ID TOKEN"
         ]
         
-        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header )
-            .validate(statusCode: 200..<300)
-            .responseString { response in
-                print(response)
-                switch response.result {
-                case .success:
-                    completion(nil)
-                case .failure(let error):
-                    completion(error)
-                }
-        }
+//        Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header )
+//            .validate(statusCode: 200..<300)
+//            .responseString { response in
+//                print(response)
+//                switch response.result {
+//                case .success:
+//                    completion(nil)
+//                case .failure(let error):
+//                    completion(error)
+//                }
+//        }
     }
     
     func createCustomerKey(withAPIVersion apiVersion: String, completion: @escaping STPJSONResponseCompletionBlock) {
@@ -93,20 +92,20 @@ class MyStripeAPIClient: NSObject, STPEphemeralKeyProvider {
             "api_version" : "2018-09-24"
         ]
         
-        Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: parameters)
-            .validate(statusCode: 200..<300)
-            .responseJSON { responseJSON in
-                print("request")
-                print(responseJSON.request)
-                print("response")
-                print(responseJSON)
-                switch responseJSON.result {
-                case .success(let json):
-                    completion(json as? [String: AnyObject], nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-        }
+//        Alamofire.request(url, method: .get, encoding: URLEncoding.default, headers: parameters)
+//            .validate(statusCode: 200..<300)
+//            .responseJSON { responseJSON in
+//                print("request")
+//                print(responseJSON.request)
+//                print("response")
+//                print(responseJSON)
+//                switch responseJSON.result {
+//                case .success(let json):
+//                    completion(json as? [String: AnyObject], nil)
+//                case .failure(let error):
+//                    completion(nil, error)
+//                }
+//        }
     }
     
 }

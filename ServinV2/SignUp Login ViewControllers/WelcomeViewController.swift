@@ -8,7 +8,6 @@
 
 import UIKit
 import Macaw
-import Alamofire
 import JWTDecode
 import SwiftyJSON
 

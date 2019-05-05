@@ -122,7 +122,7 @@ class S3Source: NSObject, InputSource {
     }
     
     public func cancelLoad(on imageView: UIImageView) {
-        imageView.af_cancelImageRequest()
+//        imageView.af_cancelImageRequest()
     }
 }
 

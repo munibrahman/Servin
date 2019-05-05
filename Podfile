@@ -17,9 +17,7 @@ target 'ServinV2' do
   pod 'PinpointKit'
   pod 'TLPhotoPicker'
   pod 'ImageSlideshow', '~> 1.6'
-  pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON', '~> 4.0'
-  pod 'AlamofireImage', '~> 3.3'
   pod 'Eureka'
   pod 'JWTDecode', '~> 2.1'
   pod 'NotificationBannerSwift' # To show notifications

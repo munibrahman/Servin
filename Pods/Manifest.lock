@@ -1,7 +1,4 @@
 PODS:
-  - Alamofire (4.8.2)
-  - AlamofireImage (3.5.2):
-    - Alamofire (~> 4.8)
   - AWSAPIGateway (2.9.4):
     - AWSCore (= 2.9.4)
   - AWSAppSync (2.10.3):
@@ -60,8 +57,6 @@ PODS:
   - TLPhotoPicker (1.8.5)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
-  - AlamofireImage (~> 3.3)
   - AWSAPIGateway
   - AWSAppSync
   - AWSCore
@@ -88,8 +83,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - AlamofireImage
     - AWSAPIGateway
     - AWSAppSync
     - AWSAuthCore
@@ -123,8 +116,6 @@ SPEC REPOS:
     - TLPhotoPicker
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
   AWSAPIGateway: 34e3816415914376f6de268857f605a51ede0ddf
   AWSAppSync: cc5e6716f712cf9a9bdc176e471027516ac5087d
   AWSAuthCore: 5509db7bfba74bdbc45cdb778d12560ad407d06c
@@ -157,6 +148,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
   TLPhotoPicker: 4274455aacc5b75b53aafa2de95bd1f53e7c79f8
 
-PODFILE CHECKSUM: 80f47497e53a37a48102feaa157b039079ac1839
+PODFILE CHECKSUM: 0a1b2363b5d2df97549423b135c69a8401f6c638
 
 COCOAPODS: 1.5.3

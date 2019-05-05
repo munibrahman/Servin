@@ -8,7 +8,6 @@
 
 import UIKit
 import GoogleMaps
-import Alamofire
 import SwiftyJSON
 
 // This view controller contains a GMSMapView that spawns the view's entire frame.

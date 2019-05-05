@@ -12,7 +12,6 @@ import UIKit
 import Pulley
 import GoogleMaps
 import SideMenu
-import Alamofire
 import AWSPinpoint
 import AWSAppSync
 import AWSS3
