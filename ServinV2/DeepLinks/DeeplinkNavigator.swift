@@ -56,6 +56,7 @@ class DeeplinkNavigator {
     }
     
     private func confirmSignUp(email: String, code: String) {
+        UIApplication.topViewController()?.showServinLogoProgressView()
         AWSMobileClient.sharedInstance().confirmSignUp(username: email, confirmationCode: code) { (signUpResult, error) in
             if let signUpResult = signUpResult {
                 switch(signUpResult.signUpConfirmationState) {
@@ -89,13 +90,16 @@ class DeeplinkNavigator {
                     
                 case .unconfirmed:
                     print("User is not confirmed and needs verification via \(signUpResult.codeDeliveryDetails!.deliveryMedium) sent at \(signUpResult.codeDeliveryDetails!.destination!)")
+                    UIApplication.topViewController()?.hideServinLogoProgressView()
                 case .unknown:
                     print("Unexpected case")
+                    UIApplication.topViewController()?.hideServinLogoProgressView()
                 }
             } else if let error = error {
                 print("Error confirming user")
                 print(error)
                 print("\(error.localizedDescription)")
+                UIApplication.topViewController()?.hideServinLogoProgressView()
             }
         }
     }

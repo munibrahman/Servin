@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class PinsNearbyCollectionViewCell: UICollectionViewCell {
 
@@ -18,6 +19,13 @@ class PinsNearbyCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        isSkeletonable = true
+        
+        imageView.isSkeletonable = true
+        priceLabel.isSkeletonable = true
+        titleLabel.isSkeletonable = true
+        distanceLabel.isSkeletonable  = true
         
         imageView.layer.cornerRadius = 2.0
         imageView.contentMode = .scaleAspectFill

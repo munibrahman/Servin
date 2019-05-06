@@ -21,9 +21,10 @@ target 'ServinV2' do
   pod 'Eureka'
   pod 'JWTDecode', '~> 2.1'
   pod 'NotificationBannerSwift' # To show notifications
+  pod 'SkeletonView'
+  pod 'NVActivityIndicatorView'
   #AWS Pods
   pod 'AWSCore'
-#  pod 'AWSCognitoIdentityProvider' Removed in favour of AWSMobileClient
   pod 'AWSAppSync'
   pod 'AWSAPIGateway'
   pod 'AWSPinpoint'

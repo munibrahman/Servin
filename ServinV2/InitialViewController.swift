@@ -12,6 +12,7 @@
 import UIKit
 import AWSMobileClient
 import AWSAppSync
+import NVActivityIndicatorView
 
 class InitialViewController: UIViewController {
 
@@ -38,6 +39,13 @@ class InitialViewController: UIViewController {
         servinLogo.widthAnchor.constraint(equalToConstant: 116).isActive = true
         servinLogo.heightAnchor.constraint(equalToConstant: 210).isActive = true
 
+        let loadingView = NVActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50), type: NVActivityIndicatorType.ballPulse, color: UIColor.white, padding: nil)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(loadingView)
+        loadingView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loadingView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -30).isActive = true
+        loadingView.startAnimating()
         // Do any additional setup after loading the view.
     }
     

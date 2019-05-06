@@ -489,6 +489,54 @@ extension String {
     }
 }
 
+import NVActivityIndicatorView
+
+extension UIViewController {
+    func showServinLogoProgressView() {
+        DispatchQueue.main.async {
+            let backgroundView = UIView.init()
+            backgroundView.backgroundColor = UIColor.greyBackgroundColor
+            backgroundView.translatesAutoresizingMaskIntoConstraints = false
+            backgroundView.tag = 80085
+            self.view.addSubview(backgroundView)
+            
+            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+            backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+            
+            let servinLogo = UIImageView.init()
+            servinLogo.image = UIImage.init(named: "login_logo_servin")
+            servinLogo.contentMode = .scaleAspectFit
+            servinLogo.translatesAutoresizingMaskIntoConstraints = false
+            
+            backgroundView.addSubview(servinLogo)
+            servinLogo.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+            servinLogo.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
+            servinLogo.widthAnchor.constraint(equalToConstant: 116).isActive = true
+            servinLogo.heightAnchor.constraint(equalToConstant: 210).isActive = true
+            
+            let loadingView = NVActivityIndicatorView.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50), type: NVActivityIndicatorType.ballPulse, color: UIColor.white, padding: nil)
+            loadingView.translatesAutoresizingMaskIntoConstraints = false
+            
+            backgroundView.addSubview(loadingView)
+            loadingView.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+            loadingView.bottomAnchor.constraint(equalTo: backgroundView.layoutMarginsGuide.bottomAnchor, constant: -30).isActive = true
+            loadingView.startAnimating()
+        }
+    }
+    
+    func hideServinLogoProgressView() {
+        DispatchQueue.main.async {
+            if let viewWithTag = self.view.viewWithTag(80085) {
+                print("Tag 80085")
+                viewWithTag.removeFromSuperview()
+            } else {
+                print("tag not found")
+            }
+        }
+    }
+}
 
 
 

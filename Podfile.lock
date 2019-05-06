@@ -41,12 +41,16 @@ PODS:
   - NotificationBannerSwift (2.0.1):
     - MarqueeLabel/Swift (~> 3.2.0)
     - SnapKit (~> 4.2.0)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
   - PinpointKit (1.3.0):
     - PinpointKit/Core (= 1.3.0)
   - PinpointKit/Core (1.3.0)
   - Pulley (2.7.0)
   - ReachabilitySwift (4.3.1)
   - SideMenu (5.0.3)
+  - SkeletonView (1.4.2)
   - SnapKit (4.2.0)
   - SQLite.swift (0.11.5):
     - SQLite.swift/standard (= 0.11.5)
@@ -74,9 +78,11 @@ DEPENDENCIES:
   - KYNavigationProgress
   - Macaw (= 0.9.1)
   - NotificationBannerSwift
+  - NVActivityIndicatorView
   - PinpointKit
   - Pulley
   - SideMenu
+  - SkeletonView
   - Stripe
   - SwiftyJSON (~> 4.0)
   - TLPhotoPicker
@@ -104,10 +110,12 @@ SPEC REPOS:
     - Macaw
     - MarqueeLabel
     - NotificationBannerSwift
+    - NVActivityIndicatorView
     - PinpointKit
     - Pulley
     - ReachabilitySwift
     - SideMenu
+    - SkeletonView
     - SnapKit
     - SQLite.swift
     - Stripe
@@ -137,10 +145,12 @@ SPEC CHECKSUMS:
   Macaw: 8b13bb7ae2f527b3c7b2787988bbc5461a1c66e3
   MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
   NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
   PinpointKit: 8ef42ed810a95aaced0462b532e0224a67afb72d
   Pulley: 028ddcc7d2dcbc078d71b61b7eee8e786d72c14a
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SkeletonView: c2523c3c8c6510e273e49a3bf364a434744c3914
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   Stripe: 312b22a67af9fa55c246d26148b3f3a9636a0ff2
@@ -148,6 +158,6 @@ SPEC CHECKSUMS:
   SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
   TLPhotoPicker: 4274455aacc5b75b53aafa2de95bd1f53e7c79f8
 
-PODFILE CHECKSUM: 0a1b2363b5d2df97549423b135c69a8401f6c638
+PODFILE CHECKSUM: eb87ee27b2433f56d5a7126682e329c6e23e3364
 
 COCOAPODS: 1.5.3

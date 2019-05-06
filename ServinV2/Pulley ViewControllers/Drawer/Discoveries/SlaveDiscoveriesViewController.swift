@@ -10,7 +10,7 @@ import UIKit
 import Pulley
 import GoogleMaps
 import AWSS3
-import SwiftyJSON
+import SkeletonView
 
 class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, PulleyDrawerViewControllerDelegate {
     
@@ -229,6 +229,26 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         }
     }
 }
+
+//extension SlaveDiscoveriesViewController: SkeletonCollectionViewDataSource {
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+//        if skeletonView == pinsNearbyCollectionView {
+//            print("Yes its the same collectionview")
+//            return pinsNearbyCellIdentifier
+//        } else {
+//            return recommendedPinsCellIdentifier
+//        }
+//    }
+//    
+//    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return 10
+//    }
+//    
+//    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+//        return 1
+//    }
+//    
+//}
 
 
 extension SlaveDiscoveriesViewController: SlaveMapViewControllerDelegate {

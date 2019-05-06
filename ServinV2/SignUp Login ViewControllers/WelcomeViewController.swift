@@ -8,7 +8,6 @@
 
 import UIKit
 import Macaw
-import JWTDecode
 import SwiftyJSON
 
 class WelcomeViewController: UIViewController {
