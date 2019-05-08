@@ -32,6 +32,8 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     
     var inviteButton: UIButton!
     
+    var discoveries: [GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery?]?
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.setupPins()
@@ -77,12 +79,8 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
     @objc func didTapInviteFriends() {
-        
-        if let parent = self.parent as? MasterPulleyViewController {
-            print("Yeah my parent is the master pulley")
-            
-            UIApplication.topViewController()?.present(UINavigationController.init(rootViewController: InviteOthersViewController()), animated: true, completion: nil)
-        }
+        print("invite friends")
+        UIApplication.topViewController()?.present(UINavigationController.init(rootViewController: InviteOthersViewController()), animated: true, completion: nil)
         
     }
     
@@ -98,6 +96,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                 homeMapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
                 NSLog("Unable to find style.json")
+                self.showErrorNotification(title: "Error", subtitle: "Can't load the map right now")
             }
         } catch {
             NSLog("One or more of the map styles failed to load. \(error)")
@@ -119,17 +118,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
     }
     
     func setupPins() {
-//        let data = ServinData.allPins
-//
-//        for pin in data {
-//
-//            if let location = pin._location {
-//                let marker = GMSMarker(position: location)
-//
-//                marker.map = homeMapView
-//            }
-//
-//        }
+
         
         if userLocationCameraPosition != nil {
         
@@ -138,16 +127,6 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
             let topRightCorner: CLLocationCoordinate2D = projection.farRight
             let bottomLeftCorner: CLLocationCoordinate2D = projection.nearLeft
             
-//            let marker = GMSMarker.init()
-//            marker.position = topRightCorner
-//
-//            let marker2 = GMSMarker.init(position: bottomLeftCorner)
-//
-//            marker.map = self.homeMapView
-//            marker2.map = self.homeMapView
-            
-//            print(topRightCorner)
-//            print(bottomLeftCorner)
             
             print("Parameters are:")
             print("latMin \(bottomLeftCorner.latitude)")
@@ -177,12 +156,14 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                         
                         if let discoveries = result.data?.getSurroundingDiscoveries, let parentVC = self.parent as? MasterPulleyViewController {
                             
+                            self.discoveries = discoveries
+                            
                             print("Super is master pulley view controller")
                             parentVC.myDiscoveriesViewController?.discoveriesAroundMe = discoveries
                             parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
                             // parentVC is someViewController
                             
-                            
+                            self.homeMapView.clear()
                             
                             for discovery in discoveries {
 //                                print("discovery \(discovery)")
@@ -247,29 +228,50 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
         }
     }
     
+    // This object is needed to keep refrence for the transition delegate to determine the starting point of the animation
+    var latestMarkerPoint: CGPoint?
+    
+    // Transition that we are using to show details when someone taps on the pin
+    // https://github.com/brianadvent/CircularTransition
+    let transition = CircularTransition()
+    
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         print("did tap marker")
         
+        latestMarkerPoint = mapView.projection.point(for: marker.position)
+        
         let location = marker.position
         
-        let data = ServinData.allPins
-        
-        let pin = data.filter { (pin) -> Bool in
-            if let loc = pin._location {
-                if loc.latitude == location.latitude && loc.longitude == loc.longitude {
-                    return true
+        if let data = discoveries {
+            let pin = data.filter { (pin) -> Bool in
+                if let lat = pin?.latitude, let long = pin?.longitude {
+                    if lat == location.latitude && long == location.longitude {
+                        return true
+                    }
                 }
+                
+                return false
             }
             
-            return false
+            
+            if let specificPin = pin.first {
+                if let parentVC = self.parent {
+                    let discoveryVC = UserDiscoveryViewController()
+                    discoveryVC.pin = specificPin
+                    let secondVC = UINavigationController.init(rootViewController: discoveryVC)
+                    secondVC.transitioningDelegate = self
+                    secondVC.modalPresentationStyle = .custom
+                    parentVC.present(secondVC, animated: true, completion: nil)
+                }
+            }
         }
-        
-        if let specificPin = pin.first {
-            mapDelegate?.didSelectMarker(pin: specificPin)
-        }
-        
+
         return false
     }
+    
+    
+    
+
     
     // Function used by our master view controller
     func dropAPin() {
@@ -425,4 +427,32 @@ extension SlaveMapViewController: PulleyPrimaryContentControllerDelegate {
         
     }
     
+}
+
+
+extension SlaveMapViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        if let point = latestMarkerPoint {
+            transition.startingPoint = point
+        } else {
+            transition.startingPoint = self.view.center
+        }
+        
+        transition.circleColor = UIColor.white
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        if let point = latestMarkerPoint {
+            transition.startingPoint = point
+        } else {
+            transition.startingPoint = self.view.center
+        }
+        transition.circleColor = UIColor.white
+        
+        return transition
+    }
 }

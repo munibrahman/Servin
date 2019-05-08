@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		53E0616D9EF920DF33A0828D /* Pods_ServinV2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */; };
 		7DBBC905C791BD3BD31B505D /* Pods_ServinV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D566F623AEBCAFFBB31DDC90 /* Pods_ServinV2.framework */; };
-		8B24113421B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */; };
 		8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */; };
 		8B3FEF7120CD01DB0056C22A /* SideMenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */; };
 		8B3FEF7620CD18090056C22A /* SideMenuServinLogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */; };
@@ -110,6 +109,7 @@
 		AE42A20F2272150800F36BB2 /* S3BucketKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */; };
 		AE42A2112274731800F36BB2 /* S3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A2102274731800F36BB2 /* S3Manager.swift */; };
 		AE42A98C227B82DA00D6D331 /* ResetCodeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A98B227B82DA00D6D331 /* ResetCodeSentViewController.swift */; };
+		AEC5FAB12282A62B0011A744 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5FAB02282A62A0011A744 /* CircularTransition.swift */; };
 		AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED827242256B2F3006164C6 /* InitialViewController.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
@@ -138,7 +138,6 @@
 		654382927B9EECADF9248D33 /* Pods-ServinV2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2Tests/Pods-ServinV2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B24113121B4CB1F00AA37E5 /* AWSApiGatewayBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSApiGatewayBridge.h; sourceTree = "<group>"; };
 		8B24113221B4CB1F00AA37E5 /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging_Header.h; sourceTree = "<group>"; };
-		8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SERVINAPIMERGENCEClient.swift; sourceTree = "<group>"; };
 		8B3FEF6E20CD01DB0056C22A /* SideMenuProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8B3FEF6F20CD01DB0056C22A /* SideMenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuProfileTableViewCell.xib; sourceTree = "<group>"; };
 		8B3FEF7420CD18090056C22A /* SideMenuServinLogoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuServinLogoTableViewCell.swift; sourceTree = "<group>"; };
@@ -245,6 +244,7 @@
 		AE42A20E2272150800F36BB2 /* S3BucketKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3BucketKeys.swift; sourceTree = "<group>"; };
 		AE42A2102274731800F36BB2 /* S3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Manager.swift; sourceTree = "<group>"; };
 		AE42A98B227B82DA00D6D331 /* ResetCodeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCodeSentViewController.swift; sourceTree = "<group>"; };
+		AEC5FAB02282A62A0011A744 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		AED827242256B2F3006164C6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -457,7 +457,6 @@
 			children = (
 				8B24113121B4CB1F00AA37E5 /* AWSApiGatewayBridge.h */,
 				8B24113221B4CB1F00AA37E5 /* Bridging_Header.h */,
-				8B24113321B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift */,
 				8BC7D0B1212110CA00F2CD8F /* ServinV2.entitlements */,
 				8BA6455920830D44006EEEC5 /* AppDelegate.swift */,
 				8B743E262148BB9A00322EF8 /* TestingViewController.swift */,
@@ -494,6 +493,7 @@
 				8B4D5723218A954D00A28CEA /* APIManager.swift */,
 				AED827242256B2F3006164C6 /* InitialViewController.swift */,
 				AE42A9892276AC1D00D6D331 /* S3 */,
+				AEC5FAB02282A62A0011A744 /* CircularTransition.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -977,7 +977,6 @@
 				8B53487F213779AC009E4C3E /* Reachability.swift in Sources */,
 				AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */,
 				8BBFFC4020A0E85200BA5D06 /* HomeMapSearchBar.swift in Sources */,
-				8B24113421B4CB1F00AA37E5 /* SERVINAPIMERGENCEClient.swift in Sources */,
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8BBBF5312165C655006A2A3F /* MyStripeAPIClient.swift in Sources */,
@@ -993,6 +992,7 @@
 				8B6CF0C420CCAB370013F372 /* SegmentedControl.swift in Sources */,
 				AE42A20F2272150800F36BB2 /* S3BucketKeys.swift in Sources */,
 				8B51798B20D9800900774BDE /* UserProfileViewController.swift in Sources */,
+				AEC5FAB12282A62B0011A744 /* CircularTransition.swift in Sources */,
 				8BA6458820832C74006EEEC5 /* Extensions.swift in Sources */,
 				8BF6F5AB213EF142006146E9 /* NotificationsAroundYouViewController.swift in Sources */,
 				8BCB896F20DB621C00AF5A65 /* ServinUser.swift in Sources */,

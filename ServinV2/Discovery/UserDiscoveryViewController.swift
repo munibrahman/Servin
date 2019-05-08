@@ -180,6 +180,7 @@ class UserDiscoveryViewController: UIViewController {
     func setupMap() {
         gmsMap = GMSMapView.init(frame: self.view.bounds)
         gmsMap.isUserInteractionEnabled = false
+        gmsMap.isMyLocationEnabled = true
         
         do {
             // Set the map style by passing the URL of the local file.
