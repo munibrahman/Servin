@@ -1,23 +1,23 @@
 {
     "AppSync": {
         "Default": {
-            "ApiUrl": "https://lefwoq4q7vbh5hchtafgy4k4qe.appsync-api.us-east-1.amazonaws.com/graphql",
+            "ApiUrl": "https://s5qtmtbepjhm3fg4gn3rux4lyu.appsync-api.us-east-1.amazonaws.com/graphql",
             "AuthMode": "AMAZON_COGNITO_USER_POOLS",
             "Region": "us-east-1"
         }
     },
     "CognitoUserPool": {
         "Default": {
-            "AppClientId": "3sif1hk31e7m7h5dqd6pcnqs7b",
-            "AppClientSecret": "10o9ehkvl8cmit5mlmpqq998s832trjhh788sotlm9j5ea2ckfr0",
-            "PoolId": "us-east-1_u9TDcIvfX",
+            "AppClientId": "3t6i0k6vs48gv8g9u3t0pl1r8k",
+            "AppClientSecret": "fp1mbl4c4sq12m7f5h8fa6s9srqosska45i4bd1gi45nb0okj5t",
+            "PoolId": "us-east-1_Akb3PNh78",
             "Region": "us-east-1"
         }
     },
     "CredentialsProvider": {
         "CognitoIdentity": {
             "Default": {
-                "PoolId": "us-east-1:4d7138dc-0525-4882-a74b-c62966164f73",
+                "PoolId": "us-east-1:495f58f5-69fb-4e53-ae05-38bd590818bd",
                 "Region": "us-east-1"
             }
         }
@@ -27,7 +27,18 @@
     },
     "S3TransferUtility": {
         "Default": {
-            "Bucket": "servin-users-bucket-prod",
+            "Bucket": "servin-users-bucket-test",
+            "Region": "us-east-1"
+        }
+    },
+    "PinpointAnalytics": {
+        "Default": {
+            "AppId": "128f6b300d75446f9c2ca0ffb248e4f7",
+            "Region": "us-east-1"
+        }
+    },
+    "PinpointTargeting": {
+        "Default": {
             "Region": "us-east-1"
         }
     },

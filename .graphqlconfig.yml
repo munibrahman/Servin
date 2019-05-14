@@ -1,5 +1,5 @@
 projects:
-  VolticRootStackAPI-test:
+  AppSynctestEnvAPI-test:
     schemaPath: graphql/schema.json
     includes:
       - graphql/**/*.graphql
@@ -7,7 +7,7 @@ projects:
       - ./amplify/**
     extensions:
       amplify:
-        graphQLApiId: ndb5oyhatbailavp2hkreqsuhq
+        graphQLApiId: 5pwarryqerg4dac26kjnlfxv6q
         codeGenTarget: swift
         generatedFileName: API.swift
         docsFilePath: graphql
@@ -15,4 +15,4 @@ projects:
         maxDepth: 6
       endpoints:
         prod: >-
-          https://nvjgohm4hvdbphexj7alurtnpu.appsync-api.us-east-1.amazonaws.com/graphql
+          https://s5qtmtbepjhm3fg4gn3rux4lyu.appsync-api.us-east-1.amazonaws.com/graphql

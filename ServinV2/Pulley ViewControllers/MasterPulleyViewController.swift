@@ -82,18 +82,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
                     return nil
                 }
                 
-//                https://stackoverflow.com/questions/51576333/send-push-notification-from-ios-using-aws-pinpoint?rq=1
-                
-//                let sendMessagesRequest = AWSPinpointTargetingSendMessagesRequest()!
-//                sendMessagesRequest.applicationId = appId
-//                sendMessagesRequest.messageRequest = messageRequest
-//
-//                AWSPinpointTargeting.default().sendMessages(sendMessagesRequest){ response, error in
-//                    ...
-//                }
-//                AWSPinpointTargeting.init().sendMessages(<#T##request: AWSPinpointTargetingSendMessagesRequest##AWSPinpointTargetingSendMessagesRequest#>)
-                
-                
+
                 
             }
         }

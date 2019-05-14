@@ -1392,8 +1392,8 @@ query Me {
     hasChosenCategories
   }
 }
-query ConversationFromId($conversationId: String!) {
-  conversationFromId(conversationId: $conversationId) {
+query ConversationFromDiscovery($discoveryId: String!) {
+  conversationFromDiscovery(discoveryId: $discoveryId) {
     createdAt
     id
     discoveryId

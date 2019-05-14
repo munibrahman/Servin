@@ -1,9 +1,9 @@
 //
-//  DetailedMessageViewController.swift
+//  MessageDiscoveryViewController.swift
 //  ServinV2
 //
-//  Created by Developer on 2018-07-03.
-//  Copyright © 2018 Voltic Labs Inc. All rights reserved.
+//  Created by Munib Rahman on 2019-05-12.
+//  Copyright © 2019 Voltic Labs Inc. All rights reserved.
 //
 
 import UIKit
@@ -11,13 +11,20 @@ import AWSAppSync
 import IQKeyboardManagerSwift
 import AWSMobileClient
 import SwiftyJSON
-
+import AWSPinpoint
 // CHATLOG Controller
 
-// This view controller is displayed via the user's own message VC.
-// Conversation object must be passed to this VC
-
-class DetailedMessageViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+// This VC will be displayed after a user taps the "Im interested" button.
+// Its job is to check whether a conversation has already been started over this discovery.
+// If there is a conversation that exists, it will then pull all the related messages in that conversation
+// If there isn't a conversation that has been started, it will start a new conversation, create a new user conversation mutation and then finally send a new message.
+class MessageDiscoveryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+    
+    var aDiscovery: GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery? {
+        didSet {
+            navigationItem.title = aDiscovery?.author?.givenName
+        }
+    }
     
     lazy var inputTextField: UITextField = {
         let inputTextField = UITextField()
@@ -39,11 +46,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     
     let cellId = "cellId"
     
-    var conversation: MeQuery.Data.Me.Conversation.UserConversation.Conversation? {
-        didSet {
-            navigationItem.title = conversation?.discovery?.author?.givenName
-        }
-    }
+    var conversation: MeQuery.Data.Me.Conversation.UserConversation.Conversation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,12 +81,11 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
         setupNavigationController()
         
+        fetchConversation()
         
         setupViews()
         setupInputComponents()
         setupKeyboardObservers()
-        
-        fetchMessages()
     }
     
     func setupKeyboardObservers() {
@@ -109,8 +111,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                     
                     
                 }) { (completion) in
-//                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
-//                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                    //                    let indexPath = IndexPath.init(item: (self.messages?.count)! - 1, section: 0)
+                    //                    self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                 }
             }
         }
@@ -137,7 +139,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         
     }
     
-
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages?.count ?? 0
     }
@@ -190,7 +192,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     func setupNavigationController() {
         if self.navigationController == nil {
             fatalError("This VC Must be presented inside a navigation controller")
@@ -209,7 +211,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     }
     
     func setupViews() {
-//        let topPinView = UIView.init(frame: CGRect.init(x: 0.0, y: self.topbarHeight, width: self.view.frame.size.width, height: 75.0))
+        //        let topPinView = UIView.init(frame: CGRect.init(x: 0.0, y: self.topbarHeight, width: self.view.frame.size.width, height: 75.0))
         
         let topPinView = UIView()
         
@@ -228,7 +230,12 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         topPinImageView.contentMode = .scaleAspectFill
         topPinImageView.clipsToBounds = true
         
-        if let image_0 = conversation?.discovery?.image_0, let ICONLink = image_0.ICONImageKeyS3() {
+        // TODO: Get the image of the discovery in here
+        //        topPinImageView.image = #imageLiteral(resourceName: "soccer")
+        //        topPinImageView.image = aDiscovery?.image_0
+        
+        
+        if let image_0 = aDiscovery?.image_0, let ICONLink = image_0.ICONImageKeyS3() {
             topPinImageView.loadImageUsingS3Key(key: ICONLink)
         }
         
@@ -238,8 +245,8 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let titleLabel = UILabel.init(frame: CGRect.init(x: 0.0, y: 10.0, width: 200.0, height: 50.0))
         titleLabel.font = UIFont.systemFont(ofSize: 17.0, weight: .regular)
         titleLabel.textColor = UIColor.blackFontColor
-//        titleLabel.text = "Soccer Coach for hire!"
-        titleLabel.text = conversation?.discovery?.title ?? " "
+        //        titleLabel.text = "Soccer Coach for hire!"
+        titleLabel.text = aDiscovery?.title ?? " "
         
         topPinView.addSubview(titleLabel)
         
@@ -254,7 +261,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         timeLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         timeLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
         
-//        timeLabel.text = "5 mins away"
+        //        timeLabel.text = "5 mins away"
         
         topPinView.addSubview(timeLabel)
         
@@ -267,7 +274,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         let priceLabel = UILabel.init()
         priceLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .regular)
         priceLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
-        priceLabel.text = "$ \(conversation?.discovery?.price ?? 0)"
+        priceLabel.text = "$ \(aDiscovery?.price ?? 0)"
         
         topPinView.addSubview(priceLabel)
         
@@ -289,16 +296,13 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
         thinLine.bottomAnchor.constraint(equalTo: topPinView.bottomAnchor).isActive = true
         thinLine.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
         
-        let showPinGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(showDetailPin))
-        topPinView.addGestureRecognizer(showPinGestureRecognizer)
-        
         collectionView?.topAnchor.constraint(equalTo: topPinView.bottomAnchor).isActive = true
     }
     
     
     
     var containerViewBottomAnchor: NSLayoutConstraint?
-
+    
     func setupInputComponents() {
         let containerView = UIView()
         containerView.backgroundColor = .white
@@ -357,7 +361,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
             return
         }
         
-        
+        // Conversation already exists, just need to send a new message
         if let conversation = conversation {
             let messageMutation = CreateMessageMutation.init(content: textFieldContent, conversationId: conversation.id)
             
@@ -379,7 +383,7 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                     print("Successful response for sending message: \(result)")
                     self.inputTextField.text = nil
                     
-                    PinpointManager.shared.sendPinpointNotification(to: self.conversation?.discovery?.author?.userId ?? " ", title: self.conversation?.discovery?.title ?? " " , body: textFieldContent)
+                    PinpointManager.shared.sendPinpointNotification(to: self.aDiscovery?.author?.userId ?? " ", title: self.aDiscovery?.title ?? " " , body: textFieldContent)
                 }
             })
             
@@ -387,19 +391,150 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
             print(textFieldContent)
         }
         
+        // Conversation doesn't exist. We must start a new convo.
+        else {
+            print("Start new conversation")
+            
+            if let discovery = aDiscovery {
+                
+                
+                let discoveryId = discovery.discoveryId
+                
+                guard let userName = AWSMobileClient.sharedInstance().username else {
+                    print("No username stored for this user...")
+                    return
+                }
+                
+                let startConvo = CreateConversationMutation.init(discoveryId: discoveryId)
+                
+                appSyncClient?.perform(mutation: startConvo, resultHandler: { (result, error) in
+                    if let error = error {
+                        print("Error creating a new conversation \(error.localizedDescription)")
+                    } else {
+                        print("Created conversation: \(result?.data)")
+                        
+                        if let id = result?.data?.createConversation?.id {
+                            print("Conversation id is \(id)")
+                            
+                            
+                            self.appSyncClient?.perform(mutation: CreateUserConversationsMutation.init(conversationId: id, userId: userName), resultHandler: { (result, error) in
+                                if let error = error {
+                                    print("Error creating a new user conversation \(error.localizedDescription)")
+                                } else {
+                                    print("Created a user conversation \(result?.data)")
+                                }
+                            })
+
+                            guard let userId = result?.data?.createConversation?.discovery?.cognitoUserName else {
+                                print("Can't get other person's user name, abandon")
+                                return
+                            }
+                            
+                            self.appSyncClient?.perform(mutation: CreateUserConversationsMutation.init(conversationId: id, userId: userId), resultHandler: { (result, error) in
+                                if let error = error {
+                                    print("Error creating a new user conversation \(error.localizedDescription)")
+                                } else {
+                                    print("Created a user conversation \(result?.data)")
+                                }
+                            })
+                            
+                            let messageMutation = CreateMessageMutation.init(content: textFieldContent, conversationId: id)
+                            
+                            self.appSyncClient?.perform(mutation: messageMutation, resultHandler: { (result, err) in
+                                
+                                if let error = error {
+                                    print("Error sending message")
+                                    print(error)
+                                    self.showErrorNotification(title: "Error", subtitle: "Can't send message right now")
+                                }
+                                
+                                if let errors = result?.errors {
+                                    print("Errors sending this message")
+                                    print(errors)
+                                    self.showErrorNotification(title: "Error", subtitle: "Can't send message right now")
+                                }
+                                
+                                if let result = result {
+                                    print("Successful response for sending message: \(result)")
+                                    self.inputTextField.text = nil
+                                    self.fetchMessages()
+                                    
+                                    PinpointManager.shared.sendPinpointNotification(to: self.aDiscovery?.author?.userId ?? " ", title: self.aDiscovery?.title ?? " " , body: textFieldContent)
+                                }
+
+                            })
+                            
+                            if let snapshot = result?.data?.createConversation?.snapshot {
+                                print("Made a conversation object from the snapshot, update the tableview to message being sent")
+                                self.conversation = MeQuery.Data.Me.Conversation.UserConversation.Conversation.init(snapshot: snapshot)
+                                self.observeMessages()
+                            } else {
+                                print("no snapshot to be extracted... made a new convo but nothing to show for it.")
+                            }
+                            
+                            
+                            
+                        } else {
+                            print("no conversation id... wtf")
+                        }
+                    }
+                })
+            } else {
+                print("No discovery passed")
+            }
+            
+            
+            
+            
+        }
+        
         
         
     }
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handleSend()
         return true
     }
     
-    @objc func showDetailPin() {
-        let userDiscoveryVC = MessageUserPinViewController()
-        userDiscoveryVC.discovery = conversation?.discovery
-        self.navigationController?.pushViewController(userDiscoveryVC, animated: true)
+    func fetchConversation() {
+        
+        guard let discovery = aDiscovery else {
+            print("Can't unwrap discovery, must be passed in from the previous VC")
+            return
+        }
+        
+        let checkConvo = ConversationFromDiscoveryQuery.init(discoveryId: discovery.discoveryId)
+        
+        appSyncClient?.fetch(query: checkConvo, cachePolicy: CachePolicy.returnCacheDataAndFetch, resultHandler: { (result, error) in
+            if let error = error {
+                // TODO: SHOW error to user
+                print("Error fetching data... \(error.localizedDescription)")
+                print(error)
+                self.showErrorNotification(title: "Erro", subtitle: "Unable to get messages")
+            }
+            if let errors = result?.errors {
+                // TODO: SHOW error to user
+                print("Errors fetching data... \(errors)")
+                self.showErrorNotification(title: "Erro", subtitle: "Unable to get messages")
+            }
+            else {
+                
+                if let convo = result?.data?.conversationFromDiscovery {
+                    print("Conversation exists, fetch messages")
+                    self.conversation = MeQuery.Data.Me.Conversation.UserConversation.Conversation.init(snapshot: convo.snapshot)
+                    self.fetchMessages()
+                } else {
+                    print("Conversation doesn't exist")
+                }
+                
+                
+            }
+        })
+        
+        
     }
     
     func fetchMessages() {
@@ -455,6 +590,13 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                 
                 print("recieved new message")
                 
+                let content = res?.data?.subscribeToNewMessage?.content
+                let sender = res?.data?.subscribeToNewMessage?.sender
+                
+//                print(content)
+//                print(sender)
+                
+                
                 if let snapshot = res?.data?.subscribeToNewMessage?.snapshot {
                     print("Snap shot exists")
                     let messageObject = AllMessageConnectionQuery.Data.AllMessageConnection.Message.init(snapshot: snapshot)
@@ -488,88 +630,15 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
     }
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-
-
-class ChatMessageCell: UICollectionViewCell {
-    
-    let textView: UITextView = {
-        let tv = UITextView()
-        tv.text = "Sample text for now"
-        tv.font = UIFont.systemFont(ofSize: 16)
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = .clear
-        tv.textColor = UIColor.blackFontColor
-        tv.isEditable = false
-        return tv
-    }()
-    
-    let bubbleView: UIView = {
-        let view  = UIView()
-        view.backgroundColor = UIColor.clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.layer.cornerRadius = 15
-        view.layer.masksToBounds = true
-        
-        view.borderWidth = 1.0
-        view.layer.borderColor = UIColor.init(red: 151.0/255.0, green: 151.0/255.0, blue: 151.0/255.0, alpha: 0.3).cgColor
-        return view
-    }()
-    
-    var bubbleWidthAnchor: NSLayoutConstraint?
-    var bubbleViewRightAnchor: NSLayoutConstraint?
-    var bubbleViewLeftAnchor: NSLayoutConstraint?
-    
-    static let lightGrayColor = UIColor.init(red: 229.0/255.0, green: 230.0/255.0, blue: 234.0/255.0, alpha: 1.0)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(bubbleView)
-        addSubview(textView)
-        
-        bubbleViewRightAnchor =  bubbleView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8)
-        bubbleViewRightAnchor?.isActive = true
-        
-        bubbleViewLeftAnchor = bubbleView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8)
-        bubbleViewLeftAnchor?.isActive = false
-        
-        bubbleView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        
-        bubbleWidthAnchor = bubbleView.widthAnchor.constraint(equalToConstant: 200)
-        bubbleWidthAnchor?.isActive = true
-        
-        bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        
-        
-        
-//        textView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        textView.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 8.0).isActive = true
-        textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        textView.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor).isActive = true
-        
-        textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
 }

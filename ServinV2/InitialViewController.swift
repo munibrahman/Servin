@@ -52,6 +52,7 @@ class InitialViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+//        self.signOutUser()
         if let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             print(version)
             if (DefaultsWrapper.getBool(version)) {

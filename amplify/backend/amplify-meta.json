@@ -35,6 +35,15 @@
         "GraphQLAPIEndpointOutput": "https://nvjgohm4hvdbphexj7alurtnpu.appsync-api.us-east-1.amazonaws.com/graphql"
       },
       "lastPushTimeStamp": "2019-04-22T20:41:21.734Z"
+    },
+    "AppSynctestEnvAPI-test": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS",
+        "GraphQLAPIIdOutput": "5pwarryqerg4dac26kjnlfxv6q",
+        "GraphQLAPIEndpointOutput": "https://s5qtmtbepjhm3fg4gn3rux4lyu.appsync-api.us-east-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2019-05-12T20:24:08.522Z"
     }
   }
 }

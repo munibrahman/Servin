@@ -110,6 +110,8 @@
 		AE42A2112274731800F36BB2 /* S3Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A2102274731800F36BB2 /* S3Manager.swift */; };
 		AE42A98C227B82DA00D6D331 /* ResetCodeSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE42A98B227B82DA00D6D331 /* ResetCodeSentViewController.swift */; };
 		AEC5FAB12282A62B0011A744 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5FAB02282A62A0011A744 /* CircularTransition.swift */; };
+		AEC5FAB52288CA920011A744 /* MessageDiscoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5FAB42288CA920011A744 /* MessageDiscoveryViewController.swift */; };
+		AEC5FAB7228A27100011A744 /* PinpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5FAB6228A27100011A744 /* PinpointManager.swift */; };
 		AED827252256B2F3006164C6 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED827242256B2F3006164C6 /* InitialViewController.swift */; };
 		E16C5EAE7121BE25768396BD /* Pods_ServinV2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CB81D63A95F432E939FBA2D /* Pods_ServinV2Tests.framework */; };
 /* End PBXBuildFile section */
@@ -245,6 +247,8 @@
 		AE42A2102274731800F36BB2 /* S3Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S3Manager.swift; sourceTree = "<group>"; };
 		AE42A98B227B82DA00D6D331 /* ResetCodeSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCodeSentViewController.swift; sourceTree = "<group>"; };
 		AEC5FAB02282A62A0011A744 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		AEC5FAB42288CA920011A744 /* MessageDiscoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDiscoveryViewController.swift; sourceTree = "<group>"; };
+		AEC5FAB6228A27100011A744 /* PinpointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpointManager.swift; sourceTree = "<group>"; };
 		AED827242256B2F3006164C6 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		B493958AB437377F7645197B /* Pods-ServinV2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ServinV2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ServinV2UITests/Pods-ServinV2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA11F7138B0F05AD940B483D /* Pods_ServinV2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ServinV2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -494,6 +498,7 @@
 				AED827242256B2F3006164C6 /* InitialViewController.swift */,
 				AE42A9892276AC1D00D6D331 /* S3 */,
 				AEC5FAB02282A62A0011A744 /* CircularTransition.swift */,
+				AEC5FAB6228A27100011A744 /* PinpointManager.swift */,
 			);
 			path = ServinV2;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				8BBFFC31209D96D300BA5D06 /* MessageViewController.swift */,
 				8BEE79B620EC25D800DB768C /* DetailedMessageViewController.swift */,
 				8BEE79B820ED392700DB768C /* MessageUserPinViewController.swift */,
+				AEC5FAB42288CA920011A744 /* MessageDiscoveryViewController.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -980,6 +986,7 @@
 				8BEE79B720EC25D800DB768C /* DetailedMessageViewController.swift in Sources */,
 				8BA8F62A209A6C3200AE4640 /* WelcomeViewController.swift in Sources */,
 				8BBBF5312165C655006A2A3F /* MyStripeAPIClient.swift in Sources */,
+				AEC5FAB52288CA920011A744 /* MessageDiscoveryViewController.swift in Sources */,
 				8B81592620B2AB4D00EDA1FC /* MasterPulleyViewController.swift in Sources */,
 				8B43C47D2107C6EB004D9D0F /* CustomFloatingTextfield.swift in Sources */,
 				8BD3834120C9D2F200B4B653 /* SlavePostAdViewController.swift in Sources */,
@@ -1012,6 +1019,7 @@
 				8B51FD2D210235F200E6563E /* SelectCategoriesViewController.swift in Sources */,
 				8B4D5724218A954D00A28CEA /* APIManager.swift in Sources */,
 				8B4A26B5210FB8C100CE5FD6 /* ReviewViewController.swift in Sources */,
+				AEC5FAB7228A27100011A744 /* PinpointManager.swift in Sources */,
 				8BBFFC3A209D971400BA5D06 /* SettingsViewController.swift in Sources */,
 				8BE8951F20D1DD3000108CED /* DiscoveryUserProfileCollectionViewCell.swift in Sources */,
 				8B3FEF7020CD01DB0056C22A /* SideMenuProfileTableViewCell.swift in Sources */,

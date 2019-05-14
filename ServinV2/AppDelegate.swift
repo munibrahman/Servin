@@ -92,20 +92,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         // Start of setting up an identity pool for aws pinpoint
         
-        let cognitoCredentialsProvider: AWSCognitoCredentialsProvider = AWSCognitoCredentialsProvider.init(regionType: AWSRegionType.USEast1, identityPoolId: "us-east-1:b0beefa4-2b4d-4e19-a1a7-8e01600d6e41"); //Override Your Region Here
+//        print("Identity pool id \(AWSMobileClient.sharedInstance().identityPoolId)")
+//
+//
+//        let cognitoCredentialsProvider: AWSCognitoCredentialsProvider = AWSCognitoCredentialsProvider.init(regionType: AWSRegionType.USEast1, identityPoolId: AWSMobileClient.sharedInstance().identityPoolId); //Override Your Region Here
+//
+//        let serviceConfig: AWSServiceConfiguration = AWSServiceConfiguration.init(region: AWSRegionType.USEast1, credentialsProvider: cognitoCredentialsProvider)
+//
+//        let config: AWSPinpointConfiguration = AWSPinpointConfiguration.init(appId: "128f6b300d75446f9c2ca0ffb248e4f7", launchOptions: launchOptions);
+//
+//
+//
+//        config.serviceConfiguration = serviceConfig;
+//        config.targetingServiceConfiguration = serviceConfig;
+//
+//        pinpoint = AWSPinpoint.init(configuration:config)
         
-        let serviceConfig: AWSServiceConfiguration = AWSServiceConfiguration.init(region: AWSRegionType.USEast1, credentialsProvider: cognitoCredentialsProvider)
-        
-        let config: AWSPinpointConfiguration = AWSPinpointConfiguration.init(appId: "128f6b300d75446f9c2ca0ffb248e4f7", launchOptions: launchOptions);
-        
-        
-        
-        config.serviceConfiguration = serviceConfig;
-        config.targetingServiceConfiguration = serviceConfig;
-        
-        pinpoint = AWSPinpoint.init(configuration:config)
-        
-        
+        let pinpointConfiguration = AWSPinpointConfiguration.defaultPinpointConfiguration(launchOptions: launchOptions)
+        pinpoint = AWSPinpoint(configuration: pinpointConfiguration)
         
         
         // This must be the last call AFTER everything else has been setup, otherwise the user pool will be empty...
@@ -294,6 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("recieved notification in foreground")
         // TODO: SHow a notification or something, look at how messenger does this
+        completionHandler([.alert, .sound, .badge])
     }
 
 }
