@@ -12,19 +12,121 @@ import GoogleMaps
 import AWSS3
 import SkeletonView
 
-class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, PulleyDrawerViewControllerDelegate {
-    
-    
 
-    var scrollView: UIScrollView! = nil
+// https://stackoverflow.com/questions/48216808/programmatic-uiscrollview-with-autolayout
+class SlaveDiscoveriesViewController: UIViewController, PulleyDrawerViewControllerDelegate {
+    
+    
     var scrollViewHeight: CGFloat = 0.0
     var pulleyTapGestureRecognizer: UITapGestureRecognizer!
     var drawerTapView: UIView!
     
-    var discoveriesAroundMe = [GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery?]()
+    var discoveriesAroundMe = [GetSurroundingDiscoveriesQuery.Data.GetSurroundingDiscovery?]() {
+        didSet {
+            recommendedCellCount = discoveriesAroundMe.count
+//            recommendedcvheightAnchor?.isActive = true
+//
+//            UIView.animate(withDuration: 0.5) {
+//                self.view.layoutIfNeeded()
+//            }
+        }
+    }
     
-    var pinsNearbyCollectionView: UICollectionView!
-    var recommendedPinsCollectionView: UICollectionView!
+
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView.init()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .red
+        scrollView.scrollsToTop = true
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.bounces = false
+       return scrollView
+        
+    }()
+    
+    
+//    var contentView: UIView = {
+//        let contentView = UIView.init()
+//        contentView.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.backgroundColor = UIColor.brown
+//        return contentView
+//    }()
+    
+    
+    
+
+    lazy var recommendedPinsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout.init()
+        print("Width \(view.frame.size.width)")
+        layout.estimatedItemSize = CGSize.init(width: view.frame.size.width, height: 220.0)
+        
+        
+//        let recommendedPinsCollectionView = UICollectionView(frame: CGRect.init(x: 0.0, y: 35.0 + y, width:width, height: height - 35.0), collectionViewLayout: layout)
+        
+        let recommendedPinsCollectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        recommendedPinsCollectionView.register(SavedPinsCollectionViewCell.self, forCellWithReuseIdentifier: recommendedPinsCellIdentifier)
+
+        recommendedPinsCollectionView.backgroundColor = UIColor.white
+        
+        recommendedPinsCollectionView.delegate = self
+        recommendedPinsCollectionView.dataSource = self
+        
+        recommendedPinsCollectionView.showsHorizontalScrollIndicator = false
+        recommendedPinsCollectionView.showsVerticalScrollIndicator = false
+        
+        recommendedPinsCollectionView.isScrollEnabled = false
+        recommendedPinsCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        return recommendedPinsCollectionView
+    }()
+    
+    var recommendedForYouTitleLabel: UILabel = {
+        //        let titleLabel = UILabel.init(frame: CGRect.init(x: 20, y: y, width: width, height: 25.0))
+        let titleLabel = UILabel.init()
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.textColor = UIColor.greyBackgroundColor.withAlphaComponent(0.7)
+        titleLabel.text = "Recommended for you"
+        titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
+    }()
+    
+    
+    var explorePinsNearbyTitleLabel: UILabel = {
+        //        let titleLabel = UILabel.init(frame: CGRect.init(x: 20, y: y, width: width, height: 25.0))
+        let titleLabel = UILabel.init()
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.textColor = UIColor.greyBackgroundColor.withAlphaComponent(0.7)
+        titleLabel.text = "Explore pins nearby"
+        titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.backgroundColor = .blue
+        return titleLabel
+    }()
+    
+    lazy var pinsNearbyCollectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.itemSize = CGSize(width: 150, height: 177)
+        
+        layout.scrollDirection = .horizontal
+        
+        //        let pinsNearbyCollectionView = UICollectionView(frame: CGRect.init(x: 0.0, y: 35.0 + y, width: width, height: height - 35.0), collectionViewLayout: layout)
+        let pinsNearbyCollectionView = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: layout)
+        pinsNearbyCollectionView.dataSource = self
+        pinsNearbyCollectionView.delegate = self
+        
+        pinsNearbyCollectionView.register(UINib.init(nibName: String.init(describing: PinsNearbyCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: pinsNearbyCellIdentifier)
+        pinsNearbyCollectionView.backgroundColor = UIColor.white
+        
+        
+        pinsNearbyCollectionView.showsHorizontalScrollIndicator = false
+        pinsNearbyCollectionView.showsVerticalScrollIndicator = false
+        
+        pinsNearbyCollectionView.delegate = self
+        pinsNearbyCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        return pinsNearbyCollectionView
+    }()
     
     // PinsNearby
     // RecommendedPins
@@ -32,29 +134,20 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     let pinsNearbyCellIdentifier = "PinsNearbyCell"
     let recommendedPinsCellIdentifier = "RecommendedPinsCell"
     
-    let recommendedCellCount = ServinData.allPins.count
+    var recommendedCellCount = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scrollView = UIScrollView.init(frame: self.view.bounds)
+        self.view.addSubview(scrollView)
         
-        let nearbyPinsSize = setupPinsNearbyCollectionView(x: 0.0, y: 15.0, width: self.view.frame.size.width, height: 212.0)
-
-        let recommendedPinSize = setupRecommendedPinsCollectionView(x: 0, y: nearbyPinsSize.height + 40.0, width: self.view.frame.size.width, height: CGFloat((220 * recommendedCellCount) + Int((UICollectionViewFlowLayout().minimumInteritemSpacing * CGFloat(recommendedCellCount))) + 35 + 20))
+        scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
         
-        // TODO: Calculate the actual height here
-        scrollViewHeight = (nearbyPinsSize.height + recommendedPinSize.height)
-        scrollView.contentSize = CGSize.init(width: self.view.frame.size.width, height: scrollViewHeight)
-        scrollView.scrollsToTop = true
-
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        
-        scrollView.bounces = false
-        
-        scrollView.delegate = self
+        setupPinsNearbyCollectionView()
         
         
         // This ensures that you dont get extra spacing at the top when you try and scroll down.
@@ -64,8 +157,6 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
             automaticallyAdjustsScrollViewInsets = false
         }
         
-        
-        self.view.addSubview(scrollView)
         
         pulleyTapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(userDidTapDrawer))
         
@@ -94,9 +185,9 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
     func drawerPositionDidChange(drawer: PulleyViewController, bottomSafeArea: CGFloat) {
         
         if drawer.drawerPosition == .open {
-            scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: scrollViewHeight)
+            scrollView.isScrollEnabled = true
         } else {
-            scrollView.contentSize = CGSize.init(width: scrollView.contentSize.width, height: 0)
+            scrollView.isScrollEnabled = false
         }
         
         
@@ -108,84 +199,51 @@ class SlaveDiscoveriesViewController: UIViewController, UIScrollViewDelegate, Pu
 
     }
     
-    func setupPinsNearbyCollectionView(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGSize {
-        
-        let titleLabel = UILabel.init(frame: CGRect.init(x: 20, y: y, width: width, height: 25.0))
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.textColor = UIColor.greyBackgroundColor.withAlphaComponent(0.7)
-        titleLabel.text = "Explore pins nearby"
-        titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
-        self.scrollView.addSubview(titleLabel)
-        
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.itemSize = CGSize(width: 150, height: height - 35.0)
-        
-        layout.scrollDirection = .horizontal
-        
-        pinsNearbyCollectionView = UICollectionView(frame: CGRect.init(x: 0.0, y: 35.0 + y, width: width, height: height - 35.0), collectionViewLayout: layout)
-        pinsNearbyCollectionView.dataSource = self
-        pinsNearbyCollectionView.delegate = self
-        
-        pinsNearbyCollectionView.register(UINib.init(nibName: String.init(describing: PinsNearbyCollectionViewCell.self), bundle: nil), forCellWithReuseIdentifier: pinsNearbyCellIdentifier)
-        pinsNearbyCollectionView.backgroundColor = UIColor.white
-        
-        pinsNearbyCollectionView.delegate = self
-        pinsNearbyCollectionView.dataSource = self
-        
-        pinsNearbyCollectionView.showsHorizontalScrollIndicator = false
-        pinsNearbyCollectionView.showsVerticalScrollIndicator = false
-        
-        self.scrollView.addSubview(pinsNearbyCollectionView)
-        
-        return CGSize.init(width: self.view.frame.size.width, height: titleLabel.frame.size.height + pinsNearbyCollectionView.frame.size.height)
-    }
+    var recommendedcvheightAnchor: NSLayoutConstraint?
+
     
-    func setupRecommendedPinsCollectionView(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat) -> CGSize {
+    func setupPinsNearbyCollectionView() {
         
-        let titleLabel = UILabel.init(frame: CGRect.init(x: 20, y: y, width: width, height: 25.0))
-        titleLabel.adjustsFontForContentSizeCategory = true
-        titleLabel.textColor = UIColor.greyBackgroundColor.withAlphaComponent(0.7)
-        titleLabel.text = "Recommended for you"
-        titleLabel.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
-        self.scrollView.addSubview(titleLabel)
-        
-        let layout = UICollectionViewFlowLayout.init()
-        layout.estimatedItemSize = CGSize.init(width: view.frame.size.width, height: 220.0)
-        layout.sectionInset = UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        scrollView.addSubview(explorePinsNearbyTitleLabel)
+        explorePinsNearbyTitleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20).isActive = true
+        explorePinsNearbyTitleLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15).isActive = true
+        explorePinsNearbyTitleLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+//        explorePinsNearbyTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         
         
-        recommendedPinsCollectionView = UICollectionView(frame: CGRect.init(x: 0.0, y: 35.0 + y, width:width, height: height - 35.0), collectionViewLayout: layout)
+        scrollView.addSubview(pinsNearbyCollectionView)
+        pinsNearbyCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        pinsNearbyCollectionView.topAnchor.constraint(equalTo: explorePinsNearbyTitleLabel.bottomAnchor, constant: 10).isActive = true
+        pinsNearbyCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        pinsNearbyCollectionView.heightAnchor.constraint(equalToConstant: 177).isActive = true
+
+        scrollView.addSubview(recommendedForYouTitleLabel)
+        recommendedForYouTitleLabel.leadingAnchor.constraint(equalTo: explorePinsNearbyTitleLabel.leadingAnchor).isActive = true
+        recommendedForYouTitleLabel.topAnchor.constraint(equalTo: pinsNearbyCollectionView.bottomAnchor, constant: 10).isActive = true
+        recommendedForYouTitleLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
+
+        scrollView.addSubview(recommendedPinsCollectionView)
+        recommendedPinsCollectionView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        recommendedPinsCollectionView.topAnchor.constraint(equalTo: recommendedForYouTitleLabel.bottomAnchor, constant: 10).isActive = true
+        recommendedPinsCollectionView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+
+        recommendedcvheightAnchor = recommendedPinsCollectionView.heightAnchor.constraint(equalToConstant: recommendedPinsCollectionView.collectionViewLayout.collectionViewContentSize.height)
+        recommendedcvheightAnchor?.isActive = true
         
-        recommendedPinsCollectionView.register(SavedPinsCollectionViewCell.self, forCellWithReuseIdentifier: recommendedPinsCellIdentifier)
+        recommendedPinsCollectionView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         
-        
-        
-        recommendedPinsCollectionView.backgroundColor = UIColor.white
-        
-        recommendedPinsCollectionView.delegate = self
-        recommendedPinsCollectionView.dataSource = self
-        
-        recommendedPinsCollectionView.showsHorizontalScrollIndicator = false
-        recommendedPinsCollectionView.showsVerticalScrollIndicator = false
-        
-        recommendedPinsCollectionView.isScrollEnabled = false
-        
-        self.scrollView.addSubview(recommendedPinsCollectionView)
-        
-        return CGSize.init(width: width, height: titleLabel.frame.size.height + recommendedPinsCollectionView.frame.size.height + 180.0)
     }
 
 }
 
-extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == pinsNearbyCollectionView {
             return discoveriesAroundMe.count
         } else {
-            return recommendedCellCount
+            return discoveriesAroundMe.count
         }
     }
     
@@ -197,7 +255,7 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
             if let discovery = discoveriesAroundMe[indexPath.item] {
                 myCell.titleLabel.text = discovery.title
                 myCell.priceLabel.text = "$ \(discovery.price ?? 0)"
-                myCell.distanceLabel.text = "4 mins away"
+                myCell.distanceLabel.text = "5 mins away"
                 
                 if let image_0 = discovery.image_0, let ICONUrl = image_0.ICONImageKeyS3() {
                     myCell.imageView.loadImageUsingS3Key(key: ICONUrl)
@@ -208,11 +266,21 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
         } else {
             let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendedPinsCellIdentifier, for: indexPath) as! SavedPinsCollectionViewCell
             
-            myCell.pinImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
-            myCell.pinTitle.text = ServinData.allPins[indexPath.row]._title ?? " "
-            myCell.pinPrice.text = "$ \(ServinData.allPins[indexPath.row]._price ?? 0)"
-            myCell.timeAway.text = "5 mins away"
-            myCell.isSaved = ServinData.allPins[indexPath.row].isSaved
+            
+            if let discovery = discoveriesAroundMe[indexPath.item] {
+                myCell.pinTitle.text = discovery.title
+                myCell.pinPrice.text = "$ \(discovery.price ?? 0)"
+                myCell.timeAway.text = "4 mins away"
+
+                if let image_0 = discovery.image_0, let ICONUrl = image_0.MEDImageKeyS3() {
+                    myCell.pinImageView.loadImageUsingS3Key(key: ICONUrl)
+                }
+            }
+//            myCell.pinImageView.image = ServinData.allPins[indexPath.row]._images.first ?? #imageLiteral(resourceName: "1")
+//            myCell.pinTitle.text = ServinData.allPins[indexPath.row]._title ?? " "
+//            myCell.pinPrice.text = "$ \(ServinData.allPins[indexPath.row]._price ?? 0)"
+//            myCell.timeAway.text = "5 mins away"
+//            myCell.isSaved = ServinData.allPins[indexPath.row].isSaved
             return myCell
         }
         
@@ -227,6 +295,22 @@ extension SlaveDiscoveriesViewController: UICollectionViewDataSource, UICollecti
                 parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
             }
         }
+        
+        else if collectionView == recommendedPinsCollectionView {
+            if let parentVC = self.parent, let discovery = discoveriesAroundMe[indexPath.item] {
+                let discoveryVC = UserDiscoveryViewController()
+                discoveryVC.pin = discovery
+                parentVC.present(UINavigationController.init(rootViewController: discoveryVC), animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == recommendedPinsCollectionView {
+            return CGSize.init(width: collectionView.frame.size.width, height: 220)
+        }
+        
+        return CGSize.init(width: 150, height: 177)
     }
 }
 

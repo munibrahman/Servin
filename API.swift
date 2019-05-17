@@ -4,7 +4,7 @@ import AWSAppSync
 
 public final class CreateConversationMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateConversation($discoveryId: String!) {\n  createConversation(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      geohashPrefix\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      geoJson\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      latitude\n      longitude\n    }\n  }\n}"
+    "mutation CreateConversation($discoveryId: String!) {\n  createConversation(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      geohashPrefix\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      geoJson\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      latitude\n      longitude\n    }\n    authorUserName\n  }\n}"
 
   public var discoveryId: String
 
@@ -34,8 +34,8 @@ public final class CreateConversationMutation: GraphQLMutation {
     }
 
     /// Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.
-    /// You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)
-    /// createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation
+    /// # You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)
+    /// # createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation
     public var createConversation: CreateConversation? {
       get {
         return (snapshot["createConversation"] as? Snapshot).flatMap { CreateConversation(snapshot: $0) }
@@ -56,6 +56,7 @@ public final class CreateConversationMutation: GraphQLMutation {
         GraphQLField("messages", type: .object(Message.selections)),
         GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
         GraphQLField("discovery", type: .object(Discovery.selections)),
+        GraphQLField("authorUserName", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -64,8 +65,8 @@ public final class CreateConversationMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-        self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+      public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+        self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
       }
 
       public var __typename: String {
@@ -134,6 +135,16 @@ public final class CreateConversationMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+        }
+      }
+
+      /// Username of the person that started this conversation
+      public var authorUserName: String? {
+        get {
+          return snapshot["authorUserName"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "authorUserName")
         }
       }
 
@@ -1561,6 +1572,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -1569,8 +1581,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -1609,6 +1621,16 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -2566,6 +2588,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -2574,8 +2597,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -2614,6 +2637,16 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -3807,6 +3840,7 @@ public final class CreateConversationMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -3815,8 +3849,8 @@ public final class CreateConversationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -3855,6 +3889,16 @@ public final class CreateConversationMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -4472,7 +4516,7 @@ public final class CreateConversationMutation: GraphQLMutation {
 
 public final class CreateMessageMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateMessage($content: String, $conversationId: ID!) {\n  createMessage(content: $content, conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
+    "mutation CreateMessage($content: String, $conversationId: ID!) {\n  createMessage(content: $content, conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var content: String?
   public var conversationId: GraphQLID
@@ -4504,8 +4548,8 @@ public final class CreateMessageMutation: GraphQLMutation {
     }
 
     /// Create a message in a Conversation.
-    /// We only let the users pass in content and the conversation id, we take care of created at and message id.
-    /// createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message
+    /// # We only let the users pass in content and the conversation id, we take care of created at and message id.
+    /// # createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message
     public var createMessage: CreateMessage? {
       get {
         return (snapshot["createMessage"] as? Snapshot).flatMap { CreateMessage(snapshot: $0) }
@@ -5049,6 +5093,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -5057,8 +5102,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -5097,6 +5142,16 @@ public final class CreateMessageMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -5261,6 +5316,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -5269,8 +5325,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -5339,6 +5395,16 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -7014,6 +7080,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -7022,8 +7089,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -7062,6 +7129,16 @@ public final class CreateMessageMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -7226,6 +7303,7 @@ public final class CreateMessageMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -7234,8 +7312,8 @@ public final class CreateMessageMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -7304,6 +7382,16 @@ public final class CreateMessageMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -8562,7 +8650,7 @@ public final class CreateMessageMutation: GraphQLMutation {
 
 public final class CreateUserConversationsMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {\n  createUserConversations(conversationId: $conversationId, userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
+    "mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {\n  createUserConversations(conversationId: $conversationId, userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n        authorUserName\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n      authorUserName\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var conversationId: GraphQLID
   public var userId: GraphQLID
@@ -8594,9 +8682,9 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
     }
 
     /// Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
-    /// No need to create a new user
-    /// createUser(username: String!): User
-    /// Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
+    /// # No need to create a new user
+    /// # createUser(username: String!): User
+    /// #  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
     public var createUserConversations: CreateUserConversation? {
       get {
         return (snapshot["createUserConversations"] as? Snapshot).flatMap { CreateUserConversation(snapshot: $0) }
@@ -9041,6 +9129,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -9049,8 +9138,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -9089,6 +9178,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -9253,6 +9352,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -9261,8 +9361,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -9331,6 +9431,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -9945,6 +10055,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -9953,8 +10064,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -10023,6 +10134,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -11374,6 +11495,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             GraphQLField("messages", type: .object(Message.selections)),
             GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
             GraphQLField("discovery", type: .object(Discovery.selections)),
+            GraphQLField("authorUserName", type: .scalar(String.self)),
           ]
 
           public var snapshot: Snapshot
@@ -11382,8 +11504,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             self.snapshot = snapshot
           }
 
-          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
           }
 
           public var __typename: String {
@@ -11452,6 +11574,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
             }
             set {
               snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+            }
+          }
+
+          /// Username of the person that started this conversation
+          public var authorUserName: String? {
+            get {
+              return snapshot["authorUserName"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "authorUserName")
             }
           }
 
@@ -13339,6 +13471,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -13347,8 +13480,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -13387,6 +13520,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -14010,6 +14153,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           GraphQLField("messages", type: .object(Message.selections)),
           GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
           GraphQLField("discovery", type: .object(Discovery.selections)),
+          GraphQLField("authorUserName", type: .scalar(String.self)),
         ]
 
         public var snapshot: Snapshot
@@ -14018,8 +14162,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
         }
 
         public var __typename: String {
@@ -14088,6 +14232,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
           }
           set {
             snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+          }
+        }
+
+        /// Username of the person that started this conversation
+        public var authorUserName: String? {
+          get {
+            return snapshot["authorUserName"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "authorUserName")
           }
         }
 
@@ -16720,6 +16874,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -16728,8 +16883,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -16768,6 +16923,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -16932,6 +17097,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -16940,8 +17106,8 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -17010,6 +17176,16 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -18268,7 +18444,7 @@ public final class CreateUserConversationsMutation: GraphQLMutation {
 
 public final class UpdateProfileInformationMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateProfileInformation($given_name: String, $family_name: String, $about: String, $school: String) {\n  updateProfileInformation(given_name: $given_name, family_name: $family_name, about: $about, school: $school) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
+    "mutation UpdateProfileInformation($given_name: String, $family_name: String, $about: String, $school: String) {\n  updateProfileInformation(given_name: $given_name, family_name: $family_name, about: $about, school: $school) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var given_name: String?
   public var family_name: String?
@@ -18811,6 +18987,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -18819,8 +18996,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -18859,6 +19036,16 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -19023,6 +19210,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -19031,8 +19219,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -19101,6 +19289,16 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -19715,6 +19913,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -19723,8 +19922,8 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -19793,6 +19992,16 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -22105,7 +22314,7 @@ public final class UpdateProfileInformationMutation: GraphQLMutation {
 
 public final class UpdateCategoriesMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateCategories($list: [String]) {\n  updateCategories(list: $list) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
+    "mutation UpdateCategories($list: [String]) {\n  updateCategories(list: $list) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var list: [String?]?
 
@@ -22642,6 +22851,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -22650,8 +22860,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -22690,6 +22900,16 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -22854,6 +23074,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -22862,8 +23083,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -22932,6 +23153,16 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -23546,6 +23777,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -23554,8 +23786,8 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -23624,6 +23856,16 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -25936,7 +26178,7 @@ public final class UpdateCategoriesMutation: GraphQLMutation {
 
 public final class EditDiscoveryMutation: GraphQLMutation {
   public static let operationString =
-    "mutation EditDiscovery($geohashPrefix: Int, $discoveryId: String, $title: String, $price: Int, $request_or_offer: String, $description: String) {\n  editDiscovery(geohashPrefix: $geohashPrefix, discoveryId: $discoveryId, title: $title, price: $price, request_or_offer: $request_or_offer, description: $description) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
+    "mutation EditDiscovery($geohashPrefix: Int, $discoveryId: String, $title: String, $price: Int, $request_or_offer: String, $description: String) {\n  editDiscovery(geohashPrefix: $geohashPrefix, discoveryId: $discoveryId, title: $title, price: $price, request_or_offer: $request_or_offer, description: $description) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
 
   public var geohashPrefix: Int?
   public var discoveryId: String?
@@ -26642,6 +26884,7 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -26650,8 +26893,8 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -26690,6 +26933,16 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -26854,6 +27107,7 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -26862,8 +27116,8 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -26932,6 +27186,16 @@ public final class EditDiscoveryMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -28190,7 +28454,7 @@ public final class EditDiscoveryMutation: GraphQLMutation {
 
 public final class PostDiscoveryMutation: GraphQLMutation {
   public static let operationString =
-    "mutation PostDiscovery($title: String!, $price: Int!, $request_or_offer: String!, $description: String!, $lat: Float!, $long: Float!) {\n  postDiscovery(title: $title, price: $price, request_or_offer: $request_or_offer, description: $description, lat: $lat, long: $long) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
+    "mutation PostDiscovery($title: String!, $price: Int!, $request_or_offer: String!, $description: String!, $lat: Float!, $long: Float!) {\n  postDiscovery(title: $title, price: $price, request_or_offer: $request_or_offer, description: $description, lat: $lat, long: $long) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
 
   public var title: String
   public var price: Int
@@ -28896,6 +29160,7 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -28904,8 +29169,8 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -28944,6 +29209,16 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -29108,6 +29383,7 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -29116,8 +29392,8 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -29186,6 +29462,16 @@ public final class PostDiscoveryMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -30444,7 +30730,7 @@ public final class PostDiscoveryMutation: GraphQLMutation {
 
 public final class UpdateProfilePictureMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateProfilePicture($key: String) {\n  updateProfilePicture(key: $key) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
+    "mutation UpdateProfilePicture($key: String) {\n  updateProfilePicture(key: $key) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var key: String?
 
@@ -30981,6 +31267,7 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -30989,8 +31276,8 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -31029,6 +31316,16 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -31193,6 +31490,7 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -31201,8 +31499,8 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -31271,6 +31569,16 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -31885,6 +32193,7 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -31893,8 +32202,8 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -31963,6 +32272,16 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -34275,7 +34594,7 @@ public final class UpdateProfilePictureMutation: GraphQLMutation {
 
 public final class AllMessageQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessage($after: String, $conversationId: ID!, $first: Int) {\n  allMessage(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
+    "query AllMessage($after: String, $conversationId: ID!, $first: Int) {\n  allMessage(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -34852,6 +35171,7 @@ public final class AllMessageQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -34860,8 +35180,8 @@ public final class AllMessageQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -34900,6 +35220,16 @@ public final class AllMessageQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -35064,6 +35394,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -35072,8 +35403,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -35142,6 +35473,16 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -36817,6 +37158,7 @@ public final class AllMessageQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -36825,8 +37167,8 @@ public final class AllMessageQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -36865,6 +37207,16 @@ public final class AllMessageQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -37029,6 +37381,7 @@ public final class AllMessageQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -37037,8 +37390,8 @@ public final class AllMessageQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -37107,6 +37460,16 @@ public final class AllMessageQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -38365,7 +38728,7 @@ public final class AllMessageQuery: GraphQLQuery {
 
 public final class AllMessageConnectionQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {\n  allMessageConnection(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    messages {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    nextToken\n  }\n}"
+    "query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {\n  allMessageConnection(after: $after, conversationId: $conversationId, first: $first) {\n    __typename\n    messages {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    nextToken\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -38912,6 +39275,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -38920,8 +39284,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -38960,6 +39324,16 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -39917,6 +40291,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -39925,8 +40300,8 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -39965,6 +40340,16 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -40582,7 +40967,7 @@ public final class AllMessageConnectionQuery: GraphQLQuery {
 
 public final class AllMessageFromQuery: GraphQLQuery {
   public static let operationString =
-    "query AllMessageFrom($after: String, $conversationId: ID!, $first: Int, $sender: String!) {\n  allMessageFrom(after: $after, conversationId: $conversationId, first: $first, sender: $sender) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
+    "query AllMessageFrom($after: String, $conversationId: ID!, $first: Int, $sender: String!) {\n  allMessageFrom(after: $after, conversationId: $conversationId, first: $first, sender: $sender) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var after: String?
   public var conversationId: GraphQLID
@@ -41160,6 +41545,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -41168,8 +41554,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -41208,6 +41594,16 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -41372,6 +41768,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -41380,8 +41777,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -41450,6 +41847,16 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -43125,6 +43532,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -43133,8 +43541,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -43173,6 +43581,16 @@ public final class AllMessageFromQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -43337,6 +43755,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -43345,8 +43764,8 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -43415,6 +43834,16 @@ public final class AllMessageFromQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -44673,7 +45102,7 @@ public final class AllMessageFromQuery: GraphQLQuery {
 
 public final class AllUserQuery: GraphQLQuery {
   public static let operationString =
-    "query AllUser($after: String, $first: Int) {\n  allUser(after: $after, first: $first) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
+    "query AllUser($after: String, $first: Int) {\n  allUser(after: $after, first: $first) {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public var after: String?
   public var first: Int?
@@ -45212,6 +45641,7 @@ public final class AllUserQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -45220,8 +45650,8 @@ public final class AllUserQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -45260,6 +45690,16 @@ public final class AllUserQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -45424,6 +45864,7 @@ public final class AllUserQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -45432,8 +45873,8 @@ public final class AllUserQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -45502,6 +45943,16 @@ public final class AllUserQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -46116,6 +46567,7 @@ public final class AllUserQuery: GraphQLQuery {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -46124,8 +46576,8 @@ public final class AllUserQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -46194,6 +46646,16 @@ public final class AllUserQuery: GraphQLQuery {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -48506,7 +48968,7 @@ public final class AllUserQuery: GraphQLQuery {
 
 public final class MeQuery: GraphQLQuery {
   public static let operationString =
-    "query Me {\n  me {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
+    "query Me {\n  me {\n    __typename\n    userId\n    conversations {\n      __typename\n      nextToken\n      userConversations {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n    }\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    registered\n    about\n    profilePic\n    rating\n    signUpDate\n    family_name\n    given_name\n    school\n    categories\n    hasChosenCategories\n  }\n}"
 
   public init() {
   }
@@ -49036,6 +49498,7 @@ public final class MeQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -49044,8 +49507,8 @@ public final class MeQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -49084,6 +49547,16 @@ public final class MeQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -49248,6 +49721,7 @@ public final class MeQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -49256,8 +49730,8 @@ public final class MeQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -49326,6 +49800,16 @@ public final class MeQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -49940,6 +50424,7 @@ public final class MeQuery: GraphQLQuery {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -49948,8 +50433,8 @@ public final class MeQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -50018,6 +50503,16 @@ public final class MeQuery: GraphQLQuery {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -52330,7 +52825,7 @@ public final class MeQuery: GraphQLQuery {
 
 public final class ConversationFromDiscoveryQuery: GraphQLQuery {
   public static let operationString =
-    "query ConversationFromDiscovery($discoveryId: String!) {\n  conversationFromDiscovery(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      geohashPrefix\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      geoJson\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      latitude\n      longitude\n    }\n  }\n}"
+    "query ConversationFromDiscovery($discoveryId: String!) {\n  conversationFromDiscovery(discoveryId: $discoveryId) {\n    __typename\n    createdAt\n    id\n    discoveryId\n    messages {\n      __typename\n      messages {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      nextToken\n    }\n    latestMessage {\n      __typename\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      content\n      conversationId\n      createdAt\n      id\n      isSent\n      recipient {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      sender\n    }\n    discovery {\n      __typename\n      geohashPrefix\n      discoveryId\n      active\n      cognitoUserName\n      description\n      price\n      request_or_offer\n      time\n      title\n      geoJson\n      image_0\n      image_1\n      image_2\n      image_3\n      image_4\n      image_5\n      author {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      latitude\n      longitude\n    }\n    authorUserName\n  }\n}"
 
   public var discoveryId: String
 
@@ -52380,6 +52875,7 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
         GraphQLField("messages", type: .object(Message.selections)),
         GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
         GraphQLField("discovery", type: .object(Discovery.selections)),
+        GraphQLField("authorUserName", type: .scalar(String.self)),
       ]
 
       public var snapshot: Snapshot
@@ -52388,8 +52884,8 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-        self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+      public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+        self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
       }
 
       public var __typename: String {
@@ -52458,6 +52954,16 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
         }
         set {
           snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+        }
+      }
+
+      /// Username of the person that started this conversation
+      public var authorUserName: String? {
+        get {
+          return snapshot["authorUserName"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "authorUserName")
         }
       }
 
@@ -53885,6 +54391,7 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -53893,8 +54400,8 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -53933,6 +54440,16 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -54890,6 +55407,7 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -54898,8 +55416,8 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -54938,6 +55456,16 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -56131,6 +56659,7 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -56139,8 +56668,8 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -56179,6 +56708,16 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -56796,7 +57335,7 @@ public final class ConversationFromDiscoveryQuery: GraphQLQuery {
 
 public final class AllAssociatedQuery: GraphQLQuery {
   public static let operationString =
-    "query AllAssociated($conversationId: String!) {\n  allAssociated(conversationId: $conversationId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
+    "query AllAssociated($conversationId: String!) {\n  allAssociated(conversationId: $conversationId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n        authorUserName\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n      authorUserName\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var conversationId: String
 
@@ -57270,6 +57809,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -57278,8 +57818,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -57318,6 +57858,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -57482,6 +58032,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -57490,8 +58041,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -57560,6 +58111,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -58174,6 +58735,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -58182,8 +58744,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -58252,6 +58814,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -59603,6 +60175,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
             GraphQLField("messages", type: .object(Message.selections)),
             GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
             GraphQLField("discovery", type: .object(Discovery.selections)),
+            GraphQLField("authorUserName", type: .scalar(String.self)),
           ]
 
           public var snapshot: Snapshot
@@ -59611,8 +60184,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
             self.snapshot = snapshot
           }
 
-          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
           }
 
           public var __typename: String {
@@ -59681,6 +60254,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
             }
             set {
               snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+            }
+          }
+
+          /// Username of the person that started this conversation
+          public var authorUserName: String? {
+            get {
+              return snapshot["authorUserName"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "authorUserName")
             }
           }
 
@@ -61568,6 +62151,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -61576,8 +62160,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -61616,6 +62200,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -62239,6 +62833,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
           GraphQLField("messages", type: .object(Message.selections)),
           GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
           GraphQLField("discovery", type: .object(Discovery.selections)),
+          GraphQLField("authorUserName", type: .scalar(String.self)),
         ]
 
         public var snapshot: Snapshot
@@ -62247,8 +62842,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
         }
 
         public var __typename: String {
@@ -62317,6 +62912,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+          }
+        }
+
+        /// Username of the person that started this conversation
+        public var authorUserName: String? {
+          get {
+            return snapshot["authorUserName"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "authorUserName")
           }
         }
 
@@ -64949,6 +65554,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -64957,8 +65563,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -64997,6 +65603,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -65161,6 +65777,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -65169,8 +65786,8 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -65239,6 +65856,16 @@ public final class AllAssociatedQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -66497,7 +67124,7 @@ public final class AllAssociatedQuery: GraphQLQuery {
 
 public final class DiscoveryQuery: GraphQLQuery {
   public static let operationString =
-    "query Discovery($discoveryId: String!) {\n  discovery(discoveryId: $discoveryId) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
+    "query Discovery($discoveryId: String!) {\n  discovery(discoveryId: $discoveryId) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
 
   public var discoveryId: String
 
@@ -67193,6 +67820,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -67201,8 +67829,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -67241,6 +67869,16 @@ public final class DiscoveryQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -67405,6 +68043,7 @@ public final class DiscoveryQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -67413,8 +68052,8 @@ public final class DiscoveryQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -67483,6 +68122,16 @@ public final class DiscoveryQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -68741,7 +69390,7 @@ public final class DiscoveryQuery: GraphQLQuery {
 
 public final class GetMyDiscoveriesQuery: GraphQLQuery {
   public static let operationString =
-    "query GetMyDiscoveries {\n  getMyDiscoveries {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
+    "query GetMyDiscoveries {\n  getMyDiscoveries {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
 
   public init() {
   }
@@ -69430,6 +70079,7 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -69438,8 +70088,8 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -69478,6 +70128,16 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -69642,6 +70302,7 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -69650,8 +70311,8 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -69720,6 +70381,16 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -70978,7 +71649,7 @@ public final class GetMyDiscoveriesQuery: GraphQLQuery {
 
 public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
   public static let operationString =
-    "query GetSurroundingDiscoveries($latMin: Float, $latMax: Float, $longMin: Float, $longMax: Float) {\n  getSurroundingDiscoveries(latMin: $latMin, latMax: $latMax, longMin: $longMin, longMax: $longMax) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
+    "query GetSurroundingDiscoveries($latMin: Float, $latMax: Float, $longMin: Float, $longMax: Float) {\n  getSurroundingDiscoveries(latMin: $latMin, latMax: $latMax, longMin: $longMin, longMax: $longMax) {\n    __typename\n    geohashPrefix\n    discoveryId\n    active\n    cognitoUserName\n    description\n    price\n    request_or_offer\n    time\n    title\n    geoJson\n    image_0\n    image_1\n    image_2\n    image_3\n    image_4\n    image_5\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    latitude\n    longitude\n  }\n}"
 
   public var latMin: Double?
   public var latMax: Double?
@@ -71680,6 +72351,7 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -71688,8 +72360,8 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -71728,6 +72400,16 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -71892,6 +72574,7 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -71900,8 +72583,8 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -71970,6 +72653,16 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -73228,7 +73921,7 @@ public final class GetSurroundingDiscoveriesQuery: GraphQLQuery {
 
 public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription SubscribeToNewMessage($conversationId: ID!) {\n  subscribeToNewMessage(conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
+    "subscription SubscribeToNewMessage($conversationId: ID!) {\n  subscribeToNewMessage(conversationId: $conversationId) {\n    __typename\n    author {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    content\n    conversationId\n    createdAt\n    id\n    isSent\n    recipient {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    sender\n  }\n}"
 
   public var conversationId: GraphQLID
 
@@ -73801,6 +74494,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -73809,8 +74503,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -73849,6 +74543,16 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -74013,6 +74717,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -74021,8 +74726,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -74091,6 +74796,16 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -75766,6 +76481,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -75774,8 +76490,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -75814,6 +76530,16 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -75978,6 +76704,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -75986,8 +76713,8 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -76056,6 +76783,16 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -77314,7 +78051,7 @@ public final class SubscribeToNewMessageSubscription: GraphQLSubscription {
 
 public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription SubscribeToNewUCs($userId: ID!) {\n  subscribeToNewUCs(userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
+    "subscription SubscribeToNewUCs($userId: ID!) {\n  subscribeToNewUCs(userId: $userId) {\n    __typename\n    associated {\n      __typename\n      associated {\n        __typename\n        associated {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n        conversation {\n          __typename\n          createdAt\n          id\n          discoveryId\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          latestMessage {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          discovery {\n            __typename\n            geohashPrefix\n            discoveryId\n            active\n            cognitoUserName\n            description\n            price\n            request_or_offer\n            time\n            title\n            geoJson\n            image_0\n            image_1\n            image_2\n            image_3\n            image_4\n            image_5\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            latitude\n            longitude\n          }\n          authorUserName\n        }\n        conversationId\n        user {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        userId\n      }\n      conversation {\n        __typename\n        createdAt\n        id\n        discoveryId\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        latestMessage {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        discovery {\n          __typename\n          geohashPrefix\n          discoveryId\n          active\n          cognitoUserName\n          description\n          price\n          request_or_offer\n          time\n          title\n          geoJson\n          image_0\n          image_1\n          image_2\n          image_3\n          image_4\n          image_5\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          latitude\n          longitude\n        }\n        authorUserName\n      }\n      conversationId\n      user {\n        __typename\n        userId\n        conversations {\n          __typename\n          nextToken\n          userConversations {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n        }\n        messages {\n          __typename\n          messages {\n            __typename\n            author {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            content\n            conversationId\n            createdAt\n            id\n            isSent\n            recipient {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            sender\n          }\n          nextToken\n        }\n        registered\n        about\n        profilePic\n        rating\n        signUpDate\n        family_name\n        given_name\n        school\n        categories\n        hasChosenCategories\n      }\n      userId\n    }\n    conversation {\n      __typename\n      createdAt\n      id\n      discoveryId\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      latestMessage {\n        __typename\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        content\n        conversationId\n        createdAt\n        id\n        isSent\n        recipient {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        sender\n      }\n      discovery {\n        __typename\n        geohashPrefix\n        discoveryId\n        active\n        cognitoUserName\n        description\n        price\n        request_or_offer\n        time\n        title\n        geoJson\n        image_0\n        image_1\n        image_2\n        image_3\n        image_4\n        image_5\n        author {\n          __typename\n          userId\n          conversations {\n            __typename\n            nextToken\n            userConversations {\n              __typename\n              conversationId\n              userId\n            }\n          }\n          messages {\n            __typename\n            messages {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            nextToken\n          }\n          registered\n          about\n          profilePic\n          rating\n          signUpDate\n          family_name\n          given_name\n          school\n          categories\n          hasChosenCategories\n        }\n        latitude\n        longitude\n      }\n      authorUserName\n    }\n    conversationId\n    user {\n      __typename\n      userId\n      conversations {\n        __typename\n        nextToken\n        userConversations {\n          __typename\n          associated {\n            __typename\n            associated {\n              __typename\n              conversationId\n              userId\n            }\n            conversation {\n              __typename\n              createdAt\n              id\n              discoveryId\n              authorUserName\n            }\n            conversationId\n            user {\n              __typename\n              userId\n              registered\n              about\n              profilePic\n              rating\n              signUpDate\n              family_name\n              given_name\n              school\n              categories\n              hasChosenCategories\n            }\n            userId\n          }\n          conversation {\n            __typename\n            createdAt\n            id\n            discoveryId\n            messages {\n              __typename\n              nextToken\n            }\n            latestMessage {\n              __typename\n              content\n              conversationId\n              createdAt\n              id\n              isSent\n              sender\n            }\n            discovery {\n              __typename\n              geohashPrefix\n              discoveryId\n              active\n              cognitoUserName\n              description\n              price\n              request_or_offer\n              time\n              title\n              geoJson\n              image_0\n              image_1\n              image_2\n              image_3\n              image_4\n              image_5\n              latitude\n              longitude\n            }\n            authorUserName\n          }\n          conversationId\n          user {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          userId\n        }\n      }\n      messages {\n        __typename\n        messages {\n          __typename\n          author {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          content\n          conversationId\n          createdAt\n          id\n          isSent\n          recipient {\n            __typename\n            userId\n            conversations {\n              __typename\n              nextToken\n            }\n            messages {\n              __typename\n              nextToken\n            }\n            registered\n            about\n            profilePic\n            rating\n            signUpDate\n            family_name\n            given_name\n            school\n            categories\n            hasChosenCategories\n          }\n          sender\n        }\n        nextToken\n      }\n      registered\n      about\n      profilePic\n      rating\n      signUpDate\n      family_name\n      given_name\n      school\n      categories\n      hasChosenCategories\n    }\n    userId\n  }\n}"
 
   public var userId: GraphQLID
 
@@ -77788,6 +78525,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -77796,8 +78534,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -77836,6 +78574,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -78000,6 +78748,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -78008,8 +78757,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -78078,6 +78827,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 
@@ -78692,6 +79451,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               GraphQLField("messages", type: .object(Message.selections)),
               GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
               GraphQLField("discovery", type: .object(Discovery.selections)),
+              GraphQLField("authorUserName", type: .scalar(String.self)),
             ]
 
             public var snapshot: Snapshot
@@ -78700,8 +79460,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               self.snapshot = snapshot
             }
 
-            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+            public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+              self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
             }
 
             public var __typename: String {
@@ -78770,6 +79530,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
               }
               set {
                 snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+              }
+            }
+
+            /// Username of the person that started this conversation
+            public var authorUserName: String? {
+              get {
+                return snapshot["authorUserName"] as? String
+              }
+              set {
+                snapshot.updateValue(newValue, forKey: "authorUserName")
               }
             }
 
@@ -80121,6 +80891,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             GraphQLField("messages", type: .object(Message.selections)),
             GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
             GraphQLField("discovery", type: .object(Discovery.selections)),
+            GraphQLField("authorUserName", type: .scalar(String.self)),
           ]
 
           public var snapshot: Snapshot
@@ -80129,8 +80900,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             self.snapshot = snapshot
           }
 
-          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+          public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+            self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
           }
 
           public var __typename: String {
@@ -80199,6 +80970,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
             }
             set {
               snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+            }
+          }
+
+          /// Username of the person that started this conversation
+          public var authorUserName: String? {
+            get {
+              return snapshot["authorUserName"] as? String
+            }
+            set {
+              snapshot.updateValue(newValue, forKey: "authorUserName")
             }
           }
 
@@ -82086,6 +82867,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -82094,8 +82876,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -82134,6 +82916,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -82757,6 +83549,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           GraphQLField("messages", type: .object(Message.selections)),
           GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
           GraphQLField("discovery", type: .object(Discovery.selections)),
+          GraphQLField("authorUserName", type: .scalar(String.self)),
         ]
 
         public var snapshot: Snapshot
@@ -82765,8 +83558,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+        public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+          self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
         }
 
         public var __typename: String {
@@ -82835,6 +83628,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
           }
           set {
             snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+          }
+        }
+
+        /// Username of the person that started this conversation
+        public var authorUserName: String? {
+          get {
+            return snapshot["authorUserName"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "authorUserName")
           }
         }
 
@@ -85467,6 +86270,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   GraphQLField("createdAt", type: .scalar(Int.self)),
                   GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
                   GraphQLField("discoveryId", type: .nonNull(.scalar(String.self))),
+                  GraphQLField("authorUserName", type: .scalar(String.self)),
                 ]
 
                 public var snapshot: Snapshot
@@ -85475,8 +86279,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   self.snapshot = snapshot
                 }
 
-                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String) {
-                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId])
+                public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, authorUserName: String? = nil) {
+                  self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "authorUserName": authorUserName])
                 }
 
                 public var __typename: String {
@@ -85515,6 +86319,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                   }
                   set {
                     snapshot.updateValue(newValue, forKey: "discoveryId")
+                  }
+                }
+
+                /// Username of the person that started this conversation
+                public var authorUserName: String? {
+                  get {
+                    return snapshot["authorUserName"] as? String
+                  }
+                  set {
+                    snapshot.updateValue(newValue, forKey: "authorUserName")
                   }
                 }
               }
@@ -85679,6 +86493,7 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 GraphQLField("messages", type: .object(Message.selections)),
                 GraphQLField("latestMessage", type: .object(LatestMessage.selections)),
                 GraphQLField("discovery", type: .object(Discovery.selections)),
+                GraphQLField("authorUserName", type: .scalar(String.self)),
               ]
 
               public var snapshot: Snapshot
@@ -85687,8 +86502,8 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 self.snapshot = snapshot
               }
 
-              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil) {
-                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }])
+              public init(createdAt: Int? = nil, id: GraphQLID, discoveryId: String, messages: Message? = nil, latestMessage: LatestMessage? = nil, discovery: Discovery? = nil, authorUserName: String? = nil) {
+                self.init(snapshot: ["__typename": "Conversation", "createdAt": createdAt, "id": id, "discoveryId": discoveryId, "messages": messages.flatMap { $0.snapshot }, "latestMessage": latestMessage.flatMap { $0.snapshot }, "discovery": discovery.flatMap { $0.snapshot }, "authorUserName": authorUserName])
               }
 
               public var __typename: String {
@@ -85757,6 +86572,16 @@ public final class SubscribeToNewUCsSubscription: GraphQLSubscription {
                 }
                 set {
                   snapshot.updateValue(newValue?.snapshot, forKey: "discovery")
+                }
+              }
+
+              /// Username of the person that started this conversation
+              public var authorUserName: String? {
+                get {
+                  return snapshot["authorUserName"] as? String
+                }
+                set {
+                  snapshot.updateValue(newValue, forKey: "authorUserName")
                 }
               }
 

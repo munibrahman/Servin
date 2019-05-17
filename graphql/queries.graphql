@@ -15,6 +15,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -67,6 +68,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -170,6 +172,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -222,6 +225,7 @@ query AllMessage($after: String, $conversationId: ID!, $first: Int) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -329,6 +333,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -413,6 +418,7 @@ query AllMessageConnection($after: String, $conversationId: ID!, $first: Int) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -510,6 +516,7 @@ query AllMessageFrom(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -562,6 +569,7 @@ query AllMessageFrom(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -665,6 +673,7 @@ query AllMessageFrom(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -717,6 +726,7 @@ query AllMessageFrom(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -820,6 +830,7 @@ query AllUser($after: String, $first: Int) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -872,6 +883,7 @@ query AllUser($after: String, $first: Int) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -977,6 +989,7 @@ query AllUser($after: String, $first: Int) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -1114,6 +1127,7 @@ query Me {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1166,6 +1180,7 @@ query Me {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -1271,6 +1286,7 @@ query Me {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -1484,6 +1500,7 @@ query ConversationFromDiscovery($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1568,6 +1585,7 @@ query ConversationFromDiscovery($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1666,6 +1684,7 @@ query ConversationFromDiscovery($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1735,6 +1754,7 @@ query ConversationFromDiscovery($discoveryId: String!) {
       latitude
       longitude
     }
+    authorUserName
   }
 }
 query AllAssociated($conversationId: String!) {
@@ -1751,6 +1771,7 @@ query AllAssociated($conversationId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1803,6 +1824,7 @@ query AllAssociated($conversationId: String!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -1908,6 +1930,7 @@ query AllAssociated($conversationId: String!) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -2069,6 +2092,7 @@ query AllAssociated($conversationId: String!) {
           latitude
           longitude
         }
+        authorUserName
       }
       conversationId
       user {
@@ -2084,6 +2108,7 @@ query AllAssociated($conversationId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2326,6 +2351,7 @@ query AllAssociated($conversationId: String!) {
         latitude
         longitude
       }
+      authorUserName
     }
     conversationId
     user {
@@ -2342,6 +2368,7 @@ query AllAssociated($conversationId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2394,6 +2421,7 @@ query AllAssociated($conversationId: String!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2513,6 +2541,7 @@ query Discovery($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2565,6 +2594,7 @@ query Discovery($discoveryId: String!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2685,6 +2715,7 @@ query GetMyDiscoveries {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2737,6 +2768,7 @@ query GetMyDiscoveries {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2867,6 +2899,7 @@ query GetSurroundingDiscoveries(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2919,6 +2952,7 @@ query GetSurroundingDiscoveries(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {

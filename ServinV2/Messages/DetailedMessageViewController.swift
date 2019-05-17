@@ -379,7 +379,19 @@ class DetailedMessageViewController: UIViewController, UICollectionViewDataSourc
                     print("Successful response for sending message: \(result)")
                     self.inputTextField.text = nil
                     
-                    PinpointManager.shared.sendPinpointNotification(to: self.conversation?.discovery?.author?.userId ?? " ", title: self.conversation?.discovery?.title ?? " " , body: textFieldContent)
+                    if let username = AWSMobileClient.sharedInstance().username,
+                        let discoveryAuthor = conversation.discovery?.author?.userId,
+                        let conversationAuthor = conversation.authorUserName {
+                        
+                        if username == discoveryAuthor {
+                            PinpointManager.shared.sendPinpointNotification(to: conversationAuthor, title: self.conversation?.discovery?.title ?? " " , body: textFieldContent)
+                        } else {
+                            PinpointManager.shared.sendPinpointNotification(to: discoveryAuthor, title: self.conversation?.discovery?.title ?? " " , body: textFieldContent)
+                        }
+                        
+                    }
+                    
+                    
                 }
             })
             

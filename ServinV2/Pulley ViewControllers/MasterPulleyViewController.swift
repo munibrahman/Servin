@@ -52,40 +52,7 @@ class MasterPulleyViewController: PulleyViewController, SlaveMapViewControllerDe
         setupSideMenu()
         setupNavigationBar()
         
-        if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
-            print("Asking to register for push notifications")
-            myDelegate.registerForPushNotifications()
-            
-            
-            if let targetingClient = myDelegate.pinpoint?.targetingClient {
-                let endpoint = targetingClient.currentEndpointProfile()
-                
-                // Create a user and set its userId property
-                let user = AWSPinpointEndpointProfileUser()
-                user.userId = DefaultsWrapper.getString(Key.userName)
-                // Assign the user to the endpoint
-                endpoint.user = user
-                endpoint.optOut = "NONE"
-                print("Channel type: \(endpoint.channelType)")
-                // Update the endpoint with the targeting client
-                
-                targetingClient.update(endpoint).continueWith { (task) -> Any? in
-                    if let err = task.error {
-                        print("Error no \(err)");
-                    } else {
-                        print("Success yes \(task.result)")
-                        print("Assigned user ID \(user.userId ?? "nil") to endpoint \(endpoint.endpointId)")
-                    }
-                    
-                    print("Ran something")
-                    
-                    return nil
-                }
-                
-
-                
-            }
-        }
+        PinpointManager.shared.subscribeToPinpointNotifications()
         // Do any additional setup after loading the view.
         
         

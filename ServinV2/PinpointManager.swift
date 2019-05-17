@@ -41,21 +41,21 @@ class PinpointManager: NSObject {
                     /*
                      
                      var par = {
-                     ApplicationId: pinpointAppId, /* required */
-                     MessageRequest: { /* required */
-                     Endpoints: {
-                     [userEndpoint]: {
-                     BodyOverride: content,
-                     TitleOverride: title
-                     }
-                     },
-                     MessageConfiguration: {
-                     APNSMessage: {
-                     Action: 'OPEN_APP',
-                     TimeToLive: 3600,
-                     }
-                     }
-                     }
+                         ApplicationId: pinpointAppId, /* required */
+                         MessageRequest: { /* required */
+                             Endpoints: {
+                             [userEndpoint]: {
+                                 BodyOverride: content,
+                                 TitleOverride: title
+                             }
+                             },
+                             MessageConfiguration: {
+                                 APNSMessage: {
+                                     Action: 'OPEN_APP',
+                                     TimeToLive: 3600,
+                                 }
+                             }
+                         }
                      };
                      */
                     // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Pinpoint.html#sendMessages-property
@@ -123,8 +123,43 @@ class PinpointManager: NSObject {
             //            AWSPinpointTargeting.init().sendMessages(<#T##request: AWSPinpointTargetingSendMessagesRequest##AWSPinpointTargetingSendMessagesRequest#>)
             
         }
-        
-        
-        
     }
+    
+    public func subscribeToPinpointNotifications() {
+        if let myDelegate = UIApplication.shared.delegate as? AppDelegate {
+            print("Asking to register for push notifications")
+            myDelegate.registerForPushNotifications()
+            
+            
+            if let targetingClient = myDelegate.pinpoint?.targetingClient {
+                let endpoint = targetingClient.currentEndpointProfile()
+                
+                // Create a user and set its userId property
+                let user = AWSPinpointEndpointProfileUser()
+                user.userId = AWSMobileClient.sharedInstance().username
+                // Assign the user to the endpoint
+                endpoint.user = user
+                endpoint.optOut = "NONE"
+//                print("Channel type: \(endpoint.channelType)")
+                // Update the endpoint with the targeting client
+                
+                targetingClient.update(endpoint).continueWith { (task) -> Any? in
+                    if let err = task.error {
+                        print("Error no \(err)");
+                    } else {
+                        print("Success yes \(task.result)")
+                        print("Assigned user ID \(user.userId ?? "nil") to endpoint \(endpoint.endpointId)")
+                    }
+                    
+                    print("Ran something")
+                    
+                    return nil
+                }
+                
+                
+                
+            }
+        }
+    }
+    
 }

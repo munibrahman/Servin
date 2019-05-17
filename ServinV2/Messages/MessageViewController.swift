@@ -188,6 +188,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     let reuseIdentifier = "cell"
     let headerID = "header"
     
+    var newConversationSubscriptionWatcher: AWSAppSyncSubscriptionWatcher<SubscribeToNewUCsSubscription>?
+    
     var closeButton: UIButton!
     
     override func loadView() {
@@ -211,6 +213,17 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
         
         setupNavigationBar()
         fetchConversations()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        newConversationSubscriptionWatcher?.cancel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToUpdates()
     }
     
     func setupNavigationBar() {
@@ -272,17 +285,60 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
     
     func subscribeToUpdates() {
         
-//        SubscribeToNewUCsSubscription
-//
-//        appSyncClient?.subscribe(subscription: <#T##GraphQLSubscription#>, resultHandler: <#T##(GraphQLResult<GraphQLSelectionSet>?, ApolloStore.ReadWriteTransaction?, Error?) -> Void#>)
         
-//        guard let username = AWSMobileClient.sharedInstance().username else {
-//            return
-//        }
-//
-//        appSyncClient?.subscribe(subscription: SubscribeToNewUCsSubscription.init(userId: username ), resultHandler: { (result, transaction, error) in
-//            <#code#>
-//        })
+        guard let username = AWSMobileClient.sharedInstance().username else {
+            print("Can't get username, abandon request")
+            return
+        }
+        
+        
+        let subscribeToUCs = SubscribeToNewUCsSubscription.init(userId: username)
+
+        
+        do {
+            
+            newConversationSubscriptionWatcher =  try appSyncClient?.subscribe(subscription: subscribeToUCs, resultHandler: { (res, transaction, err) in
+                
+                print("recieved new subscription, someone replied to my pin")
+                
+//                let content = res?.data?.subscribeToNewUCs.
+//                let sender = res?.data?.subscribeToNewMessage?.sender
+                
+                //                print(content)
+                //                print(sender)
+                
+                
+                if let snapshot = res?.data?.subscribeToNewUCs?.conversation?.snapshot {
+                    print("Snap shot exists")
+                    let ucObject = MeQuery.Data.Me.Conversation.UserConversation.Conversation.init(snapshot: snapshot)
+                    print("created snapshot")
+                    
+                    
+                    self.userConversations.append(ucObject)
+                    
+                    DispatchQueue.main.async {
+                        self.collectionView?.performBatchUpdates({
+                            let indexSet = IndexSet(integer: 0)
+                            self.collectionView?.reloadSections(indexSet)
+                            
+                        }, completion: { (didFinish) in
+                            print("Did finish updating")
+//                            let indexPath = IndexPath.init(item: self.userConversations.count - 1, section: 0)
+//                            self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
+                        })
+                        
+                    }
+                    
+                    
+                }
+            })
+            
+            
+        } catch {
+            print("Error occured while subscribing \(error)")
+        }
+
+        
     }
     
     @objc func userDidTapX() {
@@ -333,8 +389,8 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             cell.dateLabel.text = ("\(Extensions.getReadableDate(timeStamp: TimeInterval(conversation.createdAt!)) ?? "")")
             
             if let latestMessage = conversation.latestMessage?.content {
-                print(conversation.latestMessage?.author)
-                if let cognitoUsername = conversation.latestMessage?.author?.userId {
+                print(conversation.latestMessage?.sender)
+                if let cognitoUsername = conversation.latestMessage?.sender {
                     print(cognitoUsername)
                     cell.messageLabel.text = cognitoUsername == AWSMobileClient.sharedInstance().username ? "You: \(latestMessage)" : "\(latestMessage)"
                 } else {
@@ -436,7 +492,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             
             nameLabel.numberOfLines = 1
             nameLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
-            nameLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            nameLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
             
             
             priceLabel = UILabel()
@@ -447,7 +503,7 @@ class MessageViewController: UICollectionViewController, UICollectionViewDelegat
             priceLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant: 12).isActive = true
             priceLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 3).isActive = true
             
-            priceLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            priceLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
             priceLabel.textColor = UIColor.blackFontColor.withAlphaComponent(0.8)
             
             

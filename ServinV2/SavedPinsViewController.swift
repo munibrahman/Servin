@@ -96,95 +96,107 @@ extension SavedPinsViewController: UICollectionViewDelegate, UICollectionViewDat
 
 class SavedPinsCollectionViewCell: UICollectionViewCell {
     
-    var pinImageView: UIImageView!
-    var pinTitle: UILabel!
-    var pinPrice: UILabel!
-    var timeAway: UILabel!
+    var pinImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 5.0
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    var pinTitle: UILabel = {
+        let label = UILabel.init()
+        label.adjustsFontSizeToFitWidth = false
+        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.textColor = UIColor.blackFontColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var pinPrice: UILabel = {
+        let label = UILabel.init()
+        label.adjustsFontSizeToFitWidth = false
+        label.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        label.textColor = UIColor.blackFontColor.withAlphaComponent(0.7)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var timeAway: UILabel = {
+        let label = UILabel.init()
+        label.adjustsFontSizeToFitWidth = false
+        label.font = UIFont.systemFont(ofSize: 13, weight: .light)
+        label.textColor = UIColor.blackFontColor.withAlphaComponent(0.3)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     var isSaved: Bool = false
     
     var savedView: SaveIconView!
-    
-    let leftPadding: CGFloat = 20.0
-    let rightPadding: CGFloat = 20.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupViews()
+        self.backgroundColor = .blue
+//        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupViews() {
-        pinImageView = UIImageView.init()
-        
+
         self.addSubview(pinImageView)
         
-        pinImageView.translatesAutoresizingMaskIntoConstraints = false
-        pinImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: leftPadding).isActive = true
-        pinImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
-        pinImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -rightPadding).isActive = true
+        pinImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
+        pinImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        pinImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         pinImageView.heightAnchor.constraint(equalToConstant: 150.0).isActive = true
         
-        pinImageView.layer.cornerRadius = 5.0
-        pinImageView.clipsToBounds = true
-        pinImageView.contentMode = .scaleAspectFill
         
-        pinTitle = UILabel.init()
-        
+        pinImageView.backgroundColor = .red
+
         self.addSubview(pinTitle)
         
-        pinTitle.translatesAutoresizingMaskIntoConstraints = false
-        pinTitle.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: leftPadding).isActive = true
+        pinTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         pinTitle.topAnchor.constraint(equalTo: pinImageView.bottomAnchor).isActive = true
         pinTitle.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+
+        pinTitle.text = "Selling this discovery"
+
         
-        pinTitle.adjustsFontSizeToFitWidth = true
-        pinTitle.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
-        pinTitle.textColor = UIColor.blackFontColor
-        
-        
-        pinPrice = UILabel.init()
         self.addSubview(pinPrice)
-        
-        pinPrice.translatesAutoresizingMaskIntoConstraints = false
-        pinPrice.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: leftPadding).isActive = true
+
+        pinPrice.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         pinPrice.topAnchor.constraint(equalTo: pinTitle.bottomAnchor).isActive = true
-        pinPrice.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -rightPadding).isActive = true
+        pinPrice.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         pinPrice.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-        pinPrice.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        pinPrice.textColor = UIColor.blackFontColor.withAlphaComponent(0.7)
-        
-        timeAway = UILabel.init()
-        
+
+        pinPrice.text = "$ 500"
+
         self.addSubview(timeAway)
-        
-        timeAway.translatesAutoresizingMaskIntoConstraints = false
-        timeAway.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: leftPadding).isActive = true
+
+        timeAway.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20).isActive = true
         timeAway.topAnchor.constraint(equalTo: pinPrice.bottomAnchor).isActive = true
-        timeAway.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -rightPadding).isActive = true
-        timeAway.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
-        
-        timeAway.font = UIFont.systemFont(ofSize: 13, weight: .light)
-        timeAway.textColor = UIColor.blackFontColor.withAlphaComponent(0.3)
+
         
         savedView = SaveIconView.init(frame: CGRect.init(x: 20, y: 0, width: 40, height: 40))
         self.addSubview(savedView)
-        
+
         savedView.translatesAutoresizingMaskIntoConstraints = false
         savedView.centerXAnchor.constraint(equalTo: pinImageView.trailingAnchor, constant: -13).isActive = true
         savedView.centerYAnchor.constraint(equalTo: pinImageView.bottomAnchor).isActive = true
         savedView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         savedView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        
-        
-        pinTitle.trailingAnchor.constraint(equalTo: savedView.leadingAnchor).isActive = true
-        
-        
-        
+//
+//
+//        pinTitle.trailingAnchor.constraint(equalTo: savedView.leadingAnchor).isActive = true
+//
+//
+//
         let saveTapGesture = UITapGestureRecognizer.init(target: self, action: #selector(userDidTapSave))
-        
+
         savedView.addGestureRecognizer(saveTapGesture)
-        
+
         savedView.saveIcon.image = #imageLiteral(resourceName: "save_icon_empty")
         
         
@@ -193,14 +205,14 @@ class SavedPinsCollectionViewCell: UICollectionViewCell {
         // The moment you take it off, everything gets fucked.
         // Leave is here for now, but come back and fix it (yeah right)
         
-        let testView = UIView.init()
-        testView.backgroundColor = .clear
-        self.addSubview(testView)
-        
-        testView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 14).isActive = true
-        testView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -14).isActive = true
-        testView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14).isActive = true
-        testView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -14).isActive = true
+//        let testView = UIView.init()
+//        testView.backgroundColor = .clear
+//        self.addSubview(testView)
+//
+//        testView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 14).isActive = true
+//        testView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -14).isActive = true
+//        testView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 14).isActive = true
+//        testView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -14).isActive = true
         
     }
     

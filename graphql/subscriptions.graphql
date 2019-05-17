@@ -15,6 +15,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -67,6 +68,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -170,6 +172,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -222,6 +225,7 @@ subscription SubscribeToNewMessage($conversationId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -323,6 +327,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -375,6 +380,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -480,6 +486,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -641,6 +648,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
           latitude
           longitude
         }
+        authorUserName
       }
       conversationId
       user {
@@ -656,6 +664,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -898,6 +907,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
         latitude
         longitude
       }
+      authorUserName
     }
     conversationId
     user {
@@ -914,6 +924,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -966,6 +977,7 @@ subscription SubscribeToNewUCs($userId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {

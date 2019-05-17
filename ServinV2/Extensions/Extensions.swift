@@ -427,8 +427,8 @@ extension UIImageView {
         }) { (error) in
             DispatchQueue.main.async {
                 self.image = #imageLiteral(resourceName: "default_image_icon")
-                print("Error Fetching image for key: \(key)")
-                print(error)
+//                print("Error Fetching image for key: \(key)")
+//                print(error)
             }
         }
     }

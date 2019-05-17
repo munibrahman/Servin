@@ -161,6 +161,7 @@ class SlaveMapViewController: UIViewController, CLLocationManagerDelegate, GMSMa
                             print("Super is master pulley view controller")
                             parentVC.myDiscoveriesViewController?.discoveriesAroundMe = discoveries
                             parentVC.myDiscoveriesViewController?.pinsNearbyCollectionView.reloadData()
+                            parentVC.myDiscoveriesViewController?.recommendedPinsCollectionView.reloadData()
                             // parentVC is someViewController
                             
                             self.homeMapView.clear()

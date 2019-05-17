@@ -91,6 +91,7 @@ mutation CreateConversation($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -175,6 +176,7 @@ mutation CreateConversation($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -273,6 +275,7 @@ mutation CreateConversation($discoveryId: String!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -342,6 +345,7 @@ mutation CreateConversation($discoveryId: String!) {
       latitude
       longitude
     }
+    authorUserName
   }
 }
 mutation CreateMessage($content: String, $conversationId: ID!) {
@@ -360,6 +364,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -412,6 +417,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -515,6 +521,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -567,6 +574,7 @@ mutation CreateMessage($content: String, $conversationId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -668,6 +676,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -720,6 +729,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -825,6 +835,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -986,6 +997,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
           latitude
           longitude
         }
+        authorUserName
       }
       conversationId
       user {
@@ -1001,6 +1013,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1243,6 +1256,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
         latitude
         longitude
       }
+      authorUserName
     }
     conversationId
     user {
@@ -1259,6 +1273,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1311,6 +1326,7 @@ mutation CreateUserConversations($conversationId: ID!, $userId: ID!) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -1424,6 +1440,7 @@ mutation UpdateProfileInformation(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1476,6 +1493,7 @@ mutation UpdateProfileInformation(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -1581,6 +1599,7 @@ mutation UpdateProfileInformation(
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -1718,6 +1737,7 @@ mutation UpdateCategories($list: [String]) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -1770,6 +1790,7 @@ mutation UpdateCategories($list: [String]) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -1875,6 +1896,7 @@ mutation UpdateCategories($list: [String]) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
@@ -2042,6 +2064,7 @@ mutation EditDiscovery(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2094,6 +2117,7 @@ mutation EditDiscovery(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2228,6 +2252,7 @@ mutation PostDiscovery(
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2280,6 +2305,7 @@ mutation PostDiscovery(
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2384,6 +2410,7 @@ mutation UpdateProfilePicture($key: String) {
               createdAt
               id
               discoveryId
+              authorUserName
             }
             conversationId
             user {
@@ -2436,6 +2463,7 @@ mutation UpdateProfilePicture($key: String) {
               latitude
               longitude
             }
+            authorUserName
           }
           conversationId
           user {
@@ -2541,6 +2569,7 @@ mutation UpdateProfilePicture($key: String) {
             latitude
             longitude
           }
+          authorUserName
         }
         conversationId
         user {
