@@ -1,0 +1,17 @@
+{
+    "version": "2017-02-28",
+    "operation": "GET",
+    "path": "/servin/discoveries/_search",
+    "params": {
+        "body": {
+            "from": "0",
+            "size": "50",
+            "query":{
+                "multi_match" : {
+                "query": "$context.args.keyword",
+                "fields": [ "description", "title", "tags" ]
+                }
+            }
+        }
+    }
+}

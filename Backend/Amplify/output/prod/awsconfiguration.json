@@ -1,0 +1,47 @@
+{
+    "AppSync": {
+        "Default": {
+            "ApiUrl": "https://siexnt4v45fphekma3camt5pgy.appsync-api.us-east-1.amazonaws.com/graphql",
+            "AuthMode": "AMAZON_COGNITO_USER_POOLS",
+            "Region": "us-east-1"
+        }
+    },
+    "CognitoUserPool": {
+        "Default": {
+            "AppClientId": "3m3q6i5upo35919b4est64bapm",
+            "AppClientSecret": "1nn1hm7kt1jroblfdhh9gql0b8rv9fa24qe18rc28ip57rccrg4m",
+            "PoolId": "us-east-1_RDnie0vxe",
+            "Region": "us-east-1"
+        }
+    },
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "us-east-1:e15456bd-f645-4890-84d6-aed6cafde2dc",
+                "Region": "us-east-1"
+            }
+        }
+    },
+    "IdentityManager": {
+        "Default": {}
+    },
+    "PinpointAnalytics": {
+        "Default": {
+            "AppId": "128f6b300d75446f9c2ca0ffb248e4f7",
+            "Region": "us-east-1"
+        }
+    },
+    "PinpointTargeting": {
+        "Default": {
+            "Region": "us-east-1"
+        }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "servin-users-bucket-prod",
+            "Region": "us-east-1"
+        }
+    },
+    "UserAgent": "aws-amplify/cli",
+    "Version": "0.1.0"
+}

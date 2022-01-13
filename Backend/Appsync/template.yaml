@@ -1,0 +1,1651 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  */
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: AppSync API Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+
+Parameters:
+  APIName:
+    Type: String
+    Description: "Name of the API, to generate names for resources"
+    MinLength: 3
+    MaxLength: 20
+    AllowedPattern: '^[a-zA-Z][a-zA-Z0-9_]*$'
+  ReleaseEnvironment:                                                        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+    Description: Environment type.
+    Default: test
+    Type: String
+    AllowedValues: [prod, dev, test]
+    ConstraintDescription: must specify prod, dev, or test.
+  UserPoolId:
+    Description: ID of the user pool to be used for authorizing the api
+    Type: String
+
+  PinpointAppId:
+    Description: Id of the pinpoint application used to send targeted notifications 
+    Type: String
+
+  UserDynamoDBTableName:
+    Description: Name of the dynamodb table that holds user information such as sign up date, first/last name, school, categories and so on.
+    Type: String
+
+
+  UserDynamoDBTableArn:
+    Description: Arn of the dynamodb table that holds user information such as sign up date, first/last name, school, categories and so on.
+    Type: String
+
+
+  ## TODO: Parameters below are from the old MERGENCE API. Remove them as need for them diminishes.
+  S3BucketNameParam:
+    Type: String
+    Default: servinbucket
+  OrginalImageDirectoryParam:
+    Type: String
+    Default: images/original
+
+    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+Conditions:
+  CreateProdResources: !Equals [!Ref ReleaseEnvironment, prod]
+  CreateDevResources: !Equals [!Ref ReleaseEnvironment, dev]
+
+Resources:
+# DynamoDB Tables
+# Conversation Table: Stores conversation name and when it was created, along with the discovery id that it belongs to.
+# Conversation: Happens between 2 users over a discovery
+  conversationsTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: !Sub ${APIName}-conversations-table
+      AttributeDefinitions:
+        -
+          AttributeName: "id"
+          AttributeType: "S"
+        -
+          AttributeName: "discoveryId"
+          AttributeType: "S"
+        -
+          AttributeName: "authorUserName"                         # Name of the user that initiated a given conversation, also used in a GSI to see if a person has started a convo over a given discovery.
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "id"
+          KeyType: "HASH"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      GlobalSecondaryIndexes:
+        -
+          IndexName: "discoveryId-authorUserName-index"
+          KeySchema:
+            -
+              AttributeName: "discoveryId"
+              KeyType: "HASH"
+            -
+              AttributeName: "authorUserName"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+
+
+  messagesTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: !Sub ${APIName}-messages-table
+      AttributeDefinitions:
+        -
+          AttributeName: "conversationId"
+          AttributeType: "S"
+        -
+          AttributeName: "createdAt"
+          AttributeType: "N"
+        - 
+          AttributeName: "sender"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "conversationId"
+          KeyType: "HASH"
+        -
+          AttributeName: "createdAt"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      GlobalSecondaryIndexes:
+        -
+          IndexName: "sender-conversationId-index"
+          KeySchema:
+            -
+              AttributeName: "sender"
+              KeyType: "HASH"
+            -
+              AttributeName: "conversationId"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+
+  userConversationsTable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: !Sub ${APIName}-user-conversations-table
+      AttributeDefinitions:
+        -
+          AttributeName: "username"
+          AttributeType: "S"
+        -
+          AttributeName: "conversationId"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "username"
+          KeyType: "HASH"
+        -
+          AttributeName: "conversationId"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      GlobalSecondaryIndexes:
+        -
+          IndexName: "conversationId-index"
+          KeySchema:
+            -
+              AttributeName: "conversationId"
+              KeyType: "HASH"
+          Projection:
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
+
+  # savedDiscoveriesTable:
+  #   Type: "AWS::CloudFormation::Stack"
+  #   Properties:
+  #     NotificationARNs:
+  #       - String
+  #     Parameters:
+  #       TableName: !Sub ${APIName}-saved-discoveries-table
+  #       ReleaseEnvironment: !Sub ${ReleaseEnvironment}
+  #     # Tags:
+  #     #   - Tag
+  #     TemplateURL: dynamodb.yaml #required
+  #     TimeoutInMinutes: 15
+
+  savedDiscoveriesTable:                                                                            #1A
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      AttributeDefinitions:                                                                 
+        -
+          AttributeName: cognitoUserName                                                    #1B
+          AttributeType: S                                                             #1C
+        -
+          AttributeName: discoveryId                                                    
+          AttributeType: S                                                             
+      BillingMode: PROVISIONED                                                               #1D
+      # GlobalSecondaryIndexes:
+      #   - 
+      #     IndexName: String
+      #     KeySchema: 
+      #       - 
+      #         AttributeName: String
+      #         KeyType: String
+      #     Projection: 
+      #       NonKeyAttributes: 
+      #         - String
+      #       ProjectionType: String
+      #     ProvisionedThroughput: 
+      #       ReadCapacityUnits: 1
+      #       WriteCapacityUnits: 1
+      KeySchema: #required
+        - 
+          AttributeName: cognitoUserName
+          KeyType: HASH
+        - AttributeName: discoveryId
+          KeyType: RANGE
+      # LocalSecondaryIndexes:
+      #   - 
+      #     IndexName: String
+      #     KeySchema: 
+      #       - 
+      #         AttributeName: String
+      #         KeyType: String
+      #     Projection: 
+      #       NonKeyAttributes: 
+      #         - String
+      #       ProjectionType: String
+      # PointInTimeRecoverySpecification:
+      #   PointInTimeRecoveryEnabled: true
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
+      # SSESpecification:
+      #   SSEEnabled: false
+      # StreamSpecification:
+      #   StreamViewType: String
+      TableName: !Sub ${APIName}-saved-discoveries-table
+      Tags:
+        - 
+          Key: TableName
+          Value: !Sub ${APIName}-saved-discoveries-table
+      # TimeToLiveSpecification:
+      #   AttributeName: String
+      #   Enabled: Boolean
+  
+#IAM ROLE
+  awsAppSyncServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub ${APIName}-appsync-service-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "appsync.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+
+#IAM POLICY
+  dynamodbAccessPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: !Sub ${APIName}-dynamodb-access-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action: "dynamodb:*"
+            Resource:
+              - !GetAtt conversationsTable.Arn
+              - !Sub '${conversationsTable.Arn}/index/discoveryId-authorUserName-index'
+              - !GetAtt messagesTable.Arn
+              - !Sub '${messagesTable.Arn}/index/sender-conversationId-index'
+              - !GetAtt userConversationsTable.Arn
+              - !Sub '${userConversationsTable.Arn}/index/conversationId-index'
+              - !Sub ${UserDynamoDBTableArn}
+              - arn:aws:dynamodb:us-east-1:810093522723:table/Discoveries
+              - arn:aws:dynamodb:us-east-1:810093522723:table/Discoveries/index/discoveryId-index
+              - arn:aws:dynamodb:us-east-1:810093522723:table/Discoveries/index/CognitoUserNameIndex
+              - !GetAtt savedDiscoveriesTable.Arn
+      Roles:
+        -
+          Ref: "awsAppSyncServiceRole"
+
+  ESAccessPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: !Sub ${APIName}-ES-access-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action: 
+              - es:ESHttpDelete
+              - es:ESHttpHead
+              - es:ESHttpGet
+              - es:ESHttpPost
+              - es:ESHttpPut
+            Resource:                                                                      #TODO: Get arn of actual resource when ESStack is completed instead of hardcoding this value
+              - !Join
+                - ''
+                - - "arn:aws:es:"
+                  - !Ref "AWS::Region"
+                  - ":"
+                  - !Ref "AWS::AccountId"
+                  - ":domain/"
+                  - "search-servindomain-5kju263jctxqevorivxiem7o2e.us-east-1.es.amazonaws.com"
+      Roles:
+        -
+          Ref: "awsAppSyncServiceRole"
+
+
+# Allows AppSync to invoke lambda functions on our behalf. 
+  lambdaInvokeFunctionPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: !Sub ${APIName}-lambda-invoke-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action: "lambda:InvokeFunction"
+            Resource: "*"
+      Roles:
+        -
+          Ref: "awsAppSyncServiceRole"
+
+
+# This role will allow a lambda function to access mobile targeting for pinpoint
+  LambdaAccessPinpointRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      RoleName: !Sub ${APIName}-lambda-access-pinpoint-role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "lambda.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      Path: "/"
+
+# Allows lambda role to access mobile targeting (pinpoint) and also write logs to cloudwatch
+  mobileTargetingAccessPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: !Sub ${APIName}-mobile-target-cloudformation-access-policy
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "mobiletargeting:*"
+              - "logs:CreateLogGroup"
+              - "logs:CreateLogStream"
+              - "logs:PutLogEvents"
+            Resource: "*"
+      Roles:
+        -
+          Ref: "LambdaAccessPinpointRole"
+
+
+#CHATQL
+  chatQLApi:
+    Type: "AWS::AppSync::GraphQLApi"
+    Properties:
+      Name: !Sub ${APIName}-${ReleaseEnvironment}
+      AuthenticationType: "AMAZON_COGNITO_USER_POOLS"
+      UserPoolConfig:
+        UserPoolId: !Ref UserPoolId
+        AwsRegion: !Ref "AWS::Region"
+        DefaultAction: "ALLOW"
+
+#DATA SOURCES FOR GRAPHQL
+  savedDiscoveriesDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      Type: "AMAZON_DYNAMODB" #required
+      Description: Appsync datasource for accessing the saved discoveries dynamodb table
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      # HttpConfig:
+      #   HttpConfig
+      # RelationalDatabaseConfig:
+      #   RelationalDatabaseConfig
+      # LambdaConfig:
+      #   LambdaConfig
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      Name: savedDiscoveriesDataSource #required
+      DynamoDBConfig:
+        TableName: !Ref savedDiscoveriesTable
+        AwsRegion: !Ref "AWS::Region"
+      # ElasticsearchConfig:
+      #   ElasticsearchConfig
+  
+  conversationsTableDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: "conversationsTableDataSource"
+      Description: "conversationsTable DynamoDB data source"
+      Type: "AMAZON_DYNAMODB"
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      DynamoDBConfig:
+        TableName: !Ref conversationsTable
+        AwsRegion: !Ref "AWS::Region"
+
+  messagesTableDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: "messagesTableDataSource"
+      Description: "messagesTable DynamoDB data source"
+      Type: "AMAZON_DYNAMODB"
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      DynamoDBConfig:
+        TableName: !Ref messagesTable
+        AwsRegion: !Ref "AWS::Region"
+
+  userConversationsTableDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: "userConversationsTableDataSource"
+      Description: "userConversationsTable DynamoDB data source"
+      Type: "AMAZON_DYNAMODB"
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      DynamoDBConfig:
+        TableName: !Ref userConversationsTable
+        AwsRegion: !Ref "AWS::Region"
+
+  usersTableDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: "usersTableDataSource"
+      Description: "usersTable DynamoDB data source"
+      Type: "AMAZON_DYNAMODB"
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      DynamoDBConfig:
+        TableName: !Sub ${UserDynamoDBTableName}
+        AwsRegion: us-east-1 #!Ref "AWS::Region"
+
+  discoveriesTableDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: "discoveriesTableDataSource"
+      Description: "discoveriesTable DynamoDB data source"
+      Type: "AMAZON_DYNAMODB"
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      DynamoDBConfig:
+        TableName: Discoveries #!Ref usersTable
+        AwsRegion: us-east-1 #!Ref "AWS::Region"
+
+  # lambdaPushNotificationDataSource:
+  #   Type: "AWS::AppSync::DataSource"
+  #   Properties:
+  #     ApiId: !GetAtt chatQLApi.ApiId
+  #     Name: "lambdaPushNotificationDataSource"
+  #     Description: "Lambda function data source for sending push notifications"
+  #     Type: "AWS_LAMBDA"
+  #     ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+  #     LambdaConfig:
+  #       LambdaFunctionArn: !GetAtt PinpointSendPushNotificationLambda.Arn
+
+  # Data source used for elastic search
+  ESDataSource:
+    Type: "AWS::AppSync::DataSource"                                                              # 3
+    Properties:
+      Type: AMAZON_ELASTICSEARCH                                                                  # 3A
+      Description: ElasticSearch data source used by our graphQL Api
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn                                           # 3B
+      # HttpConfig:                                                                               # 3C
+      #   HttpConfig
+      # RelationalDatabaseConfig:                                                                 # 3D
+      #   RdsHttpEndpointConfig:
+      #     AwsRegion:               #required
+      #     AwsSecretStoreArn:       #required
+      #     DbClusterIdentifier:     #required
+      #     DatabaseName: 
+      #     Schema:  
+      #   RelationalDatabaseSourceType: #required
+      # LambdaConfig:                                                                               # 3E
+      #   LambdaFunctionArn: #required
+      #   LambdaConfig
+      # DynamoDBConfig:                                                                             # 3F
+      #   TableName:  #required
+      #   AwsRegion:  #required
+      #   UseCallerCredentials: 
+      ElasticsearchConfig:                                                                        # 3G
+        AwsRegion: us-east-1
+        Endpoint: https://search-servindomain-5kju263jctxqevorivxiem7o2e.us-east-1.es.amazonaws.com                 # TODO: Pass in a variable for this endpoint when ES stack is fully configured
+      ApiId: !GetAtt chatQLApi.ApiId #required                                                          # 3H
+      Name: ESDataSource #required                                                                      # 3I
+
+# AWS SERVERLESS FUNCTION
+  # PinpointSendPushNotificationLambda:
+  #   Type: AWS::Serverless::Function
+  #   Properties:
+  #     Handler: index.handler
+  #     FunctionName: !Sub ${APIName}-pinpoint-send-push-notifications-lambda-${ReleaseEnvironment}
+  #     Description: Allows appsync to access the pinpoint sdk and send notifications to users
+  #     Runtime: nodejs8.10
+  #     CodeUri: src/
+  #     Role: !GetAtt lambdaAccessPinpointRole.Arn
+  #     MemorySize: 128
+  #     Timeout: 180
+
+  SendAPNSLambda:                                                                              
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: SendAPNSLambda                                                             
+      Runtime: nodejs10.x
+      Code: ./Lambdas/nodejs10.x/                                                  
+      Handler: SendNotification.lambdaHandler                                                          
+      Role: !GetAtt LambdaAccessPinpointRole.Arn
+      Timeout: 10
+      Description: Given a cognitousername, pinpointAppId, title and a body. It will send an APNS notification to the user.
+      # Layers:
+      #   - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          PinpointAppId: !Sub ${PinpointAppId}
+
+  SendAPNSDataSource:                                                                            
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Description: Datasource for lambda that sends APNS notifications
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt SendAPNSLambda.Arn
+      Name: SendAPNSDataSource
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  # CreateExternalAccountResolver:
+  #   DependsOn:
+  #   - chatQLSchema
+  #   Type: "AWS::AppSync::Resolver"
+  #   Properties:
+  #     TypeName: Mutation
+  #     FieldName: createExternalAccount                                                        # Change this
+  #     DataSourceName: !GetAtt CreateExternalAccountDataSource.Name                            # Change this
+  #     Kind: 'UNIT'
+  #     ApiId: !GetAtt chatQLApi.ApiId
+  #     RequestMappingTemplate: |
+  #       {
+  #           "version": "2018-05-29",
+  #           "operation": "Invoke",
+  #           "payload": {
+  #               "field": "createExternalAccount",                                             ## Change this
+  #               "arguments":  $util.toJson($context)
+  #           }
+  #       }
+  #     ResponseMappingTemplate: |
+  #       #if($context.error)
+  #         $util.error($context.error.message, $context.error.type )
+  #           ## $util.toJson($context.error)
+  #       #else
+  #       ##     $context.result is a javascript object
+  #           $util.toJson($context.result)
+  #       #end
+
+
+# AWS SERVERLESS FUNCTION
+  GetSurroundingDiscoviersLambda:
+    Type: AWS::Serverless::Function
+    Description: Uses the Geo-Library for DynamoDB to query discoveries
+    Properties:
+      FunctionName: !Sub ${APIName}-surroundingDiscoveriesLambda
+      CodeUri: Lambdas/java8/target/discovery-1.0.0.jar
+      Handler: io.servin.discovery.discoveryLambda::handleRequest
+      Runtime: java8
+      Timeout: 300
+      MemorySize: 512
+      Policies: 
+        -   AmazonRekognitionFullAccess
+        -   AmazonS3FullAccess
+        -   AWSLambdaFullAccess
+      Environment:
+        Variables:
+          STAGE: !Ref ReleaseEnvironment
+          S3BucketName: !Ref S3BucketNameParam
+          # S3ObjectDirectory: !Ref OrginalImageDirectoryParam
+          S3ObjectDirectory: !Sub
+                              # - ${Directory}/discoveries/
+                              - ${Directory}/
+                              - { Directory: !Ref OrginalImageDirectoryParam }
+          numberOfImagesPerDiscovery: 6
+
+  GetSurroundingDiscoveriesLambdaDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: GetSurroundingDiscoveryLambdaDataSource
+      Description: Lambda function data source for fetching discoveries around a person's location
+      Type: AWS_LAMBDA
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt GetSurroundingDiscoviersLambda.Arn
+
+
+  PostDiscoveryLambda:
+    Type: AWS::Serverless::Function
+    Description: Uses the Geo-Library for DynamoDB to post a discovery on the network
+    Properties:
+      FunctionName: !Sub ${APIName}-postDiscoveryLambda
+      CodeUri: Lambdas/java8/target/discovery-1.0.0.jar
+      Handler: io.servin.discovery.PostDiscovery::handleRequest
+      Runtime: java8
+      Timeout: 300 # 5 mins timeout
+      MemorySize: 512
+      Policies: 
+        -   AmazonRekognitionFullAccess
+        -   AmazonS3FullAccess
+        -   AWSLambdaFullAccess
+      Environment:
+        Variables:
+          STAGE: !Ref ReleaseEnvironment
+          S3BucketName: !Ref S3BucketNameParam
+          # S3ObjectDirectory: !Ref OrginalImageDirectoryParam
+          S3ObjectDirectory: !Sub
+                              # - ${Directory}/discoveries/
+                              - ${Directory}/
+                              - { Directory: !Ref OrginalImageDirectoryParam }
+          numberOfImagesPerDiscovery: 6
+
+  PostDiscoveryLambdaDataSource:
+    Type: "AWS::AppSync::DataSource"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      Name: PostDiscoveryLambdaDataSource
+      Description: Lambda function data source for fetching discoveries around a person's location
+      Type: AWS_LAMBDA
+      ServiceRoleArn: !GetAtt awsAppSyncServiceRole.Arn
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt PostDiscoveryLambda.Arn
+
+# SCHEMA
+  chatQLSchema:
+    Type: "AWS::AppSync::GraphQLSchema"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      DefinitionS3Location: schemas/servin.graphql
+
+# RESOLVERS
+# MUTATION
+  createConversationMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Mutation"
+      FieldName: "createConversation"
+      DataSourceName: !GetAtt conversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "PutItem",
+          "key": {
+              "id": { "S" : "${util.autoId()}"},
+              "discoveryId": {  "S": "${context.arguments.discoveryId}" }
+          },
+          "attributeValues" : {
+            "createdAt": { "N": $util.time.nowEpochSeconds() },
+            "authorUserName": { "S": "${context.identity.sub}" }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  createUserConversationsMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Mutation"
+      FieldName: "createUserConversations"
+      DataSourceName: !GetAtt userConversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "PutItem",
+          "key": {
+              "username": { "S" : "${context.arguments.username}"},
+              "conversationId": { "S" : "${context.arguments.conversationId}"}
+          },
+          "attributeValues" : {
+              "username": {  "S": "${context.arguments.username}" },
+              "conversationId": {  "S": "${context.arguments.conversationId}" }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  updateCategoriesMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: Mutation
+      FieldName: updateCategories
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "UpdateItem",
+          "key" : {
+              "username" : { "S" : "${context.identity.sub}" }
+          },
+          "update" : {
+              "expression" : "SET categories = :vals, hasChosenCategories = :boolean",
+              "expressionValues": {
+                  ":vals" : $util.dynamodb.toStringSetJson($context.arguments.list),
+                  ":boolean" : { "BOOL" : true }
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  updateProfileInformationMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Mutation"
+      FieldName: "updateProfileInformation"
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+            "version" : "2017-02-28",
+            "operation" : "UpdateItem",
+            "key" : {
+                "username" : { "S" : "${context.identity.sub}" }
+            },
+
+            ## Set up some space to keep track of things we're updating **
+            #set( $expNames  = {} )
+            #set( $expValues = {} )
+            #set( $expSet = {} )
+            #set( $expAdd = {} )
+            #set( $expRemove = [] )
+
+            ## Iterate through each argument **
+            #foreach( $entry in $context.arguments.entrySet() )
+                    #if( (!$entry.value) && ("$!{entry.value}" == "") )
+                        ## If the argument is set to "null", then remove that attribute from the item in DynamoDB **
+
+                        #set( $discard = ${expRemove.add("#${entry.key}")} )
+                        $!{expNames.put("#${entry.key}", "$entry.key")}
+                    #else
+                        ## Otherwise set (or update) the attribute on the item in DynamoDB **
+
+                        $!{expSet.put("#${entry.key}", ":${entry.key}")}
+                        $!{expNames.put("#${entry.key}", "$entry.key")}
+                        $!{expValues.put(":${entry.key}", { "S" : "${entry.value}" })}
+                    #end
+            #end
+
+            ## Start building the update expression, starting with attributes we're going to SET **
+            #set( $expression = "" )
+            #if( !${expSet.isEmpty()} )
+                #set( $expression = "SET" )
+                #foreach( $entry in $expSet.entrySet() )
+                    #set( $expression = "${expression} ${entry.key} = ${entry.value}" )
+                    #if ( $foreach.hasNext )
+                        #set( $expression = "${expression}," )
+                    #end
+                #end
+            #end
+
+            ## Continue building the update expression, adding attributes we're going to REMOVE **
+            #if( !${expRemove.isEmpty()} )
+                #set( $expression = "${expression} REMOVE" )
+
+                #foreach( $entry in $expRemove )
+                    #set( $expression = "${expression} ${entry}" )
+                    #if ( $foreach.hasNext )
+                        #set( $expression = "${expression}," )
+                    #end
+                #end
+            #end
+
+            ## Finally, write the update expression into the document, along with any expressionNames and expressionValues **
+            "update" : {
+                "expression" : "${expression}"
+                #if( !${expNames.isEmpty()} )
+                    ,"expressionNames" : $utils.toJson($expNames)
+                #end
+                #if( !${expValues.isEmpty()} )
+                    ,"expressionValues" : $utils.toJson($expValues)
+                #end
+            }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  editDiscoveryMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    DependsOn:
+    - chatQLSchema
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: Mutation
+      FieldName: editDiscovery
+      DataSourceName: !GetAtt discoveriesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "UpdateItem",
+          "key" : {
+              "geohashPrefix" : { "N" : "${context.arguments.geohashPrefix}" },
+              "discoveryId" : { "S" : "${context.arguments.discoveryId}" }
+          },
+          "update" : {
+              "expression" : "SET description = :description, price = :price, request_or_offer = :request_or_offer, title = :title",
+              "expressionValues": {
+                  ":description" : { "S" : "${context.arguments.description}"},
+                  ":price" : { "N" : "${context.arguments.price}"},
+                  ":request_or_offer" : {"S" : "${context.arguments.request_or_offer}"},
+                  ":title" : { "S" : "${context.arguments.title}"}
+              }
+          },
+          "condition" : { # Condition ensures that the person editing this discovery is the owner of said discovery.
+              "expression" : "contains(#cognitoUserName, :cognitoUserName)",
+              "expressionNames" : {
+                  "#cognitoUserName" : "cognitoUserName"
+              },
+              "expressionValues" : {
+                  ":cognitoUserName" : { "S" : "${context.identity.sub}" }
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  PostDiscoveryMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation #required
+      FieldName: postDiscovery #required
+      DataSourceName: !GetAtt PostDiscoveryLambdaDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version": "2017-02-28",
+          "operation": "Invoke",
+          "payload": {
+              "identity": $utils.toJson($context.identity),
+              "field": "postDiscovery",
+              "arguments":  $utils.toJson($context.arguments)
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+
+  UpdateProfilePictureMutationResolver:
+    DependsOn:
+    - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation #required
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "UpdateItem",
+          "key" : {
+              "username" : { "S" : "${context.identity.sub}" }
+          },
+          "update" : {
+              "expression" : "SET profilePic = :profilePic",
+              "expressionValues": {
+                  ":profilePic" : { "S" : "${context.arguments.key}"}
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId  #required
+      FieldName: updateProfilePicture #required
+  
+
+# UserConversations
+  conversationUserConversationsResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "UserConversations"
+      FieldName: "conversation"
+      DataSourceName: !GetAtt conversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "GetItem",
+          "key" : {
+              "id" : { "S" : "${context.source.conversationId}" }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  associatedUserConversationsResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "UserConversations"
+      FieldName: "associated"
+      DataSourceName: !GetAtt userConversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "conversationId = :conversationId",
+              "expressionValues" : {
+                  ":conversationId" : {
+                      "S" : "${context.source.conversationId}"
+                  }
+              }
+          },
+          "index": "conversationId-index"
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($context.result.items)
+
+# Conversation
+  latestMessageConversationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Conversation"
+      FieldName: "latestMessage"
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+            "expression": "conversationId = :conversationId",
+            "expressionValues" : {
+              ":conversationId" : {
+                "S" : "${context.source.id}"
+                }
+              }
+            },
+            "scanIndexForward" : false
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($ctx.result.items[0])
+
+  createMessageMutationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Mutation"
+      FieldName: "createMessage"
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2018-05-29",
+          "operation" : "PutItem",
+          "key" : {
+              "conversationId" : { "S" : "${context.arguments.conversationId}" },
+              "createdAt": { "N": $util.time.nowEpochSeconds() }
+          },
+          "attributeValues" : {
+              "content": {  "S": "${context.arguments.content}" },
+              "sender": {  "S": "${context.identity.sub}" },
+              "isSent": {  "BOOL": true },
+              "id": { "S" : "${util.autoId()}"}
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+
+# Allows to get back the related disocvery of a given conversation
+  discoveryConversationResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Conversation"
+      FieldName: "discovery"
+      DataSourceName: !GetAtt discoveriesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "discoveryId = :discoveryId",
+              "expressionValues" : {
+                  ":discoveryId" : {
+                      "S" : "${context.source.discoveryId}"
+                  }
+              }
+          },
+          "index": "discoveryId-index"
+        }
+      ResponseMappingTemplate: |
+        ## Raise a GraphQL field error in case of a datasource invocation error
+        #if($ctx.error)
+            $util.error($ctx.error.message, $ctx.error.type)
+        #end
+        ## ## Pass back the result from DynamoDB. **
+        $utils.toJson($context.result.items[0])
+
+  saveDiscoveryMutationResolver:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation #required
+      DataSourceName: !GetAtt savedDiscoveriesDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "UpdateItem",
+          "key" : {
+              "cognitoUserName" : { "S" : "${context.identity.sub}" },
+              "discoveryId" : { "S" : "${context.arguments.discoveryId}"}
+          },
+          "update" : {
+              "expression" : "SET savedAt = :savedAt",
+              "expressionValues": {
+                  ":savedAt" : { "S" : "$util.time.nowEpochSeconds()"}
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: saveDiscovery #required
+
+  removeSavedDiscoveryMutationResolver:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation #required
+      DataSourceName: !GetAtt savedDiscoveriesDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2018-05-29", ## Note the new version
+          "operation" : "DeleteItem",
+          "key" : {
+              "cognitoUserName" : { "S" : "${context.identity.sub}" },
+              "discoveryId" : { "S" : "${context.arguments.discoveryId}"}
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: removeSavedDiscovery #required
+
+
+  allSavedDiscoveriesQueryResolver:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query #required
+      DataSourceName: !GetAtt savedDiscoveriesDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "cognitoUserName = :cognitoUserName",
+              "expressionValues" : {
+                  ":cognitoUserName" : { "S" : "${context.identity.sub}"}
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result.items)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: allSavedDiscoveries #required
+
+  discoveryFromSavedDiscoveriesResolver:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: SavedDiscovery #required
+      DataSourceName: !GetAtt discoveriesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "discoveryId = :discoveryId",
+              "expressionValues" : {
+                  ":discoveryId" : {
+                      "S" : "${context.source.discoveryId}"
+                  }
+              }
+          },
+          "index": "discoveryId-index"
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result.items[0])
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: discovery #required
+
+
+# QUERY
+  meQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "me"
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "GetItem",
+          "key": {
+              "username": { "S" : "${context.identity.sub}"}
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result)
+
+  savedDiscoveryFieldResolver:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: Discovery
+      FieldName: isSaved
+      DataSourceName: !GetAtt savedDiscoveriesDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "GetItem",
+          "key": {
+              "cognitoUserName": { "S" : "${context.identity.sub}"},
+              "discoveryId" : {"S" : "${context.source.discoveryId}"}
+          }
+        }
+      ResponseMappingTemplate: |
+        #if ($util.isNull($context.result))
+            false
+        #else
+            true
+        #end
+
+
+  allMessageConnectionQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "allMessageConnection"
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "conversationId = :conversationId",
+              "expressionValues" : {
+                  ":conversationId" : {
+                      "S" : "${context.arguments.conversationId}"
+                  }
+              }
+          },
+          "scanIndexForward": false,
+          "limit": #if(${context.arguments.first}) ${context.arguments.first} #else 20 #end,
+          "nextToken": #if(${context.arguments.after}) "${context.arguments.after}" #else null #end
+        }
+      ResponseMappingTemplate: |
+        {
+          "messages": $utils.toJson($context.result.items),
+          "nextToken": #if(${context.result.nextToken}) "${context.result.nextToken}" #else null #end
+        }
+
+  discoveryQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "discovery"
+      DataSourceName: !GetAtt discoveriesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "discoveryId = :discoveryId",
+              "expressionValues" : {
+                  ":discoveryId" : {
+                      "S" : "${context.arguments.discoveryId}"
+                  }
+              }
+          },
+          "index": "discoveryId-index"
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result.items[0])
+
+  conversationFromDiscoveryQuery:
+    DependsOn:
+      - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: conversationFromDiscovery
+      DataSourceName: !GetAtt conversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "index" : "discoveryId-authorUserName-index",
+          "query" : {
+            "expression": "discoveryId = :discoveryId and authorUserName = :authorUserName",
+              "expressionValues" : {
+                ":discoveryId" : { "S" : "${context.arguments.discoveryId}" },
+                ":authorUserName" : { "S" : "${context.identity.sub}" }
+              }
+          }
+        }
+      ResponseMappingTemplate: |
+        #if($ctx.result.items.size() > 0)
+          $util.toJson($ctx.result.items[0])
+        #else
+          null
+        #end
+
+  allAssociatedQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "allAssociated"
+      DataSourceName: !GetAtt userConversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "conversationId = :conversationId",
+              "expressionValues" : {
+                  ":conversationId" : {
+                      "S" : "${context.arguments.conversationId}"
+                  }
+              }
+          },
+          "index": "conversationId-index"
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($context.result.items)
+
+  allUserQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "allUser"
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Scan",
+          "limit": #if(${context.arguments.first}) "${context.arguments.first}" #else 20 #end,
+          "nextToken": #if(${context.arguments.after}) "${context.arguments.after}" #else null #end
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result.items)
+
+  allMessageQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Query"
+      FieldName: "allMessage"
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplateS3Location: resolvers/Query.allMessage.req.vtl
+      ResponseMappingTemplateS3Location: resolvers/Query.allMessage.res.vtl
+
+  allMessageFromQueryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: Query
+      FieldName: allMessageFrom
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplateS3Location: resolvers/Query.allMessageFrom.req.vtl
+      ResponseMappingTemplateS3Location: resolvers/Query.allMessageFrom.res.vtl
+
+  autoCompleteQueryResolver:
+    Type: "AWS::AppSync::Resolver"                                                                   # 4
+    DependsOn:                                                                                       # 4A
+    - chatQLSchema
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId  #required                                                      #
+      DataSourceName: !GetAtt ESDataSource.Name        
+      FieldName: autocomplete #required                                                              #
+      Kind: UNIT                                                                                     #
+      # PipelineConfig:                                                                              # 
+      #   PipelineConfig
+      # RequestMappingTemplate: String                                                               #
+      RequestMappingTemplateS3Location: resolvers/Query.autocomplete.req.vtl                 #
+      # ResponseMappingTemplate: String
+      ResponseMappingTemplateS3Location: resolvers/Query.autocomplete.res.vtl
+      TypeName: Query
+
+  searchQueryResolver:
+    Type: "AWS::AppSync::Resolver"                                                                   # 4
+    DependsOn:                                                                                       # 4A
+    - chatQLSchema
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId  #required                                                      #
+      DataSourceName: !GetAtt ESDataSource.Name        
+      FieldName: search #required                                                              #
+      Kind: UNIT                                                                                     #
+      # PipelineConfig:                                                                              # 
+      #   PipelineConfig
+      # RequestMappingTemplate: String                                                               #
+      RequestMappingTemplateS3Location: resolvers/Query.search.req.vtl                 #
+      # ResponseMappingTemplate: String
+      ResponseMappingTemplateS3Location: resolvers/Query.search.res.vtl
+      TypeName: Query
+
+
+# User
+  messagesUserResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "User"
+      FieldName: "messages"
+      DataSourceName: !GetAtt messagesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "sender = :id",
+              "expressionValues" : {
+                  ":id" : {
+                      "S" : "${context.source.username}"
+                  }
+              }
+          },
+          "index": "sender-conversationId-index",
+          "scanIndexForward": false,
+          "limit": #if(${context.arguments.first}) ${context.arguments.first} #else 20 #end,
+          "nextToken": #if(${context.arguments.after}) "${context.arguments.after}" #else null #end
+        }
+      ResponseMappingTemplate: |
+        {
+          "messages": $utils.toJson($context.result.items),
+          "nextToken": #if(${context.result.nextToken}) "${context.result.nextToken}" #else null #end
+        }
+
+  conversationsUserResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "User"
+      FieldName: "conversations"
+      DataSourceName: !GetAtt userConversationsTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "username = :username",
+              "expressionValues" : {
+                  ":username" : {
+                      "S" : "${context.source.username}"
+                  }
+              }
+          },
+          "scanIndexForward": false,
+          "limit": #if(${context.arguments.first}) ${context.arguments.first} #else 20 #end,
+          "nextToken": #if(${context.arguments.after}) "${context.arguments.after}" #else null #end
+        }
+      ResponseMappingTemplate: |
+        {
+          "userConversations": $utils.toJson($context.result.items),
+          "nextToken": #if(${context.result.nextToken}) "${context.result.nextToken}" #else null #end
+        }
+
+## Retrieves all of the discoveries of a given user.
+  discoveriesByUserResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query #required
+      DataSourceName: !GetAtt discoveriesTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "Query",
+          "query" : {
+              "expression": "cognitoUserName = :username",
+              "expressionValues" : {
+                  ":username" : {
+                      "S" : "${context.identity.sub}"
+                  }
+              }
+          },
+          "index" : "CognitoUserNameIndex"
+          ## TODO: If needed, you can enable pagination for discoveries, for now it isn't needed. Come here post MVP.
+          ## ,
+          ## "limit": #if(${context.arguments.first}) ${context.arguments.first} #else 20 #end,
+          ## "nextToken": #if(${context.arguments.after}) "${context.arguments.after}" #else null #end
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($ctx.result.items)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: getMyDiscoveries #required
+
+  getSurroundingDiscoveriesResolver:
+    DependsOn:
+    - chatQLSchema
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query #required
+      # PipelineConfig:
+      #   PipelineConfig
+      DataSourceName: !GetAtt GetSurroundingDiscoveriesLambdaDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version": "2017-02-28",
+          "operation": "Invoke",
+          "payload": {
+              "field": "getSurroundingDiscoveries",
+              "arguments":  $utils.toJson($context.arguments)
+          }
+        }
+      ResponseMappingTemplate: |
+        $utils.toJson($context.result.discoveries)
+      Kind: UNIT
+      ApiId: !GetAtt chatQLApi.ApiId #required
+      FieldName: getSurroundingDiscoveries #required
+  
+
+  # Discovery
+  authorDiscoveryResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      ApiId: !GetAtt chatQLApi.ApiId
+      TypeName: "Discovery"
+      FieldName: "author"
+      DataSourceName: !GetAtt usersTableDataSource.Name
+      RequestMappingTemplate: |
+        {
+          "version" : "2017-02-28",
+          "operation" : "GetItem",
+          "key" : {
+              "username" : { "S" : "${context.source.cognitoUserName}" }
+          }
+        }
+      ResponseMappingTemplate: |
+        $util.toJson($ctx.result)
+
+Outputs:
+  ChatQLApiId:
+    Description: Unique AWS AppSync GraphQL API Identifier
+    Value: !GetAtt chatQLApi.ApiId
+  ChatQLApiUrl:
+    Description: The Endpoint URL of your GraphQL API.
+    Value: !GetAtt chatQLApi.GraphQLUrl
+
+
+##################################################################################
+#####     CURRENT STATUS    #####
+#################################
+#                  Resource                       |  Instantiation | Partial | Complete
+# ------------------------------------------------|----------------|---------|---------
+#   AWS::AppSync::ApiKey                          |                |         |        
+#   AWS::AppSync::GraphQLApi                      |        X       |         |        
+#   AWS::AppSync::DataSource                      |        X       |         |        
+#   AWS::AppSync::Resolver                        |        X       |         |        
+#   AWS::AppSync::GraphQLSchema                   |        X       |         |        
+#   AWS::AppSync::FunctionConfiguration           |        X       |         |              
+# ------------------------------------------------|----------------|---------|---------
+# Instantiation:  The YAML outline of resource copied but commented out
+# Partial:        The resource is instantiated when creating stack but some field still missing
+# Complete:       The resource is instantiated and all fields required for project are set
+
+##################################################################################
+#####     NOTES    #####
+########################
+# 1    (ApiKey)
+# 
+##################################################################################
+# 2    (GraphQLApi)
+#
+##################################################################################
+# 3    (DataSource)
+#  The AWS::AppSync::DataSource resource creates data sources for resolvers in AWS AppSync to connect to, such as Amazon DynamoDB, AWS Lambda, and Amazon Elasticsearch Service. 
+#  Resolvers (4) use these data sources to fetch data when clients make GraphQL calls.
+# 3A ) The type of the data source. Possibilites include:
+#       - AMAZON_DYNAMODB : The data source is an Amazon DynamoDB table.
+#       - AMAZON_ELASTICSEARCH : The data source is an Amazon Elasticsearch Service domain.
+#       - AWS_LAMBDA : The data source is an AWS Lambda function.
+#       - NONE : There is no data source. This type is used when you wish to invoke a GraphQL operation without connecting to a data source, such as performing data transformation with resolvers or triggering a subscription to be invoked from a mutation.
+#       - HTTP : The data source is an HTTP endpoint.
+#       - RELATIONAL_DATABASE: The data source is a relational database.
+# 3B ) The AWS IAM service role ARN for the data source. The system assumes this role when accessing the data source.
+#     Required if Type (3A) is specified as AWS_LAMBDA, AMAZON_DYNAMODB, or AMAZON_ELASTICSEARCH.
+# 3G ) Specifies the AwsRegion and Endpoints for an Amazon Elasticsearch Service domain in your account for an AWS AppSync data source.
+##################################################################################
+# 4    (Resolver)
+# 4A ) When changes are made to the schema, they must be propgated before a resolver has been attached for the new changes. If this "DependsOn" field is missing, cloudformation will complain that the schema has no fields of this type.
+#       So, its a good idea to always include it.
+##################################################################################
+# 5    (UserPoolSNSRole)
+# 5A ) The IAM role that allows AWS Cognito to have permission to send SMS messages. This corresponds to General settings > MFA and verifications > You must provide a role to allow Amazon Cognito to send SMS messages
+# 5B ) I am not too sure about this. Has to do something with IAM, will comeback to this. Can learn more about it at:
+# https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html
+# https://stackoverflow.com/questions/32467596/aws-confused-deputy-is-external-id-really-just-a-password
+##################################################################################
+# 6    (UserPool)
+# 6A ) The following is good example:
+# https://gist.github.com/singledigit/2c4d7232fa96d9e98a3de89cf6ebe7a5
+# For more information refer to the following:
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpool.html
+##################################################################################
+# 7    (MfaConfiguration)
+# 7A ) If commented out it defaults to being OFF. This corresponds to General settings > MFA and verifications > Do you want to enable Multi-Factor Authentication (MFA)?
+##################################################################################
+# 8    (LambdaConfig)
+# 8A ) The lambda triggers that run in response to event emmited by AWS Cognito User Pool. To specify which lambda function should run on a specific trigger (PreAuthentication, PostAuthentication, etc...) use the ARN of the lambda function.
+# For more information on each of the triggers vist the following webistes:
+# https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cognito-userpool-lambdaconfig.html#cfn-cognito-userpool-lambdaconfig-createauthchallenge
+##################################################################################
+# 9    (UserPoolTags)
+# 9A ) The tags to bind to an AWS Cognito User Pool. The formart is a String to String map. So the tag key is specified as the YAML key and the tag value is specified by the YAML key.
+##################################################################################
+# 10    (RoleMappings)
+# 10A ) When trying to setup RoleMappings I had an extermely hard time because the documentation was WRONG! Go to the following link:
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
+# You will notice that it says the following: 
+# 'The string identifies the identity provider, for example, "graph.facebook.com" or "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id"'
+# This is WRONG! The example format for the cognito identity provider they give is, "cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id", which is incorrect.
+# On closer inspection you will notice that it is suppsosed to be us-east-1 and NOT east-1, the following is a correct example:
+# cognito-idp.us-east-1.amazonaws.com/us-east-1_iOanCxGRU:39bme3j847mj0pcv4uc3pktr9
+# So the format should follow the following:
+# cognito-idp.<region>.amazonaws.com/<UserPoolID>:<AppClientID>
+# I revisted this problem again and have now created a custom resource to generate the RoleMappings, but reference I have copied over the old portion here:
+# RoleMappings:
+#   cognito-idp.us-east-1.amazonaws.com/us-east-1_aeHmiQYxq:4rq5ooj1384bo18f14lfjoaj1d:
+#     AmbiguousRoleResolution: Deny
+#     Type: Rules
+#     RulesConfiguration:
+#       Rules: 
+#         - Claim: custom:user_type
+#           MatchType: Equals
+#           RoleARN: !GetAtt GroupRole.Arn
+#           Value: worker
+# 10B ) You can use the User Pool group (the preferred roles claims),Token, or use can use the attributes (claims from token) to a role, Rules.
+# For more info visit the following:
+# http://www.youtube.com/watch?v=VZqG7HjT2AQ&t=10m48s
+# https://aws.amazon.com/blogs/aws/new-amazon-cognito-groups-and-fine-grained-role-based-access-control-2/
+# https://docs.aws.amazon.com/cognito/latest/developerguide/role-based-access-control.html
+##################################################################################
+# 11    (Schema)
+# 11A ) See the following link to see a list of Standard Cognito User Pool Attributes:
+# https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html
+##################################################################################
+# 12    (ExplicitAuthFlows)
+# 12A ) The possible options are ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY and USER_PASSWORD_AUTH.
+# ADMIN_NO_SRP_AUTH:      Use this option if you have a server that is trying to get tokens without getting authorization code.
+# CUSTOM_AUTH_FLOW_ONLY:  You define your authorization flow and don't use the OAuth2 authorization flow.
+# USER_PASSWORD_AUTH:     You don't use SRP (NOT RECOMMENDED!) and directly get the tokens back from the Auth Server.
+# For more information see the following links:
+# https://stackoverflow.com/questions/54238306/what-the-settings-mean-in-aws-cognito-user-pool-app-client
+# https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2
+# https://oauth.net/2/grant-types/
+##################################################################################
+# 13    (WriteAttributes)
+# 13A ) I decided to not allow an App Client to be able to directly write to the Cognito User Pool and this the App Client won't be able to change that information directly.
+# It will still be changeable but indirectly. When a trigger of some sort executes (ie via DynamoDB) this will call a Lambda function which will force have permission to change these attributes.
+# Thus the state of the users information in DynamoDB (or whereever else) stays consistent with the information about the user in the User Pool.
+# This has to be done this way because there is no way for us to detect when a change in the users information occurs in the User Pool. You could use the Cognito lambda triggers but those only execute once in a while and thus aren't instant. 
+##################################################################################
+# 14    (IdentityPool)
+# 14A ) Some of the sub settings have been commented out because they are not required for most of the use cases Voltic Labs thinks it will be handling. Thus this general/default template doesn't include them.
+# You can uncomment and include them if desired.
+# 14B ) DeveloperProviderName is a setting if you are setting up a Developer Authenticated Identity. See the following for more information:
+# https://docs.aws.amazon.com/cognito/latest/developerguide/developer-authenticated-identities.html
+# https://aws.amazon.com/blogs/mobile/integrating-amazon-cognito-using-developer-authenticated-identities-an-end-to-end-example/
+# 14C ) ServerSideTokenCheck checks to make sure whether or not a user is signed out or deleted. This makes sure you can instantly revoke valid status (not signed out globally or deleted) of a token. 
+# https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_CognitoIdentityProvider.html
+# https://github.com/amazon-archives/amazon-cognito-identity-js/issues/21
+##################################################################################
+# 15    (AliasAttributes)
+# 15A ) This corresponds to General settings > Attributes > How do you want your end users to sign in? > Username - Users can use a username and optionally multiple alternatives to sign up and sign in
+# You can have either AliasAttributes or UsernameAttributes uncommented.
+##################################################################################
+# 16    (UserAttributes)
+# 16A ) When specifying Cognito User Pool attribute of type DateTime you can specify just the date or date and time.
+# When specifying date and time it should be in the format : [yyyy-mm-dd hh:mm:ss timezone], an example is 2019-03-28 03:59:16 GMT.
+# When specify date the format should be : [yyyy-mm-dd], an example is 2019-03-28.
+# If the format is wrong you will get the following substring in the error message via Cloudformation under 'Status reason' when creating/updating the stack,
+# "DateTime should be in format : [yyyy-mm-dd hh:mm:ss timezone]"
+# For more information refer to the following:
+# https://github.com/aws/aws-sdk-java/issues/1396
+# https://en.wikipedia.org/wiki/ISO_8601
+# 16B ) See the following links for more info:
+# https://any-api.com/amazonaws_com/cognito_idp/docs/_AdminCreateUser/AdminCreateUser
+# https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminCreateUser.html
+# 16C ) See the following links for more info:
+# https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmSignUp.html#CognitoUserPools-ConfirmSignUp-request-ForceAliasCreation
+##################################################################################
+# 17    (AdminToGroupAttachment)
+# 17A ) For the username field you need to manually copy the sub (for example, 96343ae3-a0ee-4063-ae53-d6b2c4210a49) field of a user in a User Pool.
+# You can't use !Ref or anything like that. I asked on the Cloudformation chaneel on slack (awsdevelopers.slack.com) and was told to create a custom resource.
+# For more info see the links below:
+# https://stackoverflow.com/questions/51800442/how-to-get-cognito-users-username-in-cloudformation
+# https://forums.aws.amazon.com/thread.jspa?messageID=875407
+##################################################################################
+# 18    (UserPoolClientSettings)
+# 18A ) If you set this to True (which you should always) it means that OAuth was enabled. If you set his to false you will get the following error message in the AWS Cognito User Pool Console:
+# Your User Pool app client settings have been modified via the Cognito User Pools API (using a Lambda or CLI), and OAuth was not enabled. See the documentation for more details.
+# The documentation they are reffering to point to the following:
+# https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPoolClient.html#CognitoUserPools-UpdateUserPoolClient-request-AllowedOAuthFlowsUserPoolClient
+# It states the following:
+# Set to TRUE if the client is allowed to follow the OAuth protocol when interacting with Cognito user pools.
+# 18B ) The allowed allowed OAuth flows (AllowedOAuthFlows) can include from the following: 
+# Authorization code grant (code): Use this with PKCE for mobile apps
+# Implicit grant (implicit): Use this if you can't use Authroization code grant
+# Client credentials (client_credentials): For machine-machine communication
+# For more information see:
+# https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_UpdateUserPoolClient.html#CognitoUserPools-UpdateUserPoolClient-request-AllowedOAuthFlows
+# https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-idp-settings.html
+# 18C ) YOU MUST SET THIS IF YOU SET AllowedOAuthFlows.
+# See the following for more information:
+# https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-idp-settings.html
+##################################################################################

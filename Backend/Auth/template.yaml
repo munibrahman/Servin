@@ -1,0 +1,389 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  * Written by Munib Rahman <munib@volticlabs.com>, April 2018
+#  */
+
+
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Auth Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+
+Parameters:
+  AuthName:
+    Type: String
+    Default: VolticAuth
+    Description: Unique Auth Name for the AWS Cognito Resources (User Pool, Identity Pool, IAM roles, etc...)
+    MinLength: 3
+    MaxLength: 20
+    AllowedPattern: '^[a-zA-Z][a-zA-Z0-9_]*$'
+
+  ReleaseEnvironment:                                                        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+    Description: Environment type.
+    Default: test
+    Type: String
+    AllowedValues: [prod, dev, test]
+    ConstraintDescription: must specify prod, dev, or test.
+
+  UserPoolGivenNameMaxLength: 
+    Type: Number
+    Default: 32
+    Description: Maximum length of the given-name attribute in the User Pool.
+  UserPoolGivenNameMinLength: 
+    Type: Number
+    Default: 1
+    Description: Minmum length of the given-name attribute in the User Pool.
+
+  UserPoolFamilyNameMaxLength: 
+    Type: Number
+    Default: 32
+    Description: Maximum length of the family-name attribute in the User Pool.
+  UserPoolFamilyNameMinLength: 
+    Type: Number
+    Default: 1
+    Description: Minimum length of the family-name attribute in the User Pool.
+
+  WebsiteUrl:
+    Type: String
+    Description: Url used to redirect the user back to app when verifying their email address
+    Default: https://www.servin.io
+
+  StripeLambdaLayer:
+    Type: String
+    Description: Arn of the Stripe Lambda Layer.
+
+  StripeSecretKey:
+    Type: String
+    Description: Secret key used for making calls to the Stripe API.
+    
+  UserDynamoDBTableName:
+    Type: String
+    Description: Name of the dynamodb table used to store user information
+
+  DynamoDBStripeTableName: 
+    Type: String
+    Description: Name of the dynamodb table used to store 
+
+    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+# Conditions:
+#   CreateProdResources: !Equals [!Ref ReleaseEnvironment, prod]
+#   CreateDevResources: !Equals [!Ref ReleaseEnvironment, dev]
+
+
+Resources:
+  UserPool:
+    Type: "AWS::Cognito::UserPool"
+    Properties:
+      UserPoolName: !Sub ${AuthName}-${ReleaseEnvironment}-User-Pool
+      AutoVerifiedAttributes:                         #https://stackoverflow.com/questions/46973302/how-to-require-email-validation-in-cognito-through-cloudformation
+        - email
+      EmailConfiguration:
+        ReplyToEmailAddress: verify@servin.io
+        SourceArn: arn:aws:ses:us-east-1:810093522723:identity/verify@servin.io
+      # EmailVerificationSubject: String
+      # EmailVerificationMessage: String
+      LambdaConfig:
+        CustomMessage: !GetAtt CustomMessageLambda.Arn
+        PreSignUp: !GetAtt PreSignupLambda.Arn
+        PostConfirmation: !GetAtt PostConfirmationLambda.Arn
+      Policies:
+        PasswordPolicy:                           #TODO: Change this requirement in the dev prod
+          MinimumLength: 6
+          RequireLowercase: false
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: false
+      Schema:
+        # Standard Cognito User Pool Attribute
+        - Name: given_name
+          AttributeDataType: String
+          DeveloperOnlyAttribute: False
+          Mutable: True
+          StringAttributeConstraints:
+            MaxLength: !Ref UserPoolGivenNameMaxLength
+            MinLength: !Ref UserPoolGivenNameMinLength
+          Required: True
+        - Name: family_name
+          AttributeDataType: String
+          DeveloperOnlyAttribute: False
+          Mutable: True
+          StringAttributeConstraints:
+            MaxLength: !Ref UserPoolFamilyNameMaxLength
+            MinLength: !Ref UserPoolFamilyNameMinLength
+          Required: True
+        - Name: email
+          AttributeDataType: String
+          DeveloperOnlyAttribute: False
+          Mutable: False
+          Required: True
+        - Name: signup_ip_address                         # Used for accepting Stripe TOS
+          AttributeDataType: String
+          DeveloperOnlyAttribute: False
+          Mutable: False
+          Required: False
+      UsernameAttributes:
+        - email
+      UserPoolTags:
+        AWSAppSyncCreatedResource: 
+          Fn::Sub:
+          - "CloudFormation Stack ${StackName}"
+          - StackName: !Ref "AWS::StackName"
+
+## LAMBDA FUNCTIONS FOR THE USER POOL
+# Pre-signup lambda
+
+  PreSignupLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub PreSignupLambda-${ReleaseEnvironment}
+      Runtime: nodejs10.x
+      Code: Lambdas/nodejs8.10/
+      Handler: PreSignup.handler
+      Role: !GetAtt LambdaForCloudFormationRole.Arn
+      # Layers:
+      #   - !Ref UtilitiesLayer
+      # Environment:
+      #   Variables:
+      #     WEBSITE_URL: !Sub ${WebsiteUrl}
+
+  PreSignupLambdaExecutionPermission:
+    Type: AWS::Lambda::Permission
+    Properties: 
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt PreSignupLambda.Arn
+      Principal: cognito-idp.amazonaws.com
+      SourceArn: !GetAtt UserPool.Arn
+
+# Post confirmation lambda, runs after a user confirms their account.
+# Task: Populate the person's info in the dynamoDB table
+
+  PostConfirmationLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub PostConfirmationLambda-${ReleaseEnvironment}
+      Runtime: nodejs10.x
+      Code: Lambdas/nodejs8.10/
+      Handler: PostConfirmation.handler
+      Role: !GetAtt LambdaForCloudFormationRole.Arn
+      Layers:
+        - !Ref StripeLambdaLayer
+      Timeout: 30
+      Environment:
+        Variables:
+          StripeSecretKey: !Sub ${StripeSecretKey}
+          UserDynamoDBTableName: !Sub ${UserDynamoDBTableName}
+          DynamoDBStripeTableName: !Sub ${DynamoDBStripeTableName}
+
+
+  PostConfirmationLambdaExecutionPermission:
+    Type: AWS::Lambda::Permission
+    Properties: 
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt PostConfirmationLambda.Arn
+      Principal: cognito-idp.amazonaws.com
+      SourceArn: !GetAtt UserPool.Arn
+
+# Custom message lambda.
+## Allows us to send a verification link to their email and then redirect that request to the app
+
+  CustomMessageLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub CustomMessageLambda-${ReleaseEnvironment}
+      Runtime: nodejs10.x
+      Code: Lambdas/nodejs8.10/
+      Handler: CustomMessage.handler
+      Role: !GetAtt LambdaForCloudFormationRole.Arn
+      # Layers:
+      #   - !Ref UtilitiesLayer
+      Environment:
+        Variables:
+          WEBSITE_URL: !Sub ${WebsiteUrl}
+
+  CustomMessageLambdaExecutionPermission:
+    Type: AWS::Lambda::Permission
+    Properties: 
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt CustomMessageLambda.Arn
+      Principal: cognito-idp.amazonaws.com
+      SourceArn: !GetAtt UserPool.Arn
+
+### User Pool Clients
+  WebAcccessUserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      ClientName: WebAppsyncRDSClient
+      GenerateSecret: false
+      UserPoolId: !Ref UserPool
+
+  iOSUserPoolClient:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+      ClientName: iOSAppsyncRDSClient
+      GenerateSecret: true
+      UserPoolId: !Ref UserPool
+
+# ***********************************************************
+# IDENTITY POOL
+# ***********************************************************
+
+  IdentityPool:
+    Type: "AWS::Cognito::IdentityPool"
+    Properties:
+      CognitoIdentityProviders:
+        - ClientId: !Ref iOSUserPoolClient
+          ProviderName: !Sub
+            - cognito-idp.${region}.amazonaws.com/${client}
+            - { region: !Ref "AWS::Region",  client: !Ref UserPool}
+        - ClientId:  !Ref WebAcccessUserPoolClient
+          ProviderName: !Sub
+            - cognito-idp.${region}.amazonaws.com/${client}
+            - { region: !Ref "AWS::Region",  client: !Ref UserPool}
+      IdentityPoolName: !Sub ${AuthName}_${ReleaseEnvironment}_Identity_Pool
+      AllowUnauthenticatedIdentities: false #required
+
+# ******************************************************************************
+## This rule gives permissions to the cognito identity pools to use s3 resources
+# ******************************************************************************
+  AuthRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub ${AuthName}-${ReleaseEnvironment}-CognitoIdentityPoolRole
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Federated: cognito-identity.amazonaws.com
+            Action: 'sts:AssumeRoleWithWebIdentity'
+            Condition:
+              'ForAnyValue:StringLike':
+                'cognito-identity.amazonaws.com:amr': authenticated
+
+# *****************************************************************
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-identitypoolroleattachment.html
+# *****************************************************************
+  IdentityPoolRoleMap:
+  # Created to map Auth and Unauth roles to the identity pool
+  # Depends on Identity Pool for ID ref
+    Type: AWS::Cognito::IdentityPoolRoleAttachment
+    Properties: 
+      IdentityPoolId: !Ref IdentityPool
+      Roles:
+          # unauthenticated: !Ref unauthRoleArn                       # If unauthenticated access is also allowed, slap on the unauth role arn.
+          authenticated: !GetAtt AuthRole.Arn
+    DependsOn: IdentityPool
+
+# *****************************************************************
+# AWS Pinpoint IAM Policy
+# Allows cognito identity pools to perform certain operations on behalf of the user
+# *****************************************************************
+  PinpointPolicy:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${AuthName}-${ReleaseEnvironment}-CognitoPinpointAccessPolicy
+      Roles: 
+        - !Ref AuthRole
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 'mobiletargeting:UpdateEndpoint'
+              - 'mobiletargeting:PutEvents'
+              - 'mobiletargeting:GetUserEndpoints'                            # Used to get endpoint of a user, in order to send them a push notification
+              - 'mobiletargeting:SendMessages'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:mobiletargeting:*:'
+                  - !Ref AWS::AccountId
+                  - ':apps/'
+                  - '128f6b300d75446f9c2ca0ffb248e4f7'
+                  - '*'
+
+  LambdaForCloudFormationRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: LambdaForCloudFormationRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Effect: Allow
+            Action: 'sts:AssumeRole'
+            Principal:
+              Service: lambda.amazonaws.com
+      Policies:
+        -
+          PolicyName: WriteCloudWatchLogs
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+        -
+          PolicyName: UpdateUserPoolClient
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action: 'cognito-idp:UpdateUserPoolClient'
+                Resource: 'arn:aws:cognito-idp:*:*:userpool/*'
+        -
+          PolicyName: ManageUserPoolDomain
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action: 'cognito-idp:CreateUserPoolDomain'
+                Resource: 'arn:aws:cognito-idp:*:*:userpool/*'
+              -
+                Effect: Allow
+                Action: 'cognito-idp:DeleteUserPoolDomain'
+                Resource: 'arn:aws:cognito-idp:*:*:userpool/*'
+              -
+                Effect: Allow
+                Action: 'cognito-idp:DescribeUserPoolDomain'
+                Resource: '*'
+        -
+          PolicyName: InvokeLambdaFunction
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action: 'lambda:InvokeFunction'
+                Resource: 'arn:aws:lambda:*:*:function:*'
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess                                    # Required for post confirmation lambda to populate the DynamoDB Table with User values
+
+Outputs:
+
+  UserPoolID:
+    Description: Unique ID of the Cognito UserPool
+    Value: !Ref UserPool
+  UserPoolARN:
+    Description: Unique ARN of the Cognito UserPool
+    Value: !GetAtt UserPool.Arn
+  IdentityPoolId:
+    Description: Unique ID of the Cognito Identity Pool
+    Value: !Ref IdentityPool
+  iOSAppClientID:
+    Description: Unique ID of the iOS App client for the User Pool
+    Value: !Ref iOSUserPoolClient
+  iOSAppClientSecret:                                               # This isn't supported right now, workaround: https://forums.aws.amazon.com/thread.jspa?messageID=800824&tstart=0
+    Description: Secret of the iOSAppClient
+    Value: !GetAtt iOSUserPoolClient.ClientSecret
+  AuthRole:
+    Description: Name of the Authenticated role used to access resources on behalf of the cognito user pools and its related Identity pool
+    Value: !Ref AuthRole

@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Description: >
+  Cloudformation stack to manage all organization wide Lambda Layers used to in AWS Lambda.
+
+Parameters:
+  ReleaseEnvironment:
+    Type: String
+    Default: dev
+    Description: The software development environment (ie dev, testing, production, etc...)
+
+Resources:
+  ElasticsearchLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: ElasticsearchLambdaLayer                     # 1F
+      Description: >                                          # 1E
+        Layer containing all resources to commnicate with Elasticsearch
+      ContentUri: nodejs10.x/elastic-search/                  # 1D
+      CompatibleRuntimes:                                     # 1C
+        - nodejs10.x
+      LicenseInfo: UNLICENSED                                 # 1B
+      RetentionPolicy: Delete                                 # 1A
+
+  CustomResourceLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: CustomResourceLambdaLayer
+      Description: >
+        Layer containing all to create custom resources
+      ContentUri: nodejs10.x/custom-resource/
+      CompatibleRuntimes:
+        - nodejs10.x
+      LicenseInfo: UNLICENSED
+      RetentionPolicy: Delete
+
+  UtilitiesLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: UtilitiesLambdaLayer
+      Description: >
+        Layer containing helper packages
+      ContentUri: nodejs10.x/utilities/
+      CompatibleRuntimes:
+        - nodejs10.x
+      LicenseInfo: UNLICENSED
+      RetentionPolicy: Delete
+
+  AwsSdkLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: AwsSdkLambdaLayer
+      Description: >
+        Layer containing helper packages
+      ContentUri: nodejs10.x/aws-sdk/
+      CompatibleRuntimes:
+        - nodejs10.x
+      LicenseInfo: UNLICENSED
+      RetentionPolicy: Delete
+
+  StripeLambdaLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: StripeLambdaLayer
+      Description: >
+        Layer containing helper packages
+      ContentUri: nodejs10.x/stripe/
+      CompatibleRuntimes:
+        - nodejs10.x
+      LicenseInfo: UNLICENSED
+      RetentionPolicy: Delete
+
+#########################################################################################################################################################
+#####     CUSTOM RESOURCES    #####
+###################################
+
+#########################################################################################################################################################
+Outputs:
+  ElasticsearchLambdaLayer:
+    Description: Arn of the Elasticsearch Layer.
+    Value: !Ref ElasticsearchLambdaLayer
+
+  CustomResourceLambdaLayer:
+    Description: Arn of the Custom Resource Layer.
+    Value: !Ref CustomResourceLambdaLayer
+
+  UtilitiesLambdaLayer:
+    Description: Arn of the Utilities Layer.
+    Value: !Ref UtilitiesLambdaLayer
+
+  AwsSdkLambdaLayer:
+    Description: Arn of the Utilities Layer.
+    Value: !Ref AwsSdkLambdaLayer
+  
+  StripeLambdaLayer:
+    Description: Arn of the Stripe Lambda Layer.
+    Value: !Ref StripeLambdaLayer
+
+##################################################################################
+#####     NOTES    #####
+########################
+# 1    (aLayer, AWS::Serverless::LayerVersion)
+# 1A ) The possible options for RetentionPolicy field are 'Retain' and 'Delete'.
+# Retain: If you set this on creation of the layer it will retain previous versions of the layer.
+# Delete: If you set this on creation of the layer it will delete previous versions once the new version is deployed.
+# NOTE: If you change this setting after have created the layer it will have no impact.
+# So for example if you set it to Retain and then changed it to Delete it will NOT delete the previous version.
+# So changing this field after the first deployment of this instance will no effect.
+# 1B ) License information for the lambda layer.
+# https://github.com/npm/npm/issues/10621, complys with the SPDX license expression.
+# If you you wish to not grants other the right to use a private or unpublished package you should use 'UNLICENSED'.
+# 1C ) A list of compatible function runtimes. 
+# 1D ) S3 Uri or location for the layer code on your local file system.
+# 1E ) Description of the layer.
+# 1F ) Name of this layer. If you don't specify a name, the logical id of the resource will be used as the name.
+##################################################################################

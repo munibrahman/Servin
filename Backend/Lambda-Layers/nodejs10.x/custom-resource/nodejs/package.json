@@ -1,0 +1,20 @@
+{
+  "name": "custom-resource",
+  "version": "1.0.0",
+  "description": "All required packages to create cloudformation custom resources by Voltic Labs Inc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Cloudformation",
+    "Custom",
+    "Resources",
+    "Custom Resources"
+  ],
+  "author": "Munib Rahman",
+  "license": "SEE LICENSE IN index.js",
+  "dependencies": {
+    "axios": "^0.19.0"
+  }
+}

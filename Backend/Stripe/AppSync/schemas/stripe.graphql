@@ -1,0 +1,176 @@
+schema {
+	query: Query
+	mutation: Mutation
+	# subscription: Subscription
+}
+
+type Mutation {
+	# Updates can only be done via passing a stripe account token.
+	# For more information, visit: https://stripe.com/docs/api#create_account_token
+	updateStripeAccount(account_token: String!): AWSJSON
+
+	#  Creates an external account to attach to user's own stripe connected account.
+	createExternalAccount(external_account_token: String!): AWSJSON
+
+	# Deletes external account that has been previously added to user's own connected account.
+	deleteExternalAccount(id: String!): AWSJSON
+
+	# Updates an external bank account information
+	updateExternalBankAccount(input: BankAccountInput): AWSJSON
+
+	# Updates an external debit card information
+	updateExternalDebitCard(input: DebitCardInput!): AWSJSON
+
+	# Creates a payment intent object, with the tranfer destination set to another stripe customer's account
+	createPaymentIntent(input: PaymentIntentInput!): AWSJSON
+
+	# Removes a payment intent object.
+	cancelPaymentIntent(intent: String!): AWSJSON
+	# Sends all the available funds in a user's account to a given external account
+	# payoutAvailableFunds(external_account: String!): AWSJSON
+
+	# Creates a setup intent
+	createSetupIntent: AWSJSON
+
+	# updates a given setup Intent. Call this method when a user changes their payment method, or selects a new payment method type.
+	updateSetupIntent(input: UpdateSetupIntentInput!): AWSJSON
+
+	# confirms a given setup Intent. Call this method when a user "saves" their payment method.
+	confirmSetupIntent(input: ConfirmSetupIntentInput!): AWSJSON
+
+	# Cancels a setup intent, call this when user abandons the setup
+	cancelSetupIntent(input: CancelSetupIntentInput!): AWSJSON
+
+
+
+	# Customer
+	# For accounts that will be conducting payments
+	updateStripeCustomer(input: UpdateStripeCustomerInput!): AWSJSON
+
+	# Attaches a given payment method on to a customer. 
+	# The user making this request must also be a stripe customer.
+	attachPaymentMethod(token: String!): AWSJSON
+
+	# Detaches a given payment method from a customer
+	detachPaymentMethod(token: String!): AWSJSON
+
+}
+
+type Query {
+	# Gets information about a user's own stripe connected account
+	retrieveStripeAccount: AWSJSON
+
+	#  Gets information about a given external account
+	retrieveExternalAccount(id: String!): AWSJSON
+
+	# Lists external accounts of a connected user
+	# limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
+	# ending_before: https://stripe.com/docs/api/external_account_bank_accounts/list?lang=node#account_list_bank_accounts-ending_before
+	# starting_after: https://stripe.com/docs/api/external_account_bank_accounts/list?lang=node#account_list_bank_accounts-starting_after
+	listExternalAccounts(type: ExternalAccountType, limit: Int, ending_before: String, starting_after: String): AWSJSON
+
+	# Returns this user's stripe account balance 
+	retrieveBalance: AWSJSON
+
+	# Retrieves a customer account
+	retrieveStripeCustomer: AWSJSON
+
+	# Lists paymentMethods
+	listPaymentMethods(input: ListPaymentMethodsInput!): AWSJSON
+	
+}
+
+enum ExternalAccountType {
+	bank_account
+	card
+}
+
+enum BusinessType {
+	individual
+	company
+}
+
+enum SetupIntentCancellationReason {
+	requested_by_customer
+	duplicate
+	abandoned
+}
+
+input DebitCardInput {
+	id: String!
+	address_city: String
+	address_country: String
+	address_line1: String
+	address_line2: String
+	address_state: String
+	address_zip: String
+	default_for_currency: Boolean
+	exp_month: Int
+	exp_year: Int
+	name: String
+}
+
+input BankAccountInput {
+	id: String!
+	account_holder_name: String
+	account_holder_type: BusinessType
+	default_for_currency: Boolean
+}
+
+input PaymentIntentInput {
+	amount: Int!
+	customer_username: String!
+}
+
+input ConfirmSetupIntentInput {
+	intent: String!
+	payment_method: String
+	returl_url: String
+}
+
+input UpdateSetupIntentInput {
+	intent: String!
+	payment_method: String
+	payment_method_types: String
+}
+
+input CancelSetupIntentInput {
+	intent: String!
+	cancellation_reason: SetupIntentCancellationReason!
+}
+
+
+input address {
+	line1: String!
+	city: String
+	country: String
+	line2: String
+	postal_code: String
+	state: String
+}
+
+input shipping {
+	address: address!
+	name: String!
+	phone: AWSPhone
+}
+
+input UpdateStripeCustomerInput {
+	address: address
+	email: AWSEmail
+	name: String
+	phone: AWSPhone
+	shipping: shipping
+
+}
+
+enum PaymentMethodTypes {
+	card
+}
+
+input ListPaymentMethodsInput {
+	type: PaymentMethodTypes!
+	ending_before: String
+	limit: Int
+	starting_after: String
+}

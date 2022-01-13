@@ -1,0 +1,241 @@
+
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  */
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Webhook Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+# TODO: Resources needed:
+  # API Gateway API. DONE
+  # API Gateway custom lambda authorizer ( To ensure that requests are coming from stripe ) https://stripe.com/docs/webhooks/signatures DONE.
+  # Role for API Gateway to access lambda. DONE
+  # Role for Lambda to access SQS Queue
+  # Role for lambda to access DynamoDB Table
+  
+Parameters:
+  ApiGatewayStageName:
+    Type: String
+    AllowedPattern: "^[a-z0-9]+$"
+    Default: dev
+  # StackName:
+  #   Type: String
+  #   Description: Name of this CF stack, used to generate resources
+  #   Default: LiveworksAPI
+  # ReleaseEnvironment:                                                        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+  #   Description: Environment type.
+  #   Default: dev
+  #   Type: String
+  #   AllowedValues: [prod, dev, test]
+  #   ConstraintDescription: must specify prod, dev, or test.
+
+
+  StripeLambdaLayer:
+    Description: Arn of the lambdalayer used for stripe nodejs dependancy
+    Type: String
+
+  StripeSecretKey:
+    Description: Secret key used for the stripe API
+    Type: String
+
+  StripeEndpointSecret:
+    Description: Secret value of the endpoint used by stripe
+    Type: String
+
+Outputs:
+  ApiGatewayInvokeURL:
+    Value: !Sub "https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/${ApiGatewayStageName}"
+
+Resources:
+
+  SQSStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      # NotificationARNs:
+      #   - String
+      Parameters:
+        EventQueueName:  EventQueue
+        DeadLetterQueueName: DLQ 
+      Tags:
+        - Key: ParentStack
+          Value: WebhookTemplate
+      TemplateURL: SQS.yaml
+      TimeoutInMinutes: 15
+  
+
+  ApiGateway:
+    Type: "AWS::ApiGateway::RestApi"
+    Properties:
+      # ApiKeySourceType: String
+      # BinaryMediaTypes:
+      #   - String
+      # Body: Json
+      # BodyS3Location:
+      #   S3Location
+      # CloneFrom: String
+      Description: REST Api exposed to Stripe for making webhook calls
+      # EndpointConfiguration:
+      #   EndpointConfiguration
+      # FailOnWarnings: Boolean
+      # MinimumCompressionSize: Integer
+      Name: StripeWebhookAPI
+      # Parameters:
+      #   Map
+      # Policy: Json
+  
+  ApiGatewayRootMethod:
+    Type: "AWS::ApiGateway::Method"
+    Properties:
+      AuthorizationType: "NONE"
+      HttpMethod: "POST"
+      Integration:
+        IntegrationHttpMethod: "POST"
+        Type: "AWS_PROXY"
+        Uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${StripeWebhookAuthorizerLambda.Arn}/invocations'
+      ResourceId: !GetAtt "ApiGateway.RootResourceId"
+      RestApiId: !Ref "ApiGateway"
+
+  ApiGatewayDeployment:
+    Type: "AWS::ApiGateway::Deployment"
+    DependsOn:
+      - ApiGatewayRootMethod
+    Properties:
+      RestApiId: !Ref ApiGateway
+      StageName: !Ref ApiGatewayStageName
+
+
+  ApiGatewayInvokeLambdaPermission:
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: lambda:InvokeFunction #required
+      # EventSourceToken: String
+      FunctionName: !GetAtt StripeWebhookAuthorizerLambda.Arn #required
+      Principal: apigateway.amazonaws.com #required
+      # SourceAccount: String
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/*/POST/"
+  
+  StripeWebhookAuthorizerLambda:                                                                              
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: StripeWebhookAuthorizerLambda                                                              
+      Runtime: nodejs10.x
+      Code: ./Lambdas/nodejs10.x                                                      
+      Handler: authorizer.lambdaHandler                                                  
+      Role: !GetAtt lambdaIAMRole.Arn
+      Timeout: 10
+      DeadLetterConfig:
+        TargetArn: !GetAtt SQSStack.Outputs.DeadLetterQueueArn
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          StripeSecretKey: !Sub ${StripeSecretKey}
+          StripeEndpointSecret: !Sub ${StripeEndpointSecret}
+          EventQueueURL:  !GetAtt SQSStack.Outputs.EventQueueURL
+
+
+# # This role ONLY has access to write cloudwatch logs. We will not be giving it access to any SQS actions.
+#   AuthorizerIAMRole:
+#     Type: AWS::IAM::Role
+#     Properties:
+#       RoleName: AuthorizerIAMRole
+#       AssumeRolePolicyDocument:
+#         Version: '2012-10-17'
+#         Statement:
+#           -
+#             Effect: Allow
+#             Action: 'sts:AssumeRole'
+#             Principal:
+#               Service: lambda.amazonaws.com
+#       Policies:
+#         -
+#           PolicyName: WriteCloudWatchLogsAsAuthLambda
+#           PolicyDocument: 
+#             Version: '2012-10-17'
+#             Statement: 
+#               -
+#                 Effect: Allow
+#                 Action:
+#                   - 'logs:CreateLogGroup'
+#                   - 'logs:CreateLogStream'
+#                   - 'logs:PutLogEvents'
+#                 Resource: 'arn:aws:logs:*:*:*'
+
+
+# Role allows to write cloudwatch logs, as well as perform actions on SQS Queues.
+  lambdaIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: lambdaIAMRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Effect: Allow
+            Action: 'sts:AssumeRole'
+            Principal:
+              Service: lambda.amazonaws.com
+      Policies:
+        -
+          PolicyName: WriteCloudWatchLogs
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+        -
+          PolicyName: LmbdaSQSAccessPolicy
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action:
+                  - sqs:*
+                Resource: 
+                  - !Sub arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${SQSStack.Outputs.EventQueueName}
+                  - !Sub arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${SQSStack.Outputs.DeadLetterQueueName}
+
+
+
+  
+  LambdaSQSEventSourceMapping:
+    Type: "AWS::Lambda::EventSourceMapping"
+    DependsOn:
+      - lambdaIAMRole
+    Properties:
+      BatchSize: 10
+      Enabled: false
+      EventSourceArn: !GetAtt SQSStack.Outputs.EventQueueArn #required
+      FunctionName: !GetAtt MasterWebhookLambda.Arn #required
+      # StartingPosition: String
+  
+  MasterWebhookLambda:
+    DependsOn:
+      - lambdaIAMRole                                                                              
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: MasterWebhookLambda   
+      Description: Async lambda - invoked when new events to the SQS Queue are added                                                           
+      Runtime: nodejs10.x
+      Code: ./Lambdas/nodejs10.x                                                      
+      Handler: account.lambdaHandler                                                  
+      Role: !GetAtt lambdaIAMRole.Arn
+      Timeout: 10
+      DeadLetterConfig:
+        TargetArn: !GetAtt SQSStack.Outputs.DeadLetterQueueArn
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+
+# HELPFUL LINKS:
+# https://dzone.com/articles/creating-aws-service-proxy-for-amazon-sqs

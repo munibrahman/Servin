@@ -1,0 +1,167 @@
+PODS:
+  - AwesomeSpotlightView (0.1.9)
+  - AWSAPIGateway (2.9.8):
+    - AWSCore (= 2.9.8)
+  - AWSAppSync (2.13.0):
+    - AWSCore (~> 2.9.0)
+    - ReachabilitySwift (= 4.3.0)
+    - SQLite.swift (= 0.11.6)
+  - AWSAuthCore (2.9.8):
+    - AWSCore (= 2.9.8)
+  - AWSCognitoIdentityProvider (2.9.8):
+    - AWSCognitoIdentityProviderASF (= 1.0.1)
+    - AWSCore (= 2.9.8)
+  - AWSCognitoIdentityProviderASF (1.0.1)
+  - AWSCore (2.9.8)
+  - AWSMobileClient (2.9.8):
+    - AWSAuthCore (= 2.9.8)
+    - AWSCognitoIdentityProvider (= 2.9.8)
+  - AWSPinpoint (2.9.8):
+    - AWSCore (= 2.9.8)
+  - AWSS3 (2.9.8):
+    - AWSCore (= 2.9.8)
+  - CardIO (5.4.1)
+  - DZNEmptyDataSet (1.8.1)
+  - Eureka (5.0.0)
+  - GoogleMaps (3.1.0):
+    - GoogleMaps/Maps (= 3.1.0)
+  - GoogleMaps/Base (3.1.0)
+  - GoogleMaps/Maps (3.1.0):
+    - GoogleMaps/Base
+  - GooglePlaces (3.1.0):
+    - GoogleMaps/Base (= 3.1.0)
+  - ImageSlideshow (1.7.0):
+    - ImageSlideshow/Core (= 1.7.0)
+  - ImageSlideshow/Core (1.7.0)
+  - IQKeyboardManagerSwift (6.3.0)
+  - JWTDecode (2.3.0)
+  - KYNavigationProgress (2.0.2)
+  - Macaw (0.9.5):
+    - SWXMLHash
+  - MarqueeLabel (4.0.0)
+  - NotificationBannerSwift (2.2.0):
+    - MarqueeLabel (~> 4.0.0)
+    - SnapKit (~> 5.0.0)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
+  - PinpointKit (1.3.0):
+    - PinpointKit/Core (= 1.3.0)
+  - PinpointKit/Core (1.3.0)
+  - Pulley (2.7.0)
+  - ReachabilitySwift (4.3.0)
+  - SideMenu (5.0.3)
+  - SkeletonView (1.5)
+  - SnapKit (5.0.0)
+  - SQLite.swift (0.11.6):
+    - SQLite.swift/standard (= 0.11.6)
+  - SQLite.swift/standard (0.11.6)
+  - Stripe (15.0.1)
+  - SwiftyJSON (4.3.0)
+  - SWXMLHash (4.9.0)
+  - TLPhotoPicker (1.8.9)
+
+DEPENDENCIES:
+  - AwesomeSpotlightView
+  - AWSAPIGateway
+  - AWSAppSync
+  - AWSCore
+  - AWSMobileClient
+  - AWSPinpoint
+  - AWSS3
+  - CardIO
+  - DZNEmptyDataSet
+  - Eureka
+  - GoogleMaps
+  - GooglePlaces
+  - ImageSlideshow (~> 1.6)
+  - IQKeyboardManagerSwift
+  - JWTDecode (~> 2.1)
+  - KYNavigationProgress
+  - Macaw (= 0.9.5)
+  - NotificationBannerSwift
+  - NVActivityIndicatorView
+  - PinpointKit
+  - Pulley
+  - SideMenu
+  - SkeletonView
+  - Stripe
+  - SwiftyJSON (~> 4.0)
+  - TLPhotoPicker
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AwesomeSpotlightView
+    - AWSAPIGateway
+    - AWSAppSync
+    - AWSAuthCore
+    - AWSCognitoIdentityProvider
+    - AWSCognitoIdentityProviderASF
+    - AWSCore
+    - AWSMobileClient
+    - AWSPinpoint
+    - AWSS3
+    - CardIO
+    - DZNEmptyDataSet
+    - Eureka
+    - GoogleMaps
+    - GooglePlaces
+    - ImageSlideshow
+    - IQKeyboardManagerSwift
+    - JWTDecode
+    - KYNavigationProgress
+    - Macaw
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - NVActivityIndicatorView
+    - PinpointKit
+    - Pulley
+    - ReachabilitySwift
+    - SideMenu
+    - SkeletonView
+    - SnapKit
+    - SQLite.swift
+    - Stripe
+    - SwiftyJSON
+    - SWXMLHash
+    - TLPhotoPicker
+
+SPEC CHECKSUMS:
+  AwesomeSpotlightView: 97e84d680c82649898213088bb13134317ab4150
+  AWSAPIGateway: c70766771069f1c129442aabd58873b8d440dec1
+  AWSAppSync: 06ac543d070163163eb3d1129f00f9a5d8d82ac5
+  AWSAuthCore: 7ebbe523f28149a1706e7ec1736203cdaaeba380
+  AWSCognitoIdentityProvider: 738b488930eca71cbaa91ac53764b146e90a6650
+  AWSCognitoIdentityProviderASF: f94f1a502e72ef3d0a1de93e10bf7a79c8698118
+  AWSCore: 5da86c5afde44a87b06a2df50601bca81a8cee13
+  AWSMobileClient: d3b6cbe30dcdb45866c85b0d088106504f72d4a3
+  AWSPinpoint: e9e2de634fc3270bbfb3f3b7b0c5aa748440b37f
+  AWSS3: a5e12eb2495bbe49cda8b0595fa77280aacd7d3d
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Eureka: 0f64f477ec8ef6201c6fec143d60ff5c201cf654
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  ImageSlideshow: f8eec5e37a980f60923b585ff23b0e140fd24018
+  IQKeyboardManagerSwift: a8228c257614af98743b4cd8584637025f36358f
+  JWTDecode: fb77675c8049c1a7e9433c7cf448c3ce33ee4ac7
+  KYNavigationProgress: a380f5016e898ea4577049cf7b41895ed2a8da5a
+  Macaw: 10bf9e327cb75f24e3225d5229a80ed544df85f0
+  MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
+  NotificationBannerSwift: 0ebb4b35e18c0515fdfe01b5ebd90c3eb1255e3d
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
+  PinpointKit: 8ef42ed810a95aaced0462b532e0224a67afb72d
+  Pulley: 028ddcc7d2dcbc078d71b61b7eee8e786d72c14a
+  ReachabilitySwift: 408477d1b6ed9779dba301953171e017c31241f3
+  SideMenu: 1dcaabce84538c53325c287f7fe62999379a641c
+  SkeletonView: 6cbb80f82f8bdee3f9093e2fa03b84819b4bd826
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SQLite.swift: 46d890be8601964454bd3392527f863d1b802d45
+  Stripe: 2c4d0a88817361a102886315ff452d90f65e898b
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SWXMLHash: 87b0006848a548b7f9485b40bc71721b3ae39add
+  TLPhotoPicker: 9bf255c116129bc5d709b4cc8b42b3542e89e841
+
+PODFILE CHECKSUM: 8fb638e7e35258e7eb8eec2d11a49ae4777d1b17
+
+COCOAPODS: 1.5.3

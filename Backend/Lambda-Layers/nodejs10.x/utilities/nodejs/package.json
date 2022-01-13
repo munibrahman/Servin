@@ -1,0 +1,19 @@
+{
+  "name": "elastic-search",
+  "version": "1.0.0",
+  "description": "All helper packages to as an AWS Lambda Layer by Voltic Labs Inc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Utilities",
+    "Layers",
+    "Helper"
+  ],
+  "author": "Munib Rahman",
+  "license": "SEE LICENSE IN index.js",
+  "dependencies": {
+    "dotenv": "^8.0.0"
+  }
+}

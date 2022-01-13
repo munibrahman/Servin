@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "servin-dev-20190812131054-authRole",
+            "UnauthRoleArn": "arn:aws:iam::810093522723:role/servin-dev-20190812131054-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::810093522723:role/servin-dev-20190812131054-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "servin-dev-20190812131054-deployment",
+            "UnauthRoleName": "servin-dev-20190812131054-unauthRole",
+            "StackName": "servin-dev-20190812131054",
+            "StackId": "arn:aws:cloudformation:us-east-1:810093522723:stack/servin-dev-20190812131054/e901d030-bd34-11e9-a0ed-0aa1af63e98c"
+        }
+    }
+}

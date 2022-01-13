@@ -1,0 +1,98 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  * Created by Munib Rahman - June 25, 2019
+#  */
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: |
+  SQS Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc.
+  This stack is used to store all incoming requests from Stripe via an exposed API Gateway REST endpoint into an SQS Queue.
+
+Parameters:
+  EventQueueName:
+    Description: Name of the primary SQS Queue that will be created
+    Type: String
+    Default: NewEventSQSQueue
+
+  DeadLetterQueueName:
+    Description: Name of the DLQ used as a backup of the main even queue in the event of event failures
+    Type: String
+    Default: DeadLetterSQSQueue
+
+
+Outputs:
+  EventQueueURL:
+    Description: Returns the queue URL. For example https://sqs.us-east-2.amazonaws.com/123456789012/aa4-MyQueue-Z5NOSZO2PZE9
+    Value: !Ref EventSQSQueue
+
+  EventQueueArn:
+    Description: Returns the Amazon Resource Name (ARN) of the queue. For example arn:aws:sqs:us-east-2:123456789012:mystack-myqueue-15PG5C2FC1CW8.
+    Value: !GetAtt EventSQSQueue.Arn
+
+  EventQueueName:
+    Description: Returns the queue name. For example mystack-myqueue-1VF9BKQH5BJVI
+    Value: !GetAtt EventSQSQueue.QueueName
+
+  DeadLetterQueueURL:
+    Description: Returns the DLQ URL. For example https://sqs.us-east-2.amazonaws.com/123456789012/aa4-MyQueue-Z5NOSZO2PZE9
+    Value: !Ref DeadLetterSQSQueue
+
+  DeadLetterQueueArn:
+    Description: Returns the Amazon Resource Name (ARN) of the DLQ. For example arn:aws:sqs:us-east-2:123456789012:mystack-myqueue-15PG5C2FC1CW8.
+    Value: !GetAtt DeadLetterSQSQueue.Arn
+
+  DeadLetterQueueName:
+    Description: Returns the DLQ name. For example mystack-myqueue-1VF9BKQH5BJVI
+    Value: !GetAtt DeadLetterSQSQueue.QueueName
+
+
+Resources:
+      # This queue is used to store the new messages coming in 
+  EventSQSQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      # ContentBasedDeduplication: Boolean
+      # DelaySeconds: Integer
+      # FifoQueue: Boolean
+      # KmsDataKeyReusePeriodSeconds: Integer
+      # KmsMasterKeyId: String
+      # MaximumMessageSize: Integer
+      # MessageRetentionPeriod: Integer
+      QueueName: !Sub ${EventQueueName}
+      # ReceiveMessageWaitTimeSeconds: Integer
+      RedrivePolicy: 
+        deadLetterTargetArn: !GetAtt DeadLetterSQSQueue.Arn
+        maxReceiveCount: 3
+      # Tags:
+      #   - Tag
+      # VisibilityTimeout: Integer
+
+
+  DeadLetterSQSQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      # ContentBasedDeduplication: Boolean
+      # DelaySeconds: Integer
+      # FifoQueue: Boolean
+      # KmsDataKeyReusePeriodSeconds: Integer
+      # KmsMasterKeyId: String
+      # MaximumMessageSize: Integer
+      # MessageRetentionPeriod: Integer
+      QueueName: !Sub ${DeadLetterQueueName}
+      # ReceiveMessageWaitTimeSeconds: Integer
+      # RedrivePolicy: 
+      #   deadLetterTargetArn: !GetAtt 
+      #   maxReceiveCount: 5
+      # Tags:
+      #   - Tag
+      # VisibilityTimeout: Integer
+
+
+
+######################################################################
+## NOTES
+######################################################################
+# SQS Queues themselves are very basic, they are really helpful in the event that you don't want to worry about scaling up or down, or being throttled by lambda
+# invocation limits. Events can be sent to a queue, and failed events can be redirected to another Queue (i.e. a Dead letter queue).

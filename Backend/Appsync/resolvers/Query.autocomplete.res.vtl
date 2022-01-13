@@ -1,0 +1,56 @@
+#**
+    Structure of response looks like:
+    {
+    "took": 7,
+    "timed_out": false,
+    "_shards": {
+        "total": 5,
+        "successful": 5,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": 0,
+        "max_score": 0,
+        "hits": []
+    },
+    "suggest": {
+        "titleSuggestion": [
+            {
+                "text": "es lambda",
+                "offset": 0,
+                "length": 9,
+                "options": [
+                    {
+                        "text": "es lambda resting testing",
+                        "_index": "servin",
+                        "_type": "discoveries",
+                        "_id": "1547355f6e89193ed744188c3b15f012f24640b804d69d14796c79de61b1815a",
+                        "_score": 1,
+                        "_source": {
+                            "title": {
+                                "input": [
+                                    "es lambda resting testing"
+                                ]
+                            },
+                            "description": "Hey I’m looking to sell my es lambda stuff let me know",
+                            "tags": [
+                                "Ned",
+                                "Stark"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+*#
+[
+    #foreach($entry in $context.result.suggest.titleSuggestion[0].options)
+        #if( $velocityCount > 1 ) , #end
+        $util.toJson($entry.get("_source").title.input[0])
+        
+    #end
+    
+]

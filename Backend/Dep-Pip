@@ -1,0 +1,55 @@
+#!/bin/bash
+
+##################################################################################
+#####     Root Stack Variables              #####
+##################################################################################
+#   Setting up variables
+templateFile="rootStackTemplate.yaml"
+bucketName="bucketmunib"
+S3Prefix=""
+outputTemplateFile="rootStackPackaged.yaml"
+useJSON=$false
+forceUpload=$true
+stackName="Servin"
+ReleaseEnvironment="dev"
+##################################################################################
+#####     Packaging Maven         #####
+##################################################################################
+echo "Packaging Maven"
+( cd Lambdas/java8 ; mvn package )
+##################################################################################
+#####     Packaging Root Stack              #####
+##################################################################################
+aws cloudformation package \
+--template-file $templateFile \
+--s3-bucket $bucketName \
+--output-template-file $outputTemplateFile \
+# --use-json $useJSON \
+# --force-upload $forceUpload \
+# --debug
+# --s3-prefix "$S3Prefix/package" \
+# --kms-key-id  \
+# --metadata  \
+##################################################################################
+#####     Deploying Root Stack              #####
+##################################################################################
+aws cloudformation deploy \
+--template-file $outputTemplateFile \
+--stack-name $stackName \
+--s3-bucket $bucketName \
+--force-upload $true \
+--capabilities CAPABILITY_NAMED_IAM CAPABILITY_AUTO_EXPAND \
+--parameter-overrides APIName=AppSync${ReleaseEnvironment}EnvAPI ReleaseEnvironment=$ReleaseEnvironment AuthName=Servin${ReleaseEnvironment}EnvAuth StorageName=Servin${ReleaseEnvironment}EnvStorage StorageName=Servin${ReleaseEnvironment}EnvStorage DynamoDBStripeTableName=Stripe-${ReleaseEnvironment} DynamoDBUserTableName=ServinUsers-${ReleaseEnvironment} \
+# --s3-prefix "$S3Prefix/deploy" \
+# --kms-key-id  \
+
+##################################################################################
+#####     Generating awsconfiguration.json file for Amplify              #####
+##################################################################################
+echo "Generating awsconfiguration.json file"
+python3 Amplify/awsconfiguration.py $stackName $ReleaseEnvironment
+##################################################################################
+#   You package all the nested stacks and then refer to the output template (packaged.yaml) in the root stacks template.
+#   The package.yaml file will contain the S3 bucket location of the nested stacks code.
+#   For lambda functions that are in the nested function make sure they have their own seperate folder.
+

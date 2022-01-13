@@ -1,0 +1,1386 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  */
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: STRIE API Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+
+Parameters:
+  APIName:
+    Type: String
+    Description: Name of the API, to generate names for resources
+    Default: LiveworksAPI
+  ReleaseEnvironment:                                                        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+    Description: Environment type.
+    Default: dev
+    Type: String
+    AllowedValues: [prod, dev, test]
+    ConstraintDescription: must specify prod, dev, or test.
+
+  # UserPoolID:
+  #   Description: ID of the user pool to be used for authorizing the api
+  #   Type: String
+
+  StripeLambdaLayer:
+    Description: Arn of the lambdalayer used for stripe nodejs dependancy
+    Type: String
+
+  DynamoDBStripeTableName:
+    Description: DynamoDB table name used to store stripe account ids
+    Type: String
+
+  StripeSecretKey:
+    Description: Secret key used for the stripe API
+    Type: String
+
+  GraphQLApiId:
+    Description: Unique AWS AppSync GraphQL API Identifier
+    Type: String
+
+
+Outputs:
+  GraphQLApiId:
+    Description: Unique AWS AppSync GraphQL API Identifier
+    Value: !Sub ${GraphQLApiId}
+  # GraphQLApiUrl:
+  #   Description: The Endpoint URL of your GraphQL API.
+  #   Value: !GetAtt GraphQLApi.GraphQLUrl
+
+Resources:
+
+## ********************************************************************** 
+## IAM ROLES
+## This role allows appsync to access data sources on our behalf.
+## **********************************************************************
+  AppSyncServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: AppsyncStripeServiceRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - appsync.amazonaws.com
+          Action:
+          - sts:AssumeRole
+
+## ********************************************************************** 
+## IAM POLICY
+## This policy allows appsync to invoke a lambda function.
+## We are not going to allow appsync to access the dynamodb database directly because, by doing so:
+## It will force us to use pipeline resolvers, which can in turn take more time.
+## It also means that the database will be accessible by 2 resources instead of one, increasing the risk of security breach from 2 points (Appsync and lambda) instead of 1 (Lambda).
+## **********************************************************************
+  AppsyncLambdaInvokePolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: !Sub AppsyncLambdaInvokePolicy-${ReleaseEnvironment}
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - lambda:InvokeFunction
+          Resource:
+          - !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${CreateStripeAccountLambda}'        ##TODO: Remove this resource because you can't add accounts from the api, postConfirmation lambda takes care of that
+          - !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${RetrieveStripeAccountLambda}'
+          - !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:${UpdateStripeAccountLambda}'
+          - !Sub 'arn:aws:lambda:${AWS::Region}:${AWS::AccountId}:function:*'                                   ##TODO: This can call any lambda, make it so it ONLY calls the lambdas that it needs to and no more.
+      Roles:
+      - !Ref AppSyncServiceRole
+
+  AppsyncCloudWatchPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - 
+            Effect: Allow
+            Action:
+              - 'logs:CreateLogGroup'
+              - 'logs:CreateLogStream'
+              - 'logs:PutLogEvents'
+            Resource: 'arn:aws:logs:*:*:*'
+      PolicyName: !Sub AppsyncCloudWatchPolicy-${ReleaseEnvironment} #required
+      Roles:
+        - !Ref AppSyncServiceRole
+  
+
+  LambdaForStripeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: LambdaForStripeRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Effect: Allow
+            Action: 'sts:AssumeRole'
+            Principal:
+              Service: lambda.amazonaws.com
+      Policies:
+        -
+          PolicyName: WriteCloudWatchLogs
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                Resource: 'arn:aws:logs:*:*:*'
+        -
+          PolicyName: AccessDynamoDB
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action: 
+                - "dynamodb:GetItem"                                                            # Only allow our function to get an item or put it. No other actions are possible
+                - "dynamodb:PutItem"
+                Resource: !Sub 'arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${DynamoDBStripeTableName}'
+        -
+          PolicyName: InvokeLambdaFunction
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement: 
+              -
+                Effect: Allow
+                Action: 'lambda:InvokeFunction'
+                Resource: 'arn:aws:lambda:*:*:function:*'
+
+
+## **********************************************************************
+## Lambda Functions
+## **********************************************************************
+
+  CreateStripeAccountLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: CreateStripeAccountLambda
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Account
+      Handler: createAccount.lambdaHandler
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  RetrieveStripeAccountLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: RetrieveStripeAccountLambda
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Account
+      Handler: retrieveAccount.lambdaHandler
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+  
+  UpdateStripeAccountLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: UpdateStripeAccountLambda
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Account
+      Handler: updateAccount.lambdaHandler
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+  
+
+
+
+  # CreateStripeAccountLambdaLambdaExecutionPermission:
+  #   Type: AWS::Lambda::Permission
+  #   Properties: 
+  #     Action: lambda:InvokeFunction
+  #     FunctionName: !GetAtt CreateStripeAccountLambda.Arn
+  #     Principal: cognito-idp.amazonaws.com
+  #     # SourceArn: !GetAtt UserPool.Arn
+
+  RetrieveStripeAccountDataSource:
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that allows stripe account retrieval
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt RetrieveStripeAccountLambda.Arn
+      Name: RetrieveStripeAccountDataSource
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  UpdateStripeAccountDataSource:
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that allows stripe account update
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt UpdateStripeAccountLambda.Arn
+      Name: UpdateStripeAccountDataSource
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+
+  CreateExternalAccountLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: CreateExternalAccountLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: createExternalAccount.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  CreateExternalAccountDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that attaches a bank account to a stripe account                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt CreateExternalAccountLambda.Arn                           # Change this
+      Name: CreateExternalAccountDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  CreateExternalAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation
+      FieldName: createExternalAccount                                                        # Change this
+      DataSourceName: !GetAtt CreateExternalAccountDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "createExternalAccount",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+  RetrieveExternalAccountLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: RetrieveExternalAccountLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: retrieveExternalAccount.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  RetrieveExternalAccountDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that retrives details about a given external account (Bank account or Debit Card)                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt RetrieveExternalAccountLambda.Arn                           # Change this
+      Name: RetrieveExternalAccountDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  RetrieveExternalAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query
+      FieldName: retrieveExternalAccount                                                        # Change this
+      DataSourceName: !GetAtt RetrieveExternalAccountDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "retrieveExternalAccount",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+  DeleteExternalAccountLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: DeleteExternalAccountLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: deleteExternalAccount.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  DeleteExternalAccountDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that deletes a given external account (Bank account or Debit Card)                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt DeleteExternalAccountLambda.Arn                           # Change this
+      Name: DeleteExternalAccountDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  DeleteExternalAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: deleteExternalAccount                                                        # Change this
+      DataSourceName: !GetAtt DeleteExternalAccountDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "deleteExternalAccount",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************
+
+  ListExternalAccountsLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: ListExternalAccountsLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: listExternalAccounts.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  ListExternalAccountsDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that deletes a given external account (Bank account or Debit Card)                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt ListExternalAccountsLambda.Arn                           # Change this
+      Name: ListExternalAccountsDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  ListExternalAccountsResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query                                                                      # Change this
+      FieldName: listExternalAccounts                                                        # Change this
+      DataSourceName: !GetAtt ListExternalAccountsDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "listExternalAccounts",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+
+## *****************************************************************************************
+
+  UpdateExternalBankAccountLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: UpdateExternalBankAccountLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: updateExternalBankAccount.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  UpdateExternalBankAccountDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates a given Bank account                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt UpdateExternalBankAccountLambda.Arn                           # Change this
+      Name: UpdateExternalBankAccountDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  UpdateExternalBankAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: updateExternalBankAccount                                                        # Change this
+      DataSourceName: !GetAtt UpdateExternalBankAccountDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "updateExternalBankAccount",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+## *****************************************************************************************
+
+  UpdateExternalDebitCardLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: UpdateExternalDebitCardLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/ExternalAccounts                                                      # Change this
+      Handler: updateExternalDebitCard.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  UpdateExternalDebitCardDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt UpdateExternalDebitCardLambda.Arn                           # Change this
+      Name: UpdateExternalDebitCardDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  UpdateExternalDebitCardResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: updateExternalDebitCard                                                        # Change this
+      DataSourceName: !GetAtt UpdateExternalDebitCardDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "updateExternalDebitCard",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************
+
+  RetrieveBalanceLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: RetrieveBalanceLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Balance                                                      # Change this
+      Handler: retrieveBalance.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  RetrieveBalanceDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt RetrieveBalanceLambda.Arn                           # Change this
+      Name: RetrieveBalanceDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  RetrieveBalanceResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query                                                                      # Change this
+      FieldName: retrieveBalance                                                        # Change this
+      DataSourceName: !GetAtt RetrieveBalanceDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "retrieveBalance",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************
+## Creates a paymentIntent object, which will then need to be fullfilled by the initiator at their own leisure.
+## https://stripe.com/docs/api/payment_intents
+
+  CreatePaymentIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: CreatePaymentIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/PaymentIntents                                                      # Change this
+      Handler: createPaymentIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  CreatePaymentIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt CreatePaymentIntentLambda.Arn                           # Change this
+      Name: CreatePaymentIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  CreatePaymentIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: createPaymentIntent                                                        # Change this
+      DataSourceName: !GetAtt CreatePaymentIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "createPaymentIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+## *****************************************************************************************
+## Removes a paymentIntent
+## https://stripe.com/docs/api/payment_intents
+
+  CancelPaymentIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: CancelPaymentIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/PaymentIntents                                                      # Change this
+      Handler: cancelPaymentIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  CancelPaymentIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description
+      # DynamoDBConfig:
+      #   AwsRegion: 
+      #   TableName: 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt CancelPaymentIntentLambda.Arn                           # Change this
+      Name: CancelPaymentIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  CancelPaymentIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: cancelPaymentIntent                                                        # Change this
+      DataSourceName: !GetAtt CancelPaymentIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "cancelPaymentIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+
+
+## *****************************************************************************************
+## Creates a setupIntent object, which will then need to be fullfilled by the initiator at their own leisure.
+## https://stripe.com/docs/api/setup_intents
+
+  CreateSetupIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: CreateSetupIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/SetupIntents                                                      # Change this
+      Handler: createSetupIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  CreateSetupIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt CreateSetupIntentLambda.Arn                           # Change this
+      Name: CreateSetupIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  CreateSetupIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: createSetupIntent                                                        # Change this
+      DataSourceName: !GetAtt CreateSetupIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "createSetupIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************
+## Updates a setupIntent object, called when the user presses save on the front end.
+
+  UpdateSetupIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: UpdateSetupIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/SetupIntents                                                      # Change this
+      Handler: updateSetupIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  UpdateSetupIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt UpdateSetupIntentLambda.Arn                           # Change this
+      Name: UpdateSetupIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  UpdateSetupIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: updateSetupIntent                                                        # Change this
+      DataSourceName: !GetAtt UpdateSetupIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "updateSetupIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************
+## Confirms a setupIntent object, called when the user presses save on the front end.
+
+  ConfirmSetupIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: ConfirmSetupIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/SetupIntents                                                      # Change this
+      Handler: confirmSetupIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  ConfirmSetupIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt ConfirmSetupIntentLambda.Arn                           # Change this
+      Name: ConfirmSetupIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  ConfirmSetupIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: confirmSetupIntent                                                        # Change this
+      DataSourceName: !GetAtt ConfirmSetupIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "confirmSetupIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+## *****************************************************************************************
+## Cancels a setupIntent object, called when the user presses save on the front end.
+
+  CancelSetupIntentLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: CancelSetupIntentLambda                                                             # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/SetupIntents                                                      # Change this
+      Handler: cancelSetupIntent.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  CancelSetupIntentDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that updates information of a given Debit Card                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt CancelSetupIntentLambda.Arn                           # Change this
+      Name: CancelSetupIntentDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  CancelSetupIntentResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: cancelSetupIntent                                                        # Change this
+      DataSourceName: !GetAtt CancelSetupIntentDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "cancelSetupIntent",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************************
+# Stripe customer related lambdas
+
+  RetrieveStripeCustomerLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: RetrieveStripeCustomerLambda  
+      Description: This function retrieves info about a stripe customer. If the user making this request is not a stripe customer, then it will return an error.                                                           # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Customer                                                      # Change this
+      Handler: retrieveCustomer.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  RetrieveStripeCustomerDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that retrieves information about a stripe customer                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt RetrieveStripeCustomerLambda.Arn                           # Change this
+      Name: RetrieveStripeCustomerDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  RetrieveStripeCustomerResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query                                                                      # Change this
+      FieldName: retrieveStripeCustomer                                                        # Change this
+      DataSourceName: !GetAtt RetrieveStripeCustomerDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "retrieveStripeCustomer",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+## *****************************************************************************************************
+# Updates stripe customer account, the user calling this endpoint MUST have a pre created stripe account.
+
+  UpdateStripeCustomerLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: UpdateStripeCustomerLambda  
+      Description: This function Updates info about a stripe customer. If the user making this request is not a stripe customer, then it will return an error.                                                           # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/Customer                                                      # Change this
+      Handler: updateCustomer.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  UpdateStripeCustomerDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that Updates information about a stripe customer                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt UpdateStripeCustomerLambda.Arn                           # Change this
+      Name: UpdateStripeCustomerDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  UpdateStripeCustomerResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: updateStripeCustomer                                                        # Change this
+      DataSourceName: !GetAtt UpdateStripeCustomerDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "updateStripeCustomer",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************************
+# Updates stripe customer account, the user calling this endpoint MUST have a pre created stripe account.
+
+  ListPaymentMethodsLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: ListPaymentMethodsLambda  
+      Description: This lambda lists a user's payment methods.                                                           # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/PaymentMethods                                                      # Change this
+      Handler: listPaymentMethods.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  ListPaymentMethodsDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that lists a customer's paymentmethods                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt ListPaymentMethodsLambda.Arn                           # Change this
+      Name: ListPaymentMethodsDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  ListPaymentMethodsResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query                                                                      # Change this
+      FieldName: listPaymentMethods                                                        # Change this
+      DataSourceName: !GetAtt ListPaymentMethodsDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "listPaymentMethods",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************************
+# Attaches a given payment method to a customer.
+# Payment methods must be tokenized by the client and then their ids passed in to be added to the customer object.
+
+  AttachPaymentMethodLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: AttachPaymentMethodLambda  
+      Description: This lambda attaches a payment method to a customer object.                                                           # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/PaymentMethods                                                      # Change this
+      Handler: attachPaymentMethod.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  AttachPaymentMethodDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that Attachs a customer's paymentmethods                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt AttachPaymentMethodLambda.Arn                           # Change this
+      Name: AttachPaymentMethodDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  AttachPaymentMethodResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: attachPaymentMethod                                                        # Change this
+      DataSourceName: !GetAtt AttachPaymentMethodDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "attachPaymentMethod",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+## *****************************************************************************************************
+# Detaches a payment method from a customer
+
+  DetachPaymentMethodLambda:                                                                              # Change this
+    Type: AWS::Lambda::Function                                                                         
+    Properties:
+      FunctionName: DetachPaymentMethodLambda  
+      Description: This lambda Detaches a payment method to a customer object.                                                           # Change this  
+      Runtime: nodejs10.x
+      Code: ../Lambdas/nodejs10.x/PaymentMethods                                                      # Change this
+      Handler: detachPaymentMethod.lambdaHandler                                                          # Change this
+      Role: !GetAtt LambdaForStripeRole.Arn
+      Timeout: 10
+      Layers:
+        - !Sub ${StripeLambdaLayer}
+      Environment:
+        Variables:
+          DynamoDBTableName: !Sub ${DynamoDBStripeTableName}
+          StripeSecretKey: !Sub ${StripeSecretKey}
+
+  DetachPaymentMethodDataSource:                                                                            # Change this
+    Type: AWS::AppSync::DataSource
+    Properties:
+      ApiId: !Sub ${GraphQLApiId}
+      Description: Datasource for lambda that Detachs a customer's paymentmethods                 # Change description 
+      LambdaConfig:
+        LambdaFunctionArn: !GetAtt DetachPaymentMethodLambda.Arn                           # Change this
+      Name: DetachPaymentMethodDataSource                                                  # Change this
+      ServiceRoleArn: !GetAtt AppSyncServiceRole.Arn
+      Type: AWS_LAMBDA
+
+  DetachPaymentMethodResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation                                                                      # Change this
+      FieldName: detachPaymentMethod                                                        # Change this
+      DataSourceName: !GetAtt DetachPaymentMethodDataSource.Name                            # Change this
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "detachPaymentMethod",                                             ## Change this
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+
+
+
+## *****************************************************************************************************
+##AppSync resources
+## API STACK
+  # GraphQLApi:
+  #   Type: "AWS::AppSync::GraphQLApi"
+  #   Properties:
+  #     Name: !Sub Appsync-Stripe-${ReleaseEnvironment}
+  #     AuthenticationType: AMAZON_COGNITO_USER_POOLS ##API_KEY                     ##TODO: API Key for testing ONLY, change to cognito user pools when deploying
+  #     UserPoolConfig:
+  #       UserPoolId: !Ref UserPoolID
+  #       AwsRegion: !Ref "AWS::Region"
+  #       DefaultAction: ALLOW
+  #     LogConfig:
+  #       CloudWatchLogsRoleArn: !GetAtt AppSyncServiceRole.Arn
+  #       FieldLogLevel: ALL
+
+  # GraphQLApiSchema:
+  #   Type: "AWS::AppSync::GraphQLSchema"
+  #   DependsOn:
+  #     - GraphQLApi
+  #   Properties:
+  #     ApiId: !Sub ${GraphQLApiId}
+  #     DefinitionS3Location: schemas/stripe.graphql
+
+
+## **********************************************************************
+## APPSYNC RESOLVERS
+## **********************************************************************
+## HELPFUL LINKS:
+## Resolver Mapping Template Utility Reference
+## ~ https://docs.aws.amazon.com/appsync/latest/devguide/resolver-util-reference.html
+## ~ https://forums.aws.amazon.com/thread.jspa?messageID=874757
+
+
+  RetrieveStripeAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Query
+      FieldName: retrieveStripeAccount
+      DataSourceName: !GetAtt RetrieveStripeAccountDataSource.Name
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "retrieveStripeAccount",
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+
+  UpdateStripeAccountResolver:
+    Type: "AWS::AppSync::Resolver"
+    Properties:
+      TypeName: Mutation
+      FieldName: updateStripeAccount
+      DataSourceName: !GetAtt UpdateStripeAccountDataSource.Name
+      Kind: 'UNIT'
+      ApiId: !Sub ${GraphQLApiId}
+      RequestMappingTemplate: |
+        {
+            "version": "2018-05-29",
+            "operation": "Invoke",
+            "payload": {
+                "field": "updateStripeAccount",
+                "arguments":  $util.toJson($context)
+            }
+        }
+      ResponseMappingTemplate: |
+        #if($context.error)
+          $util.error($context.error.message, $context.error.type )
+            ## $util.toJson($context.error)
+        #else
+        ##     $context.result is a javascript object
+            $util.toJson($context.result)
+        #end
+

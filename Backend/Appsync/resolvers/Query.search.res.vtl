@@ -1,0 +1,10 @@
+[
+    #foreach($entry in $context.result.hits.hits) 
+        #if( $velocityCount > 1 ) , #end
+    ##  Formatting below serves the api. ES fields are not called the same as the fields in the API.
+        {"discoveryId" : $util.toJson($entry.get("_id")),
+        "title" : $util.toJson($entry.get("_source").title),
+        "description" : $util.toJson($entry.get("_source").description),
+        "tags" : $util.toJson($entry.get("_source").tags)}
+    #end
+]

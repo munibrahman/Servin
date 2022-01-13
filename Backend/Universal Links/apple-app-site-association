@@ -1,0 +1,10 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [{
+            "appID": "CFQRSECJY5.com.volticlabs.servin",
+            "paths": ["/confirm/*", "/forgot/*"]
+            }
+        ]
+    }
+}

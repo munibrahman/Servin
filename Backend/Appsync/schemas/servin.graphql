@@ -1,0 +1,377 @@
+schema {
+query: Query
+mutation: Mutation
+subscription: Subscription
+}
+
+type Discovery {
+    # geo has prefix - used as the primary partition key
+    geohashPrefix: Int
+    # id of the discovery, used as the primary sort key
+    discoveryId: String
+    # Whether this discovery is on the network or not
+    active: Boolean
+    # Username of the owner, same thing as cognitoId
+    cognitoUserName: String
+    # Description of the discovery
+    description: String
+    # Price of the discovery
+    price: Int
+    # Is this a request or an offer
+    request_or_offer: String
+    # When this discovery was created, seconds from epoch
+    time: Int
+    # Title of the discovery
+    title: String
+    # JSON Data that shows the positon of this discovery
+    geoJson: AWSJSON
+    # image 1
+    image_0: AWSJSON
+    # image 2
+    image_1: AWSJSON
+    #image 3
+    image_2: AWSJSON
+    # image 4
+    image_3: AWSJSON
+    # image 5
+    image_4: AWSJSON
+    # image 5
+    image_5: AWSJSON
+    # Author of this discovery
+    author: User
+    # Latitude of the discovery in degrees
+    latitude: Float
+    # Longitude of the discovery in degrees
+    longitude: Float
+    # checks to see if this discovery has been added to my saved discoveries or not
+    isSaved: Boolean
+}
+
+type User {
+    # A unique identifier for the user. (cognito id)
+    username: ID!
+    # A user's enrolled Conversations. This is an interesting case. This is an interesting pagination case.
+    conversations(after: String, first: Int): UserConverstationsConnection
+    # Get a users messages by querying a GSI on the Messages table.
+    messages(after: String, first: Int): MessageConnection
+    # Is the user registered?
+    registered: Boolean
+    # About section of a user
+    about: String
+    # Link to the profile image of the user
+    profilePic: AWSJSON
+    # Rating of this user
+    rating: Float
+    # Date that a user signed up on, represented in epoch time in milliseconds
+    signUpDate: Float
+    # The last name of a user
+    family_name: String
+    # The first name of a user
+    given_name: String
+    # School the person attends
+    school: String
+    # categories
+    categories: [String]
+    # Determines whether a person has already selected categories for the first time or not.
+    hasChosenCategories: Boolean
+}
+
+type Conversation {
+    # The Conversation's timestamp.
+    createdAt: Int
+    # A unique identifier for the Conversation.
+    id: ID!
+    # The Conversation's discoveryId. (formerly known as name)
+    discoveryId: String!
+    # The Conversation's messages.
+    messages(after: String, first: Int): MessageConnection
+    # Latest message of a conversation
+    latestMessage: Message
+    # Discovery related to the conversation
+    discovery: Discovery
+    # Username of the person that started this conversation
+    authorUserName: String
+}
+
+type Message {
+    #  The author object. Note: `authorId` is only available because we list it in `extraAttributes` in `Conversation.messages`
+    author: User
+    #  The message content.
+    content: String!
+    #  The id of the Conversation this message belongs to. This is the table primary key.
+    conversationId: ID!
+    #  The message timestamp. This is also the table sort key.
+    createdAt: Int
+    #  Generated id for a message -- read-only
+    id: ID!
+    #  Flag denoting if this message has been accepted by the server or not.
+    isSent: Boolean
+    recipient: User
+    sender: String
+}
+
+type MessageConnection {
+    messages: [Message]
+    nextToken: String
+}
+
+type UserConversations {
+    associated: [UserConversations]
+    conversation: Conversation
+    conversationId: ID!
+    user: User
+    username: ID!
+}
+
+type UserConverstationsConnection {
+    nextToken: String
+    userConversations: [UserConversations]
+}
+
+type SavedDiscovery {
+    discoveryId: String!
+    discovery: Discovery
+}
+
+type Mutation {
+    # Updates can only be done via passing a stripe account token.
+    # For more information, visit: https://stripe.com/docs/api#create_account_token
+    updateStripeAccount(account_token: String!): AWSJSON
+
+    #  Creates an external account to attach to user's own stripe connected account.
+    createExternalAccount(external_account_token: String!): AWSJSON
+
+    # Deletes external account that has been previously added to user's own connected account.
+    deleteExternalAccount(id: String!): AWSJSON
+
+    # Updates an external bank account information
+    updateExternalBankAccount(input: BankAccountInput): AWSJSON
+
+    # Updates an external debit card information
+    updateExternalDebitCard(input: DebitCardInput!): AWSJSON
+
+    # Creates a payment intent object, with the tranfer destination set to another stripe customer's account
+    createPaymentIntent(input: PaymentIntentInput!): AWSJSON
+
+    # Removes a payment intent object.
+    cancelPaymentIntent(intent: String!): AWSJSON
+    # Sends all the available funds in a user's account to a given external account
+    # payoutAvailableFunds(external_account: String!): AWSJSON
+
+    # Creates a setup intent
+    createSetupIntent: AWSJSON
+
+    # updates a given setup Intent. Call this method when a user changes their payment method, or selects a new payment method type.
+    updateSetupIntent(input: UpdateSetupIntentInput!): AWSJSON
+
+    # confirms a given setup Intent. Call this method when a user "saves" their payment method.
+    confirmSetupIntent(input: ConfirmSetupIntentInput!): AWSJSON
+
+    # Cancels a setup intent, call this when user abandons the setup
+    cancelSetupIntent(input: CancelSetupIntentInput!): AWSJSON
+
+
+
+    # Customer
+    # For accounts that will be conducting payments
+    updateStripeCustomer(input: UpdateStripeCustomerInput!): AWSJSON
+
+    # Attaches a given payment method on to a customer. 
+    # The user making this request must also be a stripe customer.
+    attachPaymentMethod(token: String!): AWSJSON
+
+    # Detaches a given payment method from a customer
+    detachPaymentMethod(token: String!): AWSJSON
+
+    #SERVIN
+    # Create a Conversation. Use some of the cooked in template functions for UUID and DateTime.
+    # You can create a conversation based on the id. createdAt and id fields will be determined by us (So, users can't manipulate them)
+    # createConversation(createdAt: String, id: ID!, discoveryId: String!): Conversation
+    createConversation(discoveryId: String!): Conversation
+    # Create a message in a Conversation.
+    # We only let the users pass in content and the conversation id, we take care of created at and message id.
+    # createMessage(content: String, conversationId: ID!, createdAt: String!, id: ID!): Message
+    createMessage(content: String, conversationId: ID!): Message
+    #  Put a single value of type 'User'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
+    # No need to create a new user
+    # createUser(username: String!): User
+    #  Put a single value of type 'UserConversations'. If an item does not exist with the same key the item will be created. If there exists an item at that key already, it will be updated.
+    createUserConversations(conversationId: ID!, username: ID!): UserConversations
+    # Allows a user to edit their information
+    updateProfileInformation(given_name: String, family_name: String, about: String, school: String): User
+
+    # Allows a user to update their categories
+    updateCategories(list: [String]): User
+
+    # Allows a user to edit their own discovery, if trying to edit someone else's it throws an error.
+    editDiscovery(geohashPrefix: Int, discoveryId: String, title: String, price: Int, request_or_offer: String, description: String): Discovery
+
+    # Allows a user to post a discovey
+    postDiscovery(title: String!, price: Int!, request_or_offer: String!, description: String!, lat: Float!, long: Float!): Discovery
+
+    # Allows the user to update the path to their profile picture, stored in an S3 Bucket.
+    updateProfilePicture(key: String): User
+
+    # Saves a given discovery in the user's favourites
+    saveDiscovery(discoveryId: String!): SavedDiscovery
+
+    #removes a saved discovery
+    removeSavedDiscovery(discoveryId: String!): SavedDiscovery
+}
+
+type Query {
+    # Gets information about a user's own stripe connected account
+    retrieveStripeAccount: AWSJSON
+
+    #  Gets information about a given external account
+    retrieveExternalAccount(id: String!): AWSJSON
+
+    # Lists external accounts of a connected user
+    # limit: A limit on the number of objects to be returned. Limit can range between 1 and 100, and the default is 10.
+    # ending_before: https://stripe.com/docs/api/external_account_bank_accounts/list?lang=node#account_list_bank_accounts-ending_before
+    # starting_after: https://stripe.com/docs/api/external_account_bank_accounts/list?lang=node#account_list_bank_accounts-starting_after
+    listExternalAccounts(type: ExternalAccountType, limit: Int, ending_before: String, starting_after: String): AWSJSON
+
+    # Returns this user's stripe account balance 
+    retrieveBalance: AWSJSON
+
+    # Retrieves a customer account
+    retrieveStripeCustomer: AWSJSON
+
+    # Lists paymentMethods
+    listPaymentMethods(input: ListPaymentMethodsInput!): AWSJSON
+    
+    #  Scan through all values of type 'Message'. Use the 'after' and 'before' arguments with the 'nextToken' returned by the 'MessageConnection' result to fetch pages.
+    allMessage(after: String, conversationId: ID!, first: Int): [Message]
+    #  Scan through all values of type 'MessageConnection'. Use the 'after' and 'before' arguments with the 'nextToken' returned by the 'MessageConnectionConnection' result to fetch pages.
+    allMessageConnection(after: String, conversationId: ID!, first: Int): MessageConnection
+    allMessageFrom(after: String, conversationId: ID!, first: Int, sender: String!): [Message]
+    #  Scan through all values of type 'User'. Use the 'after' and 'before' arguments with the 'nextToken' returned by the 'UserConnection' result to fetch pages.
+    allUser(after: String, first: Int): [User]
+    #  Get information about myself
+    me: User
+    # Given a discovery id, check to see if a user has already started a convo over it or not. The user sending this request is the one inquiring about a discovery, not the author of the discovery.
+    conversationFromDiscovery(discoveryId: String!): Conversation
+    # Given a conversation id, fetch the associated user conversations
+    allAssociated(conversationId: String!): [UserConversations]
+    # Given a discovery id, fetch all of the info related to the discovery
+    discovery(discoveryId: String!): Discovery
+    # Fetch all of my own discoveries
+    getMyDiscoveries: [Discovery]
+    # Get the discoveries inside a location defined by a bounded box
+    getSurroundingDiscoveries(latMin: Float, latMax: Float, longMin: Float, longMax: Float): [Discovery]
+    # Used for the autocomplete functionality when searching discoveries.
+    autocomplete(keyword: String): [String]
+    # Used to get search results for related discoveries when searching (It only returns the id, title, description and tags for now, so induvidual calls must be made to fetch complete information)
+    search(keyword: String): [Discovery]
+    # Fetch all of my saved discoveries
+    allSavedDiscoveries: [SavedDiscovery]
+}
+
+type Subscription {
+    #  Subscribes to all new messages in a given Conversation.
+    subscribeToNewMessage(conversationId: ID!): Message
+    @aws_subscribe(mutations:["createMessage"])
+    
+    # Subscribe to a convo, if someone replies to your discovery
+    subscribeToNewUCs(username:ID!): UserConversations
+    @aws_subscribe(mutations: ["createUserConversations"])
+
+}
+
+
+# STRIPE Related ENUMS
+enum ExternalAccountType {
+    bank_account
+    card
+}
+
+enum BusinessType {
+    individual
+    company
+}
+
+enum SetupIntentCancellationReason {
+    requested_by_customer
+    duplicate
+    abandoned
+}
+
+input DebitCardInput {
+    id: String!
+    address_city: String
+    address_country: String
+    address_line1: String
+    address_line2: String
+    address_state: String
+    address_zip: String
+    default_for_currency: Boolean
+    exp_month: Int
+    exp_year: Int
+    name: String
+}
+
+input BankAccountInput {
+    id: String!
+    account_holder_name: String
+    account_holder_type: BusinessType
+    default_for_currency: Boolean
+}
+
+input PaymentIntentInput {
+    amount: Int!
+    customer_username: String!
+}
+
+input ConfirmSetupIntentInput {
+    intent: String!
+    payment_method: String
+    returl_url: String
+}
+
+input UpdateSetupIntentInput {
+    intent: String!
+    payment_method: String
+    payment_method_types: String
+}
+
+input CancelSetupIntentInput {
+    intent: String!
+    cancellation_reason: SetupIntentCancellationReason!
+}
+
+
+input address {
+    line1: String!
+    city: String
+    country: String
+    line2: String
+    postal_code: String
+    state: String
+}
+
+input shipping {
+    address: address!
+    name: String!
+    phone: AWSPhone
+}
+
+input UpdateStripeCustomerInput {
+    address: address
+    email: AWSEmail
+    name: String
+    phone: AWSPhone
+    shipping: shipping
+
+}
+
+enum PaymentMethodTypes {
+    card
+}
+
+input ListPaymentMethodsInput {
+    type: PaymentMethodTypes!
+    ending_before: String
+    limit: Int
+    starting_after: String
+}

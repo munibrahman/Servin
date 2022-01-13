@@ -1,0 +1,337 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  * Written by Munib Rahman <munib@volticlabs.com>, April 2018
+#  */
+
+
+
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Storage Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+
+Parameters:
+  StorageName:
+    Type: String
+    Default: S3
+    Description: Unique Name AWS Storage related rsources (S3, DynamoDB etc) 
+    MinLength: 1
+    MaxLength: 30
+    AllowedPattern: '^[a-zA-Z][a-zA-Z0-9_]*$'
+
+  ReleaseEnvironment:                                                        # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+    Description: Environment type.
+    Default: dev
+    Type: String
+    AllowedValues: [prod, dev, test]
+    ConstraintDescription: must specify prod, dev, or test.
+
+  AuthRole:
+    Type: String
+    Description: Name of the AWS::IAM::Role that allows cognito pool to access storage resources
+
+  UserDynamoDBTableName:
+    Description: Name of the dynamodb table that holds user information such as sign up date, first/last name, school, categories and so on.
+    Type: String
+
+    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-sample-templates.html
+# Conditions:
+#   CreateProdResources: !Equals [!Ref ReleaseEnvironment, prod]
+#   CreateDevResources: !Equals [!Ref ReleaseEnvironment, dev]
+
+
+
+
+# *****************************************************************
+## S3 Bucket
+# *****************************************************************
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Delete
+    Properties:
+      BucketName: !Sub servin-users-bucket-${ReleaseEnvironment}
+      CorsConfiguration:
+        CorsRules:                                                  # Cross origin resource sharing: https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html
+          - AllowedHeaders:
+              - '*'
+            AllowedMethods:
+              - GET
+              - HEAD
+              - PUT
+              - POST
+              - DELETE
+            AllowedOrigins:
+              - '*'
+            ExposedHeaders:
+              - x-amz-server-side-encryption
+              - x-amz-request-id
+              - x-amz-id-2
+              - ETag
+            Id: S3CORSRuleId1
+            MaxAge: '3000'
+
+# *****************************************************************
+## IAM Policy to allow cognito users to access s3 bucket
+# *****************************************************************
+
+# Read and write policy. 
+# Key: /public/{discovery-id}/*.png                               Original images will be stored in here
+#      /public/{discovery-id}/small/*.png                         Resized images will be stored in here
+#      /public/{discovery-id}/medium/*.png                       
+#      /public/{discovery-id}/large/*.png                        
+#
+# Key: /protected/{Cognito-Identity}/profile.png                  User can only change their own profile picture, but only view someone else's profile picture.
+
+  S3AuthPolicyRW:
+    DependsOn:
+      - S3Bucket
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${StorageName}-S3AuthPolicyRW
+      Roles: 
+        - !Sub ${AuthRole}
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+              - 's3:PutObject'
+              - 's3:DeleteObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /public/*
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket                                             # Ref returns the resource name of the s3 bucket.
+                  - '/protected/${cognito-identity.amazonaws.com:sub}/*'      # Read and write ONLY your own protected folder. You can read other user's protected folders, but can't write to them. SEE S3AuthPolicyR for more info
+              # - !Join 
+              #   - ''
+              #   - - 'arn:aws:s3:::'
+              #     - !Ref S3Bucket
+              #     - '/private/${cognito-identity.amazonaws.com:sub}/*'         # Put your personal stuff in here like proserve, resume etc.
+          - Effect: Allow
+            Action:
+              - 's3:PutObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /uploads/*
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /protected/*
+          - Effect: Allow
+            Action:
+              - 's3:ListBucket'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+            Condition:
+              StringLike:
+                's3:prefix':
+                  - public/
+                  - public/*
+                  - protected/
+                  - protected/*
+                  # - 'private/${cognito-identity.amazonaws.com:sub}/'
+                  # - 'private/${cognito-identity.amazonaws.com:sub}/*'
+
+
+  S3AuthPolicyR:
+    DependsOn:
+      - S3Bucket
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${StorageName}-S3AuthPolicyR
+      Roles: 
+        - !Sub ${AuthRole}
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:ListBucket'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+            Condition:
+              StringLike:
+                's3:prefix':
+                  - public/
+                  - public/*
+                  - protected/
+                  - protected/*
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /protected/*
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /public/*
+
+
+  S3AuthPolicyW:
+    DependsOn:
+      - S3Bucket
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: !Sub ${StorageName}-S3AuthPolicyW
+      Roles: 
+        - !Sub ${AuthRole}
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+              - 's3:PutObject'
+              - 's3:DeleteObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /public/*
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - '/protected/${cognito-identity.amazonaws.com:sub}/*'
+              # - !Join 
+              #   - ''
+              #   - - 'arn:aws:s3:::'
+              #     - !Ref S3Bucket
+              #     - '/private/${cognito-identity.amazonaws.com:sub}/*'
+          - Effect: Allow
+            Action:
+              - 's3:PutObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /uploads/*
+          - Effect: Allow
+            Action:
+              - 's3:GetObject'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+                  - /protected/*
+          - Effect: Allow
+            Action:
+              - 's3:ListBucket'
+            Resource:
+              - !Join 
+                - ''
+                - - 'arn:aws:s3:::'
+                  - !Ref S3Bucket
+            Condition:
+              StringLike:
+                's3:prefix':
+                  - public/
+                  - public/*
+                  - protected/
+                  - protected/*
+                  # - 'private/${cognito-identity.amazonaws.com:sub}/'
+                  # - 'private/${cognito-identity.amazonaws.com:sub}/*'
+
+
+  ResizeDiscoveryImagesLambda:
+    Type: AWS::Serverless::Function
+    Description: Handles all image operations associated with a discovery. (Ex. Resizing them and putting them in their correct key paths and also running Amazon Rekgnition)
+    Properties:
+      FunctionName: !Sub ${StorageName}-${ReleaseEnvironment}-ResizeDiscoveryImageLambda
+      CodeUri: Lambdas/nodejs8.10
+      Handler: ResizeImage.handler
+      Runtime: nodejs8.10
+      MemorySize: 512
+      Timeout: 20                                                                                   # https://stackoverflow.com/questions/32064038/aws-lambda-function-triggering-multiple-times-for-a-single-event
+      Policies:
+        - AmazonRekognitionFullAccess
+        - AmazonS3FullAccess
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          STAGE: !Ref ReleaseEnvironment
+          DiscoveriesTable: Discoveries
+      Events:
+        imageCreated:
+          Type: S3
+          Properties:
+            Bucket: !Ref S3Bucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:                                                                                      # https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html
+                Rules:
+                  - Name: prefix                                                                          # We are only worried about files being added to the public folders
+                    Value: 'public/'
+                  - Name: suffix                                                                          # We also only worry about .jpg, thats what the iOS app will upload. Resized images will be .png
+                    Value: '.jpg'
+
+  ResizeProfileImagesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Description: Handles all image operations associated with a profile image. (Ex. Resizing it and putting it in their correct key paths and also running Amazon Rekgnition)
+      FunctionName: !Sub ${StorageName}-${ReleaseEnvironment}-ResizeProfileImageLambda
+      CodeUri: Lambdas/nodejs8.10
+      Handler: ResizeImage.profileHandler
+      Runtime: nodejs8.10
+      MemorySize: 512
+      Timeout: 20                                                                                   # https://stackoverflow.com/questions/32064038/aws-lambda-function-triggering-multiple-times-for-a-single-event
+      Policies:
+        - AmazonRekognitionFullAccess
+        - AmazonS3FullAccess
+        - AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          STAGE: !Ref ReleaseEnvironment
+          DiscoveriesTable: Discoveries
+          USER_TABLE: !Sub ${UserDynamoDBTableName}
+      Events:
+        imageCreated:
+          Type: S3
+          Properties:
+            Bucket: !Ref S3Bucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:                                                                                      # https://docs.aws.amazon.com/AmazonS3/latest/dev/NotificationHowTo.html
+                Rules:
+                  - Name: prefix                                                                          # We are only worried about profile images being added to the protected folder
+                    Value: 'protected/'
+                  - Name: suffix                                                                          # We also only worry about .jpg, thats what the iOS app will upload. Resized images will be .png
+                    Value: '.jpg'
+
+Outputs:
+  S3BucketARN:
+    Description: Unique ARN of the s3 bucket
+    Value: !GetAtt S3Bucket.Arn
+  S3BucketName:
+    Description: Resource name of the s3 bucket
+    Value: !Ref S3Bucket

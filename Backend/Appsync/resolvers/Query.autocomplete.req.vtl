@@ -1,0 +1,17 @@
+{
+    "version": "2017-02-28",
+    "operation": "GET",
+    "path": "/servin/discoveries/_search",
+    "params": {
+        "body": {
+            "suggest": {
+                "titleSuggestion": {
+                    "prefix": "$context.args.keyword",
+                    "completion": {
+                    "field": "title"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+# /* Copyright (C) Voltic Labs, Inc - All Rights Reserved
+#  * Unauthorized copying of this file, via any medium is strictly prohibited
+#  * Proprietary and confidential
+#  * Created by: Munib Rahman - July 9, 2019
+#  */
+
+
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Pinpoint Stack by Voltic Labs Inc. Copyright (C) Voltic Labs, Inc - All Rights Reserved. Unauthorized copying of this file, via any medium is strictly prohibited. Proprietary and confidential.
+
+Parameters:
+
+  ReleaseEnvironment:
+    Type: String
+    Default: dev
+    Description: The software development environment (ie dev, testing, production, etc...)
+    AllowedValues:
+      - dev
+      - prod
+      - test
+
+  AppName:
+    Description: Name of the Pinpoint application
+    Type: String
+
+  iOSBundleId:
+    Description: The bundle identifier that's assigned to your iOS app. 
+    Type: String
+
+  iOSTeamId:
+    Description: The identifier that's assigned to your Apple Developer Account team.
+    Type: String
+
+
+  TokenKey:
+    Description: The authentication key to use for APNs tokens.
+    Type: String
+
+  TokenKeyId:
+    Description: The key identifier that's assigned to your APNs signing key. Specify this value if you want Amazon Pinpoint to communicate with APNs by using APNs tokens.
+    Type: String
+
+  AuthRole:
+    Description: IAM role of the authenticated user, required to allow users to update endpoints and amplify events.
+    Type: String
+
+Outputs:
+  
+  PinpointAppId:
+    Description: id of the pinpoint application
+    Value: !Ref PinpointApp
+
+  PinpointAppRegion:
+    Description: Region of the pinpoint application
+    Value: !Sub ${AWS::Region}
+
+
+Resources:
+
+  PinpointApp:
+    Type: AWS::Pinpoint::App
+    Properties:
+      Name: !Sub ${AppName}-${ReleaseEnvironment} #required
+
+  # Used for production notifications 
+  APNSChannel:
+    Type: AWS::Pinpoint::APNSChannel
+    Properties:
+      BundleId: !Sub ${iOSBundleId}
+      # PrivateKey: !Sub ${PrivateKey}
+      Enabled: true
+      DefaultAuthenticationMethod: TOKEN #1
+      TokenKey: !Sub ${TokenKey}
+      ApplicationId: !Ref PinpointApp #required
+      TeamId: !Sub ${iOSTeamId}
+      # Certificate: String
+      TokenKeyId: !Sub ${TokenKeyId}
+  
+  # Used for sending test notifications 
+  APNSSandboxChannel:
+    Type: AWS::Pinpoint::APNSSandboxChannel
+    Properties:
+      BundleId: !Sub ${iOSBundleId}
+      # PrivateKey: !Sub ${PrivateKey}
+      Enabled: true
+      DefaultAuthenticationMethod: TOKEN #1
+      TokenKey: !Sub ${TokenKey}
+      ApplicationId: !Ref PinpointApp #required
+      TeamId: !Sub ${iOSTeamId}
+      # Certificate: String
+      TokenKeyId: !Sub ${TokenKeyId}
+
+  CognitoMobileTargetingPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "mobiletargeting:UpdateEndpoint"
+              - "mobiletargeting:PutEvents"
+            Resource: !Sub 'arn:aws:mobiletargeting:*:${AWS::AccountId}:apps/${PinpointApp}*'
+      PolicyName: CognitoMobileTargetingPolicy
+      Roles:                                            #2
+        - !Sub ${AuthRole}
+
+
+
+#1 - Cloudformation website mentions that this value can be either key or certificate, its wrong. It can be either TOKEN or CERTIFICATE
+#2 - Insert the required roles in here

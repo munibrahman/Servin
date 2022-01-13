@@ -1,0 +1,51 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '11.0'
+
+target 'Servin' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Servin
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
+  pod 'KYNavigationProgress'
+  pod 'IQKeyboardManagerSwift'
+  pod 'SideMenu'
+  pod 'DZNEmptyDataSet'
+  pod "Macaw", "0.9.5"
+  pod 'Pulley'
+  pod 'PinpointKit'
+  pod 'TLPhotoPicker'
+  pod 'ImageSlideshow', '~> 1.6'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod 'Eureka'
+  pod 'JWTDecode', '~> 2.1'
+  pod 'NotificationBannerSwift' # To show notifications
+  pod 'SkeletonView'
+  pod 'NVActivityIndicatorView'
+  pod 'AwesomeSpotlightView'
+  #AWS Pods
+  pod 'AWSCore'
+  pod 'AWSAppSync'
+  pod 'AWSAPIGateway'
+  pod 'AWSPinpoint'
+  pod 'AWSMobileClient'      # Required dependency for signing up
+  pod 'AWSS3'
+  
+  #Stripe
+  pod 'Stripe'
+  
+  #cardIO
+  pod 'CardIO'
+
+  target 'ServinTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ServinUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

@@ -1,0 +1,1074 @@
+# this is an auto generated file. This will be overwritten
+subscription SubscribeToNewMessage($conversationId: ID!) {
+  subscribeToNewMessage(conversationId: $conversationId) {
+    author {
+      username
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              username
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+              authorUserName
+            }
+            conversationId
+            user {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            username
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+              isSaved
+            }
+            authorUserName
+          }
+          conversationId
+          user {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          username
+        }
+      }
+      messages {
+        messages {
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    content
+    conversationId
+    createdAt
+    id
+    isSent
+    recipient {
+      username
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              username
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+              authorUserName
+            }
+            conversationId
+            user {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            username
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+              isSaved
+            }
+            authorUserName
+          }
+          conversationId
+          user {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          username
+        }
+      }
+      messages {
+        messages {
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    sender
+  }
+}
+subscription SubscribeToNewUCs($username: ID!) {
+  subscribeToNewUCs(username: $username) {
+    associated {
+      associated {
+        associated {
+          associated {
+            associated {
+              conversationId
+              username
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+              authorUserName
+            }
+            conversationId
+            user {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            username
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+              isSaved
+            }
+            authorUserName
+          }
+          conversationId
+          user {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          username
+        }
+        conversation {
+          createdAt
+          id
+          discoveryId
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          latestMessage {
+            author {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          discovery {
+            geohashPrefix
+            discoveryId
+            active
+            cognitoUserName
+            description
+            price
+            request_or_offer
+            time
+            title
+            geoJson
+            image_0
+            image_1
+            image_2
+            image_3
+            image_4
+            image_5
+            author {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            latitude
+            longitude
+            isSaved
+          }
+          authorUserName
+        }
+        conversationId
+        user {
+          username
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              username
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+        }
+        username
+      }
+      conversation {
+        createdAt
+        id
+        discoveryId
+        messages {
+          messages {
+            author {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        latestMessage {
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        discovery {
+          geohashPrefix
+          discoveryId
+          active
+          cognitoUserName
+          description
+          price
+          request_or_offer
+          time
+          title
+          geoJson
+          image_0
+          image_1
+          image_2
+          image_3
+          image_4
+          image_5
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          latitude
+          longitude
+          isSaved
+        }
+        authorUserName
+      }
+      conversationId
+      user {
+        username
+        conversations {
+          nextToken
+          userConversations {
+            associated {
+              conversationId
+              username
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+              authorUserName
+            }
+            conversationId
+            user {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            username
+          }
+        }
+        messages {
+          messages {
+            author {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            content
+            conversationId
+            createdAt
+            id
+            isSent
+            recipient {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            sender
+          }
+          nextToken
+        }
+        registered
+        about
+        profilePic
+        rating
+        signUpDate
+        family_name
+        given_name
+        school
+        categories
+        hasChosenCategories
+      }
+      username
+    }
+    conversation {
+      createdAt
+      id
+      discoveryId
+      messages {
+        messages {
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      latestMessage {
+        author {
+          username
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              username
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+        }
+        content
+        conversationId
+        createdAt
+        id
+        isSent
+        recipient {
+          username
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              username
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+        }
+        sender
+      }
+      discovery {
+        geohashPrefix
+        discoveryId
+        active
+        cognitoUserName
+        description
+        price
+        request_or_offer
+        time
+        title
+        geoJson
+        image_0
+        image_1
+        image_2
+        image_3
+        image_4
+        image_5
+        author {
+          username
+          conversations {
+            nextToken
+            userConversations {
+              conversationId
+              username
+            }
+          }
+          messages {
+            messages {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            nextToken
+          }
+          registered
+          about
+          profilePic
+          rating
+          signUpDate
+          family_name
+          given_name
+          school
+          categories
+          hasChosenCategories
+        }
+        latitude
+        longitude
+        isSaved
+      }
+      authorUserName
+    }
+    conversationId
+    user {
+      username
+      conversations {
+        nextToken
+        userConversations {
+          associated {
+            associated {
+              conversationId
+              username
+            }
+            conversation {
+              createdAt
+              id
+              discoveryId
+              authorUserName
+            }
+            conversationId
+            user {
+              username
+              registered
+              about
+              profilePic
+              rating
+              signUpDate
+              family_name
+              given_name
+              school
+              categories
+              hasChosenCategories
+            }
+            username
+          }
+          conversation {
+            createdAt
+            id
+            discoveryId
+            messages {
+              nextToken
+            }
+            latestMessage {
+              content
+              conversationId
+              createdAt
+              id
+              isSent
+              sender
+            }
+            discovery {
+              geohashPrefix
+              discoveryId
+              active
+              cognitoUserName
+              description
+              price
+              request_or_offer
+              time
+              title
+              geoJson
+              image_0
+              image_1
+              image_2
+              image_3
+              image_4
+              image_5
+              latitude
+              longitude
+              isSaved
+            }
+            authorUserName
+          }
+          conversationId
+          user {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          username
+        }
+      }
+      messages {
+        messages {
+          author {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          content
+          conversationId
+          createdAt
+          id
+          isSent
+          recipient {
+            username
+            conversations {
+              nextToken
+            }
+            messages {
+              nextToken
+            }
+            registered
+            about
+            profilePic
+            rating
+            signUpDate
+            family_name
+            given_name
+            school
+            categories
+            hasChosenCategories
+          }
+          sender
+        }
+        nextToken
+      }
+      registered
+      about
+      profilePic
+      rating
+      signUpDate
+      family_name
+      given_name
+      school
+      categories
+      hasChosenCategories
+    }
+    username
+  }
+}
